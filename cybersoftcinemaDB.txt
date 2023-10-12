@@ -1,0 +1,212 @@
+CREATE DATABASE cybersoftcinema;
+USE cybersoftcinema;
+
+CREATE TABLE Users (
+	id int auto_increment,
+	fullname nvarchar(255),
+	phonenumber varchar(10),
+	gender enum('m','f'),
+	email varchar(255),
+	password varchar(50),
+	dob date,
+	id_role int,
+	
+	primary key (id)
+);
+CREATE TABLE Role(
+	id int auto_increment,
+	name varchar(50),
+	description varchar(255),
+	
+	primary key (id)
+);
+CREATE TABLE Ticket(
+	id int auto_increment,
+	price decimal(12, 3),
+	quanity int,
+	id_users int,
+	
+	primary key (id)
+);
+CREATE TABLE Price(
+	id int auto_increment,
+	name varchar(50),
+	showingdate date,
+	showingtime time,
+	price decimal(12, 3),
+	id_seattype int,
+	
+	primary key (id)
+);
+CREATE TABLE Seat(
+	id int auto_increment,
+	id_seattype int,
+	id_seatstatus int,
+	id_ticket int,
+	id_price int,
+	id_Movie_Theater_Showing int,
+	
+	primary key (id)
+);
+CREATE TABLE SeatType(
+	id int auto_increment,
+	name varchar(50),
+	
+	primary key (id)
+);
+CREATE TABLE SeatStatus(
+	id int auto_increment,
+	name varchar(50),
+	
+	primary key(id)
+); 
+CREATE TABLE Movie(
+	id int auto_increment,
+	name nvarchar(255),
+	rating decimal(2,1),
+	requiredage int,
+	duration int,
+	id_country int, 
+	releasedate date,
+	content text,
+	images varchar(255),
+	id_moviestatus int,
+	
+	primary key(id)
+);
+CREATE TABLE MovieStatus(
+	id int auto_increment,
+	name varchar (50),
+	
+	primary key(id)
+);
+CREATE TABLE Producer(
+	id int auto_increment,
+	name varchar(255),
+	
+	primary key(id)
+);
+CREATE TABLE Person(
+	id int auto_increment,
+	id_persontype int,
+	name nvarchar(255),
+	pictures varchar(255),
+	dob date,
+	id_country int,
+	story text,
+	
+	primary key(id)
+);
+CREATE TABLE PersonType(
+	id int auto_increment,
+	name varchar(20),
+
+	primary key(id)
+);
+CREATE TABLE Person_Movie(
+	id_person int,
+	id_movie int,
+	
+	primary key(id_person,id_movie)
+);
+CREATE TABLE MovieType(
+	id int auto_increment,
+	name varchar(255),
+	
+	primary key(id)
+);
+CREATE TABLE Movie_MovieType(
+	id_movie int,
+	id_movietype int,
+	
+	primary key(id_movie,id_movietype)
+);
+CREATE TABLE Theater(
+	id int auto_increment,
+	name nvarchar(255),
+	address nvarchar(255),
+	content text,
+	
+	primary key(id)
+);
+CREATE TABLE Showing(
+	id int auto_increment,
+	starttime time,
+	showingdate date,
+	
+	primary key(id)
+);
+CREATE TABLE Movie_Theater_Showing(
+	id int auto_increment,
+	id_movie int,
+	id_theater int,
+	id_showing int,
+	
+	primary key(id, id_movie, id_theater, id_showing)
+);
+CREATE TABLE MoviePreview(
+	id int auto_increment,
+	name nvarchar(255),
+	images varchar(255),
+	content text,
+	tag varchar(255),
+	
+	primary key(id)
+);
+CREATE TABLE MovieBlog(
+	id int auto_increment,
+	name nvarchar(255),
+	images varchar(255),
+	content text,
+	tag varchar(255),
+	
+	primary key(id)
+);
+CREATE TABLE Country(
+	id int auto_increment,
+	name nvarchar(255),
+	
+	primary key(id)
+);
+
+
+ALTER TABLE Users 					 ADD CONSTRAINT FK_id_role_Users 					
+						FOREIGN KEY (id_role) 					REFERENCES Role(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Ticket 					 ADD CONSTRAINT FK_id_users_Ticket 					
+						FOREIGN KEY (id_users) 					REFERENCES Users(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Price 					 ADD CONSTRAINT FK_id_seattype_Price 				
+						FOREIGN KEY (id_seattype) 				REFERENCES SeatType(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Seat 					 ADD CONSTRAINT FK_id_price_Seat	 				
+						FOREIGN KEY (id_price)	 				REFERENCES Price(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Seat 					 ADD CONSTRAINT FK_id_ticket_Seat	 				
+						FOREIGN KEY (id_ticket)	 				REFERENCES Ticket(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Seat 					 ADD CONSTRAINT FK_id_seatstatus_Seat	 			
+						FOREIGN KEY (id_seatstatus)	 			REFERENCES SeatStatus(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Seat 					 ADD CONSTRAINT FK_id_seattype_Seat	 				
+						FOREIGN KEY (id_seattype)	 			REFERENCES SeatType(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Seat 					 ADD CONSTRAINT FK_id_Movie_Theater_Showing_Seat 	
+						FOREIGN KEY (id_Movie_Theater_Showing)	REFERENCES Movie_Theater_Showing(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Movie_Theater_Showing 	 ADD CONSTRAINT FK_id_showing_Movie_Theater_Showing	
+						FOREIGN KEY (id_showing)	 			REFERENCES Showing(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Movie_Theater_Showing 	 ADD CONSTRAINT FK_id_theater_Movie_Theater_Showing	
+						FOREIGN KEY (id_theater)	 			REFERENCES Theater(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Movie_Theater_Showing 	 ADD CONSTRAINT FK_id_movie_Movie_Theater_Showing	
+						FOREIGN KEY (id_movie)	 				REFERENCES Movie(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Movie_MovieType		 	 ADD CONSTRAINT FK_id_movietype_Movie_MovieType		
+						FOREIGN KEY (id_movietype)	 			REFERENCES MovieType(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Movie_MovieType		 	 ADD CONSTRAINT FK_id_movie_Movie_MovieType			
+						FOREIGN KEY (id_movie)	 				REFERENCES Movie(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Person_Movie		 	 ADD CONSTRAINT FK_id_person_Person_Movie			
+						FOREIGN KEY (id_person)	 				REFERENCES Person(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Person_Movie		 	 ADD CONSTRAINT FK_id_movie_Person_Movie			
+						FOREIGN KEY (id_movie)	 				REFERENCES Movie(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Person				 	 ADD CONSTRAINT FK_id_persontype_Person				
+						FOREIGN KEY (id_persontype)	 			REFERENCES PersonType(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Person				 	 ADD CONSTRAINT FK_id_country_Person				
+						FOREIGN KEY (id_country)	 			REFERENCES Country(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Movie				 	 ADD CONSTRAINT FK_id_moviestatus_Movie				
+						FOREIGN KEY (id_moviestatus)	 		REFERENCES MovieStatus(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Movie				 	 ADD CONSTRAINT FK_id_country_Movie					
+						FOREIGN KEY (id_country)	 			REFERENCES Country(id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE Movie				 	 ADD CONSTRAINT FK_id_Movie							
+						FOREIGN KEY (id)			 			REFERENCES Producer(id) ON DELETE CASCADE ON UPDATE CASCADE;
