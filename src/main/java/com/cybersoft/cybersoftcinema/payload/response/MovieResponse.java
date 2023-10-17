@@ -10,13 +10,13 @@ public class MovieResponse {
     private String name;
     private String status;
     private String country;
-    private String movieType;
+    private List<String> movieType;
 
-    public String getMovieType() {
+    public List<String> getMovieType() {
         return movieType;
     }
 
-    public void setMovieType(String movieType) {
+    public void setMovieType(List<String> movieType) {
         this.movieType = movieType;
     }
 

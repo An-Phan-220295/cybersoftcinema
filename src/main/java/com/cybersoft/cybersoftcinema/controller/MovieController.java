@@ -31,5 +31,4 @@ public class MovieController {
         List<MovieResponse> movieResponseList = movieServiceImp.getMovie(idMovie);
         return new ResponseEntity<>(movieResponseList, HttpStatus.OK);
     }
-
 }
