@@ -42,6 +42,9 @@ public class MovieEntity {
     @JoinColumn(name = "idMoviestatus")
     private MovieStatusEntity movieStatusEntity;
 
+    @OneToMany(mappedBy = "movieEntity")
+    private List<MovieTheaterShowingEntity> movieTheaterShowingEntities;
+
     public List<MovieMovieTypeEntity> getMovieMovieTypeEntities() {
         return movieMovieTypeEntities;
     }
@@ -128,5 +131,13 @@ public class MovieEntity {
 
     public void setImages(String images) {
         this.images = images;
+    }
+
+    public List<MovieTheaterShowingEntity> getMovieTheaterShowingEntities() {
+        return movieTheaterShowingEntities;
+    }
+
+    public void setMovieTheaterShowingEntities(List<MovieTheaterShowingEntity> movieTheaterShowingEntities) {
+        this.movieTheaterShowingEntities = movieTheaterShowingEntities;
     }
 }
