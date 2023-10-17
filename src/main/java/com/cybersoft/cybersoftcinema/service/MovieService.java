@@ -1,6 +1,5 @@
 package com.cybersoft.cybersoftcinema.service;
 
-import com.cybersoft.cybersoftcinema.entity.MovieEntity;
 import com.cybersoft.cybersoftcinema.entity.MovieMovieTypeEntity;
 import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
 import com.cybersoft.cybersoftcinema.repository.MovieMovieTypeRepository;
@@ -9,7 +8,8 @@ import com.cybersoft.cybersoftcinema.service.imp.MovieServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MovieService implements MovieServiceImp {

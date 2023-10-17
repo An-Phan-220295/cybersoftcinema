@@ -1,9 +1,5 @@
 package com.cybersoft.cybersoftcinema.payload.response;
 
-import com.cybersoft.cybersoftcinema.entity.MovieTypeEntity;
-
-import com.cybersoft.cybersoftcinema.entity.MovieMovieTypeEntity;
-
 import java.util.List;
 
 public class MovieResponse {
