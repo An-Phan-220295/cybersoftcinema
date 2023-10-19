@@ -3,18 +3,17 @@ package com.cybersoft.cybersoftcinema.entity;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "producer")
-public class ProducerEntity {
+@Entity(name = "tag")
+public class TagEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private int id ;
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "producerEntity")
-    private List<MovieProducerEntity> movieProducerEntities;
+    @OneToMany(mappedBy = "tagEntity")
+    private List<PreviewBlogTagEntity> previewBlogTagEntities;
 
     public int getId() {
         return id;
@@ -32,11 +31,11 @@ public class ProducerEntity {
         this.name = name;
     }
 
-    public List<MovieProducerEntity> getMovieProducerEntities() {
-        return movieProducerEntities;
+    public List<PreviewBlogTagEntity> getPreviewBlogTagEntities() {
+        return previewBlogTagEntities;
     }
 
-    public void setMovieProducerEntities(List<MovieProducerEntity> movieProducerEntities) {
-        this.movieProducerEntities = movieProducerEntities;
+    public void setPreviewBlogTagEntities(List<PreviewBlogTagEntity> previewBlogTagEntities) {
+        this.previewBlogTagEntities = previewBlogTagEntities;
     }
 }
