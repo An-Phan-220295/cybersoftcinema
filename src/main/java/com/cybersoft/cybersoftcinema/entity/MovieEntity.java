@@ -46,6 +46,7 @@ public class MovieEntity {
 
     private List<MovieTheaterShowingEntity> movieTheaterShowingEntities;
 
+    @OneToMany(mappedBy = "movieEntity")
     private List<MovieProducerEntity> movieProducerEntity;
 
     @OneToMany(mappedBy = "movieEntity")

@@ -19,4 +19,28 @@ public class PersonMovieEntity {
     @ManyToOne
     @JoinColumn(name = "idPerson", updatable = false, insertable = false)
     private PersonEntity personEntity;
+
+    public MoviePersonKey getMoviePersonKey() {
+        return moviePersonKey;
+    }
+
+    public void setMoviePersonKey(MoviePersonKey moviePersonKey) {
+        this.moviePersonKey = moviePersonKey;
+    }
+
+    public MovieEntity getMovieEntity() {
+        return movieEntity;
+    }
+
+    public void setMovieEntity(MovieEntity movieEntity) {
+        this.movieEntity = movieEntity;
+    }
+
+    public PersonEntity getPersonEntity() {
+        return personEntity;
+    }
+
+    public void setPersonEntity(PersonEntity personEntity) {
+        this.personEntity = personEntity;
+    }
 }
