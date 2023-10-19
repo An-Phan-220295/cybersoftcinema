@@ -43,7 +43,21 @@ public class MovieEntity {
     private MovieStatusEntity movieStatusEntity;
 
     @OneToMany(mappedBy = "movieEntity")
+
     private List<MovieTheaterShowingEntity> movieTheaterShowingEntities;
+
+    private List<MovieProducerEntity> movieProducerEntity;
+
+    @OneToMany(mappedBy = "movieEntity")
+    private List<PersonMovieEntity> personMovieEntities;
+
+    public List<MovieProducerEntity> getMovieProducerEntity() {
+        return movieProducerEntity;
+    }
+
+    public void setMovieProducerEntity(List<MovieProducerEntity> movieProducerEntity) {
+        this.movieProducerEntity = movieProducerEntity;
+    }
 
     public List<MovieMovieTypeEntity> getMovieMovieTypeEntities() {
         return movieMovieTypeEntities;
