@@ -409,9 +409,72 @@ insert into role( name, description ) VALUES ("ROLE_ADMIN", "Quản trị hệ 
 insert into role( name, description ) VALUES ("ROLE_MANAGER", "Quản lý");
 insert into role( name, description ) VALUES ("ROLE_USER", "Nhân viên");
 
-insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Nguyễn Văn A","5031245254","m","nguyenvana@gmail.com","12345","2000:03:19",2);
+insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Nguyễn Văn A","5031245254","m","nguyenvana@gmail.com","$2a$12$O1wj393Khcqo01XBcNQLweTPSas414pLRehJREwM48Ya8zmSDfPH.","2000:03:19",2);
 insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Nguyễn Thị B","0356985412","f","nguyenthib@gmail.com","112233","1994:05:16",3);
 insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Nguyễn Quốc Cường","0989174455","m","nguyenquoccuong@gmail.com","090909","1997:05:16",2);
 insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Phan Phúc An","0556699881","m","phanphucan@gmail.com","556644","1994:02:06",1);
 insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Trần Văn Dương","0964523164","m","tranvanduong@gmail.com","123123","1997:04:16",3);
+
+
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(1, 1);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(1, 2);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(2, 7);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(2, 9);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(3, 11);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(4, 5);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(4, 3);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(5, 9);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(6, 6);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(7, 14);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(7, 7);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(7, 8);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(8, 15);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(9, 13);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(10, 5);
+INSERT INTO cybersoftcinema.movie_movietype(id_movie, id_movietype)			VALUES(10, 4);
+
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(1, 4);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(2, 1);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(2, 3);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(3, 5);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(4, 7);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(5, 3);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(5, 1);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(5, 2);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(6, 8);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(6, 4);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(7, 5);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(8, 6);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(9, 2);
+INSERT INTO cybersoftcinema.movie_producer (id_movie, id_producer)			VALUES(10, 5);
+
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(1, 4);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(1, 6);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(1, 2);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(2, 4);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(2, 6);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(2, 2);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(3, 4);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(3, 5);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(3, 6);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(4, 8);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(4, 4);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(5, 1);
+INSERT INTO cybersoftcinema.person_movie(id_movie, id_person) 				VALUES(5, 9);
+
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(1, 1);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(2, 1);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(6, 1);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(4, 2);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(2, 2);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(1, 2);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(3, 3);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(2, 3);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(5, 3);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(6, 4);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(1, 4);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(3, 4);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(4, 5);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(3, 5);
+INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(2, 5);
 
