@@ -9,25 +9,32 @@ public class SeatEntity {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "seatnumber")
+    private int seatNumber;
+
     @ManyToOne
     @JoinColumn(name = "idSeatType")
     private SeatTypeEntity seatTypeEntity;
-
-    @ManyToOne
-    @JoinColumn(name = "idSeatStatus")
-    private SeatStatusEntity seatStatusEntity;
-
-    @ManyToOne
-    @JoinColumn(name = "idTicket")
-    private TicketEntity ticketEntity;
 
     @ManyToOne
     @JoinColumn(name = "idPrice")
     private PriceEntity priceEntity;
 
     @ManyToOne
-    @JoinColumn(name = "idMovieTheaterShowing")
-    private MovieTheaterShowingEntity movieTheaterShowingEntity;
+    @JoinColumn (name = "idMovie")
+    private MovieEntity movieEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "idTheater")
+    private TheaterEntity theaterEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "idShowing")
+    private ShowingEntity showingEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "idUser")
+    private UsersEntity usersEntity;
 
     public int getId() {
         return id;
@@ -45,22 +52,6 @@ public class SeatEntity {
         this.seatTypeEntity = seatTypeEntity;
     }
 
-    public SeatStatusEntity getSeatStatusEntity() {
-        return seatStatusEntity;
-    }
-
-    public void setSeatStatusEntity(SeatStatusEntity seatStatusEntity) {
-        this.seatStatusEntity = seatStatusEntity;
-    }
-
-    public TicketEntity getTicketEntity() {
-        return ticketEntity;
-    }
-
-    public void setTicketEntity(TicketEntity ticketEntity) {
-        this.ticketEntity = ticketEntity;
-    }
-
     public PriceEntity getPriceEntity() {
         return priceEntity;
     }
@@ -69,11 +60,43 @@ public class SeatEntity {
         this.priceEntity = priceEntity;
     }
 
-    public MovieTheaterShowingEntity getMovieTheaterShowingEntity() {
-        return movieTheaterShowingEntity;
+    public MovieEntity getMovieEntity() {
+        return movieEntity;
     }
 
-    public void setMovieTheaterShowingEntity(MovieTheaterShowingEntity movieTheaterShowingEntity) {
-        this.movieTheaterShowingEntity = movieTheaterShowingEntity;
+    public void setMovieEntity(MovieEntity movieEntity) {
+        this.movieEntity = movieEntity;
+    }
+
+    public TheaterEntity getTheaterEntity() {
+        return theaterEntity;
+    }
+
+    public void setTheaterEntity(TheaterEntity theaterEntity) {
+        this.theaterEntity = theaterEntity;
+    }
+
+    public ShowingEntity getShowingEntity() {
+        return showingEntity;
+    }
+
+    public void setShowingEntity(ShowingEntity showingEntity) {
+        this.showingEntity = showingEntity;
+    }
+
+    public UsersEntity getUsersEntity() {
+        return usersEntity;
+    }
+
+    public void setUsersEntity(UsersEntity usersEntity) {
+        this.usersEntity = usersEntity;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
     }
 }

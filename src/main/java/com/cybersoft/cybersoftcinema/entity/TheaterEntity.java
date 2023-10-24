@@ -21,6 +21,9 @@ public class TheaterEntity {
     @OneToMany(mappedBy = "theaterEntity")
     private List<MovieTheaterShowingEntity> movieTheaterShowingEntities;
 
+    @OneToMany(mappedBy = "theaterEntity")
+    private List<SeatEntity> seatEntities;
+
     public int getId() {
         return id;
     }
@@ -59,5 +62,13 @@ public class TheaterEntity {
 
     public void setMovieTheaterShowingEntities(List<MovieTheaterShowingEntity> movieTheaterShowingEntities) {
         this.movieTheaterShowingEntities = movieTheaterShowingEntities;
+    }
+
+    public List<SeatEntity> getSeatEntities() {
+        return seatEntities;
+    }
+
+    public void setSeatEntities(List<SeatEntity> seatEntities) {
+        this.seatEntities = seatEntities;
     }
 }

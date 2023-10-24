@@ -32,8 +32,8 @@ public class UsersEntity {
     @JoinColumn (name = "idRole")
     private RoleEntity roleEntity;
 
-    @OneToMany (mappedBy = "usersEntity")
-    private List<TicketEntity> ticketEntities;
+    @OneToMany(mappedBy = "usersEntity")
+    private List<SeatEntity> seatEntities;
 
     public int getId() {
         return id;
@@ -99,11 +99,11 @@ public class UsersEntity {
         this.roleEntity = roleEntity;
     }
 
-    public List<TicketEntity> getTicketEntities() {
-        return ticketEntities;
+    public List<SeatEntity> getSeatEntities() {
+        return seatEntities;
     }
 
-    public void setTicketEntities(List<TicketEntity> ticketEntities) {
-        this.ticketEntities = ticketEntities;
+    public void setSeatEntities(List<SeatEntity> seatEntities) {
+        this.seatEntities = seatEntities;
     }
 }

@@ -43,7 +43,6 @@ public class MovieEntity {
     private MovieStatusEntity movieStatusEntity;
 
     @OneToMany(mappedBy = "movieEntity")
-
     private List<MovieTheaterShowingEntity> movieTheaterShowingEntities;
 
     @OneToMany(mappedBy = "movieEntity")
@@ -51,6 +50,9 @@ public class MovieEntity {
 
     @OneToMany(mappedBy = "movieEntity")
     private List<PersonMovieEntity> personMovieEntities;
+
+    @OneToMany (mappedBy = "movieEntity")
+    private List<SeatEntity> seatEntities;
 
     public List<MovieProducerEntity> getMovieProducerEntity() {
         return movieProducerEntity;
@@ -154,5 +156,21 @@ public class MovieEntity {
 
     public void setMovieTheaterShowingEntities(List<MovieTheaterShowingEntity> movieTheaterShowingEntities) {
         this.movieTheaterShowingEntities = movieTheaterShowingEntities;
+    }
+
+    public List<PersonMovieEntity> getPersonMovieEntities() {
+        return personMovieEntities;
+    }
+
+    public void setPersonMovieEntities(List<PersonMovieEntity> personMovieEntities) {
+        this.personMovieEntities = personMovieEntities;
+    }
+
+    public List<SeatEntity> getSeatEntities() {
+        return seatEntities;
+    }
+
+    public void setSeatEntities(List<SeatEntity> seatEntities) {
+        this.seatEntities = seatEntities;
     }
 }

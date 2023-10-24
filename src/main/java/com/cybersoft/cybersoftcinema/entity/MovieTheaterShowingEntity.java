@@ -1,36 +1,27 @@
 package com.cybersoft.cybersoftcinema.entity;
 
+import com.cybersoft.cybersoftcinema.entity.compositeKey.MovieTheaterShowingKey;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity (name = "movie_theater_showing")
 public class MovieTheaterShowingEntity {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+
+    @EmbeddedId
+    private MovieTheaterShowingKey movieTheaterShowingKey;
 
     @ManyToOne
-    @JoinColumn (name = "idMovie")
+    @JoinColumn (name = "idMovie", insertable = false, updatable = false)
     private MovieEntity movieEntity;
 
     @ManyToOne
-    @JoinColumn (name = "idTheater")
+    @JoinColumn (name = "idTheater", insertable = false, updatable = false)
     private TheaterEntity theaterEntity;
 
     @ManyToOne
-    @JoinColumn (name = "idShowing")
+    @JoinColumn (name = "idShowing", insertable = false, updatable = false)
     private ShowingEntity showingEntity;
-
-    @OneToMany(mappedBy = "movieTheaterShowingEntity")
-    private List<SeatEntity> seatEntities;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public MovieEntity getMovieEntity() {
         return movieEntity;
@@ -56,11 +47,11 @@ public class MovieTheaterShowingEntity {
         this.showingEntity = showingEntity;
     }
 
-    public List<SeatEntity> getSeatEntities() {
-        return seatEntities;
+    public MovieTheaterShowingKey getMovieTheaterShowingKey() {
+        return movieTheaterShowingKey;
     }
 
-    public void setSeatEntities(List<SeatEntity> seatEntities) {
-        this.seatEntities = seatEntities;
+    public void setMovieTheaterShowingKey(MovieTheaterShowingKey movieTheaterShowingKey) {
+        this.movieTheaterShowingKey = movieTheaterShowingKey;
     }
 }
