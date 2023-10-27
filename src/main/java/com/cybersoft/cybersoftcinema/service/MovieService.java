@@ -1,7 +1,6 @@
 package com.cybersoft.cybersoftcinema.service;
 
 import com.cybersoft.cybersoftcinema.entity.MovieMovieTypeEntity;
-import com.cybersoft.cybersoftcinema.entity.MovieTypeEntity;
 import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
 import com.cybersoft.cybersoftcinema.repository.MovieMovieTypeRepository;
 import com.cybersoft.cybersoftcinema.repository.MovieRepository;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MovieService implements MovieServiceImp {

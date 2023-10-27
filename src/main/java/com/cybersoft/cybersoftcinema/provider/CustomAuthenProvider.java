@@ -1,7 +1,7 @@
 package com.cybersoft.cybersoftcinema.provider;
 
 import com.cybersoft.cybersoftcinema.entity.UsersEntity;
-import com.cybersoft.cybersoftcinema.service.imp.UserServiceImp;
+import com.cybersoft.cybersoftcinema.service.imp.LoginServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -21,7 +21,8 @@ import java.util.List;
 public class CustomAuthenProvider implements AuthenticationProvider {
 
     @Autowired
-    private UserServiceImp userServiceImp;
+    @Lazy
+    private LoginServiceImp loginServiceImp;
 
     @Autowired
     @Lazy
@@ -31,7 +32,7 @@ public class CustomAuthenProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
-        UsersEntity user = userServiceImp.checkSignIn(username);
+        UsersEntity user = loginServiceImp.checkSignIn(username);
         if (user != null) {
             if (passwordEncoder.matches(password, user.getPassword())) {
                 List<GrantedAuthority> roles = new ArrayList<>();

@@ -1,11 +1,10 @@
 package com.cybersoft.cybersoftcinema.controller;
 
-import com.cybersoft.cybersoftcinema.service.imp.UserServiceImp;
+import com.cybersoft.cybersoftcinema.payload.BaseResponse;
+import com.cybersoft.cybersoftcinema.payload.request.SignUpRequest;
+import com.cybersoft.cybersoftcinema.service.imp.LoginServiceImp;
 import com.cybersoft.cybersoftcinema.util.JwtHelper;
 import com.google.gson.Gson;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Encoders;
-import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +15,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.crypto.SecretKey;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/login")
+@CrossOrigin
 public class LoginController {
 
     @Autowired
-    private UserServiceImp userServiceImp;
+    private LoginServiceImp loginServiceImp;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -46,12 +43,30 @@ public class LoginController {
         logger.info("email: "+email + " - password: "+password);
         UsernamePasswordAuthenticationToken authen = new UsernamePasswordAuthenticationToken(email,password);
         authenticationManager.authenticate(authen);
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<GrantedAuthority> roles = (List<GrantedAuthority>) authentication.getAuthorities();
         String jsonRole = gson.toJson(roles);
         String token = jwtHelper.generateToken(jsonRole);
-        logger.info(("Response Signin: "));
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setStatusCode(200);
+        baseResponse.setMessage(email);
+        baseResponse.setData(token);
+
+        logger.info(("Response Signin: "+ baseResponse.getMessage()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody SignUpRequest signUpRequest){
+        logger.info("SignUpRequest: "+ signUpRequest);
+        boolean isSuccess = loginServiceImp.insertUser(signUpRequest);
+
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setStatusCode(200);
+        baseResponse.setMessage("Đăng ký thành công");
+        baseResponse.setData(isSuccess);
+
+        logger.info(("Response Signin: "+ baseResponse.getMessage()));
+        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
 }
