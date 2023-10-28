@@ -28,6 +28,7 @@ public class MovieController {
 
     @GetMapping("")
     public ResponseEntity<?> getMovie(@RequestParam int idMovie){
+        System.out.println(idMovie);
         List<MovieResponse> movieResponseList = movieServiceImp.getMovie(idMovie);
         return new ResponseEntity<>(movieResponseList, HttpStatus.OK);
     }

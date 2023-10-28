@@ -43,6 +43,7 @@ public class MovieEntity {
     private MovieStatusEntity movieStatusEntity;
 
     @OneToMany(mappedBy = "movieEntity")
+
     private List<MovieTheaterShowingEntity> movieTheaterShowingEntities;
 
     @OneToMany(mappedBy = "movieEntity")

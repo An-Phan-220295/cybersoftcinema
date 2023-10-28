@@ -75,6 +75,7 @@
     <link rel="stylesheet" href="website/css/normalize.min.css" />
     <link rel="stylesheet" href="website/css/screen.css" />
     <link rel="stylesheet" href="website/main8fb9.css?version=20230929001" />
+
     <!-- Google Tag Manager-->
     <script>
       (function (w, d, s, l, i) {
@@ -2565,9 +2566,9 @@
                                     thành viên.</span
                                   >
                                 </div>
-                                <p ng-if="message" class="message">
+                                <!-- <p ng-if="message" class="message">
                                   {{message}}
-                                </p>
+                                </p> -->
                               </div>
                               <form class="login-form">
                                 <input
@@ -2637,7 +2638,7 @@
                               <div ng-if="message" class="login-heading">
                                 <div class="text-heading">
                                   <!--span.sub-text.error {{message}}-->
-                                  <p class="message">{{message}}</p>
+                                  <!-- <p class="message">{{message}}</p> -->
                                 </div>
                               </div>
                               <div class="login-form">
@@ -2651,6 +2652,7 @@
                                     ng-model="user.fullName"
                                     required="required"
                                     class="login first"
+                                    id="fullname-sign-up"
                                   />
                                   <div class="row city">
                                     <div
@@ -2663,14 +2665,20 @@
                                         ng-model="user.mobilePhone"
                                         required="required"
                                         class="login register-input"
+                                        id="phone-number-sign-up"
                                       />
                                     </div>
                                     <div
                                       class="col-md-6 col-sm-6 col-xs-6 second-col mt-14"
                                     >
-                                      <galaxy-select
-                                        ng-model="genderSelect"
-                                      ></galaxy-select>
+                                      <select
+                                        id="gender-sign-up"
+                                        class="form-control"
+                                        style="border-radius: 0; height: 40px"
+                                      >
+                                        <option value="m">Nam</option>
+                                        <option value="f">Nữ</option>
+                                      </select>
                                     </div>
                                   </div>
                                   <input
@@ -2679,6 +2687,7 @@
                                     ng-model="user.email"
                                     required="required"
                                     class="login register-input remove-mb"
+                                    id="email-sign-up"
                                   />
                                   <div class="row city">
                                     <div
@@ -2690,6 +2699,7 @@
                                         ng-model="user.password"
                                         required="required"
                                         class="login"
+                                        id="password-sign-up"
                                       />
                                     </div>
                                     <div
@@ -2706,9 +2716,7 @@
                                   </div>
                                   <div class="row birthday-signup">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                      <galaxy-datepicker
-                                        ng-model="user.dateOfBirth"
-                                      ></galaxy-datepicker>
+                                      <input type="date" id="birthday" name="birthday" class="form-control" style="border-radius: 0; height: 40px; margin-top:14px;margin-bottom:14px;" placeholder="Username">
                                     </div>
                                   </div>
                                   <p class="text-confirm-signup">
@@ -2720,15 +2728,18 @@
                                     >của chương trình.&nbsp
                                   </p>
                                   <br />
-                                  <button class="btn primary input">
+                                  <button
+                                    class="btn primary input"
+                                    id="btn-sign-up"
+                                  >
                                     Đăng ký
                                   </button>
                                 </form>
-                                <div
+                                <!-- <div
                                   ng-if="registerStep == 'otp'"
                                   class="login-container"
-                                >
-                                  <div class="tab-login-line">
+                                > -->
+                                  <!-- <div class="tab-login-line">
                                     <div class="tab-login-title">
                                       Vui lòng nhập OTP
                                     </div>
@@ -2775,7 +2786,7 @@
                                         </button>
                                       </div>
                                     </div>
-                                  </div>
+                                  </div> -->
                                 </div>
                               </div>
                             </div>
@@ -3010,5 +3021,6 @@
     <script src="customjs-min/firebase-setup.js"></script>
     <script src="js/login.js"></script>
   </body>
+
   <!-- Mirrored from www.galaxycine.vn/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 15:49:37 GMT -->
 </html>
