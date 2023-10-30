@@ -14,7 +14,7 @@ public class ProducerEntity {
     private String name;
 
     @OneToMany(mappedBy = "producerEntity")
-    private List<MovieProducerEntity> movieProducerEntities;
+    private List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities;
 
     public int getId() {
         return id;
@@ -32,11 +32,11 @@ public class ProducerEntity {
         this.name = name;
     }
 
-    public List<MovieProducerEntity> getMovieProducerEntities() {
-        return movieProducerEntities;
+    public List<MoviePersonProducerMovieTypeEntity> getMoviePersonProducerMovieTypeEntities() {
+        return moviePersonProducerMovieTypeEntities;
     }
 
-    public void setMovieProducerEntities(List<MovieProducerEntity> movieProducerEntities) {
-        this.movieProducerEntities = movieProducerEntities;
+    public void setMoviePersonProducerMovieTypeEntities(List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities) {
+        this.moviePersonProducerMovieTypeEntities = moviePersonProducerMovieTypeEntities;
     }
 }

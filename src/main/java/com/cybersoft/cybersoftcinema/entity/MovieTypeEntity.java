@@ -13,7 +13,7 @@ public class MovieTypeEntity {
     private String name;
 
     @OneToMany (mappedBy = "movieTypeEntity")
-    private List<MovieMovieTypeEntity> movieMovieTypeEntities;
+    private List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities;
 
     public int getId() {
         return id;
@@ -31,11 +31,11 @@ public class MovieTypeEntity {
         this.name = name;
     }
 
-    public List<MovieMovieTypeEntity> getMovieMovieTypeEntities() {
-        return movieMovieTypeEntities;
+    public List<MoviePersonProducerMovieTypeEntity> getMoviePersonProducerMovieTypeEntities() {
+        return moviePersonProducerMovieTypeEntities;
     }
 
-    public void setMovieMovieTypeEntities(List<MovieMovieTypeEntity> movieMovieTypeEntities) {
-        this.movieMovieTypeEntities = movieMovieTypeEntities;
+    public void setMoviePersonProducerMovieTypeEntities(List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities) {
+        this.moviePersonProducerMovieTypeEntities = moviePersonProducerMovieTypeEntities;
     }
 }

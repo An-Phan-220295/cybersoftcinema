@@ -48,9 +48,10 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .antMatchers("/login/**").permitAll()
-                .antMatchers("/movie/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+//                .antMatchers("/login/**").permitAll()
+//                .antMatchers("/movie/**").hasRole("ADMIN")
+//                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and().addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

@@ -14,7 +14,7 @@ public class PersonEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "picture")
+    @Column(name = "pictures")
     private String picture;
 
     @Column(name = "dob")
@@ -32,5 +32,69 @@ public class PersonEntity {
     private PersonTypeEntity personTypeEntity;
 
     @OneToMany(mappedBy = "personEntity")
-    private List<PersonMovieEntity> personMovieEntities;
+    private List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
+    }
+
+    public CountryEntity getCountryEntity() {
+        return countryEntity;
+    }
+
+    public void setCountryEntity(CountryEntity countryEntity) {
+        this.countryEntity = countryEntity;
+    }
+
+    public PersonTypeEntity getPersonTypeEntity() {
+        return personTypeEntity;
+    }
+
+    public void setPersonTypeEntity(PersonTypeEntity personTypeEntity) {
+        this.personTypeEntity = personTypeEntity;
+    }
+
+    public List<MoviePersonProducerMovieTypeEntity> getMoviePersonProducerMovieTypeEntities() {
+        return moviePersonProducerMovieTypeEntities;
+    }
+
+    public void setMoviePersonProducerMovieTypeEntities(List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities) {
+        this.moviePersonProducerMovieTypeEntities = moviePersonProducerMovieTypeEntities;
+    }
 }

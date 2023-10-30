@@ -2,7 +2,6 @@ package com.cybersoft.cybersoftcinema.entity;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class ShowingEntity {
     private Time startTime;
 
     @Column (name = "showingdate")
-    private Date showingDate;
+    private java.sql.Date showingDate;
 
     @OneToMany (mappedBy = "showingEntity")
     private List<MovieTheaterShowingEntity> movieTheaterShowingEntities;
@@ -44,7 +43,7 @@ public class ShowingEntity {
         return showingDate;
     }
 
-    public void setShowingDate(Date showingDate) {
+    public void setShowingDate(java.sql.Date showingDate) {
         this.showingDate = showingDate;
     }
 

@@ -23,16 +23,13 @@ public class MovieEntity {
     private int duration;
 
     @Column(name = "releasedate")
-    private Date releaseDate;
+    private java.sql.Date releaseDate;
 
     @Column(name = "content")
     private String content;
 
     @Column(name = "images")
     private String images;
-
-    @OneToMany(mappedBy = "movieEntity")
-    private List<MovieMovieTypeEntity> movieMovieTypeEntities;
 
     @ManyToOne
     @JoinColumn(name = "idCountry")
@@ -43,33 +40,13 @@ public class MovieEntity {
     private MovieStatusEntity movieStatusEntity;
 
     @OneToMany(mappedBy = "movieEntity")
-
     private List<MovieTheaterShowingEntity> movieTheaterShowingEntities;
-
-    @OneToMany(mappedBy = "movieEntity")
-    private List<MovieProducerEntity> movieProducerEntity;
-
-    @OneToMany(mappedBy = "movieEntity")
-    private List<PersonMovieEntity> personMovieEntities;
 
     @OneToMany (mappedBy = "movieEntity")
     private List<SeatEntity> seatEntities;
 
-    public List<MovieProducerEntity> getMovieProducerEntity() {
-        return movieProducerEntity;
-    }
-
-    public void setMovieProducerEntity(List<MovieProducerEntity> movieProducerEntity) {
-        this.movieProducerEntity = movieProducerEntity;
-    }
-
-    public List<MovieMovieTypeEntity> getMovieMovieTypeEntities() {
-        return movieMovieTypeEntities;
-    }
-
-    public void setMovieMovieTypeEntities(List<MovieMovieTypeEntity> movieMovieTypeEntities) {
-        this.movieMovieTypeEntities = movieMovieTypeEntities;
-    }
+    @OneToMany(mappedBy = "movieEntity")
+    private List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities;
 
     public CountryEntity getCountryEntity() {
         return countryEntity;
@@ -131,7 +108,7 @@ public class MovieEntity {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(java.sql.Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -159,14 +136,6 @@ public class MovieEntity {
         this.movieTheaterShowingEntities = movieTheaterShowingEntities;
     }
 
-    public List<PersonMovieEntity> getPersonMovieEntities() {
-        return personMovieEntities;
-    }
-
-    public void setPersonMovieEntities(List<PersonMovieEntity> personMovieEntities) {
-        this.personMovieEntities = personMovieEntities;
-    }
-
     public List<SeatEntity> getSeatEntities() {
         return seatEntities;
     }
@@ -174,4 +143,5 @@ public class MovieEntity {
     public void setSeatEntities(List<SeatEntity> seatEntities) {
         this.seatEntities = seatEntities;
     }
+
 }
