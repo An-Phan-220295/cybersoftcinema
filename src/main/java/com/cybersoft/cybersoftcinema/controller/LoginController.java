@@ -1,6 +1,7 @@
 package com.cybersoft.cybersoftcinema.controller;
 
 import com.cybersoft.cybersoftcinema.payload.BaseResponse;
+import com.cybersoft.cybersoftcinema.payload.request.SignInRequest;
 import com.cybersoft.cybersoftcinema.payload.request.SignUpRequest;
 import com.cybersoft.cybersoftcinema.service.imp.LoginServiceImp;
 import com.cybersoft.cybersoftcinema.util.JwtHelper;
@@ -39,9 +40,9 @@ public class LoginController {
     private JwtHelper jwtHelper;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> signIn(@RequestParam String email, @RequestParam String password) {
-        logger.info("email: "+email + " - password: "+password);
-        UsernamePasswordAuthenticationToken authen = new UsernamePasswordAuthenticationToken(email,password);
+    public ResponseEntity<?> signIn(@RequestBody SignInRequest signInRequest) {
+        logger.info("email: "+signInRequest.getEmail() + " - password: "+signInRequest.getPassword());
+        UsernamePasswordAuthenticationToken authen = new UsernamePasswordAuthenticationToken(signInRequest.getEmail(),signInRequest.getPassword());
         authenticationManager.authenticate(authen);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<GrantedAuthority> roles = (List<GrantedAuthority>) authentication.getAuthorities();
@@ -49,7 +50,7 @@ public class LoginController {
         String token = jwtHelper.generateToken(jsonRole);
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setStatusCode(200);
-        baseResponse.setMessage(email);
+        baseResponse.setMessage(signInRequest.getEmail());
         baseResponse.setData(token);
 
         logger.info(("Response Signin: "+ baseResponse.getMessage()));

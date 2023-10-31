@@ -635,6 +635,7 @@
             <section ng-controller="quickBuyTicket" class="tabs">
               <div class="label-tab hidden-sm hidden-xs">mua vé nhanh</div>
               <h3 class="hidden-lg hidden-md">Mua Vé Nhanh</h3>
+
               <input
                 id="tab-1"
                 type="radio"
@@ -642,14 +643,16 @@
                 checked="checked"
                 ng-click='clickTabNavTicket("byMovie")'
                 class="tab-selector-1"
-              /><label for="tab-1" class="tab-label-1">Theo phim</label>
+              />
+              <label for="tab-1" class="tab-label-1">Theo phim</label>
               <input
                 id="tab-2"
                 type="radio"
                 name="radio-set"
                 ng-click='clickTabNavTicket("byDate") '
                 class="tab-selector-2"
-              /><label for="tab-2" class="tab-label-2">Theo ngày</label>
+              />
+              <label for="tab-2" class="tab-label-2">Theo ngày</label>
               <input
                 id="tab-3"
                 type="radio"
@@ -665,26 +668,101 @@
               >
                 <div class="content-1">
                   <form>
-                    <galaxy-select ng-model="byMovie"></galaxy-select
-                    ><galaxy-select ng-model="cinemaConfig"></galaxy-select
-                    ><galaxy-select ng-model="dateConfig"></galaxy-select>
-                    <galaxy-select ng-model="sessionConfig"></galaxy-select>
+                    <select
+                      id="movie-list-movie"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn phim</option>
+                    </select>
+                    <br />
+                    <select
+                      id="theater-list-movie"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn rạp</option></select
+                    ><br />
+                    <select
+                      id="date-list-movie"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn ngày</option></select
+                    ><br />
+                    <select
+                      id="time-list-movie"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn suất</option></select
+                    ><br />
                   </form>
                 </div>
                 <div class="content-2">
                   <form>
-                    <galaxy-select ng-model="byDate"></galaxy-select
-                    ><galaxy-select ng-model="cinemaConfig"></galaxy-select
-                    ><galaxy-select ng-model="movieConfig"></galaxy-select>
-                    <galaxy-select ng-model="sessionConfig"></galaxy-select>
+                    <select
+                      id="date-list-date"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn ngày</option></select
+                    ><br />
+                    <select
+                      id="theater-list-date"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn rạp</option></select
+                    ><br />
+                    <select
+                      id="movie-list-date"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn phim</option>
+                    </select>
+                    <br />
+                    <select
+                      id="time-list-date"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn suất</option></select
+                    ><br />
                   </form>
                 </div>
                 <div class="content-3">
                   <form>
-                    <galaxy-select ng-model="byCinema"></galaxy-select
-                    ><galaxy-select ng-model="movieConfig"></galaxy-select
-                    ><galaxy-select ng-model="dateConfig"></galaxy-select>
-                    <galaxy-select ng-model="sessionConfig"></galaxy-select>
+                    <select
+                      id="theater-list-theater"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn rạp</option></select
+                    ><br />
+                    <select
+                      id="movie-list-theater"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn phim</option>
+                    </select>
+                    <br />
+                    <select
+                      id="date-list-theater"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn ngày</option></select
+                    ><br />
+                    <select
+                      id="time-list-theater"
+                      class="form-control"
+                      style="border-radius: 0; height: 40px"
+                    >
+                      <option value="0">Vui lòng chọn suất</option></select
+                    ><br />
                   </form>
                 </div>
                 <a
@@ -2064,7 +2142,8 @@
                             tham khảo c&aacute;c
                             <a href="phim-dang-chieu.html"
                               ><i>phim hay nhất</i></a
-                            >,&nbsp;<a href="phim-dang-chieu.html"
+                            >,&nbsp;
+                            <a href="phim-dang-chieu.html"
                               ><i>phim mới nhất</i></a
                             >
                             đang chiếu hoặc sắp chiếu lu&ocirc;n được cập nhật
@@ -2716,7 +2795,19 @@
                                   </div>
                                   <div class="row birthday-signup">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                      <input type="date" id="birthday" name="birthday" class="form-control" style="border-radius: 0; height: 40px; margin-top:14px;margin-bottom:14px;" placeholder="Username">
+                                      <input
+                                        type="date"
+                                        id="birthday"
+                                        name="birthday"
+                                        class="form-control"
+                                        style="
+                                          border-radius: 0;
+                                          height: 40px;
+                                          margin-top: 14px;
+                                          margin-bottom: 14px;
+                                        "
+                                        placeholder="Username"
+                                      />
                                     </div>
                                   </div>
                                   <p class="text-confirm-signup">
@@ -2739,7 +2830,7 @@
                                   ng-if="registerStep == 'otp'"
                                   class="login-container"
                                 > -->
-                                  <!-- <div class="tab-login-line">
+                                <!-- <div class="tab-login-line">
                                     <div class="tab-login-title">
                                       Vui lòng nhập OTP
                                     </div>
@@ -2801,26 +2892,26 @@
           </div>
         </div>
       </div>
-      <div ng-controller="forgetPassController">
-        <div id="forgetpass-modal" style="z-index: 1111" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-outer-container">
-              <div class="modal-middle-container">
-                <div class="login-wrapper animated slideInDown">
-                  <div class="login-container">
-                    <span ng-click="closeModelForget()" class="close"
-                      ><i class="icon-cancel"></i
-                    ></span>
-                    <div class="tab-login-line">
-                      <div class="tab-login-title">Quên mật khẩu</div>
-                      <div class="login-tab-wrapper">
-                        <div class="login-heading">
-                          <div class="text-heading">
-                            <span class="sub-text"
-                              >Vui lòng cung cấp email đăng nhập, chúng tôi sẽ
-                              gửi link kích hoạt cho bạn.</span
-                            >
-                          </div>
+    </div>
+    <div ng-controller="forgetPassController">
+      <div id="forgetpass-modal" style="z-index: 1111" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-outer-container">
+            <div class="modal-middle-container">
+              <div class="login-wrapper animated slideInDown">
+                <div class="login-container">
+                  <span ng-click="closeModelForget()" class="close"
+                    ><i class="icon-cancel"></i
+                  ></span>
+                  <div class="tab-login-line">
+                    <div class="tab-login-title">Quên mật khẩu</div>
+                    <div class="login-tab-wrapper">
+                      <div class="login-heading">
+                        <div class="text-heading">
+                          <span class="sub-text"
+                            >Vui lòng cung cấp email đăng nhập, chúng tôi sẽ gửi
+                            link kích hoạt cho bạn.</span
+                          >
                         </div>
                         <p ng-if="message" class="message">{{message}}</p>
                         <form ng-submit="submit()" class="login-form">
@@ -3020,6 +3111,9 @@
     <script src="js-app/grpc.js"></script>
     <script src="customjs-min/firebase-setup.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/quickbuy-movie.js"></script>
+    <script src="js/quickbuy-date.js"></script>
+    <script src="js/quickbuy-theater.js"></script>
   </body>
 
   <!-- Mirrored from www.galaxycine.vn/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 15:49:37 GMT -->
