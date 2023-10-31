@@ -262,45 +262,45 @@ INSERT INTO theater VALUES (null, "Galaxy Nguyễn Du", "116 Nguyễn Du, Quận
 INSERT INTO theater VALUES (null, "Galaxy Trường Chinh", "Tầng 3 - Co.opMart TTTM Thắng Lợi - Số 2 Trường Chinh, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh", "Tọa lạc tại Tầng 3 - Co.opMart TTTM Thắng Lợi - Số 2 Trường Chinh, Tây Thạnh, Tân Phú; Galaxy Trường Chinh sở hữu vị trí vô cùng thuận lợi, dễ dàng thu hút các bạn trẻ tại Tân Phú, Tân Bình, Gò Vấp, Quận 12, Hóc Môn…   Galaxy Trường Chinh là rạp chiếu phim đầu tiên trong hệ thống Galaxy Cinema thiết kế theo phong cách mới – Movie Station. Chắc chắn, các Stars sẽ bất ngờ và choáng ngợp trước không gian rạp chiếu phim nay biến thành Trạm Tàu Điện Ảnh tiêu chuẩn, đưa khán giả du hành khắp vũ trụ phim hay.   Nổi tiếng với giao diện trẻ trung, góc nào cũng có thể “sống ảo”, Galaxy Trường Chinh trình làng hai khu check-in mới cứng! Đó là toa tàu điện ngầm và chiếc đồng hồ siêu khủng - biểu tượng mới của Galaxy Cinema. Cầm vé tại Ticket Station, lấy bắp nước ở Popcorn Station và cùng khám phá những xứ sở mới lạ trên đoàn tàu Galaxy Cinema.   Với 6 phòng chiếu – Toa Tàu được xây dựng theo chuẩn quốc tế cùng màn hình tối tân và hệ thống âm thanh Dolby 7.1 sống động như thật, Galaxy Trường Chinh sẽ đem đến những trải nghiệm phim hay phim mới vô cùng đặc sắc và thú vị. Rạp cũng nâng cấp sơ đồ ghế ngồi chuẩn – chỉnh hơn, giúp các Stars thoải mái nhất có thể.");
 INSERT INTO theater VALUES (null, "Galaxy Kinh Dương Vương", "718bis Kinh Dương Vương, Q6, TpHCM.", "Galaxy Kinh Dương Vương là cụm rạp chiếu phim đầu tiên và duy nhất tại khu vực quận 6 tính cho đến năm 2016.   Ngay từ lúc khai trương vào năm 2013, nơi đây đã có 7 phòng chiếu được thiết kế theo tiêu chuẩn quốc tế với khoảng cách ghế ngồi rộng rãi. Bên cạnh đó, hệ thống âm thanh Dolby 7.1, màn hình chiếu kỹ thuật 3D và Digital vô cùng mịn, sắc nét đến từng phút giây mang đến những trải nghiệm phim hay cực đỉnh.   Sự ra đời của Galaxy Kinh Dương Vương thỏa khao khát từ lâu của các tín đồ điện ảnh. Chỉ mới đây thôi, cư dân Q.6 và các vùng lân cận muốn thưởng thức một bộ phim mới tại rạp bắt buộc phải lặn lội vào trung tâm. Đặc biệt, chỉ qua 3 ngày đầu tiên khai trương, rạp đã đạt mức vé bán kỷ lục là hơn 16.000 vé.");
 
-INSERT INTO showing VALUES (null, "16:00", "2023-10-14");
-INSERT INTO showing VALUES (null, "16:30", "2023-10-14");
-INSERT INTO showing VALUES (null, "17:00", "2023-10-14");
-INSERT INTO showing VALUES (null, "17:30", "2023-10-14");
-INSERT INTO showing VALUES (null, "18:00", "2023-10-14");
-INSERT INTO showing VALUES (null, "18:30", "2023-10-14");
-INSERT INTO showing VALUES (null, "19:00", "2023-10-14");
-INSERT INTO showing VALUES (null, "19:30", "2023-10-14");
-INSERT INTO showing VALUES (null, "20:00", "2023-10-14");
-INSERT INTO showing VALUES (null, "20:30", "2023-10-14");
-INSERT INTO showing VALUES (null, "21:00", "2023-10-14");
-INSERT INTO showing VALUES (null, "21:30", "2023-10-14");
-INSERT INTO showing VALUES (null, "22:00", "2023-10-14");
-INSERT INTO showing VALUES (null, "16:00", "2023-10-15");
-INSERT INTO showing VALUES (null, "16:30", "2023-10-15");
-INSERT INTO showing VALUES (null, "17:00", "2023-10-15");
-INSERT INTO showing VALUES (null, "17:30", "2023-10-15");
-INSERT INTO showing VALUES (null, "18:00", "2023-10-15");
-INSERT INTO showing VALUES (null, "18:30", "2023-10-15");
-INSERT INTO showing VALUES (null, "19:00", "2023-10-15");
-INSERT INTO showing VALUES (null, "19:30", "2023-10-15");
-INSERT INTO showing VALUES (null, "20:00", "2023-10-15");
-INSERT INTO showing VALUES (null, "20:30", "2023-10-15");
-INSERT INTO showing VALUES (null, "21:00", "2023-10-15");
-INSERT INTO showing VALUES (null, "21:30", "2023-10-15");
-INSERT INTO showing VALUES (null, "22:00", "2023-10-15");
-INSERT INTO showing VALUES (null, "16:00", "2023-10-16");
-INSERT INTO showing VALUES (null, "16:30", "2023-10-16");
-INSERT INTO showing VALUES (null, "17:00", "2023-10-16");
-INSERT INTO showing VALUES (null, "17:30", "2023-10-16");
-INSERT INTO showing VALUES (null, "18:00", "2023-10-16");
-INSERT INTO showing VALUES (null, "18:30", "2023-10-16");
-INSERT INTO showing VALUES (null, "19:00", "2023-10-16");
-INSERT INTO showing VALUES (null, "19:30", "2023-10-16");
-INSERT INTO showing VALUES (null, "20:00", "2023-10-16");
-INSERT INTO showing VALUES (null, "20:30", "2023-10-16");
-INSERT INTO showing VALUES (null, "21:00", "2023-10-16");
-INSERT INTO showing VALUES (null, "21:30", "2023-10-16");
-INSERT INTO showing VALUES (null, "22:00", "2023-10-16");
+INSERT INTO showing VALUES (null, "16:00", "2023-11-14");
+INSERT INTO showing VALUES (null, "16:30", "2023-11-14");
+INSERT INTO showing VALUES (null, "17:00", "2023-11-14");
+INSERT INTO showing VALUES (null, "17:30", "2023-11-14");
+INSERT INTO showing VALUES (null, "18:00", "2023-11-14");
+INSERT INTO showing VALUES (null, "18:30", "2023-11-14");
+INSERT INTO showing VALUES (null, "19:00", "2023-11-14");
+INSERT INTO showing VALUES (null, "19:30", "2023-11-14");
+INSERT INTO showing VALUES (null, "20:00", "2023-11-14");
+INSERT INTO showing VALUES (null, "20:30", "2023-11-14");
+INSERT INTO showing VALUES (null, "21:00", "2023-11-14");
+INSERT INTO showing VALUES (null, "21:30", "2023-11-14");
+INSERT INTO showing VALUES (null, "22:00", "2023-11-14");
+INSERT INTO showing VALUES (null, "16:00", "2023-11-15");
+INSERT INTO showing VALUES (null, "16:30", "2023-11-15");
+INSERT INTO showing VALUES (null, "17:00", "2023-11-15");
+INSERT INTO showing VALUES (null, "17:30", "2023-11-15");
+INSERT INTO showing VALUES (null, "18:00", "2023-11-15");
+INSERT INTO showing VALUES (null, "18:30", "2023-11-15");
+INSERT INTO showing VALUES (null, "19:00", "2023-11-15");
+INSERT INTO showing VALUES (null, "19:30", "2023-11-15");
+INSERT INTO showing VALUES (null, "20:00", "2023-11-15");
+INSERT INTO showing VALUES (null, "20:30", "2023-11-15");
+INSERT INTO showing VALUES (null, "21:00", "2023-11-15");
+INSERT INTO showing VALUES (null, "21:30", "2023-11-15");
+INSERT INTO showing VALUES (null, "22:00", "2023-11-15");
+INSERT INTO showing VALUES (null, "16:00", "2023-11-16");
+INSERT INTO showing VALUES (null, "16:30", "2023-11-16");
+INSERT INTO showing VALUES (null, "17:00", "2023-11-16");
+INSERT INTO showing VALUES (null, "17:30", "2023-11-16");
+INSERT INTO showing VALUES (null, "18:00", "2023-11-16");
+INSERT INTO showing VALUES (null, "18:30", "2023-11-16");
+INSERT INTO showing VALUES (null, "19:00", "2023-11-16");
+INSERT INTO showing VALUES (null, "19:30", "2023-11-16");
+INSERT INTO showing VALUES (null, "20:00", "2023-11-16");
+INSERT INTO showing VALUES (null, "20:30", "2023-11-16");
+INSERT INTO showing VALUES (null, "21:00", "2023-11-16");
+INSERT INTO showing VALUES (null, "21:30", "2023-11-16");
+INSERT INTO showing VALUES (null, "22:00", "2023-11-16");
 
 INSERT INTO moviestatus VALUES (null,"Sắp chiếu");
 INSERT INTO moviestatus VALUES (null,"Đang chiếu");
@@ -452,13 +452,43 @@ INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(3,
 INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(2, 5);
 
 
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 1, 1);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 1, 3);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 2, 2);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 2, 3);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 1, 3);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 1, 2);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 3, 3);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 1, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 2, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 2, 10);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 3, 11);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 5, 12);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 2, 13);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 1, 14);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 2, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 1, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 4, 10);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 5, 11);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 1, 12);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 3, 13);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 5, 14);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 2, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 4, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 1, 10);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 3, 11);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 4, 12);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 1, 13);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 3, 14);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 5, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 6, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 6, 10);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 3, 11);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 4, 12);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 2, 13);
+INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 1, 14);
+
+
+
+
+
+
+
+
+
 
 
 
