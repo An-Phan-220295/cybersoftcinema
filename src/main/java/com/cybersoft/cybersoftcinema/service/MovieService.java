@@ -5,8 +5,10 @@ import com.cybersoft.cybersoftcinema.entity.MovieEntity;
 import com.cybersoft.cybersoftcinema.entity.MoviePersonProducerMovieTypeEntity;
 import com.cybersoft.cybersoftcinema.entity.MovieStatusEntity;
 import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
+import com.cybersoft.cybersoftcinema.payload.response.QuickBuyMovieResponse;
 import com.cybersoft.cybersoftcinema.repository.MoviePersonProducerMovieTypeRepository;
 import com.cybersoft.cybersoftcinema.repository.MovieRepository;
+import com.cybersoft.cybersoftcinema.repository.MovieTheaterShowRepository;
 import com.cybersoft.cybersoftcinema.service.imp.MovieServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,6 +38,9 @@ public class MovieService implements MovieServiceImp {
 
     @Autowired
     private MoviePersonProducerMovieTypeRepository moviePersonProducerMovieTypeRepository;
+
+    @Autowired
+    private MovieTheaterShowRepository movieTheaterShowRepository;
 
     @Override
     public boolean insertMovie(String name, int requireAge, int duration, int idCountry, Date releaseDate,
@@ -77,7 +82,7 @@ public class MovieService implements MovieServiceImp {
     }
 
     @Override
-    public byte[] getPoster(String imageName) throws IOException {
+    public byte[] getMovieImage(String imageName) throws IOException {
         Optional <MovieEntity> movieEntity = movieRepository.findByImages(imageName);
         String imagePath = rootFolder + "\\" + imageName;
         byte[] images = Files.readAllBytes(new File(imagePath).toPath());
@@ -139,4 +144,23 @@ public class MovieService implements MovieServiceImp {
         }
         return list;
     }
+
+    @Override
+    public List<MovieResponse> getAllMoviePoster() {
+        List<MovieResponse> list = new ArrayList<>();
+        List<MovieEntity> listMovie = movieTheaterShowRepository.findMovieName();
+
+        for (MovieEntity data : listMovie) {
+            MovieResponse movieResponse = new MovieResponse();
+            movieResponse.setName(data.getName());
+            movieResponse.setRequireAge(data.getRequiredAge());
+            movieResponse.setImage(ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/movie/image/")
+                    .path(data.getImages())
+                    .toUriString());
+            list.add(movieResponse);
+        }
+        return list;
+    }
+
 }
