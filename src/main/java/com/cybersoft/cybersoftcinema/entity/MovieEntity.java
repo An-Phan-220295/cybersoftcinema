@@ -144,4 +144,11 @@ public class MovieEntity {
         this.seatEntities = seatEntities;
     }
 
+    public List<MoviePersonProducerMovieTypeEntity> getMoviePersonProducerMovieTypeEntities() {
+        return moviePersonProducerMovieTypeEntities;
+    }
+
+    public void setMoviePersonProducerMovieTypeEntities(List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities) {
+        this.moviePersonProducerMovieTypeEntities = moviePersonProducerMovieTypeEntities;
+    }
 }

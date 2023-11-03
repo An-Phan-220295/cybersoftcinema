@@ -16,6 +16,7 @@ import java.sql.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/movie")
 public class MovieController {
 

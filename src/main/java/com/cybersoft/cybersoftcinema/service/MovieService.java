@@ -1,9 +1,6 @@
 package com.cybersoft.cybersoftcinema.service;
 
-import com.cybersoft.cybersoftcinema.entity.CountryEntity;
-import com.cybersoft.cybersoftcinema.entity.MovieEntity;
-import com.cybersoft.cybersoftcinema.entity.MoviePersonProducerMovieTypeEntity;
-import com.cybersoft.cybersoftcinema.entity.MovieStatusEntity;
+import com.cybersoft.cybersoftcinema.entity.*;
 import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
 import com.cybersoft.cybersoftcinema.payload.response.QuickBuyMovieResponse;
 import com.cybersoft.cybersoftcinema.repository.MoviePersonProducerMovieTypeRepository;
@@ -102,6 +99,7 @@ public class MovieService implements MovieServiceImp {
             if (data.getMovieEntity().getId() == idMovie) {
                 if (movieResponse == null) {
                     movieResponse = new MovieResponse();
+                    movieResponse.setId(data.getMovieEntity().getId());
                     movieResponse.setName(data.getMovieEntity().getName());
                     movieResponse.setRating(data.getMovieEntity().getRating());
                     movieResponse.setRequireAge(data.getMovieEntity().getRequiredAge());
@@ -146,14 +144,39 @@ public class MovieService implements MovieServiceImp {
     }
 
     @Override
-    public List<MovieResponse> getAllMoviePoster() {
+    public List<MovieResponse> getAllShowingMoviePoster() {
         List<MovieResponse> list = new ArrayList<>();
         List<MovieEntity> listMovie = movieTheaterShowRepository.findMovieName();
 
         for (MovieEntity data : listMovie) {
             MovieResponse movieResponse = new MovieResponse();
+            movieResponse.setId(data.getId());
             movieResponse.setName(data.getName());
             movieResponse.setRequireAge(data.getRequiredAge());
+            movieResponse.setContent(data.getContent());
+            movieResponse.setReleaseDate(data.getReleaseDate());
+
+            movieResponse.setImage(ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/movie/image/")
+                    .path(data.getImages())
+                    .toUriString());
+            list.add(movieResponse);
+        }
+        return list;
+    }
+
+    @Override
+    public List<MovieResponse> getAllUpcomingMoviePoster() {
+        List<MovieResponse> list = new ArrayList<>();
+        List<MovieEntity> listMovie = movieTheaterShowRepository.findByIdMovieStatus();
+
+        for (MovieEntity data : listMovie) {
+            MovieResponse movieResponse = new MovieResponse();
+            movieResponse.setId(data.getId());
+            movieResponse.setName(data.getName());
+            movieResponse.setRequireAge(data.getRequiredAge());
+            movieResponse.setContent(data.getContent());
+            movieResponse.setReleaseDate(data.getReleaseDate());
             movieResponse.setImage(ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/movie/image/")
                     .path(data.getImages())

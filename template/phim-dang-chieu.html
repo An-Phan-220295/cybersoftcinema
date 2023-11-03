@@ -636,21 +636,21 @@
                 <ul class="nav nav-tabs">
                   <li class="active">
                     <a
-                      onclick='javascript:window.history.pushState(null, null, "/phim-dang-chieu/"); window.location.reload();'
+                      onclick='javascript:window.history.pushState(null, null, "/phim-dang-chieu.html"); window.location.reload();'
                       >Phim đang chiếu</a
                     >
                   </li>
                   <li>
                     <a
-                      onclick='javascript:window.history.pushState(null, null, "/phim-sap-chieu/"); window.location.reload();'
+                      onclick='javascript:window.history.pushState(null, null, "/phim-sap-chieu.html"); window.location.reload();'
                       >Phim sắp chiếu</a
                     >
                   </li>
                 </ul>
                 <div class="tab-content">
-                  <div id="tab_onshow" class="tab-pane active">
-                    <div class="row watchmovie-group animated fadeInUp">
-                      <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
+                  <div id="tab_onshow" class="tab-pane active" >
+                    <div class="row watchmovie-group animated fadeInUp" id="moviePosters">
+                      <!-- <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item" >
                         <div class="article-watchmovie">
                           <img
                             src="../cdn.galaxycine.vn/media/2023/9/29/500x750_1695961593994.jpg"
@@ -670,8 +670,8 @@
                           <h4 class="upper-text">The Creator</h4>
                           <h4 class="vn upper-text">Kẻ Kiến Tạo</h4>
                         </div>
-                      </div>
-                      <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
+                      </div> -->
+                      <!-- <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
                         <div class="article-watchmovie">
                           <img
                             src="../cdn.galaxycine.vn/media/2023/9/19/500x750_1695095394242.jpg"
@@ -844,12 +844,12 @@
                           <h4 class="upper-text">Kẻ Ẩn Danh</h4>
                           <h4 class="vn upper-text"></h4>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <div id="tab_oncomming" class="tab-pane">
-                    <div class="row watchmovie-group animated fadeInUp">
-                      <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
+                    <div class="row watchmovie-group animated fadeInUp" id="upcomingMoviePoster">
+                      <!-- <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
                         <div class="article-watchmovie">
                           <img
                             src="../cdn.galaxycine.vn/media/2023/9/21/500x750_1695282600306.jpg"
@@ -1376,7 +1376,7 @@
                             Dune: Hành Tinh Cát - Phần Hai
                           </h4>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -1390,8 +1390,8 @@
               <h3>Galaxy Cinema</h3>
               <div class="row content-seo">
                 <div class="col-md-12">
-                  <div class="content-text">
-                    <p style="margin: 0in 0in 8pt">
+                  <div class="content-text" id="conten-text">
+                    <!-- <p style="margin: 0in 0in 8pt">
                       <span style="font-size: 14px">
                         <span style="font-family: Arial, Helvetica, sans-serif">
                           <span style="line-height: 107%">
@@ -1403,9 +1403,9 @@
                           </span>
                         </span>
                       </span>
-                    </p>
+                    </p> -->
 
-                    <p
+                    <!-- <p
                       style="
                         margin: 0cm 0cm 8pt;
                         margin-right: 0cm;
@@ -1422,17 +1422,17 @@
                           >
                         </span>
                       </strong>
-                    </p>
+                    </p> -->
 
-                    <p>
+                    <!-- <p>
                       <span style="font-size: 14px"
                         ><span id="cke_bm_613S" style="display: none"
                           >&nbsp;</span
                         ></span
                       >
-                    </p>
+                    </p> -->
 
-                    <p style="margin: 0cm 0cm 8pt">
+                    <!-- <p style="margin: 0cm 0cm 8pt">
                       <span style="font-size: 14px">
                         <span style="font-family: Arial, Helvetica, sans-serif">
                           <span style="line-height: 107%"
@@ -1442,12 +1442,12 @@
                           >
                         </span>
                       </span>
-                    </p>
+                    </p> -->
 
-                    <p>
+                    <!-- <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
                         <span style="font-size: 14px">
-                          &nbsp;&ldquo;M&ugrave;a thu đến rồi, m&ugrave;a thu
+                          Mùa thu đến rồi, m&ugrave;a thu
                           đến rồi, dậy đi th&ocirc;i, dậy đi th&ocirc;i&rdquo;,
                           đi đến <strong>Galaxy Cinema</strong> để đốt
                           ch&aacute;y kỳ nghỉ lễ Quốc Kh&agrave;nh v&agrave;
@@ -1455,7 +1455,6 @@
                           &ecirc;m dịu nhất trong năm.
                         </span>
                       </span>
-                      <!--| -->
                     </p>
 
                     <p>
@@ -1469,15 +1468,14 @@
                           <strong>&Aacute;n Mạng Tại Venice</strong>.
                           Kh&ocirc;ng những thế những m&agrave;n h&agrave;nh
                           động ch&aacute;y nổ m&atilde;n nh&atilde;n cũng sẽ trở
-                          lại <a href="index.html">rạp chiếu phim</a>&nbsp;với
+                          lại rạp chiếu phim&nbsp;với
                           <strong>Thiện &Aacute;c Đối Đầu 3</strong> v&agrave;
                           <strong>Biệt Đội Đ&aacute;nh Thu&ecirc; 4</strong>.
                           Check legit n&egrave;.
                         </span>
                       </span>
-                    </p>
-
-                    <p>
+                    </p> -->
+                    <!-- <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
                         <span style="font-size: 14px">
                           <a href="dat-ve/ben-pha-xac-song.html"
@@ -1489,7 +1487,6 @@
                         </span>
                       </span>
                     </p>
-
                     <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
                         <span style="font-size: 14px">
@@ -1510,8 +1507,6 @@
                         </span>
                       </span>
                     </p>
-
-                    <p>&nbsp;</p>
 
                     <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
@@ -1572,8 +1567,6 @@
                       </span>
                     </p>
 
-                    <p>&nbsp;</p>
-
                     <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
                         <span style="font-size: 14px">
@@ -1603,8 +1596,6 @@
                         </span>
                       </span>
                     </p>
-
-                    <p>&nbsp;</p>
 
                     <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
@@ -1691,8 +1682,6 @@
                       </span>
                     </p>
 
-                    <p>&nbsp;</p>
-
                     <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
                         <span style="font-size: 14px">
@@ -1761,8 +1750,6 @@
                       </span>
                     </p>
 
-                    <p>&nbsp;</p>
-
                     <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
                         <span style="font-size: 14px">
@@ -1801,8 +1788,6 @@
                       </span>
                     </p>
 
-                    <p>&nbsp;</p>
-
                     <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
                         <span style="font-size: 14px">
@@ -1817,9 +1802,7 @@
                           giữa 2 phe Nga v&agrave; Mỹ.&nbsp;
                         </span>
                       </span>
-                    </p>
-
-                    <p>&nbsp;</p>
+                    </p> -->
                   </div>
                 </div>
               </div>
@@ -2612,6 +2595,7 @@
     <script src="js/axios.min.js"></script>
     <script src="js/lodash-merge.js"></script>
     <script src="customjs-min/firebase-setup.js"></script>
+    <script src="js/phim-dang-chieu.js"></script>
   </body>
   <!-- Mirrored from www.galaxycine.vn/phim-dang-chieu by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 15:52:42 GMT -->
 </html>

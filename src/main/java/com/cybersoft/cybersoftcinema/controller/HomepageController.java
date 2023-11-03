@@ -25,12 +25,23 @@ public class HomepageController {
     MovieService movieService;
 
     @GetMapping("/poster")
-    public ResponseEntity<?> getAllMoviePoster() {
-        List<MovieResponse> moviePosterList =  movieService.getAllMoviePoster();
+    public ResponseEntity<?> getAllShowingMoviePoster() {
+        List<MovieResponse> moviePosterList =  movieService.getAllShowingMoviePoster();
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setStatusCode(200);
         baseResponse.setMessage("Success");
         baseResponse.setData(moviePosterList);
+
+        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/upcomingmovie")
+    public ResponseEntity<?> getAllUpcomingMoviePoster() {
+        List<MovieResponse> list = movieService.getAllUpcomingMoviePoster();
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setStatusCode(200);
+        baseResponse.setMessage("Success");
+        baseResponse.setData(list);
 
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
