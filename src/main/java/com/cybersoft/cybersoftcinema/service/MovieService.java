@@ -152,6 +152,7 @@ public class MovieService implements MovieServiceImp {
 
         for (MovieEntity data : listMovie) {
             MovieResponse movieResponse = new MovieResponse();
+            movieResponse.setId(data.getId());
             movieResponse.setName(data.getName());
             movieResponse.setRequireAge(data.getRequiredAge());
             movieResponse.setImage(ServletUriComponentsBuilder.fromCurrentContextPath()

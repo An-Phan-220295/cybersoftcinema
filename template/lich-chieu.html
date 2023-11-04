@@ -83,8 +83,9 @@
       href="website/css/screen8fb9.css?version=20230929001"
     />
     <link rel="stylesheet" href="website/main8fb9.css?version=20230929001" />
+    <link rel="stylesheet" href="website/css/customstyle.css" />
     <!-- STYLES WEBSITE END-->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       window.ENV = "production";
       try {
         window.firebaseConfig = JSON.parse(
@@ -104,7 +105,7 @@
       window.grpApiKey = "8f8ba0aa-7f69-41d7-8007-95ef585502c9";
       window.recaptchaSiteKey = "6Ld2Bt0kAAAAABi6bNd-EmcSXY72C2nevGupxqRE";
     </script>
-    <script src="js-app/grpc.js"></script>
+    <script src="js-app/grpc.js"></script> -->
     <!-- SCRIPTS WEBSITE-->
     <script src="js/angular8fb9.js?version=20230929001"></script>
     <script src="js/angular-message-format8fb9.js?version=20230929001"></script>
@@ -257,7 +258,7 @@
     </script>
   </head>
   <body ng-app="appweb">
-    <noscript
+    <!-- <noscript
       ><iframe
         src="http://www.googletagmanager.com/ns.html?id=GTM-KTL6N2"
         height="0"
@@ -283,7 +284,7 @@
           "../connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1427253957539434";
         fjs.parentNode.insertBefore(js, fjs);
       })(document, "script", "facebook-jssdk");
-    </script>
+    </script> -->
     <div class="wrapper">
       <div
         ng-controller="headerController"
@@ -657,35 +658,7 @@
                           <div class="panel-heading">
                             <h4 class="panel-title">Chọn phim</h4>
                           </div>
-                          <galaxy-loading
-                            ng-show="!items.movies"
-                          ></galaxy-loading>
-                          <ul class="list-group">
-                            <li
-                              ng-repeat="movie in items.movies"
-                              ng-click="getCinemaByMovie(movie,$index)"
-                            >
-                              <a
-                                href="javascript:;"
-                                ng-class='{"active":currentMovie==$index}'
-                                class="list-group-item movie"
-                              >
-                                <div class="showtimes-row">
-                                  <img
-                                    src="https://cdn.galaxycine.vn{{movie.imagelandscape}}/"
-                                  /><galaxy-age-rating
-                                    ng-age="movie.age"
-                                  ></galaxy-age-rating>
-                                  <div class="title-movie">
-                                    <p class="upper-text">{{movie.name}}</p>
-                                    <p class="vn upper-text">
-                                      {{movie.subName}}
-                                    </p>
-                                  </div>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
+                          <ul class="list-group" id="list-movie"></ul>
                         </div>
                       </div>
                       <div class="col-md-4">
@@ -694,74 +667,27 @@
                             <h4 class="panel-title">Chọn rạp</h4>
                           </div>
                           <galaxy-loading ng-show="onLoadItem"></galaxy-loading>
-                          <ul class="list-group">
+                          <ul class="list-group" id="list-theater">
                             <li
-                              ng-if="cinemas.length == 0 &amp;&amp; !onLoadItem"
-                              class="list-group-item-text"
+                              class="list-group-item-text theater-options"
+                              id="default-theater "
                             >
-                              Vui lòng chọn rạp
-                            </li>
-                            <li
-                              ng-repeat='cinema in cinemas |orderBy:"km"'
-                              ng-click='setDates(cinema.dates,$index,"cinema")'
-                            >
-                              <a
-                                href="javascript:;"
-                                ng-class='{"active":currentCinema==$index}'
-                                class="list-group-item"
-                              >
-                                <div class="showtimes-row">
-                                  <div class="title-movie">
-                                    <p>{{cinema.name}}</p>
-                                    <span ng-if="cinema.km" class="distance"
-                                      >{{cinema.km || '-|-' | number : 2}}
-                                      km</span
-                                    >
-                                  </div>
-                                </div>
-                              </a>
+                              Vui lòng chọn phim
                             </li>
                           </ul>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-4 position-relative" id="showing-time">
                         <div class="panel panel-default">
                           <div class="panel-heading">
                             <h4 class="panel-title">Chọn suất</h4>
                           </div>
-                          <ul class="list-group">
+                          <ul class="list-group" id="list-showing">
                             <li
                               ng-if="dates.length == 0 "
                               class="list-group-item-text"
                             >
-                              Vui lòng chọn suất
-                            </li>
-                            <li
-                              ng-repeat="date in dates"
-                              class="list-group-item"
-                            >
-                              <div class="showtimes-row">
-                                <p>
-                                  {{date.dayOfWeekLabel}}, {{date.showDate}}
-                                </p>
-                                <div
-                                  ng-repeat="bundle in date.bundles"
-                                  class="showtimes-item"
-                                >
-                                  <label
-                                    >{{bundle.version | uppercase | translate}}
-                                    -&nbsp {{bundle.caption,select, sub {Phụ đề}
-                                    other {L.Tiếng} }}</label
-                                  >
-                                  <div class="showtimes-list-wrapper">
-                                    <galaxy-buy-ticket
-                                      ng-repeat="show in bundle.sessions"
-                                      ng-model="show"
-                                      ng-movie-slug="movies[currentMovie].slug"
-                                    ></galaxy-buy-ticket>
-                                  </div>
-                                </div>
-                              </div>
+                              Vui lòng chọn rạp
                             </li>
                           </ul>
                         </div>
@@ -835,7 +761,7 @@
                                     ng-age="movie.age"
                                   ></galaxy-age-rating>
                                   <div class="title-movie">
-                                    <p class="upper-text">{{movie.name}}</p>
+                                    <!-- <p class="upper-text">{{movie.name}}</p> -->
                                     <!--p.vn 5 anh em siêu nhân-->
                                   </div>
                                 </div>
@@ -1664,22 +1590,23 @@
         </div>
       </div>
     </div>
-    <galaxy-dialog></galaxy-dialog>
+    <!-- <galaxy-dialog></galaxy-dialog> -->
     <script src="customjs-min/lazyload.js" async></script>
     <script>
       window.lazyLoadOptions = {
         img: ".lazy",
       };
     </script>
-    <!--include ../popup/dialog-->
-    <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <!-- include ../popup/dialog -->
+    <!-- <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
     <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
-    <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-app-check.js"></script>
-    <script src="js/axios.min.js"></script>
-    <script src="js/lodash-merge.js"></script>
-    <script src="customjs-min/firebase-setup.js"></script>
+    <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-app-check.js"></script> -->
+    <!-- <script src="js/axios.min.js"></script> -->
+    <!-- <script src="js/lodash-merge.js"></script> -->
+    <!-- <script src="customjs-min/firebase-setup.js"></script> -->
+    <script src="js/buyticket-movie.js"></script>
   </body>
   <!-- Mirrored from www.galaxycine.vn/lich-chieu by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 15:51:58 GMT -->
 </html>
