@@ -14,16 +14,16 @@ $(document).ready(function () {
                 src="${item.image}"
                 class="lazy"
               />
-              <a href="movie.html?id=${item.id}">
+
                 <div class="decription-hover overlay">
                   <div class="movies-content">
                     <span><span class="age-rating">T${item.requireAge}</span></span>
                     <div class="group">
-                      <div class="btn secondary-white" id-movie="${item.id}" id="btn-movie">mua vé</div>
+                      <div class="btn secondary-white" movieName="${item.name}" id="btn-movie">mua vé</div>
                     </div>
                   </div>
                 </div>
-              </a>
+
             </div>
             <div class="title-movie">
               <h4 class="upper-text">${item.name}</h4>
@@ -50,16 +50,16 @@ $(document).ready(function () {
                 src="${item.image}"
                 class="lazy"
               />
-              <a href="dat-ve/the-creator.html">
+
                 <div class="decription-hover overlay">
                   <div class="movies-content">
                     <span><span class="age-rating">T${item.requireAge}</span></span>
                     <div class="group">
-                      <div class="btn secondary-white">mua vé</div>
+                      <div class="btn secondary-white" movieName="${item.name}" id="btn-movie">mua vé</div>
                     </div>
                   </div>
                 </div>
-              </a>
+
             </div>
             <div class="title-movie">
               <h4 class="upper-text">${item.name}</h4>
@@ -73,12 +73,6 @@ $(document).ready(function () {
 });
 
 $(document).on('click', '#btn-movie', function () {
-  var id = $(this).attr("id-movie");
-  console.log("sever tra ve ", id);
-    $.ajax({
-      method: "get",
-      url: `http://localhost:8080/movie?idMovie=${id}`,
-    }).done(function(result){
-      console.log("sever tra ve ", result);
-    })
+  var name = $(this).attr("movieName");
+  window.location=`dat-ve.html?name=${name}`;
 });

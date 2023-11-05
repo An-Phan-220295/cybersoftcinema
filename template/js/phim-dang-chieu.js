@@ -34,16 +34,14 @@ $(document).ready(function () {
                 <img
                   src="${item.image}"
                 />
-                <a href="dat-ve/the-creator.html">
                   <div class="decription-hover overlay">
                     <div class="movies-content">
                       <span><span class="age-rating">T${item.requireAge}</span></span>
                         <div class="group">
-                          <div class="btn secondary-white">mua vé</div>
+                          <div class="btn secondary-white" movieName="${item.name}" id="btn-movie">mua vé</div>
                         </div>
                     </div>
                   </div>
-                </a>
               </div>
               <div class="title-watchmovie">
                 <h4 class="upper-text">${item.name}</h4>
@@ -54,7 +52,7 @@ $(document).ready(function () {
           <p>
                       <span style="font-family: Arial, Helvetica, sans-serif">
                         <span style="font-size: 14px">
-                          <a href="dat-ve/ben-pha-xac-song.html"
+                          <a href="dat-ve.html?name=${item.name}"
                             ><strong
                               >${index + 1}. ${item.name} (${formattedDate(item.releaseDate)})
                             </strong
@@ -79,5 +77,10 @@ $(document).ready(function () {
   function formattedDate(d) {
     var initial = String(d).split('-');
     return [ initial[2], initial[1], initial[0],  ].join('-');
-}
+  }
+});
+
+$(document).on('click', '#btn-movie', function () {
+  var name = $(this).attr("movieName");
+  window.location=`dat-ve.html?name=${name}`;
 });

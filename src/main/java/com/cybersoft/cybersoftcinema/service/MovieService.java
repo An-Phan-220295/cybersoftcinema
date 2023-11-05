@@ -1,6 +1,10 @@
 package com.cybersoft.cybersoftcinema.service;
 
 import com.cybersoft.cybersoftcinema.entity.*;
+import com.cybersoft.cybersoftcinema.entity.CountryEntity;
+import com.cybersoft.cybersoftcinema.entity.MovieEntity;
+import com.cybersoft.cybersoftcinema.entity.MoviePersonProducerMovieTypeEntity;
+import com.cybersoft.cybersoftcinema.entity.MovieStatusEntity;
 import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
 import com.cybersoft.cybersoftcinema.payload.response.QuickBuyMovieResponse;
 import com.cybersoft.cybersoftcinema.repository.MoviePersonProducerMovieTypeRepository;
@@ -119,6 +123,62 @@ public class MovieService implements MovieServiceImp {
                                 .path("/movie/image/") // get http://localhost:8080/movie/image/
                                 .path(data.getMovieEntity().getImages()) //get image name
                                 .toUriString()); // convert to String
+
+                    list.add(movieResponse);
+                }
+                if (data.getPersonEntity().getPersonTypeEntity().getName().equals("Director")) {
+                    if (!movieResponse.getDirector().contains(data.getPersonEntity().getName())) {
+                        movieResponse.getDirector().add(data.getPersonEntity().getName());
+                    }
+                }
+                if (data.getPersonEntity().getPersonTypeEntity().getName().equals("Actor")) {
+                    if (!movieResponse.getCast().contains(data.getPersonEntity().getName())) {
+                        movieResponse.getCast().add(data.getPersonEntity().getName());
+                    }
+                }
+                if (!movieResponse.getMovieType().contains(data.getMovieTypeEntity().getName())) {
+                    movieResponse.getMovieType().add(data.getMovieTypeEntity().getName());
+                }
+                if (!movieResponse.getProducer().contains(data.getProducerEntity().getName())) {
+                    movieResponse.getProducer().add(data.getProducerEntity().getName());
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<MovieResponse> getMovieByName(String movieName) {
+        List<MovieResponse> list = new ArrayList<>();
+
+        List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities = moviePersonProducerMovieTypeRepository.findAll();
+
+        MovieResponse movieResponse = null;
+
+        for (MoviePersonProducerMovieTypeEntity data : moviePersonProducerMovieTypeEntities) {
+            if (data.getMovieEntity().getName().equals(movieName)) {
+                if (movieResponse == null) {
+                    movieResponse = new MovieResponse();
+                    movieResponse.setId(data.getMovieEntity().getId());
+                    movieResponse.setName(data.getMovieEntity().getName());
+                    movieResponse.setRating(data.getMovieEntity().getRating());
+                    movieResponse.setRequireAge(data.getMovieEntity().getRequiredAge());
+                    movieResponse.setDuration(data.getMovieEntity().getDuration());
+                    movieResponse.setReleaseDate(data.getMovieEntity().getReleaseDate());
+                    movieResponse.setContent(data.getMovieEntity().getContent());
+
+                    movieResponse.setMovieType(new ArrayList<>());
+                    movieResponse.setDirector(new ArrayList<>());
+                    movieResponse.setCast(new ArrayList<>());
+                    movieResponse.setProducer(new ArrayList<>());
+
+                    movieResponse.setCountry(data.getMovieEntity().getCountryEntity().getName());
+                    movieResponse.setMovieStatus(data.getMovieEntity().getMovieStatusEntity().getName());
+
+                    movieResponse.setImage(ServletUriComponentsBuilder.fromCurrentContextPath()
+                            .path("/movie/image/") // get http://localhost:8080/movie/image/
+                            .path(data.getMovieEntity().getImages()) //get image name
+                            .toUriString()); // convert to String
 
                     list.add(movieResponse);
                 }
