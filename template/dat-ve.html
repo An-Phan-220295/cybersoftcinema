@@ -213,8 +213,11 @@
             ]);
         }
     </script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </head>
 
 <body ng-app="appweb">
@@ -246,8 +249,8 @@
                             <div class="logo">
                                 <a rel="external" href="../index.html">
                                     <img src="../website/images/template-logo.jpg"
-                                        data-src="website/images/d6a119669a6d62e6801bcca56a386f42.png" alt="Galaxy Cinema"
-                                        class="lazy hidden-xs hidden-sm" />
+                                        data-src="website/images/d6a119669a6d62e6801bcca56a386f42.png"
+                                        alt="Galaxy Cinema" class="lazy hidden-xs hidden-sm" />
                                     <img src="../website/images/template-logo.jpg"
                                         data-src="website/images/galaxy-logo-mobile.png" alt="Galaxy Cinema"
                                         class="lazy hidden-lg hidden-md" />
@@ -503,8 +506,8 @@
             <div class="container">
                 <div class="row">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item"><a href="#">Đặt vé</a></li>
+                        <li class="breadcrumb-item active">Trang chủ</li>
+                        <li class="breadcrumb-item active">Đặt vé</li>
                         <li class="breadcrumb-item active upper-text">The Creator</li>
                     </ol>
                 </div>
@@ -707,7 +710,35 @@
                                 </div>
                             </article> -->
                         </section>
-                        <section ng-controller="movieDetailShowTime">
+
+                        <div class="content-text">
+                            <section id="info">
+                                <h3>Lịch chiếu</h3>
+                            </section>
+                        </div>
+                        <div class="d-flex p-3 justify-content-sm-start" id="showingDate">
+                            <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1" 
+                                    style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem;">
+                                <span>thư</span>
+                                <span>32/21</span>
+                            </button>
+                        </div>
+                        <div id="showingList">
+                            <div
+                                class="showtime__cinema md:py-4 py-2 px-3 odd:bg-white even:bg-[#FDFBFA] even:border-t even:border-b">
+                                <h3 class="text-base font-bold mb-4">Galaxy Kinh Dương Vương</h3>
+                                <div class="showtime__bundle flex md:flex-row flex-col gap-2 items-start mb-6" id="showingTimeList">
+                                    <div class="time__show flex flex-1 flex-row gap-x-3 gap-y-1 flex-wrap">
+                                        <button
+                                            class="py-2 md:px-8 px-6 border rounded text-sm font-normal text-black-10 hover:bg-blue-10 active:bg-blue-10  transition-all duration-500 ease-in-out hover:text-white">22:45</button>
+                                        <button
+                                            class="py-2 md:px-8 px-6 border rounded text-sm font-normal text-black-10 hover:bg-blue-10 active:bg-blue-10  transition-all duration-500 ease-in-out hover:text-white">23:00</button>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+
+                        <!-- <section ng-controller="movieDetailShowTime">
                             <div ng-show="displayBundle" class="ng-hide">
                                 <div ng-init='id="da092419-c4d6-47cb-8fde-1ff8197ae64d";slug="the-creator"'></div>
                                 <h3>Lịch chiếu</h3>
@@ -739,7 +770,6 @@
                                                     <label>{{bundle.version | uppercase}} -&nbsp
                                                         {{bundle.caption,select, sub {Phụ đề} other
                                                         {L.Tiếng} }} {{bunlde.caption}}</label>
-                                                    <!--span(ng-if='checkBundleSession(bundle.bundles,currentDate)') #{i18n('Không có lịch chiếu')}-->
                                                     <div class="typetime">
                                                         <galaxy-buy-ticket ng-repeat="session in bundle.sessions"
                                                             ng-model="session"
@@ -751,7 +781,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section> -->
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <section id="getPromotion" ng-controller="registerEmailController" class="hidden-xs">

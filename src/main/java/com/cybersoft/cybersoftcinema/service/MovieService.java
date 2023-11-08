@@ -166,6 +166,7 @@ public class MovieService implements MovieServiceImp {
                     movieResponse.setDuration(data.getMovieEntity().getDuration());
                     movieResponse.setReleaseDate(data.getMovieEntity().getReleaseDate());
                     movieResponse.setContent(data.getMovieEntity().getContent());
+                    movieResponse.setTrailer((data.getMovieEntity().getTrailer()));
 
                     movieResponse.setMovieType(new ArrayList<>());
                     movieResponse.setDirector(new ArrayList<>());

@@ -31,6 +31,9 @@ public class MovieEntity {
     @Column(name = "images")
     private String images;
 
+    @Column(name = "trailer")
+    private String trailer;
+
     @ManyToOne
     @JoinColumn(name = "idCountry")
     private CountryEntity countryEntity;
@@ -126,6 +129,14 @@ public class MovieEntity {
 
     public void setImages(String images) {
         this.images = images;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
     }
 
     public List<MovieTheaterShowingEntity> getMovieTheaterShowingEntities() {

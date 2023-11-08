@@ -1,25 +1,28 @@
+
 $(document).ready(function () {
   var a = window.location.pathname;
   var idurl = window.location.search;
   const urlParams = new URLSearchParams(idurl);
   var name = urlParams.get('name');
+  var id = urlParams.get('id');
+
+  //Call API to get movie information from movie name
   $.ajax({
     method: "get",
     url: `http://localhost:8080/datve/${name}`,
   }).done(function (result) {
-    console.log("sever tra ve ", result);
     var div = document.createElement('div');
     let htmlAdd = "";
     let htmlData = result.data;
     htmlData.forEach((item) => {
       htmlAdd += `
-        <article>
+        <article id="movieInfo">
           <div class="row">
             <div class="col-md-4 col-sm-4 col-xs-8 col-xs-offset-2 col-md-offset-0">
               <div class="detail-feat-img">
                 <img style="height:380px; object-fit:fill;"
                   src="${item.image}" />
-                  <a href="https://www.youtube.com/watch?v=MLUcZfI6dbU" target="_blank">
+                  <a href="${item.trailer}" target="_blank">
                     <div type="button" class="play-bt">
                         <galaxy-watch-trailer 
                           data-title='"The Creator"' 
@@ -40,7 +43,7 @@ $(document).ready(function () {
                       <strong>${item.rating}</strong><span>/10</span>
                     </div>
                     <div class="rating-bt">
-                      <button id="rating-click" type="submit" ng-click="showRaiting()"
+                      <button id="rating-click" value=${item.id} type="submit" ng-click="showRaiting()"
                         class="btn btn-primary btn-sm">
                         Đánh giá
                       </button>
@@ -140,6 +143,7 @@ $(document).ready(function () {
     document.getElementById("movieInfo").appendChild(div);
   });
 
+  //Call API to get 3 showing movie list (not include this movie)
   $.ajax({
     method: "get",
     url: `http://localhost:8080/index/poster`,
@@ -164,7 +168,8 @@ $(document).ready(function () {
                     <div class="movies-content">
                         <span><span class="age-rating">T${element.requireAge}</span></span>
                         <div class="group">
-                            <div class="btn secondary-white" movieName="${element.name}" id="btn-movie">mua vé</div>
+                            <div class="btn secondary-white" movieName="${element.name}" idMovie="${element.id}" 
+                            id="btn-movie">mua vé</div>
                         </div>
                     </div>
                 </div>
@@ -177,31 +182,101 @@ $(document).ready(function () {
         count++;
       }
     }
-    // htmlData.forEach((item, index) => {
-    //   htmlAdd += `
-    //   <div class="col-md-13 col-sm-12 col-xs-12 movie-item">
-    //     <div class="article-movie-home">
-    //       <img src="${item.image}" />
-    //           <div class="decription-hover overlay">
-    //               <div class="movies-content">
-    //                   <span><span class="age-rating">T${item.requireAge}</span></span>
-    //                   <div class="group">
-    //                       <div class="btn secondary-white" movieName="${item.name}" id="btn-movie">mua vé</div>
-    //                   </div>
-    //               </div>
-    //           </div>
-    //     </div>
-    //     <div class="title-movie">
-    //       <h4 class="upper-text">${item.name}</h4>
-    //     </div>
-    //   </div>
-    //    `;
-    // });
     div.innerHTML = htmlAdd;
     document.getElementById("showingMovie").appendChild(div);
   })
+
+  //Call API to get theater list from the movie id
+  $.ajax({
+    method: "GET",
+    url: `http://localhost:8080/quickbuy/movie/theater?movieId=${id}`,
+  }).done(function (result) {
+    var ul = document.getElementById("list-theater");
+    let htmlData = result.data;
+    var htmlAdd = ``;
+
+    //Iterate through an htmlData(result.data) array to add HTML code to show theater list in website
+    htmlData.forEach((item) => {
+      var divTheater = document.createElement("div");
+      htmlAdd += `
+      <div class="showtime__cinema md:py-8 py-4 px-3 odd:bg-white even:bg-[#FDFBFA] even:border-t even:border-b">
+        <h3 class="text-base font-bold mb-4">${item.theaterName}</h3>
+            
+      </div>
+      `;
+    
+      //Call API to get showing list (date and time) from the movie id and theater id
+      $.ajax({
+        method: "GET",
+        url: `http://localhost:8080/quickbuy/movie/date?movieId=${id}&theaterId=${item.theaterId}`,
+      }).done(function (result) {
+        let htmlDataShowing = result.data;
+        var htmlAddShowingDate = ``;
+
+        //Iterate through an htmlData(result.data) array to add HTML code to show showing date list in website
+        htmlDataShowing.forEach((item2) => {
+          var divDate = document.createElement("div");
+          htmlAddShowingDate += `
+            <div class="p-2">${item2.showingDate}</div>
+            <div class="time__show flex flex-1 flex-row gap-x-3 gap-y-1 flex-wrap showingTimeList">
+    
+            </div>
+          `;
+
+          //Iterate through an htmlData(result.data) array to add HTML code to show showing time list in website
+          $.ajax({
+            method: "GET",
+            url: `http://localhost:8080/quickbuy/time?movieId=${id}&theaterId=${item.theaterId}&showingDate=${item2.showingDate}`,
+          }).done(function (result) {
+            var ulShowingTime = document.getElementById(formatDate(item.showingDate));
+            let htmlDataTime = result.data;
+            var htmlAddShowingTime = ``;
+
+            //Iterate through an htmlData(result.data) array to add HTML code to show showing time list in website
+            htmlDataTime.forEach((item3) => {
+              var divTime = document.createElement("div");
+              htmlAddShowingTime += `
+                <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
+                  text-black-10 hover:bg-blue-10 active:bg-blue-10  transition-all 
+                  duration-500 ease-in-out hover:text-white">${item3.showingTime}
+                </button>
+              `;
+
+              divTime.innerHTML = htmlAddShowingTime;
+              document.getElementsByClassName("showingTimeList").appendChild(divTime);
+            });
+          });
+
+          divDate.innerHTML = htmlAddShowingDate;
+        });
+      });
+
+    //   var htmlAdd = `
+    //   <div class="showtime__cinema md:py-8 py-4 px-3 odd:bg-white even:bg-[#FDFBFA] even:border-t even:border-b">
+    //     <h3 class="text-base font-bold mb-4">${item.theaterName}</h3>
+    //         <div class="time__show flex flex-1 flex-row gap-x-3 gap-y-1 flex-wrap" id="showingTimeList">
+    //           <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
+    //             text-black-10 hover:bg-blue-10 active:bg-blue-10  transition-all 
+    //             duration-500 ease-in-out hover:text-white">22:45
+    //           </button>
+    //           <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
+    //             text-black-10 hover:bg-blue-10 active:bg-blue-10 
+    //             transition-all duration-500 ease-in-out hover:text-white">23:00
+    //           </button>
+    //         </div>
+    //   </div>
+    // `;
+
+    divTheater.innerHTML = htmlAdd;
+    document.getElementById("showingList").appendChild(divTheater);
+    });
+  });
+
+  getTodayAndNext7Days();
+
 });
 
+//Display information which doesn't have detail url
 function arrayDisplay(array) {
   var d = "";
   if (array.length === 0) {
@@ -218,6 +293,7 @@ function arrayDisplay(array) {
   return d;
 };
 
+//Display information which have detail url (actor, director)
 function arrayDisplayWithUrl(array) {
   var d = "";
   if (array.length === 0) {
@@ -234,12 +310,84 @@ function arrayDisplayWithUrl(array) {
   return d;
 };
 
+//format date from yyyy-mm-dd to dd-mm-yyyy
 function formattedDate(d) {
   var initial = String(d).split('-');
   return [ initial[2], initial[1], initial[0],  ].join('-');
 }
 
+//Get today and next 7 days
+function getTodayAndNext7Days () {
+  var allCurDate = new Date();
+  var curDay = allCurDate.getDay();
+  var VieDay = "";
+  var curDate = allCurDate.getDate();
+  var curMonth = allCurDate.getMonth()+1;
+  var curYear = allCurDate.getFullYear();
+  var dateInMonth = new Date(curYear, curMonth, 0);
+  let htmlAdd =``;
+  for (let index = 0; index < 7; index++) {
+    switch (curDay) {
+      case 0:
+        VieDay = "Chủ nhật";
+        break;
+      case 1:
+        VieDay = "Thứ hai";
+        break;
+      case 2:
+        VieDay = "Thứ ba";
+        break;
+      case 3:
+        VieDay = "Thứ tư";
+        break;
+      case 4:
+        VieDay = "Thứ năm";
+        break;
+      case 5:
+        VieDay = "Thứ sáu";
+        break;
+      case 6:
+        VieDay = "Thứ bảy";
+        break;    
+      default:
+        break;
+    }
+    if (curDate < 10) {
+      curDate= "0" + curDate;     
+    }
+    htmlAdd += `
+      <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate" 
+              id="${curDate}/${curMonth}" 
+              style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem; width: 5rem;">
+        <span>${VieDay}</span>
+        <span>${curDate + "/" + curMonth}</span>
+      </button>
+    `;
+    curDay++;
+    if (curDay > 6) {
+      curDay =0;
+    }
+    curDate++;
+    if (curDate > dateInMonth.getDate()) {
+      curDate=1;
+      curMonth++;
+    }
+    if (curMonth > 12) {
+      curMonth=1;
+    }
+  }
+  return document.getElementById("showingDate").innerHTML = htmlAdd;
+}
+
+// Leads to "dat-ve" page when when click "mua vé" button
 $(document).on('click', '#btn-movie', function () {
   var name = $(this).attr("movieName");
-  window.location=`dat-ve.html?name=${name}`;
+  var id = $(this).attr("idMovie");
+  window.location=`dat-ve.html?id=${id}&name=${name}`;
 });
+
+//Get id showing date when click
+$(document).on('click', '.btn-showingdate', function() {
+  var id = this.id;
+  console.log("id day " + id);
+})
