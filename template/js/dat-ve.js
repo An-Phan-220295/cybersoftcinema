@@ -273,25 +273,25 @@ function getTodayAndNext7Days () {
   for (let index = 0; index < 7; index++) {
     switch (displayCurDay) {
       case 0:
-        VieDay = "Chủ nhật";
+        displayVieDay = "Chủ nhật";
         break;
       case 1:
-        VieDay = "Thứ hai";
+        displayVieDay = "Thứ hai";
         break;
       case 2:
-        VieDay = "Thứ ba";
+        displayVieDay = "Thứ ba";
         break;
       case 3:
-        VieDay = "Thứ tư";
+        displayVieDay = "Thứ tư";
         break;
       case 4:
-        VieDay = "Thứ năm";
+        displayVieDay = "Thứ năm";
         break;
       case 5:
-        VieDay = "Thứ sáu";
+        displayVieDay = "Thứ sáu";
         break;
       case 6:
-        VieDay = "Thứ bảy";
+        displayVieDay = "Thứ bảy";
         break;    
       default:
         break;
@@ -304,7 +304,7 @@ function getTodayAndNext7Days () {
       <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate" 
               date="${displayCurYear}-${displayCurMonth}-${displayCurDate}" 
               style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem; width: 5rem;">
-        <span>${VieDay}</span>
+        <span>${displayVieDay}</span>
         <span>${displayCurDate + "/" + displayCurMonth}</span>
       </button>
     `;
