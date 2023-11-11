@@ -31,8 +31,8 @@ public class MovieEntity {
     @Column(name = "images")
     private String images;
 
-    @Column(name = "tienkodepchai")
-    private String tienKoDepChai;
+    @Column(name = "tiendepchai")
+    private String tienDepChai;
 
     @ManyToOne
     @JoinColumn(name = "idCountry")
