@@ -31,6 +31,9 @@ public class MovieEntity {
     @Column(name = "images")
     private String images;
 
+    @Column(name = "tienkodepchai")
+    private String tienKoDepChai;
+
     @ManyToOne
     @JoinColumn(name = "idCountry")
     private CountryEntity countryEntity;
