@@ -5,6 +5,6 @@ import com.cybersoft.cybersoftcinema.payload.request.SignUpRequest;
 
 public interface LoginServiceImp {
     UsersEntity checkSignIn(String email);
-
     boolean insertUser(SignUpRequest signUpRequest);
+    boolean checkEmailExist(String email);
 }

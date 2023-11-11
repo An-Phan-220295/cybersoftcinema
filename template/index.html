@@ -163,6 +163,7 @@
                     <ul class="secondary-nav">
                       <li>
                         <a
+                          class=""
                           id="loginLink"
                           rel="external"
                           href="#"
@@ -170,19 +171,16 @@
                           ng-click="openLogin()"
                           ><i class="icon-user"></i>Đăng nhập</a
                         >
-                        <div ng-if="userInfo.memberId" class="dropdown">
+                        <div class="dropdown hidden" id="user-info">
                           <a
-                            style="display: none"
-                            ng-style="{ display: (userInfo.fullName ? 'block' : 'none') }"
                             rel="external"
                             href="thanh-vien.html"
-                            ng-if="userInfo"
                             data-toggle="dropdown"
                             aria-expanded="true"
                             class="dropdown-toggle"
                           >
                             <i class="icon-member"></i
-                            ><span>{{userInfo.fullName}}</span>
+                            ><span id="user-name">aaaaaaaaa</span>
                           </a>
                           <div class="dropdown-menu">
                             <a
@@ -190,9 +188,7 @@
                               href="thanh-vien.html"
                               class="dropdown-item"
                               >Tài khoản</a
-                            ><a ng-click="logout()" class="dropdown-item"
-                              >Thoát</a
-                            >
+                            ><a id="logout" class="dropdown-item">Thoát</a>
                           </div>
                         </div>
                       </li>
@@ -205,47 +201,6 @@
                     </ul>
                   </div>
                   <!--.search-wrapper--><!--  ul.search--><!--    li--><!--      input#search-input(type='text', placeholder='Start typing then hit enter to search')--><!--    li--><!--      a.hide-search(rel='external', href='#')--><!--        i.fa.fa-close-->
-                </div>
-                <div class="primary-nav-wrapper hidden-lg hidden-md">
-                  <div class="secondary-nav-wrapper">
-                    <ul class="secondary-nav">
-                      <!--li--><!--  a(href)--><!--    i.icon-search--><!--li--><!--  a#locationLinkMobile(rel='external', href='#')--><!--    i.icon-place--><!--    | #{i18n('Chọn vị trí')}-->
-                      <li>
-                        <a
-                          id="loginLinkMobile"
-                          rel="external"
-                          href="#"
-                          ng-show="!userInfo.memberId"
-                          ng-click="openLogin()"
-                          ><i class="icon-user"></i>Đăng nhập</a
-                        >
-                        <div ng-if="userInfo.memberId" class="dropdown">
-                          <a
-                            style="display: none"
-                            ng-style="{ display: (userInfo.fullName ? 'block' : 'none') }"
-                            rel="external"
-                            href="thanh-vien.html"
-                            ng-if="userInfo"
-                            data-toggle="dropdown"
-                            class="dropdown-toggle"
-                          >
-                            <i class="icon-member"></i
-                            ><span>{{userInfo.fullName}}</span>
-                          </a>
-                          <div class="dropdown-menu">
-                            <a
-                              rel="external"
-                              href="thanh-vien.html"
-                              class="dropdown-item"
-                              >Tài khoản</a
-                            ><a ng-click="logout()" class="dropdown-item"
-                              >Thoát</a
-                            >
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </div>
@@ -765,18 +720,16 @@
                     ><br />
                   </form>
                 </div>
-                <a
+                <!-- <a
                   id="loginBuyticket"
                   ng-if="isMobile == true"
                   ng-click="buyTicket()"
                   class="btn primary fl-right btn-buyticket-box clearfix mobile"
                   >Mua vé</a
-                >
+                > -->
               </div>
               <a
                 id="loginBuyticket"
-                ng-if="isMobile == false"
-                ng-click="buyTicket()"
                 class="btn primary fl-right btn-buyticket-box"
                 >Mua vé</a
               >
@@ -803,31 +756,10 @@
                 </ul>
                 <div class="tab-content">
                   <div id="tab_default_1" class="tab-pane active">
-                    <div class="row movies-group animated fadeInUp" id="moviePosters">
-                      <!-- <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
-                        <div class="article-movie-home">
-                          <img
-                            src="website/images/template-show.jpg"
-                            data-src="https://cdn.galaxycine.vn/media/2023/9/29/750x500_1695961597860.jpg"
-                            class="lazy"
-                          />
-                          <a href="dat-ve/the-creator.html">
-                            <div class="decription-hover overlay">
-                              <div class="movies-content">
-                                <span><span class="age-rating">T13</span></span>
-                                <div class="group">
-                                  <div class="btn secondary-white">mua vé</div>
-                                </div>
-                              </div>
-                            </div>
-                          </a>
-                        </div>
-                        <div class="title-movie">
-                          <h4 class="upper-text">The Creator</h4>
-                          <h4 class="vn upper-text">Kẻ Kiến Tạo</h4>
-                        </div>
-                      </div>                     -->
-                    </div>
+                    <div
+                      class="row movies-group animated fadeInUp"
+                      id="moviePosters"
+                    ></div>
                     <div class="row">
                       <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
                         <a
@@ -2524,9 +2456,6 @@
                                     thành viên.</span
                                   >
                                 </div>
-                                <!-- <p ng-if="message" class="message">
-                                  {{message}}
-                                </p> -->
                               </div>
                               <form class="login-form">
                                 <input
@@ -2546,7 +2475,6 @@
                                   id="password"
                                 />
                                 <div class="login-remember">
-                                  <!--.remember--><!--  .toggle-button.toggle-button-login--><!--    input#toggleRemember(type='checkbox' ng-model='userInfo.remember')--><!--    label(for='toggleRemember') Ghi nhớ--><!--    .toggle-button-icon-->
                                   <div class="forget-pass">
                                     <a
                                       id="forgetPass"
@@ -2583,7 +2511,6 @@
                                   class="btn primary input"
                                   >Mua vé không đăng nhập</a
                                 >
-                                <!--.social-login--><!--  span Hoặc đăng nhập bằng--><!--  a(href='')--><!--    i.icon-facebook--><!--  a(href='')--><!--    i.icon-google-plus-->
                               </form>
                             </div>
                           </div>
@@ -2594,10 +2521,7 @@
                           >
                             <div class="login-tab-wrapper">
                               <div ng-if="message" class="login-heading">
-                                <div class="text-heading">
-                                  <!--span.sub-text.error {{message}}-->
-                                  <!-- <p class="message">{{message}}</p> -->
-                                </div>
+                                <div class="text-heading"></div>
                               </div>
                               <div class="login-form">
                                 <form
@@ -2705,11 +2629,11 @@
                                     Đăng ký
                                   </button>
                                 </form>
-                                <!-- <div
+                                <div
                                   ng-if="registerStep == 'otp'"
                                   class="login-container"
-                                > -->
-                                <!-- <div class="tab-login-line">
+                                >
+                                  <div class="tab-login-line">
                                     <div class="tab-login-title">
                                       Vui lòng nhập OTP
                                     </div>
@@ -2756,7 +2680,7 @@
                                         </button>
                                       </div>
                                     </div>
-                                  </div> -->
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -2990,6 +2914,8 @@
     <script src="js-app/grpc.js"></script>
     <script src="customjs-min/firebase-setup.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/signup.js"></script>
     <script src="js/quickbuy-movie.js"></script>
     <script src="js/quickbuy-date.js"></script>
     <script src="js/quickbuy-theater.js"></script>
