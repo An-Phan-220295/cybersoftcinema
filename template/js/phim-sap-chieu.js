@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $.ajax({
+  //Get all upcoming movie and content  
+  $.ajax({
         method: "get",
         url: "http://localhost:8080/index/upcomingmovie",
     }).done(function (result) {
@@ -52,7 +53,8 @@ $(document).ready(function () {
                                   <div class="movies-content">
                                     <span><span class="age-rating">T${item.requireAge}</span></span>
                                     <div class="group">
-                                      <div class="btn secondary-white" movieName="${item.name}" id="btn-movie">mua vé</div>
+                                      <div class="btn secondary-white" movieName="${item.name}" idMovie="${item.id}" 
+                                      id="btn-movie">mua vé</div>
                                     </div>
                                   </div>
                                 </div>
@@ -83,13 +85,17 @@ $(document).ready(function () {
         document.getElementById("upcomingMoviePoster").appendChild(div);
         document.getElementById("content-text").innerHTML = htmlAddContent;
     });
-    function formattedDate(d) {
-        var initial = String(d).split('-');
-        return [ initial[2], initial[1], initial[0],  ].join('-');
-    }
+    
 });
+
+//Change format date between yyyy-mm-dd and dd-mm-yyyy
+function formattedDate(d) {
+  var initial = String(d).split('-');
+  return [ initial[2], initial[1], initial[0],  ].join('-');
+}
 
 $(document).on('click', '#btn-movie', function () {
   var name = $(this).attr("movieName");
-  window.location=`dat-ve.html?name=${name}`;
+  var id = $(this).attr("idMovie");
+  window.location=`dat-ve.html?id=${id}&name=${name}`;
 });

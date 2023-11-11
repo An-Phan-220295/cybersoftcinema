@@ -124,7 +124,6 @@ public class MovieService implements MovieServiceImp {
                                 .path(data.getMovieEntity().getImages()) //get image name
                                 .toUriString()); // convert to String
 
-                    list.add(movieResponse);
                 }
                 if (data.getPersonEntity().getPersonTypeEntity().getName().equals("Director")) {
                     if (!movieResponse.getDirector().contains(data.getPersonEntity().getName())) {
@@ -142,6 +141,7 @@ public class MovieService implements MovieServiceImp {
                 if (!movieResponse.getProducer().contains(data.getProducerEntity().getName())) {
                     movieResponse.getProducer().add(data.getProducerEntity().getName());
                 }
+                list.add(movieResponse);
             }
         }
         return list;

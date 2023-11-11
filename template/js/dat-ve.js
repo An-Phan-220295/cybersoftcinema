@@ -1,15 +1,18 @@
-
+var a = window.location.pathname;
+var idurl = window.location.search;
+const urlParams = new URLSearchParams(idurl);
+var name = urlParams.get('name');
+var id = urlParams.get('id');
+const allCurDate = new Date();
+const curDate = allCurDate.getDate();
+const curMonth = allCurDate.getMonth()+1;
+const curYear = allCurDate.getFullYear();
+const date = [curYear, curMonth, curDate].join("-");
 $(document).ready(function () {
-  var a = window.location.pathname;
-  var idurl = window.location.search;
-  const urlParams = new URLSearchParams(idurl);
-  var name = urlParams.get('name');
-  var id = urlParams.get('id');
-
   //Call API to get movie information from movie name
   $.ajax({
     method: "get",
-    url: `http://localhost:8080/datve/${name}`,
+    url: `http://localhost:8080/ticketbooking/${name}`,
   }).done(function (result) {
     var div = document.createElement('div');
     let htmlAdd = "";
@@ -35,22 +38,11 @@ $(document).ready(function () {
             <div class="details col-md-8 col-sm-8 col-xs-12">
               <h2 class="detail-title upper-text" id="movieName">${item.name}</h2>
               <div class="detail-rating">
-                <div ng-controller="ratingController"
-                  ng-init='itemId ="da092419-c4d6-47cb-8fde-1ff8197ae64d"'
+                <div ng-controller="ratingController" ng-init='itemId ="da092419-c4d6-47cb-8fde-1ff8197ae64d"'
                   class="rating-wrap detail">
                   <div class="rating-movie detail">
-                    <div class="rating-value detail" style="padding-top:10px">
+                    <div class="rating-value detail">
                       <strong>${item.rating}</strong><span>/10</span>
-                    </div>
-                    <div class="rating-bt">
-                      <button id="rating-click" value=${item.id} type="submit" ng-click="showRaiting()"
-                        class="btn btn-primary btn-sm">
-                        Đánh giá
-                      </button>
-                    </div>
-                    <div ng-show="activeRating" class="rating-user">
-                      <galaxy-rating ng-value="7.697671413421631"
-                        ng-select="submit"></galaxy-rating>
                     </div>
                   </div>
                 </div>
@@ -185,95 +177,48 @@ $(document).ready(function () {
     div.innerHTML = htmlAdd;
     document.getElementById("showingMovie").appendChild(div);
   })
-
-  //Call API to get theater list from the movie id
-  $.ajax({
-    method: "GET",
-    url: `http://localhost:8080/quickbuy/movie/theater?movieId=${id}`,
-  }).done(function (result) {
-    var ul = document.getElementById("list-theater");
-    let htmlData = result.data;
-    var htmlAdd = ``;
-
-    //Iterate through an htmlData(result.data) array to add HTML code to show theater list in website
-    htmlData.forEach((item) => {
-      var divTheater = document.createElement("div");
-      htmlAdd += `
-      <div class="showtime__cinema md:py-8 py-4 px-3 odd:bg-white even:bg-[#FDFBFA] even:border-t even:border-b">
-        <h3 class="text-base font-bold mb-4">${item.theaterName}</h3>
-            
-      </div>
-      `;
-    
-      //Call API to get showing list (date and time) from the movie id and theater id
-      $.ajax({
-        method: "GET",
-        url: `http://localhost:8080/quickbuy/movie/date?movieId=${id}&theaterId=${item.theaterId}`,
-      }).done(function (result) {
-        let htmlDataShowing = result.data;
-        var htmlAddShowingDate = ``;
-
-        //Iterate through an htmlData(result.data) array to add HTML code to show showing date list in website
-        htmlDataShowing.forEach((item2) => {
-          var divDate = document.createElement("div");
-          htmlAddShowingDate += `
-            <div class="p-2">${item2.showingDate}</div>
-            <div class="time__show flex flex-1 flex-row gap-x-3 gap-y-1 flex-wrap showingTimeList">
-    
-            </div>
-          `;
-
-          //Iterate through an htmlData(result.data) array to add HTML code to show showing time list in website
-          $.ajax({
-            method: "GET",
-            url: `http://localhost:8080/quickbuy/time?movieId=${id}&theaterId=${item.theaterId}&showingDate=${item2.showingDate}`,
-          }).done(function (result) {
-            var ulShowingTime = document.getElementById(formatDate(item.showingDate));
-            let htmlDataTime = result.data;
-            var htmlAddShowingTime = ``;
-
-            //Iterate through an htmlData(result.data) array to add HTML code to show showing time list in website
-            htmlDataTime.forEach((item3) => {
-              var divTime = document.createElement("div");
-              htmlAddShowingTime += `
-                <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
-                  text-black-10 hover:bg-blue-10 active:bg-blue-10  transition-all 
-                  duration-500 ease-in-out hover:text-white">${item3.showingTime}
-                </button>
-              `;
-
-              divTime.innerHTML = htmlAddShowingTime;
-              document.getElementsByClassName("showingTimeList").appendChild(divTime);
-            });
-          });
-
-          divDate.innerHTML = htmlAddShowingDate;
-        });
-      });
-
-    //   var htmlAdd = `
-    //   <div class="showtime__cinema md:py-8 py-4 px-3 odd:bg-white even:bg-[#FDFBFA] even:border-t even:border-b">
-    //     <h3 class="text-base font-bold mb-4">${item.theaterName}</h3>
-    //         <div class="time__show flex flex-1 flex-row gap-x-3 gap-y-1 flex-wrap" id="showingTimeList">
-    //           <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
-    //             text-black-10 hover:bg-blue-10 active:bg-blue-10  transition-all 
-    //             duration-500 ease-in-out hover:text-white">22:45
-    //           </button>
-    //           <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
-    //             text-black-10 hover:bg-blue-10 active:bg-blue-10 
-    //             transition-all duration-500 ease-in-out hover:text-white">23:00
-    //           </button>
-    //         </div>
-    //   </div>
-    // `;
-
-    divTheater.innerHTML = htmlAdd;
-    document.getElementById("showingList").appendChild(divTheater);
-    });
-  });
-
+  
+  //Funcion to get show date list from now to next 7 days
   getTodayAndNext7Days();
 
+  //Call API to get theater and show in current day
+  $.ajax({
+    method: "get",
+    url:`http://localhost:8080/ticketbooking/show?idMovie=${id}&showingDate=${date}`,
+  }).done(function(result){
+    var htmlData = result.data;
+    //Check is data null
+    if (htmlData.length==0) {
+      document.getElementById("showingList").innerHTML = `<div class="d-flex flex-column align-items-center pt-3 fs-4">Phim không có lịch chiếu trong ngày này</div>`;
+    } else {
+        var htmlTheaterAdd = ``;
+        var htmlShowAdd = ``;
+        htmlData.forEach(item => {
+          htmlTheaterAdd += `
+          <div class="showtime__cinema md:py-8 py-4 px-3 odd:bg-white even:bg-[#FDFBFA] even:border-t even:border-b">
+            <h3 class="text-base font-bold mb-4">${item.theaterName}</h3>
+                <div class="time__show flex flex-1 flex-row gap-x-3 gap-y-1 flex-wrap" 
+                id="${item.theaterName}">
+                </div>
+          </div>
+          `;
+          document.getElementById("showingList").innerHTML = htmlTheaterAdd;
+          item.showings.forEach(show => {
+            var displayShow = show.startTime.substring(0,5);
+            htmlShowAdd += `
+              <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
+                    text-black-10 hover:bg-blue-10 active:bg-blue-10 transition-all 
+                    duration-500 ease-in-out hover:text-white loginBuyticket" 
+                    timeIdGlobal="${show.id}" theaterIdGlobal="${item.theaterId}">${displayShow}
+              </button>
+            `;
+          })
+          document.getElementById(`${item.theaterName}`).innerHTML = htmlShowAdd;
+          htmlShowAdd = "";
+          htmlTheaterAdd = document.getElementById("showingList").innerHTML;
+        });
+      }
+  });
 });
 
 //Display information which doesn't have detail url
@@ -310,7 +255,7 @@ function arrayDisplayWithUrl(array) {
   return d;
 };
 
-//format date from yyyy-mm-dd to dd-mm-yyyy
+//Change format date between yyyy-mm-dd and dd-mm-yyyy
 function formattedDate(d) {
   var initial = String(d).split('-');
   return [ initial[2], initial[1], initial[0],  ].join('-');
@@ -318,16 +263,15 @@ function formattedDate(d) {
 
 //Get today and next 7 days
 function getTodayAndNext7Days () {
-  var allCurDate = new Date();
-  var curDay = allCurDate.getDay();
-  var VieDay = "";
-  var curDate = allCurDate.getDate();
-  var curMonth = allCurDate.getMonth()+1;
-  var curYear = allCurDate.getFullYear();
+  var displayCurDay = allCurDate.getDay();
+  var displayVieDay = "";
+  var displayCurDate = curDate;
+  var displayCurMonth = curMonth;
+  var displayCurYear = curYear;
   var dateInMonth = new Date(curYear, curMonth, 0);
   let htmlAdd =``;
   for (let index = 0; index < 7; index++) {
-    switch (curDay) {
+    switch (displayCurDay) {
       case 0:
         VieDay = "Chủ nhật";
         break;
@@ -352,28 +296,30 @@ function getTodayAndNext7Days () {
       default:
         break;
     }
-    if (curDate < 10) {
-      curDate= "0" + curDate;     
+    //add 0 number for curdate <10 (9 to 09)
+    if (displayCurDate < 10) {
+      displayCurDate= "0" + displayCurDate;     
     }
     htmlAdd += `
       <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate" 
-              id="${curDate}/${curMonth}" 
+              date="${displayCurYear}-${displayCurMonth}-${displayCurDate}" 
               style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem; width: 5rem;">
         <span>${VieDay}</span>
-        <span>${curDate + "/" + curMonth}</span>
+        <span>${displayCurDate + "/" + displayCurMonth}</span>
       </button>
     `;
-    curDay++;
-    if (curDay > 6) {
-      curDay =0;
+    displayCurDay++;
+    if (displayCurDay > 6) {
+      displayCurDay =0;
     }
-    curDate++;
-    if (curDate > dateInMonth.getDate()) {
-      curDate=1;
-      curMonth++;
+    displayCurDate++;
+    if (displayCurDate > dateInMonth.getDate()) {
+      displayCurDate=1;
+      displayCurMonth++;
     }
-    if (curMonth > 12) {
-      curMonth=1;
+    if (displayCurMonth > 12) {
+      displayCurMonth=1;
+      displayCurYear++;
     }
   }
   return document.getElementById("showingDate").innerHTML = htmlAdd;
@@ -386,8 +332,89 @@ $(document).on('click', '#btn-movie', function () {
   window.location=`dat-ve.html?id=${id}&name=${name}`;
 });
 
-//Get id showing date when click
+//Get id showing date when click showing date
 $(document).on('click', '.btn-showingdate', function() {
-  var id = this.id;
-  console.log("id day " + id);
+  var date = $(this).attr("date");
+  $.ajax({
+    method: "get",
+    url:`http://localhost:8080/ticketbooking/show?idMovie=${id}&showingDate=${date}`,
+  }).done(function(result){
+    var htmlData = result.data;
+    //Check is data null
+    if (htmlData.length==0) {
+      document.getElementById("showingList").innerHTML = `<div class="d-flex flex-column align-items-center pt-3 fs-4">Phim không có lịch chiếu trong ngày này</div>`;
+    } else {
+        var htmlTheaterAdd = ``;
+        var htmlShowAdd = ``;
+        htmlData.forEach(item => {
+          htmlTheaterAdd += `
+          <div class="showtime__cinema md:py-8 py-4 px-3 odd:bg-white even:bg-[#FDFBFA] even:border-t even:border-b">
+            <h3 class="text-base font-bold mb-4">${item.theaterName}</h3>
+                <div class="time__show flex flex-1 flex-row gap-x-3 gap-y-1 flex-wrap" 
+                id="${item.theaterName}">
+                </div>
+          </div>
+          `;
+          document.getElementById("showingList").innerHTML = htmlTheaterAdd;
+          item.showings.forEach(show => {
+            var displayShow = show.startTime.substring(0,5);
+            htmlShowAdd += `
+              <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
+                    text-black-10 hover:bg-blue-10 active:bg-blue-10  transition-all 
+                    duration-500 ease-in-out hover:text-white loginBuyticket"
+                    timeIdGlobal="${show.id}" theaterIdGlobal="${item.theaterId}">${displayShow}
+              </button>
+            `;
+          })
+          document.getElementById(`${item.theaterName}`).innerHTML = htmlShowAdd;
+          htmlShowAdd = "";
+          htmlTheaterAdd = document.getElementById("showingList").innerHTML;
+        });
+      }
+  });
 })
+
+//Leads to "seat.html" page when show is selected
+$(document).on("click", ".loginBuyticket", function () {
+  var movieIdGlobal = id;
+  var theaterIdGlobal = $(this).attr("theaterIdGlobal");
+  var timeIdGlobal = $(this).attr("timeIdGlobal");
+  console.log(movieIdGlobal);
+  console.log(theaterIdGlobal);
+  console.log(timeIdGlobal);
+  if (!getCookie("userName")) {
+    alert("Vui lòng đăng nhập để mua vé");
+  } else {
+    if (
+      typeof timeIdGlobal != "undefined" &&
+      typeof movieIdGlobal != "undefined" &&
+      typeof theaterIdGlobal != "undefined"
+    ) {
+      const ticketdetail = {
+        movieId: movieIdGlobal,
+        theaterId: theaterIdGlobal,
+        timeId: timeIdGlobal,
+      };
+      localStorage.setItem("ticketdetail", JSON.stringify(ticketdetail));
+      window.location.replace("seat.html");
+    } else {
+      alert("Vui lòng chọn xuát chiếu");
+    }
+  }
+});
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
