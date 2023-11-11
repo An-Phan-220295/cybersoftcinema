@@ -74,6 +74,7 @@ $(document).on("change", "#date-list-date", function () {
 
 $(document).on("change", "#theater-list-date", function () {
   var theaterId = $(this).val();
+  theaterIdGlobal = theaterId;
   var showingDate = $("#date-list-date").val();
   var selectMovie = document.getElementById("movie-list-date");
   var selectTime = document.getElementById("time-list-date");
@@ -109,6 +110,7 @@ $(document).on("change", "#theater-list-date", function () {
 
 $(document).on("change", "#movie-list-date", function () {
   var movieId = $(this).val();
+  movieIdGlobal = movieId;
   var theaterId = $("#theater-list-date").val();
   var showingDate = $("#date-list-date").val();
   var selectTime = document.getElementById("time-list-date");
@@ -133,4 +135,29 @@ $(document).on("change", "#movie-list-date", function () {
       selectTime.appendChild(Option);
     });
   });
+});
+
+$(document).on("change", "#time-list-movie", function () {
+  timeIdGlobal = $(this).val();
+});
+$(document).on("click", "#loginBuyticket", function () {
+  if (!getCookie("userName")) {
+    alert("Vui lòng đăng nhập để mua vé");
+  } else {
+    if (
+      typeof timeIdGlobal != "undefined" &&
+      typeof movieIdGlobal != "undefined" &&
+      typeof theaterIdGlobal != "undefined"
+    ) {
+      const ticketdetail = {
+        movieId: movieIdGlobal,
+        theaterId: theaterIdGlobal,
+        timeId: timeIdGlobal,
+      };
+      localStorage.setItem("ticketdetail", JSON.stringify(ticketdetail));
+      window.location.replace("seat.html");
+    } else {
+      alert("Vui lòng chọn xuát chiếu");
+    }
+  }
 });
