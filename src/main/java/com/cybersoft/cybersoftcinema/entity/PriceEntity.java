@@ -24,7 +24,7 @@ public class PriceEntity {
     private double price;
 
     @ManyToOne
-    @JoinColumn (name = "idSeatType")
+    @JoinColumn (name = "idSeattype")
     private SeatTypeEntity seatTypeEntity;
 
     @OneToMany (mappedBy = "priceEntity")

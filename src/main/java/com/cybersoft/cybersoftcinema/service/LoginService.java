@@ -44,9 +44,25 @@ public class LoginService implements LoginServiceImp {
         try {
             userRepository.save(usersEntity);
             isSuccess = true;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Thêm thất bại" + e.getLocalizedMessage());
         }
         return isSuccess;
+    }
+
+    @Override
+    public boolean checkEmailExist(String email) {
+        boolean isExist = true;
+        try {
+            if (userRepository.findByEmail(email).getEmail().equals(null)) {
+                System.out.println(userRepository.findByEmail(email).getEmail());
+                isExist = false;
+            }
+        } catch (Exception e) {
+            isExist = false;
+        }
+        System.out.println(isExist);
+
+        return isExist;
     }
 }

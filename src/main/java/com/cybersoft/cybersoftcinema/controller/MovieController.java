@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/movie")
+@CrossOrigin
 public class MovieController {
 
     @Autowired
@@ -41,12 +42,17 @@ public class MovieController {
     public ResponseEntity<?> getMovie(@RequestParam int idMovie) throws IOException {
         List<MovieResponse> movieResponseList = movieServiceImp.getMovie(idMovie);
 
-        return new ResponseEntity<>(movieResponseList, HttpStatus.OK);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setStatusCode(200);
+        baseResponse.setMessage("Success");
+        baseResponse.setData(movieResponseList);
+
+        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
 
     @GetMapping("/image/{imageName}")
     public ResponseEntity<?> getMoviePoster (@PathVariable String imageName) throws IOException {
-        byte[] image = movieServiceImp.getPoster(imageName);
+        byte[] image = movieServiceImp.getMovieImage(imageName);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_PNG);
 

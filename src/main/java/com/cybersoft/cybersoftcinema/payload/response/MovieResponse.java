@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MovieResponse {
+    private int id;
     private String name;
     private double rating;
     private int requireAge;
@@ -17,6 +18,14 @@ public class MovieResponse {
     private String content;
     private String image;
     private String movieStatus;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

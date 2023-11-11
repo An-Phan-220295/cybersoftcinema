@@ -29,7 +29,7 @@ public interface MovieTheaterShowRepository extends JpaRepository<MovieTheaterSh
     @Query("select m.theaterEntity FROM movie_theater_showing m WHERE m.movieEntity.id = :movieId and ((m.showingEntity.showingDate > current_date) or (m.showingEntity.showingDate = current_date and m.showingEntity.startTime > current_time ))GROUP BY m.theaterEntity")
     List<TheaterEntity> findTheaterByMovie(int movieId);
 
-    @Query("select m.showingEntity.showingDate FROM movie_theater_showing m WHERE m.movieEntity.id = :movieId and m.theaterEntity.id = :theaterId and ((m.showingEntity.showingDate > current_date) or (m.showingEntity.showingDate = current_date and m.showingEntity.startTime > current_time )) group by m.showingEntity.showingDate " )
+    @Query("select m.showingEntity.showingDate FROM movie_theater_showing m WHERE m.movieEntity.id = :movieId and m.theaterEntity.id = :theaterId and ((m.showingEntity.showingDate > current_date) or (m.showingEntity.showingDate = current_date and m.showingEntity.startTime > current_time )) group by m.showingEntity.showingDate" )
     List<Date> findShowingDateByMovieAndTheater(int movieId, int theaterId);
 
     @Query("select m.showingEntity FROM movie_theater_showing m WHERE m.movieEntity.id = :movieId and m.theaterEntity.id = :theaterId and m.showingEntity.showingDate = :showingDate and ((m.showingEntity.showingDate > current_date) or (m.showingEntity.showingDate = current_date and m.showingEntity.startTime > current_time ))" )
@@ -52,4 +52,6 @@ public interface MovieTheaterShowRepository extends JpaRepository<MovieTheaterSh
     @Query("SELECT m.movieEntity FROM movie_theater_showing m where m.theaterEntity.id = :theaterId and (m.showingEntity.showingDate > current_date or (m.showingEntity.showingDate = current_date and m.showingEntity.startTime > current_time )) GROUP BY m.movieEntity")
     List<MovieEntity> findMovieEByTheater(int theaterId);
 
+    @Query("select m FROM movie_theater_showing m where m.movieEntity.id= :idMovie and m.theaterEntity.id = :idTheater and m.showingEntity.id = :idShowing")
+    MovieTheaterShowingEntity findInfoById(int idMovie, int idTheater, int idShowing);
 }
