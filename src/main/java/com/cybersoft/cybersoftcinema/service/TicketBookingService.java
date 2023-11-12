@@ -26,7 +26,6 @@ public class TicketBookingService implements TicketBookingServiceImp {
         List<ShowResponse> list = new ArrayList<>();
         List<QuickBuyMovieResponse> theaterList = quickBuyService.getTheaterByMovie(id);
         for (QuickBuyMovieResponse data : theaterList) {
-//            List<Time> showTime = new ArrayList<>();
             ShowResponse response = new ShowResponse();
             response.setTheaterId((data.getTheaterId()));
             response.setTheaterName(data.getTheaterName());
@@ -42,11 +41,6 @@ public class TicketBookingService implements TicketBookingServiceImp {
                 }
                 response.setShowings(showingEntityList);
                 list.add(response);
-//                for (ShowingEntity data1: showingEntityList) {
-//                    showTime.add(data1.getStartTime());
-//                }
-//                response.setShowings(showTime);
-//                list.add(response);
             }
         }
         return list;

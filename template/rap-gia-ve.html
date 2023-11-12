@@ -1421,10 +1421,10 @@
               </div>
               <hr>
               
-              <div class="tab-content">
+
                 <div>
                   <div class="movies-group animated fadeInUp row movie-thumb" id="moviePosters">
-                    <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
+                    <!-- <div class="col-md-4 col-sm-4 col-xs-6 movie-item">
                       <div class="article-movie-home">
                         <img src="https://cdn.galaxycine.vn/media/2023/9/29/750x500_1695961597860.jpg"
                           class="lazy"/>
@@ -1433,7 +1433,7 @@
                       <div class="title-movie">
                         <h4 class="upper-text">Tên phim</h4>
                       </div>
-                    </div>
+                    </div> -->
                     
                     <!-- <button class="col-md-3 col-sm-3 col-xs-6 movie-item border-0 mx-4 bg-transparent">
                       <div class="article-movie-home">
@@ -1449,15 +1449,15 @@
                     </button>  -->
                   </div>
                   <hr>
-                  <h4>Suất chiếu</h4>  
-                  <div>
-                    <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
+                  <h3>Suất chiếu <i class="fa-solid fa-circle-check"></i></h3>  
+                  <div id="showingTime">
+                    <!-- <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
                     text-black-10 hover:bg-blue-10 active:bg-blue-10 transition-all 
                     duration-500 ease-in-out hover:text-white loginBuyticket">12:00
-                    </button>
+                    </button> -->
                   </div>
                 </div>
-              </div>
+
               <!-- <div class="row theater-showtimes">
                 <div class="col-md-5 col-sm-5 col-xs-12">
                   <galaxy-datepicker
@@ -1553,10 +1553,8 @@
                 <p><span>Số điện thoại: </span>1900 2224</p>
                 <galaxy-google-map ng-map="cinema.mapEmbeb"></galaxy-google-map>
               </div>
-              <div
-                ng-bind-html="cinema.description"
-                class="theater-map-info"
-              ></div>
+              <div id="theaterDescription">
+              </div>
             </div>
           </div>
         </div>

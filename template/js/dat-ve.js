@@ -261,7 +261,7 @@ function formattedDate(d) {
   return [ initial[2], initial[1], initial[0],  ].join('-');
 }
 
-//Get today and next 7 days
+// Display 7 button for next 7 days from today
 function getTodayAndNext7Days () {
   var displayCurDay = allCurDate.getDay();
   var displayVieDay = "";
