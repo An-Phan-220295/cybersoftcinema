@@ -1,7 +1,7 @@
 package com.cybersoft.cybersoftcinema.entity;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @Entity (name = "seat")
 public class SeatEntity {
@@ -13,7 +13,7 @@ public class SeatEntity {
     private int seatNumber;
 
     @ManyToOne
-    @JoinColumn(name = "idSeatType")
+    @JoinColumn(name = "idSeattype")
     private SeatTypeEntity seatTypeEntity;
 
     @ManyToOne
@@ -33,7 +33,7 @@ public class SeatEntity {
     private ShowingEntity showingEntity;
 
     @ManyToOne
-    @JoinColumn(name = "idUser")
+    @JoinColumn(name = "idUsers")
     private UsersEntity usersEntity;
 
     public int getId() {

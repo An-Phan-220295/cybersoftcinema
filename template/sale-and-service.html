@@ -291,16 +291,9 @@
                 <div class="logo">
                   <a rel="external" href="index.html">
                     <img
-                      src="website/images/template-logo.jpg"
-                      data-src="website/images/galaxy-logo.png"
-                      alt="Galaxy Cinema"
+                      src="MyImages/logo.png"
                       class="lazy hidden-xs hidden-sm"
-                    />
-                    <img
-                      src="website/images/template-logo.jpg"
-                      data-src="website/images/galaxy-logo-mobile.png"
-                      alt="Galaxy Cinema"
-                      class="lazy hidden-lg hidden-md"
+                      style="width: 50%"
                     />
                   </a>
                 </div>
@@ -314,6 +307,7 @@
                     <ul class="secondary-nav">
                       <li>
                         <a
+                          class=""
                           id="loginLink"
                           rel="external"
                           href="#"
@@ -321,19 +315,16 @@
                           ng-click="openLogin()"
                           ><i class="icon-user"></i>Đăng nhập</a
                         >
-                        <div ng-if="userInfo.memberId" class="dropdown">
+                        <div class="dropdown hidden" id="user-info">
                           <a
-                            style="display: none"
-                            ng-style="{ display: (userInfo.fullName ? 'block' : 'none') }"
                             rel="external"
                             href="thanh-vien.html"
-                            ng-if="userInfo"
                             data-toggle="dropdown"
                             aria-expanded="true"
                             class="dropdown-toggle"
                           >
                             <i class="icon-member"></i
-                            ><span>{{userInfo.fullName}}</span>
+                            ><span id="user-name">aaaaaaaaa</span>
                           </a>
                           <div class="dropdown-menu">
                             <a
@@ -341,12 +332,11 @@
                               href="thanh-vien.html"
                               class="dropdown-item"
                               >Tài khoản</a
-                            ><a ng-click="logout()" class="dropdown-item"
-                              >Thoát</a
-                            >
+                            ><a id="logout" class="dropdown-item">Thoát</a>
                           </div>
                         </div>
                       </li>
+
                       <!--li--><!--  a#locationLink(rel='external', href='#')--><!--    i.icon-place--><!--    | Chọn vị trí-->
                       <li class="language hidden-xs">
                         <a
@@ -1140,27 +1130,25 @@
                                     thành viên.</span
                                   >
                                 </div>
-                                <p ng-if="message" class="message">
-                                  {{message}}
-                                </p>
                               </div>
-                              <form ng-submit="submit()" class="login-form">
+                              <form class="login-form">
                                 <input
                                   placeholder="Email"
                                   type="email"
                                   ng-model="userInfo.email"
-                                  required
+                                  required="required"
                                   class="login"
+                                  id="user"
                                 />
                                 <input
                                   placeholder="Mật khẩu"
                                   type="password"
                                   ng-model="userInfo.password"
-                                  required
+                                  required="required"
                                   class="login"
+                                  id="password"
                                 />
                                 <div class="login-remember">
-                                  <!--.remember--><!--  .toggle-button.toggle-button-login--><!--    input#toggleRemember(type='checkbox' ng-model='userInfo.remember')--><!--    label(for='toggleRemember') Ghi nhớ--><!--    .toggle-button-icon-->
                                   <div class="forget-pass">
                                     <a
                                       id="forgetPass"
@@ -1179,12 +1167,12 @@
                                     >
                                   </div>
                                 </div>
-                                <button class="btn primary input">
-                                  <i
-                                    ng-show="isSubmit"
-                                    class="fa fa-pulse fa-spinner"
-                                  ></i
-                                  >Đăng nhập
+                                <button
+                                  class="btn primary input"
+                                  id="btn-sign-in"
+                                >
+                                  <i class="fa fa-pulse fa-spinner"></i>Đăng
+                                  nhập
                                 </button>
                                 <div
                                   ng-if="enableSkip"
@@ -1197,7 +1185,6 @@
                                   class="btn primary input"
                                   >Mua vé không đăng nhập</a
                                 >
-                                <!--.social-login--><!--  span Hoặc đăng nhập bằng--><!--  a(href='')--><!--    i.icon-facebook--><!--  a(href='')--><!--    i.icon-google-plus-->
                               </form>
                             </div>
                           </div>
@@ -1208,10 +1195,7 @@
                           >
                             <div class="login-tab-wrapper">
                               <div ng-if="message" class="login-heading">
-                                <div class="text-heading">
-                                  <!--span.sub-text.error {{message}}-->
-                                  <p class="message">{{message}}</p>
-                                </div>
+                                <div class="text-heading"></div>
                               </div>
                               <div class="login-form">
                                 <form
@@ -1222,8 +1206,9 @@
                                     placeholder="Họ tên"
                                     type="text"
                                     ng-model="user.fullName"
-                                    required
+                                    required="required"
                                     class="login first"
+                                    id="fullname-sign-up"
                                   />
                                   <div class="row city">
                                     <div
@@ -1234,24 +1219,31 @@
                                         placeholder="Số điện thoại"
                                         maxlength="14"
                                         ng-model="user.mobilePhone"
-                                        required
+                                        required="required"
                                         class="login register-input"
+                                        id="phone-number-sign-up"
                                       />
                                     </div>
                                     <div
                                       class="col-md-6 col-sm-6 col-xs-6 second-col mt-14"
                                     >
-                                      <galaxy-select
-                                        ng-model="genderSelect"
-                                      ></galaxy-select>
+                                      <select
+                                        id="gender-sign-up"
+                                        class="form-control"
+                                        style="border-radius: 0; height: 40px"
+                                      >
+                                        <option value="m">Nam</option>
+                                        <option value="f">Nữ</option>
+                                      </select>
                                     </div>
                                   </div>
                                   <input
                                     type="email"
                                     placeholder="Email"
                                     ng-model="user.email"
-                                    required
+                                    required="required"
                                     class="login register-input remove-mb"
+                                    id="email-sign-up"
                                   />
                                   <div class="row city">
                                     <div
@@ -1261,8 +1253,9 @@
                                         type="password"
                                         placeholder="Mật khẩu"
                                         ng-model="user.password"
-                                        required
+                                        required="required"
                                         class="login"
+                                        id="password-sign-up"
                                       />
                                     </div>
                                     <div
@@ -1272,16 +1265,26 @@
                                         type="password"
                                         placeholder="Xác nhận mật khẩu"
                                         ng-model="user.confirmPassword"
-                                        required
+                                        required="required"
                                         class="login"
                                       />
                                     </div>
                                   </div>
                                   <div class="row birthday-signup">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                      <galaxy-datepicker
-                                        ng-model="user.dateOfBirth"
-                                      ></galaxy-datepicker>
+                                      <input
+                                        type="date"
+                                        id="birthday"
+                                        name="birthday"
+                                        class="form-control"
+                                        style="
+                                          border-radius: 0;
+                                          height: 40px;
+                                          margin-top: 14px;
+                                          margin-bottom: 14px;
+                                        "
+                                        placeholder="Username"
+                                      />
                                     </div>
                                   </div>
                                   <p class="text-confirm-signup">
@@ -1293,7 +1296,10 @@
                                     >của chương trình.&nbsp
                                   </p>
                                   <br />
-                                  <button class="btn primary input">
+                                  <button
+                                    class="btn primary input"
+                                    id="btn-sign-up"
+                                  >
                                     Đăng ký
                                   </button>
                                 </form>
@@ -1363,102 +1369,8 @@
           </div>
         </div>
       </div>
-      <div ng-controller="forgetPassController">
-        <div id="forgetpass-modal" style="z-index: 1111" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-outer-container">
-              <div class="modal-middle-container">
-                <div class="login-wrapper animated slideInDown">
-                  <div class="login-container">
-                    <span ng-click="closeModelForget()" class="close"
-                      ><i class="icon-cancel"></i
-                    ></span>
-                    <div class="tab-login-line">
-                      <div class="tab-login-title">Quên mật khẩu</div>
-                      <div class="login-tab-wrapper">
-                        <div class="login-heading">
-                          <div class="text-heading">
-                            <span class="sub-text"
-                              >Vui lòng cung cấp email đăng nhập, chúng tôi sẽ
-                              gửi link kích hoạt cho bạn.</span
-                            >
-                          </div>
-                        </div>
-                        <p ng-if="message" class="message">{{message}}</p>
-                        <form ng-submit="submit()" class="login-form">
-                          <input
-                            placeholder="Email"
-                            type="email"
-                            ng-model="item.email"
-                            required
-                            class="login"
-                          />
-                          <div class="row captcha">
-                            <div class="col-md-6 col-sm-6 col-xs-8 first-col">
-                              <galaxy-captcha
-                                data-config="captchaConfig"
-                              ></galaxy-captcha>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-4 second-col">
-                              <input
-                                placeholder="Nhập mã captcha"
-                                type="text"
-                                ng-model="item.captcha"
-                                required
-                                class="login"
-                              />
-                            </div>
-                          </div>
-                          <button class="btn primary input">
-                            <i
-                              ng-show="isSubmit"
-                              class="fa fa-pulse fa-spinner"
-                            ></i
-                            >Cấp lại mật khẩu
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--#success-modal(style='display: none;')-->
-      <div ng-controller="registerController">
-        <div id="success-modal" style="z-index: 1111" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-outer-container">
-              <div class="modal-middle-container">
-                <div class="login-wrapper animated slideInDown">
-                  <div class="login-container">
-                    <span ng-click="closeModelSuccess()" class="close"
-                      ><i class="icon-cancel"></i
-                    ></span>
-                    <div class="tab-login-line">
-                      <div class="tab-login-title">Đăng ký thành công</div>
-                      <div class="login-tab-wrapper">
-                        <div class="login-heading success">
-                          <i class="icon-success"></i>
-                          <div class="text-heading">
-                            <span class="sub-text"
-                              >Chào mừng đến G-Star Club!</span
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--include active-->
     </div>
+
     <div id="trailerModal" class="modal fade modal-trailer">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -1658,7 +1570,7 @@
         </div>
       </div>
     </div>
-    <galaxy-dialog></galaxy-dialog>
+    <!-- <galaxy-dialog></galaxy-dialog> -->
     <script src="customjs-min/lazyload.js" async></script>
     <script>
       window.lazyLoadOptions = {
@@ -1674,6 +1586,9 @@
     <script src="js/axios.min.js"></script>
     <script src="js/lodash-merge.js"></script>
     <script src="customjs-min/firebase-setup.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/signup.js"></script>
     <script src="js/quickbuy-content-1-html.js"></script>
     <script src="js/quickbuy-content-1-js.js"></script>
   </body>

@@ -3,7 +3,8 @@ package com.cybersoft.cybersoftcinema.payload.request;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.Date;
+import java.sql.Date;
+
 
 public class SignUpRequest {
     @NotNull(message = "Không được rỗng")

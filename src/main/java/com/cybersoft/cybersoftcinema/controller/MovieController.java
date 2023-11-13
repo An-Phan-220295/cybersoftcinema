@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/movie")
+@CrossOrigin
 public class MovieController {
 
     @Autowired
