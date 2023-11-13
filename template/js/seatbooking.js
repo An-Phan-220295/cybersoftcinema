@@ -5,6 +5,7 @@ var ticketDetailData = {
   idTheater: ticketDetail.theaterId,
   idShowing: ticketDetail.timeId,
 };
+let accessToken = getCookie("access-token");
 
 checkCookie();
 $(document).ready(function () {
@@ -14,6 +15,7 @@ $(document).ready(function () {
   $.ajax({
     url: "http://localhost:8080/ticket/getprice",
     method: "post",
+    headers: { Authorization: "Bearer " + accessToken },
     data: JSON.stringify(ticketDetailData),
     contentType: "application/json; charset=utf-8",
   }).done(function (result) {
@@ -42,10 +44,12 @@ $(document).ready(function () {
       Rạp: <strong>${item.theaterName}</strong>
     </p>
     <p style="font-size: larger; margin-bottom: 5px">
-      Xuất chiếu: <strong>${time}</strong>
+      Ngày chiếu:<strong>${getDayOfWeek(item.showingDate)}, ${formatDate(
+      item.showingDate
+    )} </strong>
     </p>
     <p style="font-size: larger; margin-bottom: 5px">
-      Ngày chiếu:<strong> ${formatDate(item.showingDate)} </strong>
+      Xuất chiếu: <strong>${time}</strong>
     </p>
   </div>
   
@@ -72,6 +76,7 @@ $(document).ready(function () {
   $.ajax({
     url: "http://localhost:8080/ticket/getunavalableseat",
     method: "post",
+    headers: { Authorization: "Bearer " + accessToken },
     data: JSON.stringify(ticketDetailData),
     contentType: "application/json; charset=utf-8",
   }).done(function (result) {
@@ -207,12 +212,14 @@ $(document).on("click", "#continueButton", function () {
   $.ajax({
     url: "http://localhost:8080/ticket/buyticket",
     method: "post",
+    headers: { Authorization: "Bearer " + accessToken },
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
   }).done(function (result) {
     if (result.message === "Mua vé thành công") {
       alert("Đặt vé thành công");
-      location.reload();
+      // location.reload();
+      window.location.href = "thanh-vien.html";
     } else {
       alert("Đặt vé thất bại");
     }
@@ -253,4 +260,17 @@ function checkCookie() {
     document.getElementById("user-info").classList.remove("hidden");
     document.getElementById("user-name").textContent = getCookie("userName");
   }
+}
+function getDayOfWeek(date) {
+  const weekday = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+  const d = new Date(date);
+  return weekday[d.getDay()];
 }

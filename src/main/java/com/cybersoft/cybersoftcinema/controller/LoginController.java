@@ -57,6 +57,7 @@ public class LoginController {
             signInResponse.setEmail(signInRequest.getEmail());
             signInResponse.setUserId(loginServiceImp.checkSignIn(signInRequest.getEmail()).getId());
             signInResponse.setToken(token);
+            System.out.println(jwtHelper.parserToken(token));
 
             baseResponse.setStatusCode(200);
             baseResponse.setMessage("Đăng nhập thành công");

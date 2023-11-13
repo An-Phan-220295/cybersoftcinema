@@ -19,11 +19,8 @@ $(document).on("click", "#btn-sign-in", function () {
       setCookie("userName", result.data.email);
       closeModal();
       alert("Đăng nhập thành công");
+      // localStorage.removeItem("mytime");
       location.reload();
-      // var loginLink = document.getElementById("loginLink");
-      // loginLink.style.display = "none";
-      // document.getElementById("user-info").classList.remove("hidden");
-      // document.getElementById("user-name").textContent = `${result.data.email}`;
     } else {
       alert("Sign-in failed");
     }

@@ -298,16 +298,9 @@
                 <div class="logo">
                   <a rel="external" href="index.html">
                     <img
-                      src="website/images/template-logo.jpg"
-                      data-src="website/images/galaxy-logo.png"
-                      alt="Galaxy Cinema"
+                      src="MyImages/logo.png"
                       class="lazy hidden-xs hidden-sm"
-                    />
-                    <img
-                      src="website/images/template-logo.jpg"
-                      data-src="website/images/galaxy-logo-mobile.png"
-                      alt="Galaxy Cinema"
-                      class="lazy hidden-lg hidden-md"
+                      style="width: 50%"
                     />
                   </a>
                 </div>
@@ -346,9 +339,7 @@
                               href="thanh-vien.html"
                               class="dropdown-item"
                               >Tài khoản</a
-                            ><a ng-click="logout()" class="dropdown-item"
-                              >Thoát</a
-                            >
+                            ><a id="logout" class="dropdown-item">Thoát</a>
                           </div>
                         </div>
                       </li>
@@ -627,193 +618,186 @@
       <div ng-controller="bookingPageController" class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="tab-movies">
-              <div class="tab-movies-line">
-                <ul class="nav nav-tabs">
-                  <li class="active">
+            <div class="tab-movies-line">
+              <ul class="nav nav-tabs">
+                <!-- <li class="active">
                     <a
                       href="#tab_showmovie"
                       data-toggle="tab"
                       ng-click='changeTab("byMovie")'
                       >Theo phim</a
                     >
-                  </li>
-                  <li>
+                  </li> -->
+                <!-- <li>
                     <a
                       href="#tab_showcinema"
                       data-toggle="tab"
                       ng-click='changeTab("byCinema")'
                       >Theo rạp</a
                     >
-                  </li>
-                  <!--li--><!--  a(href='#tab_showdate', data-toggle='tab' ng-click='changeTab("byDate")')--><!--    | #{i18n('Theo ngày')}-->
-                </ul>
-                <div class="tab-content">
-                  <div id="tab_showmovie" class="tab-pane active">
-                    <div class="row showtimes-group animated fadeInUp">
-                      <div class="col-md-4">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">Chọn phim</h4>
-                          </div>
-                          <ul class="list-group" id="list-movie"></ul>
+                  </li> -->
+                <!--li--><!--  a(href='#tab_showdate', data-toggle='tab' ng-click='changeTab("byDate")')--><!--    | #{i18n('Theo ngày')}-->
+              </ul>
+              <div class="tab-content">
+                <div id="tab_showmovie" class="tab-pane active">
+                  <div class="row showtimes-group animated fadeInUp">
+                    <div class="col-md-4">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">Chọn phim</h4>
                         </div>
+                        <ul class="list-group" id="list-movie"></ul>
                       </div>
-                      <div class="col-md-4">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">Chọn rạp</h4>
-                          </div>
-                          <galaxy-loading ng-show="onLoadItem"></galaxy-loading>
-                          <ul class="list-group" id="list-theater">
-                            <li
-                              class="list-group-item-text theater-options"
-                              id="default-theater "
-                            >
-                              Vui lòng chọn phim
-                            </li>
-                          </ul>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">Chọn rạp</h4>
                         </div>
+                        <galaxy-loading ng-show="onLoadItem"></galaxy-loading>
+                        <ul class="list-group" id="list-theater">
+                          <li
+                            class="list-group-item-text theater-options"
+                            id="default-theater "
+                          >
+                            Vui lòng chọn phim
+                          </li>
+                        </ul>
                       </div>
-                      <div class="col-md-4 position-relative" id="showing-time">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">Chọn suất</h4>
-                          </div>
-                          <ul class="list-group" id="list-showing">
-                            <li
-                              ng-if="dates.length == 0 "
-                              class="list-group-item-text"
-                            >
-                              Vui lòng chọn rạp
-                            </li>
-                          </ul>
+                    </div>
+                    <div class="col-md-4 position-relative" id="showing-time">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">Chọn suất</h4>
                         </div>
+                        <ul class="list-group" id="list-showing">
+                          <li
+                            ng-if="dates.length == 0 "
+                            class="list-group-item-text"
+                          >
+                            Vui lòng chọn rạp
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
-                  <div id="tab_showcinema" class="tab-pane showtimes">
-                    <div class="row showtimes-group animated fadeInUp">
-                      <div class="col-md-4">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">Chọn rạp</h4>
-                          </div>
-                          <galaxy-loading
-                            ng-show="!items.cinemas"
-                          ></galaxy-loading>
-                          <ul class="list-group">
-                            <li
-                              ng-repeat='cinema in items.cinemas |orderBy:"km"'
-                              ng-click="getMovieByCinema(cinema,$index)"
-                            >
-                              <a
-                                href="javascript:;"
-                                ng-class='{"active":currentCinema==$index}'
-                                class="list-group-item"
-                              >
-                                <div class="showtimes-row">
-                                  <div class="title-movie">
-                                    <p>{{cinema.name}}</p>
-                                    <span ng-if="cinema.km" class="distance"
-                                      >{{cinema.km || '-|-' | number : 2}}
-                                      km</span
-                                    >
-                                  </div>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
+                </div>
+                <div id="tab_showcinema" class="tab-pane showtimes">
+                  <div class="row showtimes-group animated fadeInUp">
+                    <div class="col-md-4">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">Chọn rạp</h4>
                         </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">Chọn phim</h4>
-                          </div>
-                          <galaxy-loading ng-show="onLoadItem"></galaxy-loading>
-                          <ul class="list-group">
-                            <li
-                              ng-if="movies.length == 0 &amp;&amp; !onLoadItem"
-                              class="list-group-item-text"
-                            >
-                              <span ng-if="currentMovie == -1"
-                                >Vui lòng chọn phim</span
-                              ><span ng-if="currentMovie != -1"
-                                >Hiện chưa có lịch chiếu</span
-                              >
-                            </li>
-                            <li
-                              ng-repeat="movie in movies"
-                              ng-click='setDates(movie.dates,$index,"movie")'
-                            >
-                              <a
-                                href="javascript:;"
-                                ng-class='{"active":currentMovie==$index}'
-                                class="list-group-item movie"
-                              >
-                                <div class="showtimes-row">
-                                  <img
-                                    src="https://cdn.galaxycine.vn{{movie.imagelandscape}}/"
-                                  /><galaxy-age-rating
-                                    ng-age="movie.age"
-                                  ></galaxy-age-rating>
-                                  <div class="title-movie">
-                                    <!-- <p class="upper-text">{{movie.name}}</p> -->
-                                    <!--p.vn 5 anh em siêu nhân-->
-                                  </div>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">Chọn suất</h4>
-                          </div>
-                          <ul class="list-group">
-                            <li
-                              ng-if="dates.length == 0 "
-                              class="list-group-item-text"
-                            >
-                              Vui lòng chọn suất
-                            </li>
-                            <li
-                              ng-repeat="date in dates"
+                        <galaxy-loading
+                          ng-show="!items.cinemas"
+                        ></galaxy-loading>
+                        <ul class="list-group">
+                          <li
+                            ng-repeat='cinema in items.cinemas |orderBy:"km"'
+                            ng-click="getMovieByCinema(cinema,$index)"
+                          >
+                            <a
+                              href="javascript:;"
+                              ng-class='{"active":currentCinema==$index}'
                               class="list-group-item"
                             >
                               <div class="showtimes-row">
-                                <p>
-                                  {{date.dayOfWeekLabel}}, {{date.showDate}}
-                                </p>
-                                <div
-                                  ng-repeat="bundle in date.bundles"
-                                  class="showtimes-item"
-                                >
-                                  <label
-                                    >{{bundle.version | uppercase | translate}}
-                                    -&nbsp {{bundle.caption,select, sub {Phụ đề}
-                                    other {L.Tiếng} }}</label
+                                <div class="title-movie">
+                                  <p>{{cinema.name}}</p>
+                                  <span ng-if="cinema.km" class="distance"
+                                    >{{cinema.km || '-|-' | number : 2}}
+                                    km</span
                                   >
-                                  <div class="showtimes-list-wrapper">
-                                    <galaxy-buy-ticket
-                                      ng-repeat="show in bundle.sessions"
-                                      ng-model="show"
-                                      ng-movie-slug="movies[currentMovie].slug"
-                                    ></galaxy-buy-ticket>
-                                  </div>
                                 </div>
                               </div>
-                            </li>
-                          </ul>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">Chọn phim</h4>
                         </div>
+                        <galaxy-loading ng-show="onLoadItem"></galaxy-loading>
+                        <ul class="list-group">
+                          <li
+                            ng-if="movies.length == 0 &amp;&amp; !onLoadItem"
+                            class="list-group-item-text"
+                          >
+                            <span ng-if="currentMovie == -1"
+                              >Vui lòng chọn phim</span
+                            ><span ng-if="currentMovie != -1"
+                              >Hiện chưa có lịch chiếu</span
+                            >
+                          </li>
+                          <li
+                            ng-repeat="movie in movies"
+                            ng-click='setDates(movie.dates,$index,"movie")'
+                          >
+                            <a
+                              href="javascript:;"
+                              ng-class='{"active":currentMovie==$index}'
+                              class="list-group-item movie"
+                            >
+                              <div class="showtimes-row">
+                                <img
+                                  src="https://cdn.galaxycine.vn{{movie.imagelandscape}}/"
+                                /><galaxy-age-rating
+                                  ng-age="movie.age"
+                                ></galaxy-age-rating>
+                                <div class="title-movie">
+                                  <!-- <p class="upper-text">{{movie.name}}</p> -->
+                                  <!--p.vn 5 anh em siêu nhân-->
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">Chọn suất</h4>
+                        </div>
+                        <ul class="list-group">
+                          <li
+                            ng-if="dates.length == 0 "
+                            class="list-group-item-text"
+                          >
+                            Vui lòng chọn suất
+                          </li>
+                          <li ng-repeat="date in dates" class="list-group-item">
+                            <div class="showtimes-row">
+                              <p>{{date.dayOfWeekLabel}}, {{date.showDate}}</p>
+                              <div
+                                ng-repeat="bundle in date.bundles"
+                                class="showtimes-item"
+                              >
+                                <label
+                                  >{{bundle.version | uppercase | translate}}
+                                  -&nbsp {{bundle.caption,select, sub {Phụ đề}
+                                  other {L.Tiếng} }}</label
+                                >
+                                <div class="showtimes-list-wrapper">
+                                  <galaxy-buy-ticket
+                                    ng-repeat="show in bundle.sessions"
+                                    ng-model="show"
+                                    ng-movie-slug="movies[currentMovie].slug"
+                                  ></galaxy-buy-ticket>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
-                  <!--#tab_showdate.tab-pane.showtimes--><!--  .row.showtimes-group.animated.fadeInUp--><!--    .col-md-4--><!--      .panel.panel-default--><!--        .panel-heading--><!--          h4.panel-title--><!--            | #{i18n('Chọn ngày')}--><!--        galaxy-loading(ng-show='!items.dates')--><!--        ul.list-group--><!--          li(ng-repeat='date in items.dates' ng-click='getCinemaByDate(date,$index)')--><!--            a.list-group-item(href='javascript:;' ng-class='{"active":currentDate==$index}')--><!--              .showtimes-row--><!--                .title-movie--><!--                  p {{date.dayOfWeekLabel}}, {{date.showDate}}--><!----><!--    .col-md-4--><!--      .panel.panel-default--><!--        .panel-heading--><!--          h4.panel-title--><!--            | #{i18n('Chọn rạp')}--><!--        galaxy-loading(ng-show='onLoadItem')--><!--        ul.list-group--><!--          li.list-group-item-text(ng-if='cinemas.length == 0 && !onLoadItem') #{i18n('Vui lòng chọn rạp')}--><!--          li(ng-repeat='cinema in cinemas |orderBy:"km"' ng-click='setDates(cinema.movies,$index,"cinema")')--><!--            a.list-group-item(href='javascript:;' ng-class='{"active":currentCinema==$index}')--><!--              .showtimes-row--><!--                .title-movie--><!--                  p {{cinema.name}}--><!--                  span.distance(ng-if='cinema.km') {{cinema.km || '-|-' | number : 2}} km--><!----><!--    .col-md-4--><!--      .panel.panel-default--><!--        .panel-heading--><!--          h4.panel-title--><!--            | #{i18n('Chọn suất')}--><!--        ul.list-group--><!--          li.list-group-item-text(ng-if='dates.length == 0 ') #{i18n('Vui Lòng chọn suất')}--><!--          li.list-group-item(ng-repeat='movie in dates' ng-if='movie.dates.length>0')--><!--            .showtimes-row--><!--              i.no-margin(class='{{getClassIcon(movie.age)}}')--><!--              .title-movie--><!--                p.upper-text {{movie.name}}--><!--               div(ng-repeat='date in movie.dates')--><!--                 .showtimes-item(ng-repeat='bundle in date.bundles')--><!--                   label--><!--                     | {{bundle.version | uppercase | translate}} -&nbsp--><!--                     |  {{bundle.caption,select,--><!--                     |    sub {#{i18n('Phụ đề')}}--><!--                     |    other {#{i18n('L.Tiếng')}}--><!--                     | }}--><!--                   .showtimes-list-wrapper--><!--                     galaxy-buy-ticket(--><!--                     ng-repeat='show in bundle.sessions'--><!--                     ng-model='show'--><!--                     ng-movie-slug='movie.slug'--><!--                     )--><!---->
                 </div>
+                <!--#tab_showdate.tab-pane.showtimes--><!--  .row.showtimes-group.animated.fadeInUp--><!--    .col-md-4--><!--      .panel.panel-default--><!--        .panel-heading--><!--          h4.panel-title--><!--            | #{i18n('Chọn ngày')}--><!--        galaxy-loading(ng-show='!items.dates')--><!--        ul.list-group--><!--          li(ng-repeat='date in items.dates' ng-click='getCinemaByDate(date,$index)')--><!--            a.list-group-item(href='javascript:;' ng-class='{"active":currentDate==$index}')--><!--              .showtimes-row--><!--                .title-movie--><!--                  p {{date.dayOfWeekLabel}}, {{date.showDate}}--><!----><!--    .col-md-4--><!--      .panel.panel-default--><!--        .panel-heading--><!--          h4.panel-title--><!--            | #{i18n('Chọn rạp')}--><!--        galaxy-loading(ng-show='onLoadItem')--><!--        ul.list-group--><!--          li.list-group-item-text(ng-if='cinemas.length == 0 && !onLoadItem') #{i18n('Vui lòng chọn rạp')}--><!--          li(ng-repeat='cinema in cinemas |orderBy:"km"' ng-click='setDates(cinema.movies,$index,"cinema")')--><!--            a.list-group-item(href='javascript:;' ng-class='{"active":currentCinema==$index}')--><!--              .showtimes-row--><!--                .title-movie--><!--                  p {{cinema.name}}--><!--                  span.distance(ng-if='cinema.km') {{cinema.km || '-|-' | number : 2}} km--><!----><!--    .col-md-4--><!--      .panel.panel-default--><!--        .panel-heading--><!--          h4.panel-title--><!--            | #{i18n('Chọn suất')}--><!--        ul.list-group--><!--          li.list-group-item-text(ng-if='dates.length == 0 ') #{i18n('Vui Lòng chọn suất')}--><!--          li.list-group-item(ng-repeat='movie in dates' ng-if='movie.dates.length>0')--><!--            .showtimes-row--><!--              i.no-margin(class='{{getClassIcon(movie.age)}}')--><!--              .title-movie--><!--                p.upper-text {{movie.name}}--><!--               div(ng-repeat='date in movie.dates')--><!--                 .showtimes-item(ng-repeat='bundle in date.bundles')--><!--                   label--><!--                     | {{bundle.version | uppercase | translate}} -&nbsp--><!--                     |  {{bundle.caption,select,--><!--                     |    sub {#{i18n('Phụ đề')}}--><!--                     |    other {#{i18n('L.Tiếng')}}--><!--                     | }}--><!--                   .showtimes-list-wrapper--><!--                     galaxy-buy-ticket(--><!--                     ng-repeat='show in bundle.sessions'--><!--                     ng-model='show'--><!--                     ng-movie-slug='movie.slug'--><!--                     )--><!---->
               </div>
             </div>
           </div>
@@ -1528,6 +1512,7 @@
     <script src="js/buyticket-movie.js"></script>
     <script src="js/signup.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/logout.js"></script>
   </body>
   <!-- Mirrored from www.galaxycine.vn/lich-chieu by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 15:51:58 GMT -->
 </html>
