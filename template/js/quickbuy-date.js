@@ -15,7 +15,9 @@ $(document).ready(function () {
     data.forEach((item) => {
       var Option = document.createElement("option");
       Option.value = item.showingDate;
-      Option.text = formatDate(item.showingDate);
+      Option.text = `${getDayOfWeek(item.showingDate)}, ${formatDate(
+        item.showingDate
+      )}`;
       selectDate.appendChild(Option);
     });
   });
@@ -161,3 +163,16 @@ $(document).on("click", "#loginBuyticket", function () {
     }
   }
 });
+function getDayOfWeek(date) {
+  const weekday = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+  const d = new Date(date);
+  return weekday[d.getDay()];
+}

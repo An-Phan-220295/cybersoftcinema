@@ -104,7 +104,9 @@ $(document).on("change", "#theater-list-movie", function () {
     data.forEach((item) => {
       var Option = document.createElement("option");
       Option.value = item.showingDate;
-      Option.text = formatDate(item.showingDate);
+      Option.text = `${getDayOfWeek(item.showingDate)}, ${formatDate(
+        item.showingDate
+      )}`;
       selectDate.appendChild(Option);
     });
   });
@@ -167,4 +169,17 @@ function formatDate(input) {
     day = datePart[2];
 
   return day + "/" + month + "/" + year;
+}
+function getDayOfWeek(date) {
+  const weekday = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+  const d = new Date(date);
+  return weekday[d.getDay()];
 }

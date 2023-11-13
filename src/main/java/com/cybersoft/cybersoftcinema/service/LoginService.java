@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+
 @Service
 public class LoginService implements LoginServiceImp {
 
@@ -61,8 +63,6 @@ public class LoginService implements LoginServiceImp {
         } catch (Exception e) {
             isExist = false;
         }
-        System.out.println(isExist);
-
         return isExist;
     }
 }

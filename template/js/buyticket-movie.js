@@ -143,7 +143,9 @@ $(document).on("click", ".list-theater", function () {
       <div class="list-group-item">
                               <div class="showtimes-row">
                                 <p style = "display: inline-block; margin-right: 10px">
-                                ${formatDate(item.showingDate)}</p>
+                                ${getDayOfWeek(item.showingDate)} ,${formatDate(
+        item.showingDate
+      )}</p>
                                 <div
                                   class="showtimes-item"
                                   style="margin-bottom: 0px;margin-top: 0px;">
@@ -295,4 +297,18 @@ function closeModal() {
   if (modalBackdrop) {
     modalBackdrop.style.display = "none";
   }
+}
+
+function getDayOfWeek(date) {
+  const weekday = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+  const d = new Date(date);
+  return weekday[d.getDay()];
 }

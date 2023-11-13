@@ -4,11 +4,15 @@ import com.cybersoft.cybersoftcinema.entity.*;
 import com.cybersoft.cybersoftcinema.payload.request.SeatInfoRequest;
 import com.cybersoft.cybersoftcinema.payload.request.TicketRequest;
 import com.cybersoft.cybersoftcinema.payload.response.SeatUnavailableResponse;
+import com.cybersoft.cybersoftcinema.payload.response.TicketInfoResponse;
 import com.cybersoft.cybersoftcinema.repository.SeatRepository;
 import com.cybersoft.cybersoftcinema.service.imp.SeatServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +40,7 @@ public class SeatService implements SeatServiceImp {
         List<SeatEntity> list = new ArrayList<>();
         boolean isSuccess = false;
 
-        for (TicketRequest data:ticketRequest) {
+        for (TicketRequest data : ticketRequest) {
             SeatEntity seatEntity = new SeatEntity();
             seatEntity.setSeatNumber(data.getSeatNumber());
 
@@ -75,4 +79,68 @@ public class SeatService implements SeatServiceImp {
         }
         return isSuccess;
     }
+
+    @Override
+    public List<TicketInfoResponse> findTicketByUserId(int userId) {
+        List<TicketInfoResponse> ticketInfoResponseList = new ArrayList<>();
+        List<SeatEntity> list = seatRepository.findTicketByIdUser(userId);
+
+        String movieName = "";
+        String theaterName = "";
+        Date showingDate = null;
+        Time showingTime = null;
+        String movieImg = "";
+
+        List<Integer> seatNumberList = new ArrayList<>();
+
+        for (SeatEntity data : list) {
+            if (movieName.equals(data.getMovieEntity().getName()) &&
+                    theaterName.equals(data.getTheaterEntity().getName()) &&
+                    showingDate != null && showingDate.equals(data.getShowingEntity().getShowingDate()) &&
+                    showingTime != null && showingTime.equals(data.getShowingEntity().getStartTime())) {
+
+                seatNumberList.add(data.getSeatNumber());
+            } else {
+                if (!seatNumberList.isEmpty()) {
+                    TicketInfoResponse ticketInfoResponse = new TicketInfoResponse();
+                    ticketInfoResponse.setMovieName(movieName);
+                    ticketInfoResponse.setMovieImg(ServletUriComponentsBuilder.fromCurrentContextPath()
+                            .path("/movie/image/")
+                            .path(data.getMovieEntity().getImages())
+                            .toUriString());
+                    ticketInfoResponse.setTheaterName(theaterName);
+                    ticketInfoResponse.setShowingDate(showingDate);
+                    ticketInfoResponse.setShowingTime(showingTime);
+                    ticketInfoResponse.setSeatNumber(seatNumberList);
+                    ticketInfoResponseList.add(ticketInfoResponse);
+                }
+
+                movieName = data.getMovieEntity().getName();
+                theaterName = data.getTheaterEntity().getName();
+                showingDate = data.getShowingEntity().getShowingDate();
+                showingTime = data.getShowingEntity().getStartTime();
+                movieImg = ServletUriComponentsBuilder.fromCurrentContextPath()
+                        .path("/movie/image/")
+                        .path(data.getMovieEntity().getImages())
+                        .toUriString();
+
+                seatNumberList = new ArrayList<>();
+                seatNumberList.add(data.getSeatNumber());
+            }
+        }
+
+        if (!seatNumberList.isEmpty()) {
+            TicketInfoResponse ticketInfoResponse = new TicketInfoResponse();
+            ticketInfoResponse.setMovieName(movieName);
+            ticketInfoResponse.setMovieImg(movieImg);
+            ticketInfoResponse.setTheaterName(theaterName);
+            ticketInfoResponse.setShowingDate(showingDate);
+            ticketInfoResponse.setShowingTime(showingTime);
+            ticketInfoResponse.setSeatNumber(seatNumberList);
+            ticketInfoResponseList.add(ticketInfoResponse);
+        }
+
+        return ticketInfoResponseList;
+    }
+
 }
