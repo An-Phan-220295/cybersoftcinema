@@ -1,3 +1,9 @@
+checkCookie();
+console.log(localStorage.getItem("Allow"));
+if (localStorage.getItem("Allow") != "true") {
+  window.location.replace("index.html");
+}
+localStorage.removeItem("Allow");
 let singlePrice, couplePrice;
 var ticketDetail = JSON.parse(localStorage.getItem("ticketdetail"));
 var ticketDetailData = {
@@ -7,7 +13,6 @@ var ticketDetailData = {
 };
 let accessToken = getCookie("access-token");
 
-checkCookie();
 $(document).ready(function () {
   var details = document.getElementById("details");
   var seat = document.querySelectorAll(".seat-btn");

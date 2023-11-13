@@ -246,6 +246,7 @@ $(document).on("click", "#continueButton", function () {
         theaterId: theaterIdGlobal,
         timeId: timeIdGlobal,
       };
+      localStorage.setItem("Allow", "true");
       localStorage.setItem("ticketdetail", JSON.stringify(ticketdetail));
       window.location.replace("seat.html");
     } else {
@@ -277,14 +278,6 @@ function checkCookie() {
     document.getElementById("user-info").classList.remove("hidden");
     document.getElementById("user-name").textContent = getCookie("userName");
   }
-}
-
-function openModal() {
-  // Hiển thị modal
-  // var modal = document.getElementById("continueButton");
-  // modal.style.display = "block";
-  // modal.classList.add("in");
-  // modal.setAttribute("ngIf", "openLogin");
 }
 
 function closeModal() {

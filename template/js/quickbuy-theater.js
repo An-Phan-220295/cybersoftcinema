@@ -144,27 +144,6 @@ $(document).on("change", "#date-list-theater", function () {
 $(document).on("change", "#time-list-movie", function () {
   timeIdGlobal = $(this).val();
 });
-$(document).on("click", "#loginBuyticket", function () {
-  if (!getCookie("userName")) {
-    alert("Vui lòng đăng nhập để mua vé");
-  } else {
-    if (
-      typeof timeIdGlobal != "undefined" &&
-      typeof movieIdGlobal != "undefined" &&
-      typeof theaterIdGlobal != "undefined"
-    ) {
-      const ticketdetail = {
-        movieId: movieIdGlobal,
-        theaterId: theaterIdGlobal,
-        timeId: timeIdGlobal,
-      };
-      localStorage.setItem("ticketdetail", JSON.stringify(ticketdetail));
-      window.location.replace("seat.html");
-    } else {
-      alert("Vui lòng chọn xuất chiếu");
-    }
-  }
-});
 
 function getDayOfWeek(date) {
   const weekday = [

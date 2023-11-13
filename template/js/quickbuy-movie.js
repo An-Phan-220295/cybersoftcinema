@@ -29,6 +29,9 @@ $(document).on("change", "#movie-list-movie", function () {
   var selectDate = document.getElementById("date-list-movie");
   var selectTime = document.getElementById("time-list-movie");
 
+  theaterIdGlobal = 0;
+  timeIdGlobal = 0;
+
   document.getElementById("date-list-date").value = 0;
   document.getElementById("movie-list-date").value = 0;
   document.getElementById("theater-list-date").value = 0;
@@ -83,6 +86,8 @@ $(document).on("change", "#theater-list-movie", function () {
   selectDate.disabled = false;
   selectDate.value = 0;
   selectTime.value = 0;
+  timeIdGlobal = 0;
+
   if (selectDate.options.length !== 1) {
     for (var i = selectTime.options.length - 1; i >= 0; i--) {
       if (parseInt(selectTime.options[i].value) !== 0) {
@@ -118,6 +123,7 @@ $(document).on("change", "#date-list-movie", function () {
   var movieId = $("#movie-list-movie").val();
   var selectTime = document.getElementById("time-list-movie");
   selectTime.value = 0;
+  timeIdGlobal = 0;
   if (selectTime.options.length !== 1) {
     for (var i = selectTime.options.length - 1; i >= 0; i--) {
       if (parseInt(selectTime.options[i].value) !== 0) {
@@ -147,14 +153,21 @@ $(document).on("click", "#loginBuyticket", function () {
   if (!getCookie("userName")) {
     alert("Vui lòng đăng nhập để mua vé");
   } else {
-    console.log(timeIdGlobal && movieIdGlobal && theaterIdGlobal);
-    if (timeIdGlobal && movieIdGlobal && theaterIdGlobal) {
+    if (
+      typeof timeIdGlobal != "undefined" &&
+      typeof movieIdGlobal != "undefined" &&
+      typeof theaterIdGlobal != "undefined" &&
+      timeIdGlobal != 0 &&
+      movieIdGlobal != 0 &&
+      theaterIdGlobal != 0
+    ) {
       const ticketdetail = {
         movieId: movieIdGlobal,
         theaterId: theaterIdGlobal,
         timeId: timeIdGlobal,
       };
       localStorage.setItem("ticketdetail", JSON.stringify(ticketdetail));
+      localStorage.setItem("Allow", "true");
       window.location.replace("seat.html");
     } else {
       alert("Vui lòng chọn xuát chiếu");
