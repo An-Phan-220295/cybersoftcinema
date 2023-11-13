@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.List;
 
 @Repository
@@ -25,6 +26,10 @@ public interface MovieTheaterShowRepository extends JpaRepository<MovieTheaterSh
     //Sort by movie
     @Query("SELECT m.movieEntity FROM movie_theater_showing m where (m.showingEntity.showingDate > current_date or (m.showingEntity.showingDate = current_date and m.showingEntity.startTime > current_time )) GROUP BY m.movieEntity")
     List<MovieEntity> findMovieName();
+
+    //Sort Upcoming movie
+    @Query("SELECT m FROM movie m where m.movieStatusEntity.id = 1")
+    List<MovieEntity> findByIdMovieStatus();
 
     @Query("select m.theaterEntity FROM movie_theater_showing m WHERE m.movieEntity.id = :movieId and ((m.showingEntity.showingDate > current_date) or (m.showingEntity.showingDate = current_date and m.showingEntity.startTime > current_time ))GROUP BY m.theaterEntity")
     List<TheaterEntity> findTheaterByMovie(int movieId);

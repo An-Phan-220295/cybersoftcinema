@@ -17,6 +17,7 @@ public class MovieResponse {
     private Date releaseDate;
     private String content;
     private String image;
+    private String trailer;
     private String movieStatus;
 
     public int getId() {
@@ -121,6 +122,14 @@ public class MovieResponse {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
     }
 
     public String getMovieStatus() {

@@ -1,5 +1,6 @@
 package com.cybersoft.cybersoftcinema.service;
 
+import com.cybersoft.cybersoftcinema.entity.*;
 import com.cybersoft.cybersoftcinema.entity.CountryEntity;
 import com.cybersoft.cybersoftcinema.entity.MovieEntity;
 import com.cybersoft.cybersoftcinema.entity.MoviePersonProducerMovieTypeEntity;
@@ -102,6 +103,7 @@ public class MovieService implements MovieServiceImp {
             if (data.getMovieEntity().getId() == idMovie) {
                 if (movieResponse == null) {
                     movieResponse = new MovieResponse();
+                    movieResponse.setId(data.getMovieEntity().getId());
                     movieResponse.setName(data.getMovieEntity().getName());
                     movieResponse.setRating(data.getMovieEntity().getRating());
                     movieResponse.setRequireAge(data.getMovieEntity().getRequiredAge());
@@ -121,6 +123,63 @@ public class MovieService implements MovieServiceImp {
                                 .path("/movie/image/") // get http://localhost:8080/movie/image/
                                 .path(data.getMovieEntity().getImages()) //get image name
                                 .toUriString()); // convert to String
+                    list.add(movieResponse);
+                }
+                if (data.getPersonEntity().getPersonTypeEntity().getName().equals("Director")) {
+                    if (!movieResponse.getDirector().contains(data.getPersonEntity().getName())) {
+                        movieResponse.getDirector().add(data.getPersonEntity().getName());
+                    }
+                }
+                if (data.getPersonEntity().getPersonTypeEntity().getName().equals("Actor")) {
+                    if (!movieResponse.getCast().contains(data.getPersonEntity().getName())) {
+                        movieResponse.getCast().add(data.getPersonEntity().getName());
+                    }
+                }
+                if (!movieResponse.getMovieType().contains(data.getMovieTypeEntity().getName())) {
+                    movieResponse.getMovieType().add(data.getMovieTypeEntity().getName());
+                }
+                if (!movieResponse.getProducer().contains(data.getProducerEntity().getName())) {
+                    movieResponse.getProducer().add(data.getProducerEntity().getName());
+                }
+
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<MovieResponse> getMovieByName(String movieName) {
+        List<MovieResponse> list = new ArrayList<>();
+
+        List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities = moviePersonProducerMovieTypeRepository.findAll();
+
+        MovieResponse movieResponse = null;
+
+        for (MoviePersonProducerMovieTypeEntity data : moviePersonProducerMovieTypeEntities) {
+            if (data.getMovieEntity().getName().equals(movieName)) {
+                if (movieResponse == null) {
+                    movieResponse = new MovieResponse();
+                    movieResponse.setId(data.getMovieEntity().getId());
+                    movieResponse.setName(data.getMovieEntity().getName());
+                    movieResponse.setRating(data.getMovieEntity().getRating());
+                    movieResponse.setRequireAge(data.getMovieEntity().getRequiredAge());
+                    movieResponse.setDuration(data.getMovieEntity().getDuration());
+                    movieResponse.setReleaseDate(data.getMovieEntity().getReleaseDate());
+                    movieResponse.setContent(data.getMovieEntity().getContent());
+                    movieResponse.setTrailer((data.getMovieEntity().getTrailer()));
+
+                    movieResponse.setMovieType(new ArrayList<>());
+                    movieResponse.setDirector(new ArrayList<>());
+                    movieResponse.setCast(new ArrayList<>());
+                    movieResponse.setProducer(new ArrayList<>());
+
+                    movieResponse.setCountry(data.getMovieEntity().getCountryEntity().getName());
+                    movieResponse.setMovieStatus(data.getMovieEntity().getMovieStatusEntity().getName());
+
+                    movieResponse.setImage(ServletUriComponentsBuilder.fromCurrentContextPath()
+                            .path("/movie/image/") // get http://localhost:8080/movie/image/
+                            .path(data.getMovieEntity().getImages()) //get image name
+                            .toUriString()); // convert to String
 
                     list.add(movieResponse);
                 }
@@ -146,7 +205,7 @@ public class MovieService implements MovieServiceImp {
     }
 
     @Override
-    public List<MovieResponse> getAllMoviePoster() {
+    public List<MovieResponse> getAllShowingMoviePoster() {
         List<MovieResponse> list = new ArrayList<>();
         List<MovieEntity> listMovie = movieTheaterShowRepository.findMovieName();
 
@@ -155,6 +214,30 @@ public class MovieService implements MovieServiceImp {
             movieResponse.setId(data.getId());
             movieResponse.setName(data.getName());
             movieResponse.setRequireAge(data.getRequiredAge());
+            movieResponse.setContent(data.getContent());
+            movieResponse.setReleaseDate(data.getReleaseDate());
+
+            movieResponse.setImage(ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/movie/image/")
+                    .path(data.getImages())
+                    .toUriString());
+            list.add(movieResponse);
+        }
+        return list;
+    }
+
+    @Override
+    public List<MovieResponse> getAllUpcomingMoviePoster() {
+        List<MovieResponse> list = new ArrayList<>();
+        List<MovieEntity> listMovie = movieTheaterShowRepository.findByIdMovieStatus();
+
+        for (MovieEntity data : listMovie) {
+            MovieResponse movieResponse = new MovieResponse();
+            movieResponse.setId(data.getId());
+            movieResponse.setName(data.getName());
+            movieResponse.setRequireAge(data.getRequiredAge());
+            movieResponse.setContent(data.getContent());
+            movieResponse.setReleaseDate(data.getReleaseDate());
             movieResponse.setImage(ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/movie/image/")
                     .path(data.getImages())
