@@ -19,7 +19,7 @@ $(document).on("click", "#btn-sign-in", function () {
       setCookie("userName", result.data.email);
       closeModal();
       alert("Đăng nhập thành công");
-      // localStorage.removeItem("mytime");
+
       location.reload();
     } else {
       alert("Sign-in failed");
