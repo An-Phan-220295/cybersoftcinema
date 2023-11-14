@@ -4,10 +4,23 @@ const curMonth = allCurDate.getMonth() + 1;
 const curYear = allCurDate.getFullYear();
 const date = [curYear, curMonth, curDate].join("-");
 var selectedDate;
+var idSelectedMovie;
+var idSelectedTheaeter;
 
 $(document).ready(function () {
   // Display 7 button for next 7 days from today
   getTodayAndNext7Days();
+
+  // var showingDate = document.getElementById("showingDate");
+  // var showingButton = showingDate.getElementsByClassName("btn-showingdate");
+  // for (let index = 0; index < showingButton.length; index++) {
+  //   showingButton[0].addEventListener("click", function () {
+  //     var current = document.getElementsByClassName("active");
+  //     current[0].className = current[0].classList.replace("active", "");
+  //     this.className += "active";
+  //   })
+  // }
+
   // Call API get all theater
   $.ajax({
     method: "get",
@@ -18,6 +31,7 @@ $(document).ready(function () {
     htmlData.forEach((item, index) => {
       //Load infomation for first theater
       if (index == 0) {
+        idSelectedTheaeter = item.id;
         htmlAdd += `
                     <option value="${item.id}" selected>${item.name}</option>
                 `;
@@ -63,10 +77,10 @@ $(document).ready(function () {
 
 //Call API load page when change theater
 $(document).on('change', '#theaterList', function () {
-  var idTheaeter = this.value;
+  idSelectedTheaeter = this.value
   $.ajax({
     method: "get",
-    url: `http://localhost:8080/theater/${idTheaeter}`
+    url: `http://localhost:8080/theater/${idSelectedTheaeter}`
   }).done(function (result) {
     let htmlData = result.data;
     document.querySelector('.address').textContent = htmlData.address;
@@ -74,7 +88,7 @@ $(document).on('change', '#theaterList', function () {
     // Call API to get all movie of current theater in current date
     $.ajax({
       method: "get",
-      url: `http://localhost:8080/theater/poster?date=${date}&theaterId=${idTheaeter}`,
+      url: `http://localhost:8080/theater/poster?date=${date}&theaterId=${idSelectedTheaeter}`,
     }).done(function (result2) {
       let htmlData2 = result2.data;
       let htmlMovieAdd = ``;
@@ -110,7 +124,13 @@ $(document).on('click', '.btn-showingdate', function () {
   var date = this.id;
   selectedDate = this.id;
   var idTheaeter = document.getElementById("theaterList").value;
-  
+
+  //Active showing date button when click
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+
+  //Call API to load poster when click showing date button
   $.ajax({
     method: "get",
     url: `http://localhost:8080/theater/poster?date=${date}&theaterId=${idTheaeter}`,
@@ -142,24 +162,26 @@ $(document).on('click', '.btn-showingdate', function () {
 })
 
 //Call API to get show when choose movie
-$(document).on('click', '.btn-poster', function() {
-  var idMovie = this.id;
+$(document).on('click', '.btn-poster', function () {
+  idSelectedMovie = this.id
   var idTheaeter = document.getElementById("theaterList").value;
-  this.classList.add("active");
+
   $.ajax({
     method: "get",
-    url: `http://localhost:8080/quickbuy/time?movieId=${idMovie}&theaterId=${idTheaeter}&showingDate=${selectedDate}`,
+    url: `http://localhost:8080/quickbuy/time?movieId=${idSelectedMovie}&theaterId=${idTheaeter}&showingDate=${selectedDate}`,
   }).done(function (result) {
     let htmlData = result.data;
     let htmlShowAdd = ``;
     htmlData.forEach(item => {
-      let displayShow = item.showingTime.substring(0,5);
+      let displayShow = item.showingTime.substring(0, 5);
       htmlShowAdd += `
         <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
                     text-black-10 hover:bg-blue-10 active:bg-blue-10 transition-all 
-                    duration-500 ease-in-out hover:text-white loginBuyticket">${displayShow}
+                    duration-500 ease-in-out hover:text-white loginBuyticket" 
+                    timeIdGlobal="${item.showingId}">${displayShow}
         </button>
       `;
+
     });
     document.getElementById("showingTime").innerHTML = htmlShowAdd;
   });
@@ -204,7 +226,17 @@ function getTodayAndNext7Days() {
     if (displayCurDate < 10) {
       displayCurDate = "0" + displayCurDate;
     }
-    htmlAdd += `
+    if (index == 0) {
+      htmlAdd += `
+        <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate active" 
+                id="${displayCurYear}-${displayCurMonth}-${displayCurDate}" 
+                style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem; width: 5rem;">
+          <span>${displayVieDay}</span>
+          <span>${displayCurDate + "/" + displayCurMonth}</span>
+        </button>
+      `;
+    } else {
+      htmlAdd += `
         <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate" 
                 id="${displayCurYear}-${displayCurMonth}-${displayCurDate}" 
                 style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem; width: 5rem;">
@@ -212,6 +244,7 @@ function getTodayAndNext7Days() {
           <span>${displayCurDate + "/" + displayCurMonth}</span>
         </button>
       `;
+    }
     displayCurDay++;
     if (displayCurDay > 6) {
       displayCurDay = 0;
@@ -226,5 +259,54 @@ function getTodayAndNext7Days() {
       displayCurYear++;
     }
   }
+
   return document.getElementById("showingDate").innerHTML = htmlAdd;
+}
+
+
+
+//Leads to "seat.html" page when show is selected
+$(document).on("click", ".loginBuyticket", function () {
+  var movieIdGlobal = idSelectedMovie;
+  var theaterIdGlobal = idSelectedTheaeter;
+  var timeIdGlobal = $(this).attr("timeIdGlobal");
+  console.log(movieIdGlobal);
+  console.log(theaterIdGlobal);
+  console.log(timeIdGlobal);
+  if (!getCookie("userName")) {
+    alert("Vui lòng đăng nhập để mua vé");
+  } else {
+    if (
+      typeof timeIdGlobal != "undefined" &&
+      typeof movieIdGlobal != "undefined" &&
+      typeof theaterIdGlobal != "undefined"
+    ) {
+      const ticketdetail = {
+        movieId: movieIdGlobal,
+        theaterId: theaterIdGlobal,
+        timeId: timeIdGlobal,
+      };
+      localStorage.setItem("ticketdetail", JSON.stringify(ticketdetail));
+      localStorage.setItem("Allow", "true");
+      window.location.replace("seat.html");
+    } else {
+      alert("Vui lòng chọn xuát chiếu");
+    }
+  }
+});
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }

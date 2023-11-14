@@ -396,6 +396,7 @@ $(document).on("click", ".loginBuyticket", function () {
         timeId: timeIdGlobal,
       };
       localStorage.setItem("ticketdetail", JSON.stringify(ticketdetail));
+      localStorage.setItem("Allow", "true");
       window.location.replace("seat.html");
     } else {
       alert("Vui lòng chọn xuát chiếu");
