@@ -11,5 +11,4 @@ import java.util.Optional;
 @Repository
 public interface MovieRepository extends JpaRepository<MovieEntity,Integer> {
 
-    Optional <MovieEntity> findByImages(String imageName);
 }
