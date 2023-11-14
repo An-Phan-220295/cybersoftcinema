@@ -11,16 +11,6 @@ $(document).ready(function () {
   // Display 7 button for next 7 days from today
   getTodayAndNext7Days();
 
-  // var showingDate = document.getElementById("showingDate");
-  // var showingButton = showingDate.getElementsByClassName("btn-showingdate");
-  // for (let index = 0; index < showingButton.length; index++) {
-  //   showingButton[0].addEventListener("click", function () {
-  //     var current = document.getElementsByClassName("active");
-  //     current[0].className = current[0].classList.replace("active", "");
-  //     this.className += "active";
-  //   })
-  // }
-
   // Call API get all theater
   $.ajax({
     method: "get",
