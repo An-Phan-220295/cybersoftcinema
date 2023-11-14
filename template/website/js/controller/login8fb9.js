@@ -1,29 +1,35 @@
 var _loginController;
 
-_loginController = function(UtitService, ApiService, $scope, $rootScope, $location) {
+_loginController = function (
+  UtitService,
+  ApiService,
+  $scope,
+  $rootScope,
+  $location
+) {
   var doneLogin, initEvent;
   $scope.isSubmit = false;
   $scope.enableSkip = false;
   $scope.callbackBuyTicket = void 0;
   $scope.userNotActive = false;
   $scope.openLogin = false;
-  $rootScope.$on('$openLogin', function() {
-    return $scope.openLogin = true;
+  $rootScope.$on("$openLogin", function () {
+    return ($scope.openLogin = true);
   });
-  $scope.openForgetPass = function() {
+  $scope.openForgetPass = function () {
     $(".modal").modal("hide");
-    return setTimeout(function() {
+    return setTimeout(function () {
       return $("#forgetpass-modal").modal("show");
     }, 500);
   };
-  $scope.closeModel = function() {
-    return $('#login-modal').modal('hide');
+  $scope.closeModel = function () {
+    return $("#login-modal").modal("hide");
   };
-  $scope.openModel = function() {
-    return $('#login-modal').modal('show');
+  $scope.openModel = function () {
+    return $("#login-modal").modal("show");
   };
-  initEvent = function() {
-    $('#login-modal').on('hidden.bs.modal', function() {
+  initEvent = function () {
+    $("#login-modal").on("hidden.bs.modal", function () {
       UtitService.removeBookingTicketUrl();
       $scope.enableSkip = false;
       if (_.isFunction($scope.callbackBuyTicket)) {
@@ -32,47 +38,73 @@ _loginController = function(UtitService, ApiService, $scope, $rootScope, $locati
       $scope.callbackBuyTicket = void 0;
       return $scope.$apply();
     });
-    $rootScope.$on('open-login', function(event, callback, data) {
+    $rootScope.$on("open-login", function (event, callback, data) {
       if (data.enableSkip) {
         $scope.callbackBuyTicket = callback;
       }
       $scope.enableSkip = data.enableSkip;
-      $rootScope.$broadcast('$openLogin');
+      $rootScope.$broadcast("$openLogin");
       return $scope.openModel();
     });
-    if ($location.absUrl().indexOf("#tab_login_1") !== -1 || $location.absUrl().indexOf("qac=login") !== -1) {
-      $rootScope.$broadcast('$openLogin');
+    if (
+      $location.absUrl().indexOf("#tab_login_1") !== -1 ||
+      $location.absUrl().indexOf("qac=login") !== -1
+    ) {
+      $rootScope.$broadcast("$openLogin");
       $scope.openModel();
-      setTimeout(function() {
-        angular.element(document.querySelector('#tab_login_2')).removeClass('active');
-        angular.element(document.querySelector('#tab_login_1')).addClass('active');
-        angular.element(document.querySelector('#a_tab_login_2')).parent().removeClass('active');
-        return angular.element(document.querySelector('#a_tab_login_1')).parent().addClass('active');
+      setTimeout(function () {
+        angular
+          .element(document.querySelector("#tab_login_2"))
+          .removeClass("active");
+        angular
+          .element(document.querySelector("#tab_login_1"))
+          .addClass("active");
+        angular
+          .element(document.querySelector("#a_tab_login_2"))
+          .parent()
+          .removeClass("active");
+        return angular
+          .element(document.querySelector("#a_tab_login_1"))
+          .parent()
+          .addClass("active");
       }, 250);
     }
-    if ($location.absUrl().indexOf("#tab_login_2") !== -1 || $location.absUrl().indexOf("qac=register") !== -1) {
-      $rootScope.$broadcast('$openLogin');
+    if (
+      $location.absUrl().indexOf("#tab_login_2") !== -1 ||
+      $location.absUrl().indexOf("qac=register") !== -1
+    ) {
+      $rootScope.$broadcast("$openLogin");
       $scope.openModel();
-      return setTimeout(function() {
-        angular.element(document.querySelector('#tab_login_2')).addClass('active');
-        angular.element(document.querySelector('#tab_login_1')).removeClass('active');
-        angular.element(document.querySelector('#a_tab_login_2')).parent().addClass('active');
-        return angular.element(document.querySelector('#a_tab_login_1')).parent().removeClass('active');
+      return setTimeout(function () {
+        angular
+          .element(document.querySelector("#tab_login_2"))
+          .addClass("active");
+        angular
+          .element(document.querySelector("#tab_login_1"))
+          .removeClass("active");
+        angular
+          .element(document.querySelector("#a_tab_login_2"))
+          .parent()
+          .addClass("active");
+        return angular
+          .element(document.querySelector("#a_tab_login_1"))
+          .parent()
+          .removeClass("active");
       }, 250);
     }
   };
   initEvent();
   $scope.userInfo = {
-    email: '',
-    password: '',
-    fullName: '',
-    mobielPhone: '',
-    confirmPassword: '',
-    city: '',
-    suburb: '',
-    remember: false
+    email: "",
+    password: "",
+    fullName: "",
+    mobielPhone: "",
+    confirmPassword: "",
+    city: "",
+    suburb: "",
+    remember: false,
   };
-  $scope.submit = function() {
+  $scope.submit = function () {
     var options;
     $scope.message = null;
     if ($scope.isSubmit) {
@@ -82,12 +114,12 @@ _loginController = function(UtitService, ApiService, $scope, $rootScope, $locati
     $scope.userNotActive = false;
     options = {
       url: "/api/auth/login",
-      method: 'POST',
-      data: $scope.userInfo
+      method: "POST",
+      data: $scope.userInfo,
     };
     return ApiService.request(options, doneLogin);
   };
-  doneLogin = function(error, result) {
+  doneLogin = function (error, result) {
     var dataLayer;
     $scope.isSubmit = false;
     if (error) {
@@ -98,7 +130,7 @@ _loginController = function(UtitService, ApiService, $scope, $rootScope, $locati
       return;
     }
     $rootScope.userInfo = result;
-    $rootScope.$broadcast('$loginSuccess', result);
+    $rootScope.$broadcast("$loginSuccess", result);
     $scope.closeModel();
     dataLayer = window.dataLayer || [];
     dataLayer.push({
@@ -106,29 +138,38 @@ _loginController = function(UtitService, ApiService, $scope, $rootScope, $locati
       customer: {
         customerId: result.cardNumber,
         customerGender: result.gender,
-        customerCity: result.city
-      }
+        customerCity: result.city,
+      },
     });
-    if (window.location.href.indexOf("book-ticket") > 0 || window.location.href.indexOf("thanh-toan-goi-dang-ky") > 0) {
+    if (
+      window.location.href.indexOf("book-ticket") > 0 ||
+      window.location.href.indexOf("thanh-toan-goi-dang-ky") > 0
+    ) {
       return window.location.reload();
     } else {
       return UtitService.redirectBookingTicketUrl();
     }
   };
-  return $scope.reSendActiveCode = function() {
+  return ($scope.reSendActiveCode = function () {
     var doneResend, options;
     options = {
       url: "/api/auth/reSendActiveCode",
-      method: 'POST',
-      data: $scope.userInfo
+      method: "POST",
+      data: $scope.userInfo,
     };
-    doneResend = function(error, result) {
-      return $scope.message = result.message;
+    doneResend = function (error, result) {
+      return ($scope.message = result.message);
     };
     return ApiService.request(options, doneResend);
-  };
+  });
 };
 
-_loginController.$inject = ['UtitService', 'ApiService', '$scope', '$rootScope', '$location'];
+_loginController.$inject = [
+  "UtitService",
+  "ApiService",
+  "$scope",
+  "$rootScope",
+  "$location",
+];
 
-angular.module("appweb").controller('loginController', _loginController);
+angular.module("appweb").controller("loginController", _loginController);
