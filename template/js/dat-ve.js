@@ -1,8 +1,8 @@
 var a = window.location.pathname;
 var idurl = window.location.search;
 const urlParams = new URLSearchParams(idurl);
-var name = urlParams.get('name');
-var id = urlParams.get('id');
+var name = urlParams.get("name");
+var id = urlParams.get("id");
 const allCurDate = new Date();
 const curDate = allCurDate.getDate();
 const curMonth = allCurDate.getMonth() + 1;
@@ -14,7 +14,7 @@ $(document).ready(function () {
     method: "get",
     url: `http://localhost:8080/ticketbooking/${name}`,
   }).done(function (result) {
-    var div = document.createElement('div');
+    var div = document.createElement("div");
     let htmlAdd = "";
     let htmlData = result.data;
     htmlData.forEach((item) => {
@@ -36,7 +36,9 @@ $(document).ready(function () {
               </div>
             </div>
             <div class="details col-md-8 col-sm-8 col-xs-12">
-              <h2 class="detail-title upper-text" id="movieName">${item.name}</h2>
+              <h2 class="detail-title upper-text" id="movieName">${
+                item.name
+              }</h2>
               <div class="detail-rating">
                 <div ng-controller="ratingController" ng-init='itemId ="da092419-c4d6-47cb-8fde-1ff8197ae64d"'
                   class="rating-wrap detail">
@@ -48,7 +50,9 @@ $(document).ready(function () {
                 </div>
               </div>
               <div class="detail-rating">
-                <span><span class="age-rating">T${item.requireAge}</span></span><span><i
+                <span><span class="age-rating">T${
+                  item.requireAge
+                }</span></span><span><i
                   class="icon-time-left">&nbsp</i>${item.duration} phút</span>
                 <span class="like">
                   <div data-href="https://www.galaxycine.vn/dat-ve/the-creator"
@@ -89,7 +93,9 @@ $(document).ready(function () {
                 </div>
                 <div class="detail-info-row">
                   <label>Ngày khởi chiếu:&nbsp</label>
-                  <div class="detail-info-right">${formattedDate(item.releaseDate)}</div>
+                  <div class="detail-info-right">${formattedDate(
+                    item.releaseDate
+                  )}</div>
                 </div>
               </div>
             </div>
@@ -119,7 +125,9 @@ $(document).ready(function () {
                         <span style="font-size: 14px">
                           <a style="text-decoration:none" href="../phim-dang-chieu.html">Phim mới</a>
                           <strong>${item.name}</strong> khởi chi&ecirc;́u
-                          ${formattedDate(item.releaseDate)} tại rạp chiếu phim toàn quốc.
+                          ${formattedDate(
+                            item.releaseDate
+                          )} tại rạp chiếu phim toàn quốc.
                         </span>
                       </p>
               
@@ -140,7 +148,7 @@ $(document).ready(function () {
     method: "get",
     url: `http://localhost:8080/index/poster`,
   }).done(function (result) {
-    var div = document.createElement('div');
+    var div = document.createElement("div");
     let count = 0;
     let htmlAdd = "";
     let htmlData = result.data;
@@ -176,7 +184,7 @@ $(document).ready(function () {
     }
     div.innerHTML = htmlAdd;
     document.getElementById("showingMovie").appendChild(div);
-  })
+  });
 
   //Funcion to get show date list from now to next 7 days
   getTodayAndNext7Days();
@@ -225,9 +233,9 @@ $(document).ready(function () {
 function arrayDisplay(array) {
   var d = "";
   if (array.length === 0) {
-    return d = "Đang cập nhật"
+    return (d = "Đang cập nhật");
   } else {
-    array.forEach(item => {
+    array.forEach((item) => {
       if (array[array.length - 1] == item) {
         d += `<span>${item}</span>`;
       } else {
@@ -236,15 +244,15 @@ function arrayDisplay(array) {
     });
   }
   return d;
-};
+}
 
 //Display information which have detail url (actor, director)
 function arrayDisplayWithUrl(array) {
   var d = "";
   if (array.length === 0) {
-    return d = "Đang cập nhật"
+    return (d = "Đang cập nhật");
   } else {
-    array.forEach(item => {
+    array.forEach((item) => {
       if (array[array.length - 1] == item) {
         d += `<a href="../dao-dien/gareth-edwards.html" style="text-decoration:none">${item}</a>`;
       } else {
@@ -253,7 +261,7 @@ function arrayDisplayWithUrl(array) {
     });
   }
   return d;
-};
+}
 
 //Change format date between yyyy-mm-dd and dd-mm-yyyy
 function formattedDate(d) {
@@ -302,8 +310,8 @@ function getTodayAndNext7Days() {
     }
     if (index == 0) {
       htmlAdd += `
-        <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate active" 
-        id="${displayCurYear}-${displayCurMonth}-${displayCurDate}" 
+        <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate active"
+        id="${displayCurYear}-${displayCurMonth}-${displayCurDate}"
                 style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem; width: 5rem;">
           <span>${displayVieDay}</span>
           <span>${displayCurDate + "/" + displayCurMonth}</span>
@@ -312,7 +320,7 @@ function getTodayAndNext7Days() {
     } else {
       htmlAdd += `
       <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate" 
-      id="${displayCurYear}-${displayCurMonth}-${displayCurDate}" 
+      id="${displayCurYear}-${displayCurMonth}-${displayCurDate}"
               style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem; width: 5rem;">
         <span>${displayVieDay}</span>
         <span>${displayCurDate + "/" + displayCurMonth}</span>
@@ -333,7 +341,7 @@ function getTodayAndNext7Days() {
       displayCurYear++;
     }
   }
-  return document.getElementById("showingDate").innerHTML = htmlAdd;
+  return (document.getElementById("showingDate").innerHTML = htmlAdd);
 }
 
 // Leads to "dat-ve" page when when click "mua vé" button
@@ -389,7 +397,7 @@ $(document).on('click', '.btn-showingdate', function () {
       });
     }
   });
-})
+});
 
 //Leads to "seat.html" page when show is selected
 $(document).on("click", ".loginBuyticket", function () {
