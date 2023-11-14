@@ -84,7 +84,6 @@ public class MovieService implements MovieServiceImp {
 
     @Override
     public byte[] getMovieImage(String imageName) throws IOException {
-        Optional <MovieEntity> movieEntity = movieRepository.findByImages(imageName);
         String imagePath = rootFolder + "\\" + imageName;
         byte[] images = Files.readAllBytes(new File(imagePath).toPath());
 
@@ -166,7 +165,7 @@ public class MovieService implements MovieServiceImp {
                     movieResponse.setDuration(data.getMovieEntity().getDuration());
                     movieResponse.setReleaseDate(data.getMovieEntity().getReleaseDate());
                     movieResponse.setContent(data.getMovieEntity().getContent());
-                    movieResponse.setTrailer((data.getMovieEntity().getTrailer()));
+                    movieResponse.setTrailer(data.getMovieEntity().getTrailer());
 
                     movieResponse.setMovieType(new ArrayList<>());
                     movieResponse.setDirector(new ArrayList<>());

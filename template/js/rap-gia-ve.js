@@ -28,6 +28,7 @@ $(document).ready(function () {
         document.querySelector('.address').textContent = item.address;
         document.querySelector('#theaterDescription').textContent = item.content;
         // Call API to get all movie of current theater in current date
+        selectedDate=date;
         $.ajax({
           method: "get",
           url: `http://localhost:8080/theater/poster?date=${date}&theaterId=${item.id}`,
@@ -67,6 +68,7 @@ $(document).ready(function () {
 
 //Call API load page when change theater
 $(document).on('change', '#theaterList', function () {
+  getTodayAndNext7Days();
   idSelectedTheaeter = this.value
   $.ajax({
     method: "get",
@@ -87,7 +89,6 @@ $(document).on('change', '#theaterList', function () {
       //Check if there is a movie or not
       if (htmlData2.length == 0) {
         htmlMovieAdd = `<h4 class="text-center">Ngày hiện tại không có phim đang chiếu</h4>`;
-        document.getElementById("showingTime").innerHTML = htmlShowAdd;
       } else {
         htmlData2.forEach((item2, index2) => {
           htmlMovieAdd += `
@@ -104,6 +105,7 @@ $(document).on('change', '#theaterList', function () {
           `;
         });
       }
+      document.getElementById("showingTime").innerHTML = htmlShowAdd;
       document.getElementById("moviePosters").innerHTML = htmlMovieAdd;
     });
   })
@@ -117,7 +119,7 @@ $(document).on('click', '.btn-showingdate', function () {
 
   //Active showing date button when click
   var current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
+  current[0].className = current[0].className.replace("active", "");
   this.className += " active";
 
   //Call API to load poster when click showing date button
@@ -130,7 +132,6 @@ $(document).on('click', '.btn-showingdate', function () {
     let htmlShowAdd = ``;
     if (htmlData.length == 0) {
       htmlMovieAdd = `<h4 class="text-center">Ngày hiện tại không có phim đang chiếu</h4>`;
-      document.getElementById("showingTime").innerHTML = htmlShowAdd;
     } else {
       htmlData.forEach(item2 => {
         htmlMovieAdd += `
@@ -147,6 +148,7 @@ $(document).on('click', '.btn-showingdate', function () {
             `;
       });
     }
+    document.getElementById("showingTime").innerHTML = htmlShowAdd;
     document.getElementById("moviePosters").innerHTML = htmlMovieAdd
   });
 })
@@ -252,8 +254,6 @@ function getTodayAndNext7Days() {
 
   return document.getElementById("showingDate").innerHTML = htmlAdd;
 }
-
-
 
 //Leads to "seat.html" page when show is selected
 $(document).on("click", ".loginBuyticket", function () {

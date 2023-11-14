@@ -29,10 +29,10 @@ $(document).ready(function () {
     let htmlData = result.data;
     htmlData.forEach((item, index) => {
       htmlAdd += `
-            <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item" style="float:left;" >
+            <div class="col-md-3 col-sm-6 col-xs-6 watchmovie-item" style="float:left;" >
               <div class="article-watchmovie">
                 <img
-                  src="${item.image}"
+                  src="${item.image}" style="height: 200px; width: 300px; object-fit: contain"
                 />
                   <div class="decription-hover overlay">
                     <div class="movies-content">

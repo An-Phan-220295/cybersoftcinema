@@ -1,12 +1,12 @@
 $(document).ready(function () {
   //Get all upcoming movie and content  
   $.ajax({
-        method: "get",
-        url: "http://localhost:8080/index/upcomingmovie",
-    }).done(function (result) {
-        var div = document.createElement('div');
-        let htmlAdd = "";
-        let htmlAddContent = `<p>
+    method: "get",
+    url: "http://localhost:8080/index/upcomingmovie",
+  }).done(function (result) {
+    var div = document.createElement('div');
+    let htmlAdd = "";
+    let htmlAddContent = `<p>
         <span style="display: none">&nbsp;</span>
         <span style="font-size: 14px">
           <span style="font-family: Arial, Helvetica, sans-serif">
@@ -41,21 +41,21 @@ $(document).ready(function () {
             </span>
         </p>
       `;
-        let htmlData = result.data;
-        htmlData.forEach((item, index) => {
-            htmlAdd += `
-                <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
+    let htmlData = result.data;
+    htmlData.forEach((item, index) => {
+      htmlAdd += `
+                <div class="col-md-3 col-sm-6 col-xs-6 watchmovie-item">
                             <div class="article-watchmovie">
                               <img
-                                src="${item.image}"
+                                src="${item.image}" style="height: 200px; width: 300px; object-fit: contain" 
                               />
                                 <div class="decription-hover overlay">
                                   <div class="movies-content">
                                     <span><span class="age-rating">T${item.requireAge}</span></span>
                                     <div class="group">
                                       <div class="btn secondary-white" movieName="${item.name}" idMovie="${item.id}" 
-                                      id="btn-movie">mua vé</div>
-                                    </div>
+                                            id="btn-movie">mua vé</div>
+                                      </div>
                                   </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@ $(document).ready(function () {
                             </div>
                           </div>
             `;
-            htmlAddContent += `
+      htmlAddContent += `
         <p>
                     <span style="font-size: 14px">
                       <span style="font-family: Arial, Helvetica, sans-serif">
@@ -80,18 +80,18 @@ $(document).ready(function () {
                     </span>
         </p>
             `;
-        });
-        div.innerHTML = htmlAdd;
-        document.getElementById("upcomingMoviePoster").appendChild(div);
-        document.getElementById("content-text").innerHTML = htmlAddContent;
     });
-    
+    div.innerHTML = htmlAdd;
+    document.getElementById("upcomingMoviePoster").appendChild(div);
+    document.getElementById("content-text").innerHTML = htmlAddContent;
+  });
+
 });
 
 //Change format date between yyyy-mm-dd and dd-mm-yyyy
 function formattedDate(d) {
   var initial = String(d).split('-');
-  return [ initial[2], initial[1], initial[0],  ].join('-');
+  return [initial[2], initial[1], initial[0],].join('-');
 }
 
 $(document).on('click', '#btn-movie', function () {

@@ -7,7 +7,7 @@ const allCurDate = new Date();
 const curDate = allCurDate.getDate();
 const curMonth = allCurDate.getMonth() + 1;
 const curYear = allCurDate.getFullYear();
-const date = [curYear, curMonth, curDate].join("-");
+const dateGlobal = [curYear, curMonth, curDate].join("-");
 $(document).ready(function () {
   //Call API to get movie information from movie name
   $.ajax({
@@ -192,18 +192,16 @@ $(document).ready(function () {
   //Call API to get theater and show in current day
   $.ajax({
     method: "get",
-    url: `http://localhost:8080/ticketbooking/show?idMovie=${id}&showingDate=${date}`,
+    url: `http://localhost:8080/ticketbooking/show?idMovie=${id}&showingDate=${dateGlobal}`,
   }).done(function (result) {
     var htmlData = result.data;
     //Check is data null
     if (htmlData.length == 0) {
-      document.getElementById(
-        "showingList"
-      ).innerHTML = `<div class="d-flex flex-column align-items-center pt-3 fs-4">Phim không có lịch chiếu trong ngày này</div>`;
+      document.getElementById("showingList").innerHTML = `<div class="d-flex flex-column align-items-center pt-3 fs-4">Phim không có lịch chiếu trong ngày này</div>`;
     } else {
       var htmlTheaterAdd = ``;
       var htmlShowAdd = ``;
-      htmlData.forEach((item) => {
+      htmlData.forEach(item => {
         htmlTheaterAdd += `
           <div class="showtime__cinema md:py-8 py-4 px-3 odd:bg-white even:bg-[#FDFBFA] even:border-t even:border-b">
             <h3 class="text-base font-bold mb-4">${item.theaterName}</h3>
@@ -213,7 +211,7 @@ $(document).ready(function () {
           </div>
           `;
         document.getElementById("showingList").innerHTML = htmlTheaterAdd;
-        item.showings.forEach((show) => {
+        item.showings.forEach(show => {
           var displayShow = show.startTime.substring(0, 5);
           htmlShowAdd += `
               <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
@@ -222,7 +220,7 @@ $(document).ready(function () {
                     timeIdGlobal="${show.id}" theaterIdGlobal="${item.theaterId}">${displayShow}
               </button>
             `;
-        });
+        })
         document.getElementById(`${item.theaterName}`).innerHTML = htmlShowAdd;
         htmlShowAdd = "";
         htmlTheaterAdd = document.getElementById("showingList").innerHTML;
@@ -267,8 +265,8 @@ function arrayDisplayWithUrl(array) {
 
 //Change format date between yyyy-mm-dd and dd-mm-yyyy
 function formattedDate(d) {
-  var initial = String(d).split("-");
-  return [initial[2], initial[1], initial[0]].join("-");
+  var initial = String(d).split('-');
+  return [initial[2], initial[1], initial[0],].join('-');
 }
 
 // Display 7 button for next 7 days from today
@@ -310,14 +308,25 @@ function getTodayAndNext7Days() {
     if (displayCurDate < 10) {
       displayCurDate = "0" + displayCurDate;
     }
-    htmlAdd += `
+    if (index == 0) {
+      htmlAdd += `
+        <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate active"
+        id="${displayCurYear}-${displayCurMonth}-${displayCurDate}"
+                style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem; width: 5rem;">
+          <span>${displayVieDay}</span>
+          <span>${displayCurDate + "/" + displayCurMonth}</span>
+        </button>
+      `;
+    } else {
+      htmlAdd += `
       <button type="button" class="d-flex flex-column align-items-center btn btn-outline-secondary p-2 mx-1 btn-showingdate" 
-              date="${displayCurYear}-${displayCurMonth}-${displayCurDate}" 
+      id="${displayCurYear}-${displayCurMonth}-${displayCurDate}"
               style="--bs-btn-padding-y: .2rem; --bs-btn-padding-x: .75rem; --bs-btn-font-size: 1rem; height: 4rem; width: 5rem;">
         <span>${displayVieDay}</span>
         <span>${displayCurDate + "/" + displayCurMonth}</span>
       </button>
     `;
+    }
     displayCurDay++;
     if (displayCurDay > 6) {
       displayCurDay = 0;
@@ -336,15 +345,21 @@ function getTodayAndNext7Days() {
 }
 
 // Leads to "dat-ve" page when when click "mua vé" button
-// $(document).on('click', '#btn-movie', function () {
-//   var name = $(this).attr("movieName");
-//   var id = $(this).attr("idMovie");
-//   window.location=`dat-ve.html?id=${id}&name=${name}`;
-// });
+$(document).on('click', '#btn-movie', function () {
+  var name = $(this).attr("movieName");
+  var id = $(this).attr("idMovie");
+  window.location=`dat-ve.html?id=${id}&name=${name}`;
+});
 
 //Get id showing date when click showing date
-$(document).on("click", ".btn-showingdate", function () {
-  var date = $(this).attr("date");
+$(document).on('click', '.btn-showingdate', function () {
+  var date = this.id;
+
+  //Active showing date button when click
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace("active", "");
+  this.className += " active";
+
   $.ajax({
     method: "get",
     url: `http://localhost:8080/ticketbooking/show?idMovie=${id}&showingDate=${date}`,
@@ -352,13 +367,11 @@ $(document).on("click", ".btn-showingdate", function () {
     var htmlData = result.data;
     //Check is data null
     if (htmlData.length == 0) {
-      document.getElementById(
-        "showingList"
-      ).innerHTML = `<div class="d-flex flex-column align-items-center pt-3 fs-4">Phim không có lịch chiếu trong ngày này</div>`;
+      document.getElementById("showingList").innerHTML = `<div class="d-flex flex-column align-items-center pt-3 fs-4">Phim không có lịch chiếu trong ngày này</div>`;
     } else {
       var htmlTheaterAdd = ``;
       var htmlShowAdd = ``;
-      htmlData.forEach((item) => {
+      htmlData.forEach(item => {
         htmlTheaterAdd += `
           <div class="showtime__cinema md:py-8 py-4 px-3 odd:bg-white even:bg-[#FDFBFA] even:border-t even:border-b">
             <h3 class="text-base font-bold mb-4">${item.theaterName}</h3>
@@ -368,7 +381,7 @@ $(document).on("click", ".btn-showingdate", function () {
           </div>
           `;
         document.getElementById("showingList").innerHTML = htmlTheaterAdd;
-        item.showings.forEach((show) => {
+        item.showings.forEach(show => {
           var displayShow = show.startTime.substring(0, 5);
           htmlShowAdd += `
               <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
@@ -377,7 +390,7 @@ $(document).on("click", ".btn-showingdate", function () {
                     timeIdGlobal="${show.id}" theaterIdGlobal="${item.theaterId}">${displayShow}
               </button>
             `;
-        });
+        })
         document.getElementById(`${item.theaterName}`).innerHTML = htmlShowAdd;
         htmlShowAdd = "";
         htmlTheaterAdd = document.getElementById("showingList").innerHTML;

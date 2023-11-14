@@ -687,14 +687,14 @@
                 <hr />
                 <h3>Suất chiếu <i class="fa-solid fa-circle-check"></i></h3>
                 <div id="showingTime">
-                  <!-- <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal 
+                  <!-- <button class="py-2 md:px-8 px-6 border rounded text-sm font-normal
                     text-black-10 hover:bg-blue-10 active:bg-blue-10 transition-all 
                     duration-500 ease-in-out hover:text-white loginBuyticket">12:00
                     </button> -->
                 </div>
               </div>
 
-              <!-- <div class="row theater-showtimes">
+            <!-- <div class="row theater-showtimes">
                 <div class="col-md-5 col-sm-5 col-xs-12">
                   <galaxy-datepicker
                     ng-model="currentDate"
@@ -756,12 +756,12 @@
                   </div>
                 </div>
               </div> -->
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <h3>Giá vé</h3>
-              <div class="tab-theater">
-                <div class="tab-movies-line-theater">
-                  <ul class="nav nav-tabs">
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <h3>Giá vé</h3>
+            <div class="tab-theater">
+              <div class="tab-movies-line-theater">
+                <!-- <ul class="nav nav-tabs">
                     <li
                       ng-class='{"active":$first}'
                       ng-repeat="item in cinema.ticket"
@@ -770,741 +770,358 @@
                         >{{item.name }}</a
                       >
                     </li>
-                  </ul>
-                  <div class="tab-content">
-                    <div
+                  </ul> -->
+                <div class="tab-content">
+                  <!-- <div
                       ng-repeat="item in cinema.ticket"
                       id="tab_{{$index}}"
                       ng-class='{"active":$first}'
                       class="tab-pane"
-                    >
-                      <img src="https://cdn.galaxycine.vn{{item.url}}/" />
-                    </div>
-                  </div>
+                    > -->
+                  <img src="website/images/giave.png" />
                 </div>
               </div>
-              <h3>Thông tin chi tiết</h3>
-              <div class="theater-map">
-                <p><span>Địa chỉ: </span><span class="address"></span></p>
-                <p><span>Số điện thoại: </span>1900 2224</p>
-                <galaxy-google-map ng-map="cinema.mapEmbeb"></galaxy-google-map>
-              </div>
-              <div id="theaterDescription"></div>
             </div>
+
+          <h3>Thông tin chi tiết</h3>
+          <div class="theater-map">
+            <p><span>Địa chỉ: </span><span class="address"></span></p>
+            <p><span>Số điện thoại: </span>1900 2224</p>
+            <galaxy-google-map ng-map="cinema.mapEmbeb"></galaxy-google-map>
           </div>
+          <div id="theaterDescription">
+          </div>
+        </div>
         </div>
       </div>
     </div>
-    <!--include home/home.jade-->
-    <div class="footer-content">
-      <footer class="footer-bg">
-        <div class="container">
-          <div class="row">
-            <div style="z-index: 2" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-              <ul class="list-unstyled clear-margins">
-                <li class="widget-container widget_nav_menu">
-                  <h1 class="title-widget">Giới thiệu</h1>
-                  <ul>
-                    <li>
-                      <a href="ve-chung-toi.html"
-                        ><i class="fa fa-angle-double-right"></i> Về chúng
-                        tôi</a
-                      >
-                    </li>
-                    <li>
-                      <a href="thoa-thuan-su-dung.html"
-                        ><i class="fa fa-angle-double-right"></i> Thoả thuận sử
-                        dụng</a
-                      >
-                    </li>
-                    <li>
-                      <a href="quy-che-hoat-dong.html"
-                        ><i class="fa fa-angle-double-right"></i> Quy chế hoạt
-                        động</a
-                      >
-                    </li>
-                    <li>
-                      <a href="chinh-sach-bao-mat.html"
-                        ><i class="fa fa-angle-double-right"></i> Chính sách bảo
-                        mật</a
-                      >
-                    </li>
+  </div>
+  </div>
+  <!--include home/home.jade-->
+  <div class="footer-content">
+    <footer class="footer-bg">
+      <div class="container">
+        <div class="row">
+          <div style="z-index: 2" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <ul class="list-unstyled clear-margins">
+              <li class="widget-container widget_nav_menu">
+                <h1 class="title-widget">Giới thiệu</h1>
+                <ul>
+                  <li>
+                    <a href="ve-chung-toi.html"><i class="fa fa-angle-double-right"></i> Về chúng
+                      tôi</a>
+                  </li>
+                  <li>
+                    <a href="thoa-thuan-su-dung.html"><i class="fa fa-angle-double-right"></i> Thoả thuận sử
+                      dụng</a>
+                  </li>
+                  <li>
+                    <a href="quy-che-hoat-dong.html"><i class="fa fa-angle-double-right"></i> Quy chế hoạt
+                      động</a>
+                  </li>
+                  <li>
+                    <a href="chinh-sach-bao-mat.html"><i class="fa fa-angle-double-right"></i> Chính sách bảo
+                      mật</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div style="z-index: 2" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <ul class="list-unstyled clear-margins">
+              <li class="widget-container widget_nav_menu">
+                <h1 class="title-widget">Góc điện ảnh</h1>
+                <ul>
+                  <li>
+                    <a href="dien-anh.html"><i class="fa fa-angle-double-right"></i> Thể loại
+                      phim</a>
+                  </li>
+                  <li>
+                    <a href="binh-luan-phim.html"><i class="fa fa-angle-double-right"></i> Bình luận
+                      phim</a>
+                  </li>
+                  <li>
+                    <a href="movie-blog.html"><i class="fa fa-angle-double-right"></i> Blog điện
+                      ảnh</a>
+                  </li>
+                  <li>
+                    <a href="phim-hay.html"><i class="fa fa-angle-double-right"></i> Phim hay
+                      tháng</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div style="z-index: 2" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <ul class="list-unstyled clear-margins">
+              <li class="widget-container widget_nav_menu">
+                <h1 class="title-widget">Hỗ trợ</h1>
+                <ul>
+                  <li>
+                    <a href="gop-y.html"><i class="fa fa-angle-double-right"></i> Góp ý</a>
+                  </li>
+                  <li>
+                    <a href="sale-and-service.html"><i class="fa fa-angle-double-right"></i> Sale &amp;
+                      Services</a>
+                  </li>
+                  <li>
+                    <a href="rap-gia-ve.html"><i class="fa fa-angle-double-right"></i> Rạp / giá
+                      vé</a>
+                  </li>
+                  <li>
+                    <a href="tuyen-dung.html"><i class="fa fa-angle-double-right"></i> Tuyển dụng</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div style="z-index: 2" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <ul class="list-unstyled clear-margins">
+              <li class="widget-container widget_recent_news">
+                <h1 class="title-widget">Kết nối Galaxy cinema</h1>
+                <div class="social-icons">
+                  <ul class="nomargin">
+                    <a href="https://facebook.com/galaxycine.vn" target="_blank"><i id="social"
+                        class="icon-facebook-app-logo social-fb"></i></a>
+                    <a href="https://www.youtube.com/user/galaxymovies" target="_blank"><i id="social"
+                        class="icon-youtube-logo social-youtube"></i></a>
+                    <!--a(href='#{config.instagramUrl}' target="_blank")--><!--  i#social.icon-instagram-logo.social-inst-->
+                    <a href="https://www.instagram.com/galaxycinema/" target="_blank"><i id="social"
+                        class="icon-instagram-logo social-inst"></i></a>
                   </ul>
-                </li>
-              </ul>
-            </div>
-            <div style="z-index: 2" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-              <ul class="list-unstyled clear-margins">
-                <li class="widget-container widget_nav_menu">
-                  <h1 class="title-widget">Góc điện ảnh</h1>
-                  <ul>
-                    <li>
-                      <a href="dien-anh.html"
-                        ><i class="fa fa-angle-double-right"></i> Thể loại
-                        phim</a
-                      >
-                    </li>
-                    <li>
-                      <a href="binh-luan-phim.html"
-                        ><i class="fa fa-angle-double-right"></i> Bình luận
-                        phim</a
-                      >
-                    </li>
-                    <li>
-                      <a href="movie-blog.html"
-                        ><i class="fa fa-angle-double-right"></i> Blog điện
-                        ảnh</a
-                      >
-                    </li>
-                    <li>
-                      <a href="phim-hay.html"
-                        ><i class="fa fa-angle-double-right"></i> Phim hay
-                        tháng</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div style="z-index: 2" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-              <ul class="list-unstyled clear-margins">
-                <li class="widget-container widget_nav_menu">
-                  <h1 class="title-widget">Hỗ trợ</h1>
-                  <ul>
-                    <li>
-                      <a href="gop-y.html"
-                        ><i class="fa fa-angle-double-right"></i> Góp ý</a
-                      >
-                    </li>
-                    <li>
-                      <a href="sale-and-service.html"
-                        ><i class="fa fa-angle-double-right"></i> Sale &amp;
-                        Services</a
-                      >
-                    </li>
-                    <li>
-                      <a href="rap-gia-ve.html"
-                        ><i class="fa fa-angle-double-right"></i> Rạp / giá
-                        vé</a
-                      >
-                    </li>
-                    <li>
-                      <a href="tuyen-dung.html"
-                        ><i class="fa fa-angle-double-right"></i> Tuyển dụng</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div style="z-index: 2" class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                </div>
+              </li>
+            </ul>
+            <div class="store">
               <ul class="list-unstyled clear-margins">
                 <li class="widget-container widget_recent_news">
-                  <h1 class="title-widget">Kết nối Galaxy cinema</h1>
+                  <h1 class="title-widget">Download app</h1>
                   <div class="social-icons">
                     <ul class="nomargin">
-                      <a
-                        href="https://facebook.com/galaxycine.vn"
-                        target="_blank"
-                        ><i
-                          id="social"
-                          class="icon-facebook-app-logo social-fb"
-                        ></i
-                      ></a>
-                      <a
-                        href="https://www.youtube.com/user/galaxymovies"
-                        target="_blank"
-                        ><i
-                          id="social"
-                          class="icon-youtube-logo social-youtube"
-                        ></i
-                      ></a>
-                      <!--a(href='#{config.instagramUrl}' target="_blank")--><!--  i#social.icon-instagram-logo.social-inst-->
-                      <a
-                        href="https://www.instagram.com/galaxycinema/"
-                        target="_blank"
-                        ><i
-                          id="social"
-                          class="icon-instagram-logo social-inst"
-                        ></i
-                      ></a>
+                      <!--a(href='#{config.iosAppUrl}' target="_blank")-->
+                      <a href="https://itunes.apple.com/vn/app/galaxy-cinema/id593312549?l=vi&amp;mt=8"
+                        target="_blank"><i id="social" class="icon-apple-store social-store"></i></a>
+                      <!--a(href='#{config.androidAppUrl}' target="_blank")-->
+                      <a href="https://play.google.com/store/apps/details?id=com.galaxy.cinema&amp;hl=vi"
+                        target="_blank"><i id="social" class="icon-google-play social-store"></i></a>
                     </ul>
                   </div>
                 </li>
               </ul>
-              <div class="store">
-                <ul class="list-unstyled clear-margins">
-                  <li class="widget-container widget_recent_news">
-                    <h1 class="title-widget">Download app</h1>
-                    <div class="social-icons">
-                      <ul class="nomargin">
-                        <!--a(href='#{config.iosAppUrl}' target="_blank")-->
-                        <a
-                          href="https://itunes.apple.com/vn/app/galaxy-cinema/id593312549?l=vi&amp;mt=8"
-                          target="_blank"
-                          ><i
-                            id="social"
-                            class="icon-apple-store social-store"
-                          ></i
-                        ></a>
-                        <!--a(href='#{config.androidAppUrl}' target="_blank")-->
-                        <a
-                          href="https://play.google.com/store/apps/details?id=com.galaxy.cinema&amp;hl=vi"
-                          target="_blank"
-                          ><i
-                            id="social"
-                            class="icon-google-play social-store"
-                          ></i
-                        ></a>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
-        <div style="z-index: 1" class="container ano-trade">
-          <div class="wrap-icon">
-            <a href="http://online.gov.vn/Home/WebDetails/5005"
-              ><img
-                alt=""
-                title=""
-                src="website/images/glx_trade.png"
-                width="150px"
-                height="100%"
-            /></a>
+      </div>
+      <div style="z-index: 1" class="container ano-trade">
+        <div class="wrap-icon">
+          <a href="http://online.gov.vn/Home/WebDetails/5005"><img alt="" title="" src="website/images/glx_trade.png"
+              width="150px" height="100%" /></a>
+        </div>
+      </div>
+    </footer>
+    <div class="footer-bottom footer-line">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <a href="index.html"><img src="website/images/galaxy-logo-footer.png" alt="Galaxy Cinema" /></a>
+            <div class="copyright">
+              <p>
+                Công Ty Cổ Phần Phim Thiên Ngân, Tầng 3, Toà Nhà Bitexco Nam
+                Long, 63A Võ Văn Tần, P. Võ Thị Sáu, Quận 3, Tp. Hồ Chí Minh
+              </p>
+            </div>
           </div>
         </div>
-      </footer>
-      <div class="footer-bottom footer-line">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <a href="index.html"
-                ><img
-                  src="website/images/galaxy-logo-footer.png"
-                  alt="Galaxy Cinema"
-              /></a>
-              <div class="copyright">
-                <p>
-                  Công Ty Cổ Phần Phim Thiên Ngân, Tầng 3, Toà Nhà Bitexco Nam
-                  Long, 63A Võ Văn Tần, P. Võ Thị Sáu, Quận 3, Tp. Hồ Chí Minh
-                </p>
+      </div>
+    </div>
+  </div>
+  <div ng-controller="loginController">
+    <div id="login-modal" class="modal fade">
+      <div ng-if="openLogin" class="modal-dialog">
+        <div class="modal-outer-container">
+          <div class="modal-middle-container">
+            <div class="login-wrapper animated slideInDown">
+              <div class="login-container">
+                <span ng-click="closeModel()" class="close"><i class="icon-cancel"></i></span>
+                <div class="tab-login-line">
+                  <ul class="nav nav-tabs">
+                    <li class="active">
+                      <a id="a_tab_login_1" href="#tab_login_1" data-toggle="tab">Đăng nhập</a>
+                    </li>
+                    <li><a class="line">/</a></li>
+                    <li>
+                      <a id="a_tab_login_2" href="#tab_login_2" data-toggle="tab">Đăng ký</a>
+                    </li>
+                  </ul>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="tab-content">
+                        <div id="tab_login_1" class="tab-pane active">
+                          <div class="login-tab-wrapper">
+                            <div class="login-heading">
+                              <div class="text-heading">
+                                <span ng-if="!enableSkip" class="sub-text">
+                                  Vui lòng đăng nhập trước khi mua vé để tích
+                                  luỹ điểm, cơ hội nhận thêm nhiều ưu đãi từ
+                                  chương trình thành viên Galaxy Cinema.
+                                </span>
+                                <span ng-if="enableSkip" class="sub-text">Bạn có thể mua vé mà không cần đăng nhập.
+                                  Tuy nhiên, bạn sẽ không được tích luỹ điểm
+                                  thành viên.</span>
+                              </div>
+                              <p ng-if="message" class="message">
+                                {{message}}
+                              </p>
+                            </div>
+                            <form ng-submit="submit()" class="login-form">
+                              <input placeholder="Email" type="email" ng-model="userInfo.email" required
+                                class="login" />
+                              <input placeholder="Mật khẩu" type="password" ng-model="userInfo.password" required
+                                class="login" />
+                              <div class="login-remember">
+                                <!--.remember--><!--  .toggle-button.toggle-button-login--><!--    input#toggleRemember(type='checkbox' ng-model='userInfo.remember')--><!--    label(for='toggleRemember') Ghi nhớ--><!--    .toggle-button-icon-->
+                                <div class="forget-pass">
+                                  <a id="forgetPass" href="#" ng-click="openForgetPass()">Quên mật khẩu?</a>
+                                </div>
+                                <div style="float: right" ng-if="userNotActive == true" class="forget-pass">
+                                  <a href="#" ng-click="reSendActiveCode()">Gửi lại link kích hoạt</a>
+                                </div>
+                              </div>
+                              <button class="btn primary input">
+                                <i ng-show="isSubmit" class="fa fa-pulse fa-spinner"></i>Đăng nhập
+                              </button>
+                              <div ng-if="enableSkip" class="divider-line"></div>
+                              <a href="javascript:;" ng-if="enableSkip" ng-click="closeModel()"
+                                class="btn primary input">Mua vé không đăng nhập</a>
+                              <!--.social-login--><!--  span Hoặc đăng nhập bằng--><!--  a(href='')--><!--    i.icon-facebook--><!--  a(href='')--><!--    i.icon-google-plus-->
+                            </form>
+                          </div>
+                        </div>
+                        <div id="tab_login_2" ng-controller="registerController" class="tab-pane">
+                          <div class="login-tab-wrapper">
+                            <div ng-if="message" class="login-heading">
+                              <div class="text-heading">
+                                <!--span.sub-text.error {{message}}-->
+                                <p class="message">{{message}}</p>
+                              </div>
+                            </div>
+                            <div class="login-form">
+                              <form ng-if='registerStep == "register"' ng-submit="submitOTP()">
+                                <input placeholder="Họ tên" type="text" ng-model="user.fullName" required
+                                  class="login first" />
+                                <div class="row city">
+                                  <div class="col-md-6 col-sm-6 col-xs-6 first-col">
+                                    <input type="text" placeholder="Số điện thoại" maxlength="14"
+                                      ng-model="user.mobilePhone" required class="login register-input" />
+                                  </div>
+                                  <div class="col-md-6 col-sm-6 col-xs-6 second-col mt-14">
+                                    <galaxy-select ng-model="genderSelect"></galaxy-select>
+                                  </div>
+                                </div>
+                                <input type="email" placeholder="Email" ng-model="user.email" required
+                                  class="login register-input remove-mb" />
+                                <div class="row city">
+                                  <div class="col-md-6 col-sm-6 col-xs-6 first-col">
+                                    <input type="password" placeholder="Mật khẩu" ng-model="user.password" required
+                                      class="login" />
+                                  </div>
+                                  <div class="col-md-6 col-sm-6 col-xs-6 second-col">
+                                    <input type="password" placeholder="Xác nhận mật khẩu"
+                                      ng-model="user.confirmPassword" required class="login" />
+                                  </div>
+                                </div>
+                                <div class="row birthday-signup">
+                                  <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <galaxy-datepicker ng-model="user.dateOfBirth"></galaxy-datepicker>
+                                  </div>
+                                </div>
+                                <p class="text-confirm-signup">
+                                  Tôi đã đọc và đồng ý với&nbsp<a ng-click="openPolicy()" data-toggle="modal"
+                                    data-target="#popupPolicies"><b>CHÍNH SÁCH&nbsp</b></a>của chương trình.&nbsp
+                                </p>
+                                <br />
+                                <button class="btn primary input">
+                                  Đăng ký
+                                </button>
+                              </form>
+                              <div ng-if="registerStep == 'otp'" class="login-container">
+                                <div class="tab-login-line">
+                                  <div class="tab-login-title">
+                                    Vui lòng nhập OTP
+                                  </div>
+                                  <div class="login-tab-wrapper">
+                                    <div class="login-heading success">
+                                      <div class="login-form">
+                                        <form ng-submit="submit()">
+                                          <input placeholder="Nhập OTP" type="text" ng-model="user.code"
+                                            class="login first" /><button class="btn primary input">
+                                            Kiểm tra
+                                          </button>
+                                          <div class="text-heading">
+                                            <p ng-if="otpCountDown &gt; 0">
+                                              <span id="count-down-otp-register" class="sub-text"></span>Gửi lại OTP
+                                              sau: {{
+                                              otpCountDown }}
+                                            </p>
+                                          </div>
+                                          <div class="text-heading">
+                                            <span class="sub-text">Bạn vui lòng truy cập tin nhắn
+                                              để nhận OTP</span>
+                                          </div>
+                                        </form>
+                                      </div>
+                                      <button ng-if="otpCountDown == 0" ng-click="recallOTP()"
+                                        class="btn secondary input">
+                                        <span id="count-down-otp-aa" class="sub-text"></span>Gửi lại OTP
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div ng-controller="loginController">
-      <div id="login-modal" class="modal fade">
-        <div ng-if="openLogin" class="modal-dialog">
+    <div ng-controller="forgetPassController">
+      <div id="forgetpass-modal" style="z-index: 1111" class="modal fade">
+        <div class="modal-dialog">
           <div class="modal-outer-container">
             <div class="modal-middle-container">
               <div class="login-wrapper animated slideInDown">
                 <div class="login-container">
-                  <span ng-click="closeModel()" class="close"
-                    ><i class="icon-cancel"></i
-                  ></span>
+                  <span ng-click="closeModelForget()" class="close"><i class="icon-cancel"></i></span>
                   <div class="tab-login-line">
-                    <ul class="nav nav-tabs">
-                      <li class="active">
-                        <a
-                          id="a_tab_login_1"
-                          href="#tab_login_1"
-                          data-toggle="tab"
-                          >Đăng nhập</a
-                        >
-                      </li>
-                      <li><a class="line">/</a></li>
-                      <li>
-                        <a
-                          id="a_tab_login_2"
-                          href="#tab_login_2"
-                          data-toggle="tab"
-                          >Đăng ký</a
-                        >
-                      </li>
-                    </ul>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="tab-content">
-                          <div id="tab_login_1" class="tab-pane active">
-                            <div class="login-tab-wrapper">
-                              <div class="login-heading">
-                                <div class="text-heading">
-                                  <span ng-if="!enableSkip" class="sub-text">
-                                    Vui lòng đăng nhập trước khi mua vé để tích
-                                    luỹ điểm, cơ hội nhận thêm nhiều ưu đãi từ
-                                    chương trình thành viên Galaxy Cinema.
-                                  </span>
-                                  <span ng-if="enableSkip" class="sub-text"
-                                    >Bạn có thể mua vé mà không cần đăng nhập.
-                                    Tuy nhiên, bạn sẽ không được tích luỹ điểm
-                                    thành viên.</span
-                                  >
-                                </div>
-                                <p ng-if="message" class="message">
-                                  {{message}}
-                                </p>
-                              </div>
-                              <form ng-submit="submit()" class="login-form">
-                                <input
-                                  placeholder="Email"
-                                  type="email"
-                                  ng-model="userInfo.email"
-                                  required
-                                  class="login"
-                                />
-                                <input
-                                  placeholder="Mật khẩu"
-                                  type="password"
-                                  ng-model="userInfo.password"
-                                  required
-                                  class="login"
-                                />
-                                <div class="login-remember">
-                                  <!--.remember--><!--  .toggle-button.toggle-button-login--><!--    input#toggleRemember(type='checkbox' ng-model='userInfo.remember')--><!--    label(for='toggleRemember') Ghi nhớ--><!--    .toggle-button-icon-->
-                                  <div class="forget-pass">
-                                    <a
-                                      id="forgetPass"
-                                      href="#"
-                                      ng-click="openForgetPass()"
-                                      >Quên mật khẩu?</a
-                                    >
-                                  </div>
-                                  <div
-                                    style="float: right"
-                                    ng-if="userNotActive == true"
-                                    class="forget-pass"
-                                  >
-                                    <a href="#" ng-click="reSendActiveCode()"
-                                      >Gửi lại link kích hoạt</a
-                                    >
-                                  </div>
-                                </div>
-                                <button class="btn primary input">
-                                  <i
-                                    ng-show="isSubmit"
-                                    class="fa fa-pulse fa-spinner"
-                                  ></i
-                                  >Đăng nhập
-                                </button>
-                                <div
-                                  ng-if="enableSkip"
-                                  class="divider-line"
-                                ></div>
-                                <a
-                                  href="javascript:;"
-                                  ng-if="enableSkip"
-                                  ng-click="closeModel()"
-                                  class="btn primary input"
-                                  >Mua vé không đăng nhập</a
-                                >
-                                <!--.social-login--><!--  span Hoặc đăng nhập bằng--><!--  a(href='')--><!--    i.icon-facebook--><!--  a(href='')--><!--    i.icon-google-plus-->
-                              </form>
-                            </div>
-                          </div>
-                          <div
-                            id="tab_login_2"
-                            ng-controller="registerController"
-                            class="tab-pane"
-                          >
-                            <div class="login-tab-wrapper">
-                              <div ng-if="message" class="login-heading">
-                                <div class="text-heading">
-                                  <!--span.sub-text.error {{message}}-->
-                                  <p class="message">{{message}}</p>
-                                </div>
-                              </div>
-                              <div class="login-form">
-                                <form
-                                  ng-if='registerStep == "register"'
-                                  ng-submit="submitOTP()"
-                                >
-                                  <input
-                                    placeholder="Họ tên"
-                                    type="text"
-                                    ng-model="user.fullName"
-                                    required
-                                    class="login first"
-                                  />
-                                  <div class="row city">
-                                    <div
-                                      class="col-md-6 col-sm-6 col-xs-6 first-col"
-                                    >
-                                      <input
-                                        type="text"
-                                        placeholder="Số điện thoại"
-                                        maxlength="14"
-                                        ng-model="user.mobilePhone"
-                                        required
-                                        class="login register-input"
-                                      />
-                                    </div>
-                                    <div
-                                      class="col-md-6 col-sm-6 col-xs-6 second-col mt-14"
-                                    >
-                                      <galaxy-select
-                                        ng-model="genderSelect"
-                                      ></galaxy-select>
-                                    </div>
-                                  </div>
-                                  <input
-                                    type="email"
-                                    placeholder="Email"
-                                    ng-model="user.email"
-                                    required
-                                    class="login register-input remove-mb"
-                                  />
-                                  <div class="row city">
-                                    <div
-                                      class="col-md-6 col-sm-6 col-xs-6 first-col"
-                                    >
-                                      <input
-                                        type="password"
-                                        placeholder="Mật khẩu"
-                                        ng-model="user.password"
-                                        required
-                                        class="login"
-                                      />
-                                    </div>
-                                    <div
-                                      class="col-md-6 col-sm-6 col-xs-6 second-col"
-                                    >
-                                      <input
-                                        type="password"
-                                        placeholder="Xác nhận mật khẩu"
-                                        ng-model="user.confirmPassword"
-                                        required
-                                        class="login"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div class="row birthday-signup">
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                      <galaxy-datepicker
-                                        ng-model="user.dateOfBirth"
-                                      ></galaxy-datepicker>
-                                    </div>
-                                  </div>
-                                  <p class="text-confirm-signup">
-                                    Tôi đã đọc và đồng ý với&nbsp<a
-                                      ng-click="openPolicy()"
-                                      data-toggle="modal"
-                                      data-target="#popupPolicies"
-                                      ><b>CHÍNH SÁCH&nbsp</b></a
-                                    >của chương trình.&nbsp
-                                  </p>
-                                  <br />
-                                  <button class="btn primary input">
-                                    Đăng ký
-                                  </button>
-                                </form>
-                                <div
-                                  ng-if="registerStep == 'otp'"
-                                  class="login-container"
-                                >
-                                  <div class="tab-login-line">
-                                    <div class="tab-login-title">
-                                      Vui lòng nhập OTP
-                                    </div>
-                                    <div class="login-tab-wrapper">
-                                      <div class="login-heading success">
-                                        <div class="login-form">
-                                          <form ng-submit="submit()">
-                                            <input
-                                              placeholder="Nhập OTP"
-                                              type="text"
-                                              ng-model="user.code"
-                                              class="login first"
-                                            /><button class="btn primary input">
-                                              Kiểm tra
-                                            </button>
-                                            <div class="text-heading">
-                                              <p ng-if="otpCountDown &gt; 0">
-                                                <span
-                                                  id="count-down-otp-register"
-                                                  class="sub-text"
-                                                ></span
-                                                >Gửi lại OTP sau: {{
-                                                otpCountDown }}
-                                              </p>
-                                            </div>
-                                            <div class="text-heading">
-                                              <span class="sub-text"
-                                                >Bạn vui lòng truy cập tin nhắn
-                                                để nhận OTP</span
-                                              >
-                                            </div>
-                                          </form>
-                                        </div>
-                                        <button
-                                          ng-if="otpCountDown == 0"
-                                          ng-click="recallOTP()"
-                                          class="btn secondary input"
-                                        >
-                                          <span
-                                            id="count-down-otp-aa"
-                                            class="sub-text"
-                                          ></span
-                                          >Gửi lại OTP
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                    <div class="tab-login-title">Quên mật khẩu</div>
+                    <div class="login-tab-wrapper">
+                      <div class="login-heading">
+                        <div class="text-heading">
+                          <span class="sub-text">Vui lòng cung cấp email đăng nhập, chúng tôi sẽ
+                            gửi link kích hoạt cho bạn.</span>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div ng-controller="forgetPassController">
-        <div id="forgetpass-modal" style="z-index: 1111" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-outer-container">
-              <div class="modal-middle-container">
-                <div class="login-wrapper animated slideInDown">
-                  <div class="login-container">
-                    <span ng-click="closeModelForget()" class="close"
-                      ><i class="icon-cancel"></i
-                    ></span>
-                    <div class="tab-login-line">
-                      <div class="tab-login-title">Quên mật khẩu</div>
-                      <div class="login-tab-wrapper">
-                        <div class="login-heading">
-                          <div class="text-heading">
-                            <span class="sub-text"
-                              >Vui lòng cung cấp email đăng nhập, chúng tôi sẽ
-                              gửi link kích hoạt cho bạn.</span
-                            >
-                          </div>
-                        </div>
-                        <p ng-if="message" class="message">{{message}}</p>
-                        <form ng-submit="submit()" class="login-form">
-                          <input
-                            placeholder="Email"
-                            type="email"
-                            ng-model="item.email"
-                            required
-                            class="login"
-                          />
-                          <div class="row captcha">
-                            <div class="col-md-6 col-sm-6 col-xs-8 first-col">
-                              <galaxy-captcha
-                                data-config="captchaConfig"
-                              ></galaxy-captcha>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-4 second-col">
-                              <input
-                                placeholder="Nhập mã captcha"
-                                type="text"
-                                ng-model="item.captcha"
-                                required
-                                class="login"
-                              />
-                            </div>
-                          </div>
-                          <button class="btn primary input">
-                            <i
-                              ng-show="isSubmit"
-                              class="fa fa-pulse fa-spinner"
-                            ></i
-                            >Cấp lại mật khẩu
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--#success-modal(style='display: none;')-->
-      <div ng-controller="registerController">
-        <div id="success-modal" style="z-index: 1111" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-outer-container">
-              <div class="modal-middle-container">
-                <div class="login-wrapper animated slideInDown">
-                  <div class="login-container">
-                    <span ng-click="closeModelSuccess()" class="close"
-                      ><i class="icon-cancel"></i
-                    ></span>
-                    <div class="tab-login-line">
-                      <div class="tab-login-title">Đăng ký thành công</div>
-                      <div class="login-tab-wrapper">
-                        <div class="login-heading success">
-                          <i class="icon-success"></i>
-                          <div class="text-heading">
-                            <span class="sub-text"
-                              >Chào mừng đến G-Star Club!</span
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--include active-->
-    </div>
-    <div id="trailerModal" class="modal fade modal-trailer">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button
-              type="button"
-              data-dismiss="modal"
-              aria-hidden="true"
-              class="close"
-            >
-              ×
-            </button>
-            <h4 class="modal-title">Galaxy Cinema</h4>
-          </div>
-          <div id="galaxyVideo" class="modal-body"></div>
-        </div>
-      </div>
-    </div>
-    <div ng-controller="locationController">
-      <div id="location-modal" style="display: none" class="login-overlay">
-        <div class="modal-outer-container">
-          <div class="modal-middle-container">
-            <div class="login-wrapper animated slideInDown location">
-              <div class="login-container">
-                <span class="close"><i class="icon-cancel"></i></span>
-                <h2>Chọn thành phố</h2>
-                <div class="tab-login-line">
-                  <div class="login-tab-wrapper">
-                    <div class="login-heading">
-                      <div class="text-heading">
-                        <span class="sub-text"
-                          >Vui lòng chọn thành phố hiện tại của bạn để xem lịch
-                          chiếu chính xác nhất.</span
-                        >
-                      </div>
-                    </div>
-                    <form ng-submit="submit()" class="login-form">
-                      <div class="row city">
-                        <div class="col-md-7 col-sm-7 col-xs-12 first-col">
-                          <galaxy-select ng-model="citySelect"></galaxy-select>
-                        </div>
-                        <div class="col-md-5 col-sm-5 col-xs-12 second-col">
-                          <button class="btn primary input location">
-                            Tiếp tục
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      id="addcv-modal"
-      ng-controller="applyRecruitmentController"
-      class="modal fade"
-    >
-      <div class="modal-dialog">
-        <div class="modal-outer-container">
-          <div class="modal-middle-container">
-            <div class="login-wrapper location">
-              <div class="login-container">
-                <span ng-click="closeModel()" class="close"
-                  ><i class="icon-cancel"></i
-                ></span>
-                <h2 class="recruitment">Nộp hồ sơ tuyển dụng</h2>
-                <div class="tab-login-line">
-                  <div class="login-tab-wrapper">
-                    <div ng-if="message" class="login-heading">
-                      <div class="text-heading">
-                        <p class="message">{{message | translate}}</p>
-                      </div>
-                    </div>
-                    <div class="recruitment-form">
-                      <form ng-submit="submit()">
-                        <input
-                          id="name"
-                          placeholder="Họ và tên"
-                          type="text"
-                          ng-model="cvinfo.name"
-                          required
-                          class="login"
-                        />
-                        <input
-                          id="email"
-                          type="email"
-                          placeholder="Email"
-                          required
-                          ng-model="cvinfo.email"
-                          class="login"
-                        />
-                        <input
-                          id="title"
-                          type="text"
-                          placeholder="Tiêu đề"
-                          required
-                          ng-model="cvinfo.subject"
-                          class="login"
-                        />
-                        <textarea
-                          rows="10"
-                          placeholder="Nội dung"
-                          ng-model="cvinfo.message"
-                          required
-                          class="support-form"
-                        ></textarea>
-                        <input
-                          id="attachfile"
-                          type="file"
-                          nv-file-select
-                          uploader="uploader"
-                          class="login"
-                        />
+                      <p ng-if="message" class="message">{{message}}</p>
+                      <form ng-submit="submit()" class="login-form">
+                        <input placeholder="Email" type="email" ng-model="item.email" required class="login" />
                         <div class="row captcha">
-                          <div class="col-md-6 col-sm-6 col-xs-6 first-col">
-                            <galaxy-captcha
-                              data-config="captchaConfig"
-                            ></galaxy-captcha>
+                          <div class="col-md-6 col-sm-6 col-xs-8 first-col">
+                            <galaxy-captcha data-config="captchaConfig"></galaxy-captcha>
                           </div>
-                          <div class="col-md-6 col-sm-6 col-xs-6 second-col">
-                            <input
-                              id="capcha"
-                              placeholder="Nhập mã captcha"
-                              name="captcha"
-                              type="text"
-                              ng-model="cvinfo.captcha"
-                              required
-                              class="login"
-                            />
+                          <div class="col-md-6 col-sm-6 col-xs-4 second-col">
+                            <input placeholder="Nhập mã captcha" type="text" ng-model="item.captcha" required
+                              class="login" />
                           </div>
                         </div>
                         <button class="btn primary input">
-                          <i
-                            ng-show="isSubmit"
-                            class="fa fa-pulse fa-spinner"
-                          ></i
-                          >Nộp hồ sơ
+                          <i ng-show="isSubmit" class="fa fa-pulse fa-spinner"></i>Cấp lại mật khẩu
                         </button>
                       </form>
                     </div>
@@ -1516,43 +1133,23 @@
         </div>
       </div>
     </div>
-    <div
-      id="popupPolicies"
-      ng-controller="policiesPopupController"
-      style="z-index: 1100"
-      class="dialog modal fade"
-    >
-      <div class="modal-dialog">
-        <div class="modal-outer-container">
-          <div class="modal-middle-container">
-            <div class="login-wrapper animated bounceIn location">
-              <div class="login-container dialog">
-                <span ng-click="closeModel()" class="close"
-                  ><i class="icon-cancel"></i
-                ></span>
-                <h2>Chính sách</h2>
-                <div id="policiesTab">
-                  <div ng-controller="policyController" class="tab-movies-line">
-                    <ul class="nav nav-tabs">
-                      <li
-                        ng-repeat="(key, item) in info"
-                        class="{{key == 0 ? 'active' : ''}}"
-                      >
-                        <a href="#tab_{{item.id}}_popup" data-toggle="tab"
-                          >{{item.name}}</a
-                        >
-                      </li>
-                    </ul>
-                    <div class="tab-content content-text">
-                      <div
-                        ng-repeat="(key, item) in info"
-                        id="tab_{{item.id}}_popup"
-                        class="{{key == 0 ? 'active' : '' + item.slug == 'huong-dan' ? 'scroll-content' : ''}} tab-pane"
-                      >
-                        <div
-                          ng-bind-html="item.description"
-                          class="policy-content"
-                        ></div>
+    <!--#success-modal(style='display: none;')-->
+    <div ng-controller="registerController">
+      <div id="success-modal" style="z-index: 1111" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-outer-container">
+            <div class="modal-middle-container">
+              <div class="login-wrapper animated slideInDown">
+                <div class="login-container">
+                  <span ng-click="closeModelSuccess()" class="close"><i class="icon-cancel"></i></span>
+                  <div class="tab-login-line">
+                    <div class="tab-login-title">Đăng ký thành công</div>
+                    <div class="login-tab-wrapper">
+                      <div class="login-heading success">
+                        <i class="icon-success"></i>
+                        <div class="text-heading">
+                          <span class="sub-text">Chào mừng đến G-Star Club!</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1563,23 +1160,152 @@
         </div>
       </div>
     </div>
-    <!-- <galaxy-dialog></galaxy-dialog> -->
-    <script src="customjs-min/lazyload.js" async></script>
-    <script>
-      window.lazyLoadOptions = {
-        img: ".lazy",
-      };
-    </script>
-    <!--include ../popup/dialog-->
-    <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
-    <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
-    <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-app-check.js"></script>
-    <script src="js/axios.min.js"></script>
-    <script src="js/lodash-merge.js"></script>
-    <script src="customjs-min/firebase-setup.js"></script>
-    <script src="js/rap-gia-ve.js"></script>
-  </body>
-  <!-- Mirrored from www.galaxycine.vn/rap-gia-ve by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 15:56:36 GMT -->
+    <!--include active-->
+  </div>
+  <div id="trailerModal" class="modal fade modal-trailer">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+            ×
+          </button>
+          <h4 class="modal-title">Galaxy Cinema</h4>
+        </div>
+        <div id="galaxyVideo" class="modal-body"></div>
+      </div>
+    </div>
+  </div>
+  <div ng-controller="locationController">
+    <div id="location-modal" style="display: none" class="login-overlay">
+      <div class="modal-outer-container">
+        <div class="modal-middle-container">
+          <div class="login-wrapper animated slideInDown location">
+            <div class="login-container">
+              <span class="close"><i class="icon-cancel"></i></span>
+              <h2>Chọn thành phố</h2>
+              <div class="tab-login-line">
+                <div class="login-tab-wrapper">
+                  <div class="login-heading">
+                    <div class="text-heading">
+                      <span class="sub-text">Vui lòng chọn thành phố hiện tại của bạn để xem lịch
+                        chiếu chính xác nhất.</span>
+                    </div>
+                  </div>
+                  <form ng-submit="submit()" class="login-form">
+                    <div class="row city">
+                      <div class="col-md-7 col-sm-7 col-xs-12 first-col">
+                        <galaxy-select ng-model="citySelect"></galaxy-select>
+                      </div>
+                      <div class="col-md-5 col-sm-5 col-xs-12 second-col">
+                        <button class="btn primary input location">
+                          Tiếp tục
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="addcv-modal" ng-controller="applyRecruitmentController" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-outer-container">
+        <div class="modal-middle-container">
+          <div class="login-wrapper location">
+            <div class="login-container">
+              <span ng-click="closeModel()" class="close"><i class="icon-cancel"></i></span>
+              <h2 class="recruitment">Nộp hồ sơ tuyển dụng</h2>
+              <div class="tab-login-line">
+                <div class="login-tab-wrapper">
+                  <div ng-if="message" class="login-heading">
+                    <div class="text-heading">
+                      <p class="message">{{message | translate}}</p>
+                    </div>
+                  </div>
+                  <div class="recruitment-form">
+                    <form ng-submit="submit()">
+                      <input id="name" placeholder="Họ và tên" type="text" ng-model="cvinfo.name" required
+                        class="login" />
+                      <input id="email" type="email" placeholder="Email" required ng-model="cvinfo.email"
+                        class="login" />
+                      <input id="title" type="text" placeholder="Tiêu đề" required ng-model="cvinfo.subject"
+                        class="login" />
+                      <textarea rows="10" placeholder="Nội dung" ng-model="cvinfo.message" required
+                        class="support-form"></textarea>
+                      <input id="attachfile" type="file" nv-file-select uploader="uploader" class="login" />
+                      <div class="row captcha">
+                        <div class="col-md-6 col-sm-6 col-xs-6 first-col">
+                          <galaxy-captcha data-config="captchaConfig"></galaxy-captcha>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6 second-col">
+                          <input id="capcha" placeholder="Nhập mã captcha" name="captcha" type="text"
+                            ng-model="cvinfo.captcha" required class="login" />
+                        </div>
+                      </div>
+                      <button class="btn primary input">
+                        <i ng-show="isSubmit" class="fa fa-pulse fa-spinner"></i>Nộp hồ sơ
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="popupPolicies" ng-controller="policiesPopupController" style="z-index: 1100" class="dialog modal fade">
+    <div class="modal-dialog">
+      <div class="modal-outer-container">
+        <div class="modal-middle-container">
+          <div class="login-wrapper animated bounceIn location">
+            <div class="login-container dialog">
+              <span ng-click="closeModel()" class="close"><i class="icon-cancel"></i></span>
+              <h2>Chính sách</h2>
+              <div id="policiesTab">
+                <div ng-controller="policyController" class="tab-movies-line">
+                  <ul class="nav nav-tabs">
+                    <li ng-repeat="(key, item) in info" class="{{key == 0 ? 'active' : ''}}">
+                      <a href="#tab_{{item.id}}_popup" data-toggle="tab">{{item.name}}</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content content-text">
+                    <div ng-repeat="(key, item) in info" id="tab_{{item.id}}_popup"
+                      class="{{key == 0 ? 'active' : '' + item.slug == 'huong-dan' ? 'scroll-content' : ''}} tab-pane">
+                      <div ng-bind-html="item.description" class="policy-content"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <galaxy-dialog></galaxy-dialog> -->
+  <script src="customjs-min/lazyload.js" async></script>
+  <script>
+    window.lazyLoadOptions = {
+      img: ".lazy",
+    };
+  </script>
+  <!--include ../popup/dialog-->
+  <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+  <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+  <script src="../www.gstatic.com/firebasejs/8.10.0/firebase-app-check.js"></script>
+  <script src="js/axios.min.js"></script>
+  <script src="js/lodash-merge.js"></script>
+  <script src="customjs-min/firebase-setup.js"></script>
+  <script src="js/rap-gia-ve.js"></script>
+</body>
+<!-- Mirrored from www.galaxycine.vn/rap-gia-ve by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 15:56:36 GMT -->
+
 </html>
