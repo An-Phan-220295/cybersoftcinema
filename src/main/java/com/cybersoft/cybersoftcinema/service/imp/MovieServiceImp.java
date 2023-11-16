@@ -1,6 +1,9 @@
 package com.cybersoft.cybersoftcinema.service.imp;
 
+import com.cybersoft.cybersoftcinema.entity.PersonEntity;
 import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
+import com.cybersoft.cybersoftcinema.payload.response.MovieTypeResponse;
+import com.cybersoft.cybersoftcinema.payload.response.PersonResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -21,4 +24,10 @@ public interface MovieServiceImp {
     List<MovieResponse> getAllShowingMoviePoster();
 
     List<MovieResponse> getAllUpcomingMoviePoster();
+
+    List<MovieResponse> getAllMovie() throws IOException;
+
+    List<MovieTypeResponse> getAllMovieType();
+
+    List<PersonResponse> getAllPerson();
 }

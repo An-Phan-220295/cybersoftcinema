@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-    <title>Pixel Admin</title>
+    <title>Movie Admin</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -134,50 +134,134 @@
                         <div class="white-box">
                             <form class="form-horizontal form-material">
                                 <div class="form-group">
-                                    <label class="col-md-12">Dự án</label>
+                                    <label class="col-md-12">Status</label>
                                     <div class="col-md-12">
                                         <select class="form-control form-control-line">
-                                            <option>Dự án CRM</option>
-                                            <option>Dự án Elearning</option>
-                                            <option>Dự án Rạp chiếu phim</option>
+                                            <option status-id="1">Sắp chiếu</option>
+                                            <option status-id="2">Đang chiếu</option>
+                                            <option status-id="3">Đã chiếu</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Tên công việc</label>
+                                    <label class="col-md-12">Image</label>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="Tên công việc"
+                                        <input type="text" placeholder="insert poster"
+                                            class="form-control form-control-line"> 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Movie Name</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Movie Name"
                                             class="form-control form-control-line">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Người thực hiện</label>
+                                    <label class="col-md-12">Rating</label>
                                     <div class="col-md-12">
-                                        <select class="form-control form-control-line">
-                                            <option>Nguyễn Văn Tèo</option>
-                                            <option>Trần Thị Lan</option>
-                                            <option>Cao Ngọc Hiếu</option>
+                                        <input type="text" placeholder="Rating"
+                                            class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Require Age</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Require Age"
+                                            class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Duration</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Duration"
+                                            class="form-control form-control-line">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Movie Type</label>
+                                    <div class="col-md-12">
+                                        <select multiple size="5" class="form-control form-control-line"
+                                        id="movieType">
+                                            <!-- <option>Chiến tranh</option>
+                                            <option>Gia đình 1</option>
+                                            <option>Gia đình 2</option>
+                                            <option>Gia đình 3</option>
+                                            <option>Gia đình 4</option>
+                                            <option>Gia đình 5</option> -->
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Ngày bắt đầu</label>
+                                    <label class="col-md-12">Director</label>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="dd/MM/yyyy"
+                                        <select multiple size="5" class="form-control form-control-line">
+                                            <option>Chiến tranh</option>
+                                            <option>Gia đình 1</option>
+                                            <option>Gia đình 2</option>
+                                            <option>Gia đình 3</option>
+                                            <option>Gia đình 4</option>
+                                            <option>Gia đình 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Cast</label>
+                                    <div class="col-md-12">
+                                        <select multiple size="5" class="form-control form-control-line">
+                                            <option>Chiến tranh</option>
+                                            <option>Gia đình 1</option>
+                                            <option>Gia đình 2</option>
+                                            <option>Gia đình 3</option>
+                                            <option>Gia đình 4</option>
+                                            <option>Gia đình 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Producer</label>
+                                    <div class="col-md-12">
+                                        <select multiple size="5" class="form-control form-control-line">
+                                            <option>Chiến tranh</option>
+                                            <option>Gia đình 1</option>
+                                            <option>Gia đình 2</option>
+                                            <option>Gia đình 3</option>
+                                            <option>Gia đình 4</option>
+                                            <option>Gia đình 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Country</label>
+                                    <div class="col-md-12">
+                                        <select class="form-control form-control-line">
+                                            <option>Chiến tranh</option>
+                                            <option>Gia đình 1</option>
+                                            <option>Gia đình 2</option>
+                                            <option>Gia đình 3</option>
+                                            <option>Gia đình 4</option>
+                                            <option>Gia đình 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Release Date</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="dd-MM-yyyy"
                                             class="form-control form-control-line"> 
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Ngày kết thúc</label>
+                                    <label class="col-md-12">Content</label>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="dd/MM/yyyy"
-                                            class="form-control form-control-line"> 
+                                        <textarea id="w3review" name="w3review" rows="5" cols="80"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-success">Lưu lại</button>
-                                        <a href="task.html" class="btn btn-primary">Quay lại</a>
+                                    <label class="col-md-12">Trailer</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="youtube trailer link"
+                                            class="form-control form-control-line">
                                     </div>
                                 </div>
                             </form>
@@ -205,6 +289,7 @@
     <script src="js/waves.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
+    <script src="js/movie-add.js"></script>
 </body>
 
 </html>

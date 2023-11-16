@@ -6,13 +6,14 @@ import com.cybersoft.cybersoftcinema.entity.MovieEntity;
 import com.cybersoft.cybersoftcinema.entity.MoviePersonProducerMovieTypeEntity;
 import com.cybersoft.cybersoftcinema.entity.MovieStatusEntity;
 import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
+import com.cybersoft.cybersoftcinema.payload.response.MovieTypeResponse;
+import com.cybersoft.cybersoftcinema.payload.response.PersonResponse;
 import com.cybersoft.cybersoftcinema.payload.response.QuickBuyMovieResponse;
-import com.cybersoft.cybersoftcinema.repository.MoviePersonProducerMovieTypeRepository;
-import com.cybersoft.cybersoftcinema.repository.MovieRepository;
-import com.cybersoft.cybersoftcinema.repository.MovieTheaterShowRepository;
+import com.cybersoft.cybersoftcinema.repository.*;
 import com.cybersoft.cybersoftcinema.service.imp.MovieServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -25,6 +26,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,12 +38,14 @@ public class MovieService implements MovieServiceImp {
 
     @Autowired
     private MovieRepository movieRepository;
-
     @Autowired
     private MoviePersonProducerMovieTypeRepository moviePersonProducerMovieTypeRepository;
-
     @Autowired
     private MovieTheaterShowRepository movieTheaterShowRepository;
+    @Autowired
+    private MovieTypeRepository movieTypeRepository;
+    @Autowired
+    private PersonRepository personRepository;
 
     @Override
     public boolean insertMovie(String name, int requireAge, int duration, int idCountry, Date releaseDate,
@@ -246,4 +250,97 @@ public class MovieService implements MovieServiceImp {
         return list;
     }
 
+    @Override
+    public List<MovieResponse> getAllMovie() throws IOException {
+        List<MovieResponse> list = new ArrayList<>();
+
+        List<MoviePersonProducerMovieTypeEntity> moviePersonProducerMovieTypeEntities = moviePersonProducerMovieTypeRepository.findAllMovie();
+
+        MovieResponse movieResponse = null;
+        int currentIdMovie=0;
+
+        for (MoviePersonProducerMovieTypeEntity data : moviePersonProducerMovieTypeEntities) {
+                if (data.getMovieEntity().getId()!= currentIdMovie) {
+                    movieResponse = null;
+                }
+                if (movieResponse == null) {
+                    movieResponse = new MovieResponse();
+                    movieResponse.setId(data.getMovieEntity().getId());
+                    movieResponse.setName(data.getMovieEntity().getName());
+                    movieResponse.setRating(data.getMovieEntity().getRating());
+                    movieResponse.setRequireAge(data.getMovieEntity().getRequiredAge());
+                    movieResponse.setDuration(data.getMovieEntity().getDuration());
+                    movieResponse.setReleaseDate(data.getMovieEntity().getReleaseDate());
+                    movieResponse.setContent(data.getMovieEntity().getContent());
+
+                    movieResponse.setMovieType(new ArrayList<>());
+                    movieResponse.setDirector(new ArrayList<>());
+                    movieResponse.setCast(new ArrayList<>());
+                    movieResponse.setProducer(new ArrayList<>());
+
+                    movieResponse.setCountry(data.getMovieEntity().getCountryEntity().getName());
+                    movieResponse.setMovieStatus(data.getMovieEntity().getMovieStatusEntity().getName());
+                    movieResponse.setTrailer(data.getMovieEntity().getTrailer());
+
+                    movieResponse.setImage(ServletUriComponentsBuilder.fromCurrentContextPath()
+                            .path("/movie/image/") // get http://localhost:8080/movie/image/
+                            .path(data.getMovieEntity().getImages()) //get image name
+                            .toUriString()); // convert to String
+                    list.add(movieResponse);
+                    currentIdMovie = data.getMovieEntity().getId();
+                }
+                if (data.getPersonEntity().getPersonTypeEntity().getName().equals("Director")) {
+                    if (!movieResponse.getDirector().contains(data.getPersonEntity().getName())) {
+                        movieResponse.getDirector().add(data.getPersonEntity().getName());
+                    }
+                }
+                if (data.getPersonEntity().getPersonTypeEntity().getName().equals("Actor")) {
+                    if (!movieResponse.getCast().contains(data.getPersonEntity().getName())) {
+                        movieResponse.getCast().add(data.getPersonEntity().getName());
+                    }
+                }
+                if (!movieResponse.getMovieType().contains(data.getMovieTypeEntity().getName())) {
+                    movieResponse.getMovieType().add(data.getMovieTypeEntity().getName());
+                }
+                if (!movieResponse.getProducer().contains(data.getProducerEntity().getName())) {
+                    movieResponse.getProducer().add(data.getProducerEntity().getName());
+                }
+        }
+        return list;
+    }
+
+    @Override
+    public List<MovieTypeResponse> getAllMovieType() {
+        List<MovieTypeResponse> list = new ArrayList<>();
+        List<MovieTypeEntity> movieEntityList =  movieTypeRepository.findAll();
+        for (MovieTypeEntity data : movieEntityList) {
+            MovieTypeResponse movieTypeResponse = new MovieTypeResponse();
+            movieTypeResponse.setId(data.getId());
+            movieTypeResponse.setName(data.getName());
+            list.add(movieTypeResponse);
+        }
+        return list;
+    }
+
+    @Override
+    public List<PersonResponse> getAllPerson() {
+        List<PersonResponse> list = new ArrayList<>();
+        List<PersonEntity> personEntityList = personRepository.findAll();
+        for (PersonEntity data : personEntityList) {
+            PersonResponse personResponse = new PersonResponse();
+            personResponse.setId(data.getId());
+            personResponse.setPersonType(data.getPersonTypeEntity().getName());
+            personResponse.setName(data.getName());
+            personResponse.setDob(data.getDob());
+            personResponse.setCountry(data.getCountryEntity().getName());
+            personResponse.setPicture(ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/movie/image/") // get http://localhost:8080/movie/image/
+                    .path(data.getPicture()) //get image name
+                    .toUriString()); // convert to String
+            personResponse.setStory(data.getStory());
+
+            list.add(personResponse);
+        }
+        return list;
+    }
 }
