@@ -232,7 +232,7 @@ $(document).ready(function () {
 //Display information which doesn't have detail url
 function arrayDisplay(array) {
   var d = "";
-  if (array.length === 0) {
+  if (array.length === 0 || array[0] == "N/A") {
     return (d = "Đang cập nhật");
   } else {
     array.forEach((item) => {
@@ -249,7 +249,7 @@ function arrayDisplay(array) {
 //Display information which have detail url (actor, director)
 function arrayDisplayWithUrl(array) {
   var d = "";
-  if (array.length === 0) {
+  if (array.length === 0 || array[0] == "N/A") {
     return (d = "Đang cập nhật");
   } else {
     array.forEach((item) => {

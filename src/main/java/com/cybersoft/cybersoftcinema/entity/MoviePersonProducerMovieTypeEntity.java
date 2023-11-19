@@ -26,6 +26,11 @@ public class MoviePersonProducerMovieTypeEntity {
     @JoinColumn(name = "idMovietype", insertable = false, updatable = false)
     private MovieTypeEntity movieTypeEntity;
 
+    public MoviePersonProducerMovieTypeEntity(MoviePersonProducerMovieTypeKey moviePersonProducerMovieTypeKey) {
+        this.moviePersonProducerMovieTypeKey = moviePersonProducerMovieTypeKey;
+    }
+    public MoviePersonProducerMovieTypeEntity() {}
+
     public MoviePersonProducerMovieTypeKey getMoviePersonProducerMovieTypeKey() {
         return moviePersonProducerMovieTypeKey;
     }

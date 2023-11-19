@@ -1,9 +1,8 @@
 package com.cybersoft.cybersoftcinema.controller;
 
 import com.cybersoft.cybersoftcinema.payload.BaseResponse;
-import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
-import com.cybersoft.cybersoftcinema.payload.response.MovieTypeResponse;
-import com.cybersoft.cybersoftcinema.payload.response.PersonResponse;
+import com.cybersoft.cybersoftcinema.payload.request.MovieRequest;
+import com.cybersoft.cybersoftcinema.payload.response.*;
 import com.cybersoft.cybersoftcinema.service.imp.MovieServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,20 +24,32 @@ public class MovieController {
     @Autowired
     private MovieServiceImp movieServiceImp;
 
-    @PostMapping("")
-    public ResponseEntity<?> insertMovie(@RequestParam String name, @RequestParam int requireAge, @RequestParam int duration,
-                                         @RequestParam int idCountry, @RequestParam Date releaseDate,
-                                         @RequestParam String content, @RequestParam MultipartFile file,
-                                         @RequestParam int idMovieStatus) throws IOException {
-        boolean isSuccess = movieServiceImp.insertMovie(name, requireAge, duration, idCountry, releaseDate, content, file, idMovieStatus);
+//    @PostMapping("")
+//    public ResponseEntity<?> insertMovie(@RequestParam String name, @RequestParam int requireAge, @RequestParam int duration,
+//                                         @RequestParam int idCountry, @RequestParam Date releaseDate,
+//                                         @RequestParam String content, @RequestParam MultipartFile file,
+//                                         @RequestParam int idMovieStatus) throws IOException {
+//        boolean isSuccess = movieServiceImp.insertMovie(name, requireAge, duration, idCountry, releaseDate, content, file, idMovieStatus);
+//
+//        BaseResponse baseResponse = new BaseResponse();
+//        baseResponse.setStatusCode(200);
+//        baseResponse.setMessage("Inserted Image");
+//        baseResponse.setData(isSuccess);
+//
+//        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
+//    }
 
-        BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setStatusCode(200);
-        baseResponse.setMessage("Inserted Image");
-        baseResponse.setData(isSuccess);
-
-        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
-    }
+//    @PostMapping("")
+//    public ResponseEntity<?> insertMovie(@RequestBody MovieRequest movieRequest) throws IOException {
+//        boolean isSuccess = movieServiceImp.insertMovie(movieRequest);
+//
+//        BaseResponse baseResponse = new BaseResponse();
+//        baseResponse.setStatusCode(200);
+//        baseResponse.setMessage("Inserted Movie");
+//        baseResponse.setData(isSuccess);
+//
+//        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
+//    }
 
     @GetMapping("")
     public ResponseEntity<?> getMovie(@RequestParam int idMovie) throws IOException {
@@ -61,39 +72,5 @@ public class MovieController {
         return new ResponseEntity<>(image, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/admin")
-    public ResponseEntity<?> getAllMovie () throws IOException {
-        List<MovieResponse> list = movieServiceImp.getAllMovie();
 
-        BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setStatusCode(200);
-        baseResponse.setMessage("Success");
-        baseResponse.setData(list);
-
-        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
-    }
-
-    @GetMapping("/type")
-    public ResponseEntity<?> getAllMovieType () {
-        List<MovieTypeResponse> list = movieServiceImp.getAllMovieType();
-
-        BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setStatusCode(200);
-        baseResponse.setMessage("Success");
-        baseResponse.setData(list);
-
-        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
-    }
-
-    @GetMapping("/person")
-    public ResponseEntity<?> getAllPerson () {
-        List<PersonResponse> list = movieServiceImp.getAllPerson();
-
-        BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setStatusCode(200);
-        baseResponse.setMessage("Success");
-        baseResponse.setData(list);
-
-        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
-    }
 }

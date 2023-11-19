@@ -1,9 +1,9 @@
 package com.cybersoft.cybersoftcinema.service.imp;
 
 import com.cybersoft.cybersoftcinema.entity.PersonEntity;
-import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
-import com.cybersoft.cybersoftcinema.payload.response.MovieTypeResponse;
-import com.cybersoft.cybersoftcinema.payload.response.PersonResponse;
+import com.cybersoft.cybersoftcinema.entity.ProducerEntity;
+import com.cybersoft.cybersoftcinema.payload.request.MovieRequest;
+import com.cybersoft.cybersoftcinema.payload.response.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -12,8 +12,13 @@ import java.util.List;
 
 public interface MovieServiceImp {
 
-    boolean insertMovie(String name, int requireAge, int duration, int idCountry, Date releaseDate, String content,
-                        MultipartFile file, int idMovieStatus) throws IOException;
+//    boolean insertMovie(String name, int requireAge, int duration, int idCountry, Date releaseDate, String content,
+//                        MultipartFile file, int idMovieStatus) throws IOException;
+
+    boolean insertMovie(int idStatus, MultipartFile image, String name, int rating,
+                        int requireAge, int duration, int[] idMovieType,
+                        int[] idPerson, int[] idProducer, int idCountry,
+                        Date releaseDate, String content, String trailer) throws IOException;
 
     byte[] getMovieImage(String imageName) throws IOException;
 
@@ -29,5 +34,12 @@ public interface MovieServiceImp {
 
     List<MovieTypeResponse> getAllMovieType();
 
-    List<PersonResponse> getAllPerson();
+    List<PersonResponse> getAllPerson() ;
+
+    List<ProducerResponse> getAllProducer();
+
+    List<CountryResponse> getAllCountry();
+
+    List<MovieStatusResponse> getAllMovieStatus();
+
 }
