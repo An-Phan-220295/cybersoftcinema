@@ -59,12 +59,19 @@ public class LoginController {
             signInResponse.setToken(token);
             System.out.println(jwtHelper.parserToken(token));
 
-            baseResponse.setStatusCode(200);
-            baseResponse.setMessage("Đăng nhập thành công");
-            baseResponse.setData(signInResponse);
+            if (jwtHelper.parserToken(token).contains("ROLE_USER")) {
+                baseResponse.setStatusCode(200);
+                baseResponse.setMessage("user");
+                baseResponse.setData(signInResponse);
+            }
+            else {
+                baseResponse.setStatusCode(200);
+                baseResponse.setMessage("other");
+                baseResponse.setData(signInResponse);
+            }
 
             logger.info(("Response Signin: " + baseResponse.getMessage()));
-        }catch (Exception e) {
+        } catch (Exception e) {
             baseResponse.setStatusCode(403);
             baseResponse.setMessage("Đăng nhập thất bại");
             baseResponse.setData("");

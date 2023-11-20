@@ -1,7 +1,8 @@
 package com.cybersoft.cybersoftcinema.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.List;
 
 @Entity(name = "person")

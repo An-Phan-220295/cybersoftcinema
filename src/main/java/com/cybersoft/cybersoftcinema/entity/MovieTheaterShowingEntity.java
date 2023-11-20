@@ -1,6 +1,7 @@
 package com.cybersoft.cybersoftcinema.entity;
 
 import com.cybersoft.cybersoftcinema.entity.compositeKey.MovieTheaterShowingKey;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;

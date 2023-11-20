@@ -18,22 +18,22 @@ $(document).ready(function () {
       <p class="d-inline" style="font-size: xx-large">
         👤
       </p>
-      <p class="ms-3" style="font-size: xx-large">
+      <p class="ms-1" style="font-size: x-large">
         ${item.fullName}
       </p>
     </div>
     <div class="row">
-      <div class="col-3">
-        <p>- Email:</p>
-        <p>- Phone:</p>
-        <p>- Giới Tính:</p>
-        <p>- DOB:</p>
+      <div class="col-3"  style="padding:0" >
+        <p style="font-size: 15px">- Email:</p>
+        <p style="font-size: 15px">- Phone:</p>
+        <p style="font-size: 15px">- Gender:</p>
+        <p style="font-size: 15px">- DOB:</p>
       </div>
-      <div class="col-9">
-        <p>${item.email}</p>
-        <p>${item.phoneNumber}</p>
-        <p>${item.gender}</p>
-        <p>${formatDate(item.dob)}</p>
+      <div class="col-9"  style="padding:0 !important">
+        <p style="font-size: 15px">${item.email}</p>
+        <p style="font-size: 15px">${item.phoneNumber}</p>
+        <p style="font-size: 15px">${item.gender}</p>
+        <p style="font-size: 15px">${formatDate(item.dob)}</p>
       </div>
     </div>
   </div>`;
@@ -71,10 +71,10 @@ $(document).ready(function () {
         <div class="row">
           <div class="col-12">
             <div class="row">
-              <div class="col-2">
+              <div class="col-3">
                 <p style="font-size: medium">Tên phim:</p>
               </div>
-              <div class="col-10">
+              <div class="col-9"">
                 <p style="font-size: large">
                   <strong>${item.movieName}</strong>
                 </p>
@@ -93,9 +93,11 @@ $(document).ready(function () {
           </div>
           <div class="col-7">
             <div class="row">
-              <div class="col-4"><p>Ngày chiếu:</p></div>
+              <div class="col-5"><p>Ngày chiếu:</p></div>
               <div class="col-7">
-                <strong>${formatDate(item.showingDate)}</strong>
+                <strong>${getDayOfWeek(item.showingDate)},${formatDate(
+        item.showingDate
+      )}</strong>
               </div>
             </div>
           </div>
@@ -179,4 +181,17 @@ function checkCookie() {
     document.getElementById("user-info").classList.remove("hidden");
     document.getElementById("user-name").textContent = getCookie("userName");
   }
+}
+function getDayOfWeek(date) {
+  const weekday = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+  const d = new Date(date);
+  return weekday[d.getDay()];
 }

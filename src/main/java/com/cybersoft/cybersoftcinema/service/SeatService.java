@@ -3,6 +3,7 @@ package com.cybersoft.cybersoftcinema.service;
 import com.cybersoft.cybersoftcinema.entity.*;
 import com.cybersoft.cybersoftcinema.payload.request.SeatInfoRequest;
 import com.cybersoft.cybersoftcinema.payload.request.TicketRequest;
+import com.cybersoft.cybersoftcinema.payload.response.AdminUserDetailResponse;
 import com.cybersoft.cybersoftcinema.payload.response.SeatUnavailableResponse;
 import com.cybersoft.cybersoftcinema.payload.response.TicketInfoResponse;
 import com.cybersoft.cybersoftcinema.repository.SeatRepository;
@@ -143,4 +144,33 @@ public class SeatService implements SeatServiceImp {
         return ticketInfoResponseList;
     }
 
+    @Override
+    public List<AdminUserDetailResponse> findSeatById(int userId) {
+        List<SeatEntity> seatEntityList = seatRepository.findTicketByIdUser(userId);
+        List<AdminUserDetailResponse> list = new ArrayList<>();
+        for (SeatEntity data:seatEntityList) {
+            AdminUserDetailResponse adminUserDetailResponse = new AdminUserDetailResponse();
+            adminUserDetailResponse.setMovieName(data.getMovieEntity().getName());
+            adminUserDetailResponse.setTheaterName(data.getTheaterEntity().getName());
+            adminUserDetailResponse.setShowingDate(data.getShowingEntity().getShowingDate());
+            adminUserDetailResponse.setShowingTime(data.getShowingEntity().getStartTime());
+            adminUserDetailResponse.setSeatNumber(data.getSeatNumber());
+            adminUserDetailResponse.setPrice(data.getPriceEntity().getPrice());
+            list.add(adminUserDetailResponse);
+        }
+        return list;
+    }
+
+    @Override
+    public List<SeatUnavailableResponse> findUnavalableSeat(int movieId,int theaterId,int showingId) {
+        List<SeatUnavailableResponse> list = new ArrayList<>();
+        List<SeatEntity> seatEntity = seatRepository.findUnavalableSeat(movieId,theaterId,showingId);
+
+        for (SeatEntity data : seatEntity) {
+            SeatUnavailableResponse seatUnavailableResponse = new SeatUnavailableResponse();
+            seatUnavailableResponse.setSeatNumber(data.getSeatNumber());
+            list.add(seatUnavailableResponse);
+        }
+        return list;
+    }
 }

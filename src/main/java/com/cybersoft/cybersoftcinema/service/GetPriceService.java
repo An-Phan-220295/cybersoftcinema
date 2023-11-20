@@ -78,4 +78,10 @@ public class GetPriceService implements GetPriceServiceImp {
 
         return priceResponse;
     }
+
+    @Override
+    public long countSeatSold(int movieId, int theaterId, int showingId, int seatTypeId) {
+        long result = priceRepository.countSeatSold(movieId, theaterId, showingId, seatTypeId);
+        return result;
+    }
 }

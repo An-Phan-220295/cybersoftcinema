@@ -5,6 +5,7 @@ import com.cybersoft.cybersoftcinema.provider.CustomAuthenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -44,19 +45,45 @@ public class SecurityConfig {
                 .authenticationProvider(customAuthenProvider).build();
     }
 
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+//        return httpSecurity.csrf().disable()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authorizeHttpRequests()
+//                .antMatchers("/user/**").hasRole("USER")
+//                .antMatchers("/ticket/**").hasRole("USER")
+//                .antMatchers("/admin/cinema/**").hasRole("ADMIN")
+//                .anyRequest().permitAll()
+//                .and().addFilterBefore(new CorsFilter(corsConfigurationSource()), ChannelProcessingFilter.class)
+//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+//                .build();
+//    }
+//
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500"));
+//        configuration.setAllowedMethods(Arrays.asList("*"));
+//        configuration.setAllowedHeaders(Arrays.asList("*"));
+//        configuration.setAllowCredentials(true);
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
+
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.csrf().disable()
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        return http.csrf().disable()//Tắt tần công theo kiểu cross-site(gọi link theo nhiều trình duyệt khác nhau)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/ticket/**").hasRole("USER")
-//                .antMatchers("/login/**").permitAll()
-//                .antMatchers("/movie/**").hasRole("ADMIN")
-//                .anyRequest().authenticated()
-                .anyRequest().permitAll()
-                .and().addFilterBefore(new CorsFilter(corsConfigurationSource()), ChannelProcessingFilter.class)
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().permitAll() //Tất cả các link còn lại đều phải chứng thực
+                .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
@@ -64,13 +91,11 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:5500"));
-        configuration.setAllowedMethods(Arrays.asList("*"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowCredentials(true);
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 }

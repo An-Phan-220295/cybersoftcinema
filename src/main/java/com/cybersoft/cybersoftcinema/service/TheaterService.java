@@ -3,6 +3,7 @@ package com.cybersoft.cybersoftcinema.service;
 import com.cybersoft.cybersoftcinema.entity.MovieEntity;
 import com.cybersoft.cybersoftcinema.entity.ShowingEntity;
 import com.cybersoft.cybersoftcinema.entity.TheaterEntity;
+import com.cybersoft.cybersoftcinema.payload.request.AdminTheaterRequest;
 import com.cybersoft.cybersoftcinema.payload.response.MovieResponse;
 import com.cybersoft.cybersoftcinema.payload.response.QuickBuyMovieResponse;
 import com.cybersoft.cybersoftcinema.payload.response.ShowResponse;
@@ -76,4 +77,51 @@ public class TheaterService implements TheaterServiceImp {
         }
         return list;
     }
+
+    @Override
+    public boolean insertTheater(AdminTheaterRequest adminTheaterRequest) {
+        TheaterEntity theaterEntity = new TheaterEntity();
+        theaterEntity.setName(adminTheaterRequest.getName());
+        theaterEntity.setAddress(adminTheaterRequest.getAddress());
+        theaterEntity.setContent(adminTheaterRequest.getContent());
+        boolean isSuccess = false;
+        try {
+            theaterRepository.save(theaterEntity);
+            isSuccess = true;
+        }catch (Exception e){
+            System.out.println("Thêm thất bại");
+        }
+        return isSuccess;
+    }
+
+    @Override
+    public boolean deleteTheaterbyId(int theaterId) {
+        boolean isSuccess = false;
+        try {
+            theaterRepository.deleteById(theaterId);
+            isSuccess = true;
+        }catch (Exception e){
+            System.out.println("Thêm thất bại");
+        }
+        return isSuccess;
+    }
+
+    @Override
+    public boolean updateTheater(AdminTheaterRequest adminTheaterRequest) {
+        boolean isSuccess = false;
+        TheaterEntity theaterEntity = new TheaterEntity();
+        theaterEntity.setId(adminTheaterRequest.getId());
+        theaterEntity.setName(adminTheaterRequest.getName());
+        theaterEntity.setAddress(adminTheaterRequest.getAddress());
+        theaterEntity.setContent(adminTheaterRequest.getContent());
+        try {
+            theaterRepository.save(theaterEntity);
+            isSuccess = true;
+        }catch (Exception e){
+            System.out.println("Update thất bại");
+        }
+        return isSuccess;
+    }
+
+
 }
