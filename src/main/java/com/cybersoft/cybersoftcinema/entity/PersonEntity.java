@@ -1,6 +1,7 @@
 package com.cybersoft.cybersoftcinema.entity;
 
 import javax.persistence.*;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class PersonEntity {
     private String picture;
 
     @Column(name = "dob")
-    private java.sql.Date dob;
+    private Date dob;
 
     @Column(name = "story")
     private String story;

@@ -4,7 +4,7 @@ $(document).ready(function () {
     method: "get",
     url: "http://localhost:8080/index/poster",
   }).done(function (result) {
-    var div = document.createElement('div');
+    var div = document.createElement("div");
     let htmlAdd = "";
     let htmlData = result.data;
     htmlData.forEach((item, index) => {
@@ -43,7 +43,7 @@ $(document).ready(function () {
     method: "get",
     url: "http://localhost:8080/index/upcomingmovie",
   }).done(function (result) {
-    var div = document.createElement('div');
+    var div = document.createElement("div");
     let htmlAdd = "";
     let htmlData = result.data;
     htmlData.forEach((item, index) => {
@@ -79,7 +79,7 @@ $(document).ready(function () {
   });
 });
 // Leads to "dat-ve" page when when click "mua vé" button
-$(document).on('click', '#btn-movie', function () {
+$(document).on("click", "#btn-movie", function () {
   var name = $(this).attr("movieName");
   var id = $(this).attr("idMovie");
   window.location = `dat-ve.html?id=${id}&name=${name}`;

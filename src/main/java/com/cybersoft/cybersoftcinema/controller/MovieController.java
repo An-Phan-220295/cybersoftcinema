@@ -4,6 +4,7 @@ import com.cybersoft.cybersoftcinema.payload.BaseResponse;
 import com.cybersoft.cybersoftcinema.payload.request.MovieRequest;
 import com.cybersoft.cybersoftcinema.payload.response.*;
 import com.cybersoft.cybersoftcinema.service.imp.MovieServiceImp;
+import com.cybersoft.cybersoftcinema.service.imp.PersonServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -66,6 +67,17 @@ public class MovieController {
     @GetMapping("/image/{imageName}")
     public ResponseEntity<?> getMoviePoster (@PathVariable String imageName) throws IOException {
         byte[] image = movieServiceImp.getMovieImage(imageName);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+        return new ResponseEntity<>(image, headers, HttpStatus.OK);
+    }
+    @Autowired
+    private PersonServiceImp personServiceImp;
+
+    @GetMapping("/person/image/{imageName}")
+    public ResponseEntity<?> getPersonPicture(@PathVariable String imageName) throws IOException {
+        byte[] image = personServiceImp.getPersonImage(imageName);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_PNG);
 

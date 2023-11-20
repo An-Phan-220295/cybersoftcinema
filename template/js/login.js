@@ -13,14 +13,20 @@ $(document).on("click", "#btn-sign-in", function () {
     contentType: "application/json; charset=utf-8",
   }).done(function (result) {
     console.log(result);
-    if (result.message === "Đăng nhập thành công") {
+    if (result.message == "user") {
       setCookie("access-token", result.data.token);
       setCookie("userId", result.data.userId);
       setCookie("userName", result.data.email);
-      closeModal();
+      setCookie("role", user);
       alert("Đăng nhập thành công");
-
       location.reload();
+    } else if (result.message == "other") {
+      setCookie("access-token", result.data.token);
+      setCookie("userId", result.data.userId);
+      setCookie("userName", result.data.email);
+      alert("Đăng nhập thành công");
+      setCookie("role", user);
+      window.location.href = "/template/admin panel/index.html";
     } else {
       alert("Sign-in failed");
     }
@@ -82,6 +88,7 @@ function checkCookie() {
     loginLink.style.display = "none";
     document.getElementById("user-info").classList.remove("hidden");
     document.getElementById("user-name").textContent = getCookie("userName");
+    localStorage.removeItem("ticketdetail");
   }
 }
 
