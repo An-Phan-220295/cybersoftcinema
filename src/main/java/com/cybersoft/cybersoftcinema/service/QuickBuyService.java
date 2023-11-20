@@ -143,4 +143,19 @@ public class QuickBuyService implements QuickBuyServiceImp {
         return list;
     }
 
+    @Override
+    public List<QuickBuyMovieResponse> getShowingByMovieAndTheater(int movieId, int theaterId) {
+        List<ShowingEntity> showingEntityList = movieTheaterShowRepository.findShowingByMovieAndTheater(movieId, theaterId);
+
+        List<QuickBuyMovieResponse> list = new ArrayList<>();
+        for (ShowingEntity data : showingEntityList) {
+            QuickBuyMovieResponse movieResponse = new QuickBuyMovieResponse();
+            movieResponse.setShowingId(data.getId());
+            movieResponse.setShowingDate(data.getShowingDate());
+            movieResponse.setShowingTime(data.getStartTime());
+            list.add(movieResponse);
+        }
+        return list;
+    }
+
 }

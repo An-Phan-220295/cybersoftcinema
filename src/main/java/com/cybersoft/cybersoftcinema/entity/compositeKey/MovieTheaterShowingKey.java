@@ -38,4 +38,11 @@ public class MovieTheaterShowingKey implements Serializable {
     public void setIdShowing(int idShowing) {
         this.idShowing = idShowing;
     }
+
+    public MovieTheaterShowingKey(int idMovie, int idTheater, int idShowing) {
+        this.idMovie = idMovie;
+        this.idTheater = idTheater;
+        this.idShowing = idShowing;
+    }
+    public MovieTheaterShowingKey() {}
 }

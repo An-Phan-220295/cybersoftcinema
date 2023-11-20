@@ -15,4 +15,5 @@ public interface QuickBuyServiceImp {
     List<QuickBuyMovieResponse> getMovieByDateAndTheater(Date showingDate,int theaterId);
     List<QuickBuyMovieResponse> getAllTheater();
     List<QuickBuyMovieResponse> findMovieByTheater(int theaterId);
+    List<QuickBuyMovieResponse> getShowingByMovieAndTheater(int movieId, int theaterId);
 }

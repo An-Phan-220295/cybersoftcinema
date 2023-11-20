@@ -2,6 +2,7 @@ package com.cybersoft.cybersoftcinema.service;
 
 import com.cybersoft.cybersoftcinema.entity.RoleEntity;
 import com.cybersoft.cybersoftcinema.entity.UsersEntity;
+import com.cybersoft.cybersoftcinema.payload.request.AdminUserAddRequest;
 import com.cybersoft.cybersoftcinema.payload.request.SignUpRequest;
 import com.cybersoft.cybersoftcinema.repository.UserRepository;
 import com.cybersoft.cybersoftcinema.service.imp.LoginServiceImp;
@@ -64,5 +65,31 @@ public class LoginService implements LoginServiceImp {
             isExist = false;
         }
         return isExist;
+    }
+
+    @Override
+    public boolean adminInsertUser(AdminUserAddRequest adminUserAddRequest) {
+        boolean isSuccess = false;
+
+        UsersEntity usersEntity = new UsersEntity();
+        usersEntity.setFullName(adminUserAddRequest.getFullName());
+        usersEntity.setPhoneNumber(adminUserAddRequest.getPhoneNumber());
+        usersEntity.setGender(adminUserAddRequest.getGender());
+        usersEntity.setEmail(adminUserAddRequest.getEmail());
+        usersEntity.setPassword(passwordEncoder.encode(adminUserAddRequest.getPassword()));
+        usersEntity.setDob(adminUserAddRequest.getDob());
+
+        RoleEntity roleEntity = new RoleEntity();
+        roleEntity.setId(adminUserAddRequest.getIdRole());
+
+        usersEntity.setRoleEntity(roleEntity);
+
+        try {
+            userRepository.save(usersEntity);
+            isSuccess = true;
+        } catch (Exception e) {
+            System.out.println("Thêm thất bại" + e.getLocalizedMessage());
+        }
+        return isSuccess;
     }
 }
