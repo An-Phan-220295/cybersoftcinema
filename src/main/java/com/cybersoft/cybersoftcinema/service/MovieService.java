@@ -52,45 +52,6 @@ public class MovieService implements MovieServiceImp {
     @Autowired
     private MovieStatusRepository movieStatusRepository;
 
-//    @Override
-//    public boolean insertMovie(String name, int requireAge, int duration, int idCountry, Date releaseDate,
-//                               String content, MultipartFile file, int idMovieStatus) throws IOException {
-//
-//        String pathImage = rootFolder + "\\" + file.getOriginalFilename();
-//
-//        Path path = Paths.get(rootFolder);
-//        Path pathImageCopy = Paths.get(pathImage);
-//        if (!Files.exists(path)) {
-//            Files.createDirectory(path);
-//        }
-//        Files.copy(file.getInputStream(), pathImageCopy, StandardCopyOption.REPLACE_EXISTING);
-//
-//        MovieEntity movieEntity = new MovieEntity();
-//        movieEntity.setName(name);
-//        movieEntity.setRequiredAge(requireAge);
-//        movieEntity.setDuration(duration);
-//
-//        CountryEntity countryEntity = new CountryEntity();
-//        countryEntity.setId(idCountry);
-//        movieEntity.setCountryEntity(countryEntity);
-//
-//        movieEntity.setReleaseDate(releaseDate);
-//        movieEntity.setContent(content);
-//
-//        movieEntity.setImages(file.getOriginalFilename());
-//
-//        MovieStatusEntity movieStatusEntity = new MovieStatusEntity();
-//        movieStatusEntity.setId(idMovieStatus);
-//        movieEntity.setMovieStatusEntity(movieStatusEntity);
-//
-//        movieRepository.save(movieEntity);
-//        if(movieEntity != null) {
-//            System.out.println("Thêm thành công");
-//            return true;
-//        }
-//        return false;
-//    }
-
     @Override
     public boolean insertMovie(int idStatus, MultipartFile image, String name, int rating,
                                int requireAge, int duration, int[] idMovieType,
@@ -155,9 +116,76 @@ public class MovieService implements MovieServiceImp {
                 }
             }
         }
-//        }
-
         if (movieEntity != null) {
+            System.out.println("Thêm thành công");
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean editMovie(int id, int idStatus, MultipartFile image, String name, int rating, int requireAge,
+                             int duration, int[] idMovieType, int[] idPerson, int[] idProducer, int idCountry,
+                             Date releaseDate, String content, String trailer) throws IOException {
+
+        String pathImage = rootFolder + "\\" + image.getOriginalFilename();
+        Path pathImageCopy = Paths.get(pathImage);
+        Files.copy(image.getInputStream(), pathImageCopy, StandardCopyOption.REPLACE_EXISTING);
+
+        MovieEntity movieEntity = new MovieEntity();
+        movieEntity.setId(id);
+        movieEntity.setName(name);
+        movieEntity.setRating(rating);
+        movieEntity.setRequiredAge(requireAge);
+        movieEntity.setDuration(duration);
+        movieEntity.setReleaseDate(releaseDate);
+        movieEntity.setContent(content);
+        movieEntity.setImages(image.getOriginalFilename());
+        movieEntity.setTrailer(trailer);
+
+        CountryEntity countryEntity = new CountryEntity();
+        countryEntity.setId(idCountry);
+        movieEntity.setCountryEntity(countryEntity);
+
+        MovieStatusEntity movieStatusEntity = new MovieStatusEntity();
+        movieStatusEntity.setId(idStatus);
+        movieEntity.setMovieStatusEntity(movieStatusEntity);
+
+        movieRepository.save(movieEntity);
+        moviePersonProducerMovieTypeRepository.deleteByIdMovie(id);
+        int isDeleteSuccess = moviePersonProducerMovieTypeRepository.deleteByIdMovie(id);
+        System.out.println(isDeleteSuccess);
+
+        MoviePersonProducerMovieTypeEntity moviePersonProducerMovieTypeEntity = new MoviePersonProducerMovieTypeEntity();
+        MovieEntity lastMovie = movieRepository.findFirstByOrderByIdDesc();
+        moviePersonProducerMovieTypeEntity.setMovieEntity(lastMovie);
+        System.out.println(lastMovie.getId());
+        for (int dataPerson : idPerson) {
+            PersonEntity personEntity = new PersonEntity();
+            personEntity.setId(dataPerson);
+            moviePersonProducerMovieTypeEntity.setPersonEntity(personEntity);
+            for (int dataProducer : idProducer) {
+                ProducerEntity producerEntity = new ProducerEntity();
+                producerEntity.setId(dataProducer);
+                moviePersonProducerMovieTypeEntity.setProducerEntity(producerEntity);
+                for (int dataMovieType : idMovieType) {
+                    MovieTypeEntity movieTypeEntity = new MovieTypeEntity();
+                    movieTypeEntity.setId(dataMovieType);
+                    moviePersonProducerMovieTypeEntity.setMovieTypeEntity(movieTypeEntity);
+
+                    MoviePersonProducerMovieTypeKey moviePersonProducerMovieTypeKey = new MoviePersonProducerMovieTypeKey();
+                    moviePersonProducerMovieTypeKey.setIdMovie(lastMovie.getId());
+                    moviePersonProducerMovieTypeKey.setIdMovieType(movieTypeEntity.getId());
+                    moviePersonProducerMovieTypeKey.setIdPerson(personEntity.getId());
+                    moviePersonProducerMovieTypeKey.setIdProducer(producerEntity.getId());
+                    moviePersonProducerMovieTypeEntity.setMoviePersonProducerMovieTypeKey(moviePersonProducerMovieTypeKey);
+
+
+                    moviePersonProducerMovieTypeRepository.save(moviePersonProducerMovieTypeEntity);
+                }
+            }
+        }
+        if (movieEntity.getName() != null && moviePersonProducerMovieTypeEntity.getMovieTypeEntity()!= null) {
             System.out.println("Thêm thành công");
             return true;
         }
@@ -191,6 +219,7 @@ public class MovieService implements MovieServiceImp {
                     movieResponse.setDuration(data.getMovieEntity().getDuration());
                     movieResponse.setReleaseDate(data.getMovieEntity().getReleaseDate());
                     movieResponse.setContent(data.getMovieEntity().getContent());
+                    movieResponse.setTrailer(data.getMovieEntity().getTrailer());
 
                     movieResponse.setMovieType(new ArrayList<>());
                     movieResponse.setDirector(new ArrayList<>());
@@ -489,5 +518,17 @@ public class MovieService implements MovieServiceImp {
             list.add(movieStatusResponse);
         }
         return list;
+    }
+
+    @Override
+    public boolean deleteMovieById(int movieId) {
+        boolean isSuccess = false;
+        try {
+            movieRepository.deleteById(movieId);
+            isSuccess = true;
+        } catch (Exception e) {
+            System.out.println("Delete failed");
+        }
+        return isSuccess;
     }
 }

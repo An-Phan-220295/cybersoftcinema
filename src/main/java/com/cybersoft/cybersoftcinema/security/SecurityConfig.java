@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/ticket/**").hasRole("USER")
 //                .antMatchers("/login/**").permitAll()
-//                .antMatchers("/movie/**").hasRole("ADMIN")
+//                .antMatchers("/admin/**").hasRole("ADMIN")
 //                .anyRequest().authenticated()
                 .anyRequest().permitAll()
                 .and().addFilterBefore(new CorsFilter(corsConfigurationSource()), ChannelProcessingFilter.class)

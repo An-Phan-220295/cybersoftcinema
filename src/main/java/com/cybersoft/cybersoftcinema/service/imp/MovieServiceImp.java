@@ -20,6 +20,11 @@ public interface MovieServiceImp {
                         int[] idPerson, int[] idProducer, int idCountry,
                         Date releaseDate, String content, String trailer) throws IOException;
 
+    boolean editMovie(int id, int idStatus, MultipartFile image, String name, int rating,
+                        int requireAge, int duration, int[] idMovieType,
+                        int[] idPerson, int[] idProducer, int idCountry,
+                        Date releaseDate, String content, String trailer) throws IOException;
+
     byte[] getMovieImage(String imageName) throws IOException;
 
     List<MovieResponse> getMovie(int idMovie) throws IOException;
@@ -42,4 +47,5 @@ public interface MovieServiceImp {
 
     List<MovieStatusResponse> getAllMovieStatus();
 
+    boolean deleteMovieById(int movieId);
 }

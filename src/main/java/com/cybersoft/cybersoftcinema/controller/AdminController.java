@@ -112,4 +112,34 @@ public class AdminController {
 
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
+
+    @PutMapping("/movie/edit")
+    public ResponseEntity<?> editMovie(int id, int idStatus, MultipartFile image, String name, int rating, int requireAge,
+                                       int duration, int[] idMovieType, int[] idPerson, int[] idProducer, int idCountry,
+                                       Date releaseDate, String content, String trailer) throws IOException {
+        boolean isSuccess = movieServiceImp.editMovie(id, idStatus, image, name, rating, requireAge, duration, idMovieType,
+                idPerson, idProducer, idCountry, releaseDate, content, trailer);
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setStatusCode(200);
+        baseResponse.setMessage("Updated Movie");
+        baseResponse.setData(isSuccess);
+
+        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/movie/delete")
+    public ResponseEntity<?> deleteMovieById(@RequestParam int movieId) {
+        boolean isSuccess = movieServiceImp.deleteMovieById(movieId);
+        BaseResponse baseResponse = new BaseResponse();
+        if (isSuccess == true) {
+            baseResponse.setStatusCode(200);
+            baseResponse.setMessage("Successfully");
+            baseResponse.setData(isSuccess);
+        } else {
+            baseResponse.setStatusCode(200);
+            baseResponse.setMessage("Fail");
+            baseResponse.setData(isSuccess);
+        }
+        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
+    }
 }

@@ -26,8 +26,8 @@ $(document).ready(function () {
                     item.producer,
                     formatContent(item.content),
                     '<div class="btn-group row">' +
-                    '<a href="#" class="btn btn-sm btn-primary" data-id="' + item.id + '" id="btn-edit">Sửa</a>' +
-                    '<a href="#" class="btn btn-sm btn-danger" data-id="' + item.id + '">Xóa</a>' +
+                    '<a href="#" class="btn btn-sm btn-primary btn-edit" data-id="' + item.id + '" >Sửa</a>' +
+                    '<a href="#" class="btn btn-sm btn-danger btn-delete" data-id="' + item.id + '">Xóa</a>' +
                     "</div>",
                 ])
                 .draw();
@@ -41,7 +41,7 @@ $(document).on('click', '#btn-add', function() {
 })
 
 //Leads to movie-edit page when click "Sửa" button
-$(document).on('click', '#btn-edit', function() {
+$(document).on('click', '.btn-edit', function() {
     var id = $(this).attr('data-id');
     document.location= `movie-edit.html?id=${id}`;
 })
@@ -59,3 +59,14 @@ function formattedDate(d) {
     var initial = String(d).split('-');
     return [initial[2], initial[1], initial[0],].join('-');
 }
+
+//Delete movie when click "Xóa" button
+$(document).on('click', '.btn-delete', function() {
+    var id = $(this).attr('data-id');
+    $.ajax({
+        method: 'delete',
+        url: `http://localhost:8080/admin/movie/delete?movieId=${id}`,
+    }).done(function(result){
+        location.reload();
+    })
+})
