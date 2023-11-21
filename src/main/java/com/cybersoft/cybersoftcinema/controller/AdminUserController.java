@@ -8,10 +8,7 @@ import com.cybersoft.cybersoftcinema.payload.response.AdminUserDetailResponse;
 import com.cybersoft.cybersoftcinema.payload.response.RoleResponse;
 import com.cybersoft.cybersoftcinema.payload.response.TicketInfoResponse;
 import com.cybersoft.cybersoftcinema.payload.response.UserInfoResponse;
-import com.cybersoft.cybersoftcinema.service.imp.LoginServiceImp;
-import com.cybersoft.cybersoftcinema.service.imp.RoleServiceImp;
-import com.cybersoft.cybersoftcinema.service.imp.SeatServiceImp;
-import com.cybersoft.cybersoftcinema.service.imp.UserServiceImp;
+import com.cybersoft.cybersoftcinema.service.imp.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -130,4 +127,5 @@ public class AdminUserController {
 
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
+
 }

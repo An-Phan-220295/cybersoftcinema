@@ -32,10 +32,19 @@ $(document).on("click", "#btn-sign-up", function () {
       console.log(data);
       if (data.message == "Đăng ký thành công") {
         alert("Đăng ký thành công, vui lòng đăng nhập!");
-        location.reload();
+        reloadWithoutHash();
       } else {
         alert("Email đã tồn tại, vui lòng thử lại!");
       }
     });
   }
 });
+function reloadWithoutHash() {
+  var currentUrl = window.location.href;
+  if (currentUrl.indexOf("#!#tab_login_2") !== -1) {
+    var newUrl1 = currentUrl.replace("#!#tab_login_2", "");
+    window.location.href = newUrl1;
+  } else {
+    location.reload();
+  }
+}
