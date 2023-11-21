@@ -23,7 +23,7 @@ $(document).ready(function () {
 
 $(document).on("change", "#theater-list-theater", function () {
   var theaterId = $(this).val();
-
+  theaterIdGlobal = theaterId;
   var selectMovie = document.getElementById("movie-list-theater");
   var selectTime = document.getElementById("time-list-theater");
   var selectDate = document.getElementById("date-list-theater");
@@ -77,6 +77,7 @@ $(document).on("change", "#theater-list-theater", function () {
 
 $(document).on("change", "#movie-list-theater", function () {
   var movieId = $(this).val();
+  movieIdGlobal = movieId;
   var theaterId = $("#theater-list-theater").val();
   var selectDate = document.getElementById("date-list-theater");
   var selectTime = document.getElementById("time-list-theater");
@@ -104,7 +105,9 @@ $(document).on("change", "#movie-list-theater", function () {
     data.forEach((item) => {
       var Option = document.createElement("option");
       Option.value = item.showingDate;
-      Option.text = formatDate(item.showingDate);
+      Option.text = `${getDayOfWeek(item.showingDate)}, ${formatDate(
+        item.showingDate
+      )}`;
       selectDate.appendChild(Option);
     });
   });
@@ -137,3 +140,21 @@ $(document).on("change", "#date-list-theater", function () {
     });
   });
 });
+
+$(document).on("change", "#time-list-movie", function () {
+  timeIdGlobal = $(this).val();
+});
+
+function getDayOfWeek(date) {
+  const weekday = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+  const d = new Date(date);
+  return weekday[d.getDay()];
+}

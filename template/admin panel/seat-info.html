@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="plugins/images/favicon.png"
+    />
+    <title>Pixel Admin</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    /> -->
+    <!-- Menu CSS -->
+    <link
+      href="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css"
+      rel="stylesheet"
+    />
+    <!-- animation CSS -->
+    <link href="css/animate.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- color CSS -->
+    <link href="css/colors/blue-dark.css" id="theme" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .custom-button {
+        width: 40px;
+        height: 35px;
+        background-color: white;
+        color: #ddd;
+        font-size: 16px;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      .custom-button-double {
+        width: 100px;
+        height: 35px;
+        background-color: white;
+        color: #ddd;
+        font-size: 16px;
+        cursor: pointer;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+      .custom-button-theater {
+        height: 30px;
+        margin-bottom: 30px;
+        border: 1px solid;
+        border-radius: 8px;
+      }
+      .dropdown-toggle::after {
+        border: none !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-static-top m-b-0">
+        <div class="navbar-header">
+          <a
+            class="navbar-toggle hidden-sm hidden-md hidden-lg"
+            href="javascript:void(0)"
+            data-toggle="collapse"
+            data-target=".navbar-collapse"
+          >
+            <i class="fa fa-bars"></i>
+          </a>
+          <div class="top-left-part">
+            <a class="logo" href="index.html">
+              <span class="hidden-xs">
+                <img src="../MyImages/logo.png" alt="home" width="200px" />
+              </span>
+            </a>
+          </div>
+          <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
+            <li>
+              <form role="search" class="app-search hidden-xs">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  class="form-control"
+                />
+                <a href="">
+                  <i class="fa fa-search"></i>
+                </a>
+              </form>
+            </li>
+          </ul>
+          <ul class="nav navbar-top-links navbar-right pull-right">
+            <li>
+              <div class="dropdown">
+                <a
+                  class="profile-pic dropdown-toggle"
+                  data-toggle="dropdown"
+                  href="#"
+                >
+                  <img
+                    src="plugins/images/users/varun.jpg"
+                    alt="user-img"
+                    width="36"
+                    class="img-circle"
+                  />
+                  <b class="hidden-xs">Cybersoft</b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="divider"></li>
+                  <li><a href="#" id="logout">Đăng xuất</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-header -->
+        <!-- /.navbar-top-links -->
+        <!-- /.navbar-static-side -->
+      </nav>
+      <!-- Left navbar-header -->
+      <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+          <ul class="nav" id="side-menu">
+            <li style="padding: 10px 0 0">
+              <a href="index.html" class="waves-effect"
+                ><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i
+                ><span class="hide-menu">Cinema</span></a
+              >
+            </li>
+            <li>
+              <a href="user-table.html" class="waves-effect"
+                ><i class="fa fa-user fa-fw" aria-hidden="true"></i
+                ><span class="hide-menu">Tài khoản</span></a
+              >
+            </li>
+            <li>
+              <a href="movie.html" class="waves-effect"
+                ><i class="fa fa-modx fa-fw" aria-hidden="true"></i
+                ><span class="hide-menu">Movie</span></a
+              >
+            </li>
+            <li>
+              <a href="theater-table.html" class="waves-effect"
+                ><i class="fa fa-table fa-fw" aria-hidden="true"></i
+                ><span class="hide-menu">Theater</span></a
+              >
+            </li>
+            <li>
+              <a href="showing-table.html" class="waves-effect"
+                ><i class="fa fa-table fa-fw" aria-hidden="true"></i
+                ><span class="hide-menu">Showing</span></a
+              >
+            </li>
+            <li>
+              <a href="person-table.html" class="waves-effect"
+                ><i class="fa fa-columns fa-fw" aria-hidden="true"></i
+                ><span class="hide-menu">Person</span></a
+              >
+            </li>
+            <li>
+              <a href="seat-info.html" class="waves-effect"
+                ><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i
+                ><span class="hide-menu">Seat</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Left navbar-header end -->
+      <!-- Page Content -->
+      <div id="page-wrapper">
+        <div class="container-fluid">
+          <div class="row bg-title">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+              <h4 class="page-title">Thêm mới tài khoản</h4>
+            </div>
+          </div>
+          <!-- /.row -->
+          <!-- .row -->
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+              <div class="white-box">
+                <div class="row gap-4">
+                  <div class="col-md-6 col-xs-6">
+                    <form class="form-horizontal form-material">
+                      <div class="form-group">
+                        <label class="col-sm-12">Movie</label>
+                        <div class="col-sm-12">
+                          <select
+                            class="form-control form-control-line"
+                            id="movie"
+                          ></select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-12">Theater</label>
+                        <div class="col-sm-12">
+                          <select
+                            class="form-control form-control-line"
+                            id="theater"
+                          ></select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-12">Show</label>
+                        <div class="col-sm-12">
+                          <select
+                            class="form-control form-control-line"
+                            id="existing-show"
+                          ></select>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-12">
+                          <button
+                            class="btn update-btn btn-success"
+                            id="btn-detail"
+                          >
+                            Xem
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-md-6 col-xs-6">
+                    <div
+                      style="
+                        margin-top: 30px;
+                        margin-left: 30px;
+                        margin-bottom: 40px;
+                      "
+                    >
+                      <h4 style="margin-bottom: 40px" id="single-seat-price">
+                        Giá vé ghế single:
+                      </h4>
+                      <h4 style="margin-bottom: 40px" id="couple-seat-price">
+                        Giá vé ghế couple:
+                      </h4>
+                      <h4 style="margin-bottom: 40px" id="single-sold">
+                        Số ghế single đã bán:
+                      </h4>
+                      <h4 style="margin-bottom: 40px" id="couple-sold">
+                        Số ghế couple đã bán:
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="row align-items-start hidden" id="seat-content">
+                  <div class="col-xs-12 align-items-start">
+                    <div
+                      class="col-xs-12 row justify-content-between align-items-start"
+                    >
+                      <div
+                        class="col-md-12 text-center"
+                        style="
+                          display: flex;
+                          justify-content: center;
+                          margin-bottom: 30px;
+                        "
+                      >
+                        <button class="col-md-6 btn btn-primary" disabled>
+                          Screen
+                        </button>
+                      </div>
+
+                      <div class="col-md-1">
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.8rem;
+                          "
+                        >
+                          <p class="text-center m-0">A</p>
+                        </div>
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.5rem;
+                          "
+                        >
+                          <p class="text-center m-0">B</p>
+                        </div>
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.5rem;
+                          "
+                        >
+                          <p class="text-center m-0">C</p>
+                        </div>
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.5rem;
+                          "
+                        >
+                          <p class="text-center m-0">D</p>
+                        </div>
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.5rem;
+                          "
+                        >
+                          <p class="text-center m-0">E</p>
+                        </div>
+                      </div>
+
+                      <div class="col-md-10">
+                        <div
+                          class="row left-side justify-content-between mb-4"
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1.5rem;
+                          "
+                        >
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="1"
+                              seattype="single"
+                            >
+                              1
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="2"
+                              seattype="single"
+                            >
+                              2
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="3"
+                              seattype="single"
+                            >
+                              3
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="4"
+                              seattype="single"
+                            >
+                              4
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="5"
+                              seattype="single"
+                            >
+                              5
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="6"
+                              seattype="single"
+                            >
+                              6
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="7"
+                              seattype="single"
+                            >
+                              7
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="8"
+                              seattype="single"
+                            >
+                              8
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="9"
+                              seattype="single"
+                            >
+                              9
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          class="row left-side justify-content-between mb-4"
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1.5rem;
+                          "
+                        >
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="10"
+                              seattype="single"
+                            >
+                              10
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="11"
+                              seattype="single"
+                            >
+                              11
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="12"
+                              seattype="single"
+                            >
+                              12
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="13"
+                              seattype="single"
+                            >
+                              13
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="14"
+                              seattype="single"
+                            >
+                              14
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="15"
+                              seattype="single"
+                            >
+                              15
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="16"
+                              seattype="single"
+                            >
+                              16
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="17"
+                              seattype="single"
+                            >
+                              17
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="18"
+                              seattype="single"
+                            >
+                              18
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          class="row left-side justify-content-between mb-4"
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1.5rem;
+                          "
+                        >
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="19"
+                              seattype="single"
+                            >
+                              19
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="20"
+                              seattype="single"
+                            >
+                              20
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="21"
+                              seattype="single"
+                            >
+                              21
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="22"
+                              seattype="single"
+                            >
+                              22
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="23"
+                              seattype="single"
+                            >
+                              23
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="24"
+                              seattype="single"
+                            >
+                              24
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="25"
+                              seattype="single"
+                            >
+                              25
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="26"
+                              seattype="single"
+                            >
+                              26
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="27"
+                              seattype="single"
+                            >
+                              27
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          class="row left-side justify-content-between mb-4"
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1.5rem;
+                          "
+                        >
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="28"
+                              seattype="single"
+                            >
+                              28
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="29"
+                              seattype="single"
+                            >
+                              29
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="30"
+                              seattype="single"
+                            >
+                              30
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="31"
+                              seattype="single"
+                            >
+                              31
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="32"
+                              seattype="single"
+                            >
+                              32
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="33"
+                              seattype="single"
+                            >
+                              33
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="34"
+                              seattype="single"
+                            >
+                              34
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="35"
+                              seattype="single"
+                            >
+                              35
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-1 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button seat-btn"
+                              value="36"
+                              seattype="single"
+                            >
+                              36
+                            </button>
+                          </div>
+                        </div>
+
+                        <div
+                          class="row left-side justify-content-between mb-4"
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1.5rem;
+                          "
+                        >
+                          <!-- Tạo 6 hàng -->
+                          <div
+                            class="col-md-2 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button-double seat-btn"
+                              value="37"
+                              onclick="toggleButton(this)"
+                              seattype="couple"
+                            >
+                              37
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-2 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button-double seat-btn"
+                              value="38"
+                              onclick="toggleButton(this)"
+                              seattype="couple"
+                            >
+                              38
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-2 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button-double seat-btn"
+                              value="39"
+                              onclick="toggleButton(this) "
+                              seattype="couple"
+                            >
+                              39
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-2 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button-double seat-btn"
+                              value="40"
+                              onclick="toggleButton(this)"
+                              seattype="couple"
+                            >
+                              40
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-2 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button-double seat-btn"
+                              value="41"
+                              onclick="toggleButton(this)"
+                              seattype="couple"
+                            >
+                              41
+                            </button>
+                          </div>
+                          <div
+                            class="col-md-2 d-flex justify-content-center"
+                            style="display: flex; justify-content: center"
+                          >
+                            <button
+                              class="custom-button-double seat-btn"
+                              value="42"
+                              onclick="toggleButton(this)"
+                              seattype="couple"
+                            >
+                              42
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-1">
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.8rem;
+                          "
+                        >
+                          <p class="text-center m-0">A</p>
+                        </div>
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.5rem;
+                          "
+                        >
+                          <p class="text-center m-0">B</p>
+                        </div>
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.5rem;
+                          "
+                        >
+                          <p class="text-center m-0">C</p>
+                        </div>
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.5rem;
+                          "
+                        >
+                          <p class="text-center m-0">D</p>
+                        </div>
+                        <div
+                          class="row mb-4"
+                          style="
+                            height: 35px;
+                            margin-bottom: 1.5rem;
+                            margin-top: 0.5rem;
+                          "
+                        >
+                          <p class="text-center m-0">E</p>
+                        </div>
+                      </div>
+
+                      <hr
+                        style="
+                          width: 80%;
+                          margin: 20px auto;
+                          margin-top: 0;
+                          background-color: #ddd;
+                        "
+                      />
+
+                      <div class="col-xs-12">
+                        <div class="row">
+                          <div class="col-md-1"></div>
+                          <div
+                            class="col-md-10"
+                            style="
+                              display: flex;
+                              justify-content: space-between;
+                            "
+                          >
+                            <div style="display: flex">
+                              <button
+                                class="custom-button"
+                                style="color: orange; border-color: orange"
+                              >
+                                00
+                              </button>
+                              <div
+                                style="
+                                  display: flex;
+                                  align-self: center;
+                                  margin-left: 10px;
+                                  color: orange;
+                                "
+                              >
+                                <p style="margin: 0">Sold</p>
+                              </div>
+                            </div>
+                            <div style="display: flex; align-self: center">
+                              <button class="custom-button">00</button>
+                              <div
+                                style="
+                                  display: flex;
+                                  align-self: center;
+                                  margin-left: 10px;
+                                "
+                              >
+                                <p style="margin: 0">Unsold</p>
+                              </div>
+                            </div>
+                            <div style="display: flex; align-self: center">
+                              <button class="custom-button">00</button>
+                              <div
+                                style="
+                                  display: flex;
+                                  align-self: center;
+                                  margin-left: 10px;
+                                "
+                              >
+                                <p style="margin: 0">Single Seat</p>
+                              </div>
+                            </div>
+                            <div style="display: flex; align-self: center">
+                              <button class="custom-button-double">00</button>
+                              <div
+                                style="
+                                  display: flex;
+                                  align-self: center;
+                                  margin-left: 10px;
+                                "
+                              >
+                                <p style="margin: 0">Couple Seat</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-1"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center">2018 &copy; myclass.com</footer>
+      </div>
+      <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script> -->
+    <!-- Menu Plugin JavaScript -->
+    <script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".btn-group button").click(function () {
+          $(".btn-group button").removeClass("active");
+          $(this).addClass("active");
+        });
+      });
+    </script>
+    <script src="js/seat-info.js"></script>
+    <script src="js/check-admin.js"></script>
+    <script src="../js/logout.js"></script>
+  </body>
+</html>

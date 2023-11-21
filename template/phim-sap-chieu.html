@@ -4,6 +4,7 @@
   <!-- Added by HTTrack -->
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <!-- /Added by HTTrack -->
+
   <head>
     <base />
     <meta charset="utf-8" />
@@ -256,6 +257,7 @@
       }
     </script>
   </head>
+
   <body ng-app="appweb">
     <noscript
       ><iframe
@@ -298,28 +300,23 @@
                   <a rel="external" href="index.html">
                     <img
                       src="website/images/template-logo.jpg"
-                      data-src="website/images/galaxy-logo.png"
+                      data-src="website/images/d6a119669a6d62e6801bcca56a386f42.png"
                       alt="Galaxy Cinema"
                       class="lazy hidden-xs hidden-sm"
-                    />
-                    <img
-                      src="website/images/template-logo.jpg"
-                      data-src="website/images/galaxy-logo-mobile.png"
-                      alt="Galaxy Cinema"
-                      class="lazy hidden-lg hidden-md"
                     />
                   </a>
                 </div>
               </div>
               <div class="col-md-8 col-sm-8 col-xs-8">
                 <div class="primary-nav-wrapper desktop hidden-xs hidden-sm">
-                  <div class="search">
-                    <galaxy-search-bar></galaxy-search-bar>
-                  </div>
+                  <!-- <div class="search">
+                  <galaxy-search-bar></galaxy-search-bar>
+                </div> -->
                   <div class="secondary-nav-wrapper">
                     <ul class="secondary-nav">
                       <li>
                         <a
+                          class=""
                           id="loginLink"
                           rel="external"
                           href="#"
@@ -327,19 +324,16 @@
                           ng-click="openLogin()"
                           ><i class="icon-user"></i>Đăng nhập</a
                         >
-                        <div ng-if="userInfo.memberId" class="dropdown">
+                        <div class="dropdown hidden" id="user-info">
                           <a
-                            style="display: none"
-                            ng-style="{ display: (userInfo.fullName ? 'block' : 'none') }"
                             rel="external"
                             href="thanh-vien.html"
-                            ng-if="userInfo"
                             data-toggle="dropdown"
                             aria-expanded="true"
                             class="dropdown-toggle"
                           >
                             <i class="icon-member"></i
-                            ><span>{{userInfo.fullName}}</span>
+                            ><span id="user-name">aaaaaaaaa</span>
                           </a>
                           <div class="dropdown-menu">
                             <a
@@ -347,14 +341,12 @@
                               href="thanh-vien.html"
                               class="dropdown-item"
                               >Tài khoản</a
-                            ><a ng-click="logout()" class="dropdown-item"
-                              >Thoát</a
-                            >
+                            ><a id="logout" class="dropdown-item">Thoát</a>
                           </div>
                         </div>
                       </li>
                       <!--li--><!--  a#locationLink(rel='external', href='#')--><!--    i.icon-place--><!--    | Chọn vị trí-->
-                      <li class="language hidden-xs">
+                      <!-- <li class="language hidden-xs">
                         <a
                           rel="external"
                           href="phim-sap-chieu.html"
@@ -366,7 +358,7 @@
                           href="https://www.galaxycine.vn/en/phim-sap-chieu"
                           >EN</a
                         >
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
                   <!--.search-wrapper--><!--  ul.search--><!--    li--><!--      input#search-input(type='text', placeholder='Start typing then hit enter to search')--><!--    li--><!--      a.hide-search(rel='external', href='#')--><!--        i.fa.fa-close-->
@@ -636,21 +628,24 @@
                 <ul class="nav nav-tabs">
                   <li>
                     <a
-                      onclick='javascript:window.history.pushState(null, null, "/phim-dang-chieu/"); window.location.reload();'
+                      onclick='javascript:window.history.pushState(null, null, "/phim-dang-chieu.html"); window.location.reload();'
                       >Phim đang chiếu</a
                     >
                   </li>
                   <li class="active">
                     <a
-                      onclick='javascript:window.history.pushState(null, null, "/phim-sap-chieu/"); window.location.reload();'
+                      onclick='javascript:window.history.pushState(null, null, "/phim-sap-chieu.html"); window.location.reload();'
                       >Phim sắp chiếu</a
                     >
                   </li>
                 </ul>
                 <div class="tab-content">
                   <div id="tab_onshow" class="tab-pane">
-                    <div class="row watchmovie-group animated fadeInUp">
-                      <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
+                    <div
+                      class="row watchmovie-group animated fadeInUp"
+                      id="moviePosters"
+                    >
+                      <!-- <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
                         <div class="article-watchmovie">
                           <img
                             src="../cdn.galaxycine.vn/media/2023/9/29/500x750_1695961593994.jpg"
@@ -844,12 +839,15 @@
                           <h4 class="upper-text">Kẻ Ẩn Danh</h4>
                           <h4 class="vn upper-text"></h4>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <div id="tab_oncomming" class="tab-pane active">
-                    <div class="row watchmovie-group animated fadeInUp">
-                      <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
+                    <div
+                      class="row watchmovie-group animated fadeInUp"
+                      id="upcomingMoviePoster"
+                    >
+                      <!-- <div class="col-md-3 col-sm-3 col-xs-6 watchmovie-item">
                         <div class="article-watchmovie">
                           <img
                             src="../cdn.galaxycine.vn/media/2023/9/21/500x750_1695282600306.jpg"
@@ -1376,7 +1374,7 @@
                             Dune: Hành Tinh Cát - Phần Hai
                           </h4>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -1390,8 +1388,8 @@
               <h3>Galaxy Cinema</h3>
               <div class="row content-seo">
                 <div class="col-md-12">
-                  <div class="content-text">
-                    <p>
+                  <div class="content-text" id="content-text">
+                    <!-- <p>
                       <span style="display: none">&nbsp;</span>
                       <span style="font-size: 14px">
                         <span style="font-family: Arial, Helvetica, sans-serif">
@@ -1399,7 +1397,7 @@
                             ><a href="index.html">Galaxy Cinema</a></strong
                           >
                           lu&ocirc;n cập nhật nhanh nhất những bộ<em>
-                            <a href="http://galaxycine.vn/phim-dang-chieu/"
+                            <a href="http://galaxycine.vn/phim-dang-chieu.html"
                               >phim chiếu rạp</a
                             ></em
                           >
@@ -1415,440 +1413,403 @@
                       </span>
                     </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Mỗi bộ
-                          <em
-                            ><a href="http://galaxycine.vn/phim-dang-chieu/"
-                              >phim mới</a
-                            ></em
-                          >
-                          cập nhật l&ecirc;n website sẽ hiển thị đầy đủ
-                          th&ocirc;ng tin từ tựa phim, nội dung phim,
-                          ng&agrave;y c&ocirc;ng chiếu gi&uacute;p bạn thuận
-                          tiện trong việc theo d&otilde;i. Ngo&agrave;i ra,
-                          Galaxy Cinema sẽ lu&ocirc;n cập nhật v&agrave; tạo
-                          thuận tiện gi&uacute;p bạn nhanh tay đặt lấy suất phim
-                          mới nhất, ph&ugrave; hợp nhất để thưởng thức.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Mỗi bộ
+                        <em><a href="http://galaxycine.vn/phim-dang-chieu.html">phim mới</a></em>
+                        cập nhật l&ecirc;n website sẽ hiển thị đầy đủ
+                        th&ocirc;ng tin từ tựa phim, nội dung phim,
+                        ng&agrave;y c&ocirc;ng chiếu gi&uacute;p bạn thuận
+                        tiện trong việc theo d&otilde;i. Ngo&agrave;i ra,
+                        Galaxy Cinema sẽ lu&ocirc;n cập nhật v&agrave; tạo
+                        thuận tiện gi&uacute;p bạn nhanh tay đặt lấy suất phim
+                        mới nhất, ph&ugrave; hợp nhất để thưởng thức.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          H&atilde;y c&ugrave;ng Galaxy Cinema lướt sơ danh
-                          s&aacute;ch c&aacute;c phim hay
-                          kh&ocirc;ng-thể-kh&ocirc;ng-mua-v&eacute; v&agrave;o
-                          năm 2023&nbsp;nh&eacute;!
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        H&atilde;y c&ugrave;ng Galaxy Cinema lướt sơ danh
+                        s&aacute;ch c&aacute;c phim hay
+                        kh&ocirc;ng-thể-kh&ocirc;ng-mua-v&eacute; v&agrave;o
+                        năm 2023&nbsp;nh&eacute;!
                       </span>
-                    </p>
+                    </span>
+                  </p> -->
 
-                    <p><!--{C}%3C!%2D%2D%7C%20%2D%2D%3E--></p>
+                    <!-- <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif"><strong>&nbsp;Guardian Of The Galaxy Vol.3
+                          (05/05)</strong></span>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif"
-                          ><strong
-                            >&nbsp;Guardian Of The Galaxy Vol.3 (05/05)</strong
-                          ></span
-                        >
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        D&ugrave; kh&ocirc;ng c&oacute; qu&aacute; nhiều người
+                        biết đến từ trước khi l&ecirc;n phim lần đầu
+                        ti&ecirc;n v&agrave;o năm 2014, &ldquo;rạp xiếc giải
+                        ng&acirc;n h&agrave;&rdquo; vẫn nhận được sự y&ecirc;u
+                        th&iacute;ch h&ugrave;ng hậu từ người h&acirc;m mộ.
+                        Tiếp đ&agrave; th&agrave;nh c&ocirc;ng đ&oacute;, phần
+                        tiếp theo mang t&ecirc;n
+                        <em>Guardian of The Galaxy Vol.2</em> cũng được
+                        đ&aacute;nh gi&aacute; v&ocirc; c&ugrave;ng
+                        t&iacute;ch cực. Năm nay, phần cuối
+                        <strong>Guardians of the Galaxy Vol.3</strong> sẽ
+                        l&agrave; bộ
+                        <a href="phim-dang-chieu.html">phim chiếu rạp</a>
+                        nhiều người h&acirc;m mộ mong chờ. &nbsp;
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          D&ugrave; kh&ocirc;ng c&oacute; qu&aacute; nhiều người
-                          biết đến từ trước khi l&ecirc;n phim lần đầu
-                          ti&ecirc;n v&agrave;o năm 2014, &ldquo;rạp xiếc giải
-                          ng&acirc;n h&agrave;&rdquo; vẫn nhận được sự y&ecirc;u
-                          th&iacute;ch h&ugrave;ng hậu từ người h&acirc;m mộ.
-                          Tiếp đ&agrave; th&agrave;nh c&ocirc;ng đ&oacute;, phần
-                          tiếp theo mang t&ecirc;n
-                          <em>Guardian of The Galaxy Vol.2</em> cũng được
-                          đ&aacute;nh gi&aacute; v&ocirc; c&ugrave;ng
-                          t&iacute;ch cực. Năm nay, phần cuối
-                          <strong>Guardians of the Galaxy Vol.3</strong> sẽ
-                          l&agrave; bộ
-                          <a href="phim-dang-chieu.html">phim chiếu rạp</a>
-                          nhiều người h&acirc;m mộ mong chờ. &nbsp;
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Lấy bối cảnh sau trận chiến với Thanos, Peter Quill
+                        (<a href="dien-vien/chris-pratt.html">Chris Pratt</a>)
+                        mang theo nỗi đau mất Gamora, một lần nữa tập hợp đội
+                        Vệ binh dải ng&acirc;n h&agrave; thực hiện nhiệm vụ
+                        cuối c&ugrave;ng để bảo vệ vũ trụ. L&uacute;c
+                        n&agrave;y, anh v&ocirc; t&igrave;nh gặp lại Gamora
+                        (<a href="dien-vien/zoe-saldana.html">Zoe Saldana</a>), nhưng c&oacute; khả năng c&ocirc; đến từ
+                        d&ograve;ng thời gian kh&aacute;c.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Lấy bối cảnh sau trận chiến với Thanos, Peter Quill
-                          (<a href="dien-vien/chris-pratt.html">Chris Pratt</a>)
-                          mang theo nỗi đau mất Gamora, một lần nữa tập hợp đội
-                          Vệ binh dải ng&acirc;n h&agrave; thực hiện nhiệm vụ
-                          cuối c&ugrave;ng để bảo vệ vũ trụ. L&uacute;c
-                          n&agrave;y, anh v&ocirc; t&igrave;nh gặp lại Gamora
-                          (<a href="dien-vien/zoe-saldana.html">Zoe Saldana</a
-                          >), nhưng c&oacute; khả năng c&ocirc; đến từ
-                          d&ograve;ng thời gian kh&aacute;c.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif"><strong>Shazam! Fury of the Gods
+                          (02/06)</strong></span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        <em>Shazam!</em> từng được coi l&agrave; điểm
+                        s&aacute;ng hiếm hoi của DCEU trong một vũ trụ đen
+                        tối. Sau phần 1 kh&aacute; th&agrave;nh c&ocirc;ng
+                        v&agrave; đem về chuyển biến khả quan, nh&agrave; DC
+                        cho ra mắt phần 2 mang t&ecirc;n
+                        <strong>Shazam! Fury of the Gods</strong>.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif"
-                          ><strong
-                            >Shazam! Fury of the Gods (02/06)</strong
-                          ></span
-                        >
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Billy Batson (Asher Angel) vốn chỉ l&agrave; một cậu
+                        thiếu ni&ecirc;n b&igrave;nh thường v&ocirc;
+                        t&igrave;nh được c&aacute;c vị thần cổ đại ban cho
+                        si&ecirc;u năng lực. Trong qu&aacute; tr&igrave;nh học
+                        c&aacute;ch th&iacute;ch nghi để trở th&agrave;nh
+                        si&ecirc;u anh h&ugrave;ng thực thụ, Billy cũng
+                        kh&ocirc;ng &iacute;t lần trăn trở về khả năng của
+                        m&igrave;nh. Nối tiếp c&acirc;u chuyện của phần 1,
+                        <strong>Shazam! Fury of the Gods</strong> sẽ đưa
+                        kh&aacute;n giả đồng h&agrave;nh c&ugrave;ng Billy
+                        tr&ecirc;n con đường kh&aacute;m ph&aacute; bản
+                        th&acirc;n v&agrave; t&igrave;m ra l&yacute; tưởng của
+                        m&igrave;nh.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          <em>Shazam!</em> từng được coi l&agrave; điểm
-                          s&aacute;ng hiếm hoi của DCEU trong một vũ trụ đen
-                          tối. Sau phần 1 kh&aacute; th&agrave;nh c&ocirc;ng
-                          v&agrave; đem về chuyển biến khả quan, nh&agrave; DC
-                          cho ra mắt phần 2 mang t&ecirc;n
-                          <strong>Shazam! Fury of the Gods</strong>.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif"><strong>Spiderman Across Spider-Verse
+                          (02/06)</strong></span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        <strong>Spider-Man: Across The Spider-Verse</strong>
+                        l&agrave; phần hậu truyện của
+                        <em>Spider-Man: Into the Spider-Verse (2018)</em>.
+                        Kh&ocirc;ng giống như nhiều phần tiếp theo của
+                        c&aacute;c phim hoạt h&igrave;nh nhượng quyền gần
+                        đ&acirc;y,
+                        <strong>Spider-Man: Across the Spider-Verse </strong>tập trung v&agrave;o nh&acirc;n vật
+                        ch&iacute;nh thực
+                        sự v&agrave; kh&ocirc;ng nhắm đến thu h&uacute;t những
+                        người xem phim đầu ti&ecirc;n chỉ v&igrave; t&ograve;
+                        m&ograve;.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Billy Batson (Asher Angel) vốn chỉ l&agrave; một cậu
-                          thiếu ni&ecirc;n b&igrave;nh thường v&ocirc;
-                          t&igrave;nh được c&aacute;c vị thần cổ đại ban cho
-                          si&ecirc;u năng lực. Trong qu&aacute; tr&igrave;nh học
-                          c&aacute;ch th&iacute;ch nghi để trở th&agrave;nh
-                          si&ecirc;u anh h&ugrave;ng thực thụ, Billy cũng
-                          kh&ocirc;ng &iacute;t lần trăn trở về khả năng của
-                          m&igrave;nh. Nối tiếp c&acirc;u chuyện của phần 1,
-                          <strong>Shazam! Fury of the Gods</strong> sẽ đưa
-                          kh&aacute;n giả đồng h&agrave;nh c&ugrave;ng Billy
-                          tr&ecirc;n con đường kh&aacute;m ph&aacute; bản
-                          th&acirc;n v&agrave; t&igrave;m ra l&yacute; tưởng của
-                          m&igrave;nh.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Trước đ&oacute;, trong trailer
+                        <strong>Spider-Man: Across The Spider-Verse</strong>
+                        cũng đ&atilde; cho thấy tham vọng cực lớn của Sony với
+                        dự &aacute;n lần n&agrave;y, khi họ đẩy Miles Morales
+                        v&agrave;o cuộc chiến đa vũ trụ giữa v&ocirc; số
+                        phi&ecirc;n bản kh&aacute;c nhau của Spider-Man.
+                        &nbsp;Người h&acirc;m mộ truyện tranh Marvel c&oacute;
+                        thể nhận ra một v&agrave;i nh&acirc;n vật nổi bật như:
+                        Kaine Parker, Scarlet Spider, Superior Spider-Man hay
+                        Spider-Punk. V&agrave; đương nhi&ecirc;n, ch&uacute;ng
+                        ta kh&ocirc;ng thể kh&ocirc;ng kể đến Spider-Man 2099,
+                        gương mặt đ&atilde; được &quot;nh&aacute;
+                        h&agrave;ng&quot; trong đoạn post-credit của phần đầu
+                        ti&ecirc;n.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif"
-                          ><strong
-                            >Spiderman Across Spider-Verse (02/06)</strong
-                          ></span
-                        >
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif"><strong>&nbsp;Transfromers: Rise Of The
+                          Beast
+                          (09/06)</strong></span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        <strong>Rise Of The Beasts</strong> l&agrave; phần thứ
+                        7 trong series th&agrave;nh c&ocirc;ng bậc nhất của
+                        Hollywood &ndash; <strong>Transformers</strong>, dự
+                        kiến t&aacute;i xuất m&agrave;n ảnh v&agrave;o đầu năm
+                        2023. Đ&acirc;y l&agrave; phần đầu ti&ecirc;n trong dự
+                        &aacute;n bộ ba được Paramount Pictures t&aacute;i
+                        khởi động, hứa hẹn mở ra kỷ nguy&ecirc;n mới cho loạt
+                        phim huyền thoại n&agrave;y.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          <strong>Spider-Man: Across The Spider-Verse</strong>
-                          l&agrave; phần hậu truyện của
-                          <em>Spider-Man: Into the Spider-Verse (2018)</em>.
-                          Kh&ocirc;ng giống như nhiều phần tiếp theo của
-                          c&aacute;c phim hoạt h&igrave;nh nhượng quyền gần
-                          đ&acirc;y,
-                          <strong>Spider-Man: Across the Spider-Verse </strong
-                          >tập trung v&agrave;o nh&acirc;n vật ch&iacute;nh thực
-                          sự v&agrave; kh&ocirc;ng nhắm đến thu h&uacute;t những
-                          người xem phim đầu ti&ecirc;n chỉ v&igrave; t&ograve;
-                          m&ograve;.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Trailer đầu ti&ecirc;n ngay khi được tr&igrave;nh
+                        l&agrave;ng đ&atilde; khiến người h&acirc;m mộ
+                        v&ocirc; c&ugrave;ng h&agrave;o hứng v&igrave; độ kịch
+                        t&iacute;nh v&agrave; ho&agrave;nh tr&aacute;ng.
+                        <strong>Transfromers: Rise Of The Beasts</strong> lấy
+                        bối cảnh v&agrave;o năm 1994, khoảng thời gian tiếp
+                        sau khi Bumblebee xuất hiện. Như tựa đề đ&atilde; thể
+                        hiện, phần
+                        <a href="phim-dang-chieu.html">phim mới</a>&nbsp;n&agrave;y dựa theo bộ truyện Beast Wars cực kỳ
+                        ăn kh&aacute;ch v&agrave;o thập ni&ecirc;n 1990.
+                        Đ&acirc;y cũng l&agrave; lần đầu ti&ecirc;n, một
+                        nh&oacute;m robot mới xuất hiện, c&oacute; khả năng
+                        biến m&igrave;nh th&agrave;nh động vật thay v&igrave;
+                        xe hơi&nbsp;như trước đ&oacute;.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Trước đ&oacute;, trong trailer
-                          <strong>Spider-Man: Across The Spider-Verse</strong>
-                          cũng đ&atilde; cho thấy tham vọng cực lớn của Sony với
-                          dự &aacute;n lần n&agrave;y, khi họ đẩy Miles Morales
-                          v&agrave;o cuộc chiến đa vũ trụ giữa v&ocirc; số
-                          phi&ecirc;n bản kh&aacute;c nhau của Spider-Man.
-                          &nbsp;Người h&acirc;m mộ truyện tranh Marvel c&oacute;
-                          thể nhận ra một v&agrave;i nh&acirc;n vật nổi bật như:
-                          Kaine Parker, Scarlet Spider, Superior Spider-Man hay
-                          Spider-Punk. V&agrave; đương nhi&ecirc;n, ch&uacute;ng
-                          ta kh&ocirc;ng thể kh&ocirc;ng kể đến Spider-Man 2099,
-                          gương mặt đ&atilde; được &quot;nh&aacute;
-                          h&agrave;ng&quot; trong đoạn post-credit của phần đầu
-                          ti&ecirc;n.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif"><strong>Elemental (16/06)</strong></span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        <strong>Elemental</strong> l&agrave; một bộ phim giả
+                        tưởng của Pixar nơi c&aacute;c nguy&ecirc;n tố đất,
+                        lửa, nước, kh&ocirc;ng kh&iacute; được nh&acirc;n
+                        c&aacute;ch h&oacute;a một c&aacute;ch sinh động.
+                        C&acirc;u chuyện xoay quanh cuộc gặp gỡ giữa c&ocirc;
+                        g&aacute;i được tạo ra từ lửa Ember (Leah Lewis lồng
+                        tiếng) v&agrave; ch&agrave;ng trai được l&agrave;m từ
+                        nước Wade (Mamoudou Athie lồng tiếng). Họ c&ugrave;ng
+                        nhau trải qua cuộc h&agrave;nh tr&igrave;nh th&uacute;
+                        vị để từ đ&oacute; thấu hiểu những điểm kh&aacute;c
+                        biệt của đối phương. &nbsp;
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif"
-                          ><strong
-                            >&nbsp;Transfromers: Rise Of The Beast
-                            (09/06)</strong
-                          ></span
-                        >
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Bộ
+                        <a href="phim-dang-chieu.html">phim chiếu rạp</a>&nbsp;được cầm trịch bởi đạo diễn Peter Sohn,
+                        lấy cảm
+                        hứng từ cuộc sống thời ni&ecirc;n thiếu của anh ở New
+                        York v&agrave;o những năm 1970. Th&ocirc;ng qua
+                        <strong>Elemental</strong>, anh muốn nhấn mạnh sự đa
+                        dạng về văn h&oacute;a v&agrave; sắc tộc ở
+                        th&agrave;nh phố n&agrave;y.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          <strong>Rise Of The Beasts</strong> l&agrave; phần thứ
-                          7 trong series th&agrave;nh c&ocirc;ng bậc nhất của
-                          Hollywood &ndash; <strong>Transformers</strong>, dự
-                          kiến t&aacute;i xuất m&agrave;n ảnh v&agrave;o đầu năm
-                          2023. Đ&acirc;y l&agrave; phần đầu ti&ecirc;n trong dự
-                          &aacute;n bộ ba được Paramount Pictures t&aacute;i
-                          khởi động, hứa hẹn mở ra kỷ nguy&ecirc;n mới cho loạt
-                          phim huyền thoại n&agrave;y.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif"><strong>Fast X (19/05)</strong></span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        <em>Fast &amp; Furious</em>, 1 trong những franchise
+                        h&agrave;nh động lớn nhất thế giới, đang dần đi đến
+                        hồi kết sau hơn 2 thập kỷ c&agrave;n qu&eacute;t
+                        m&agrave;n ảnh rộng. Theo kế hoạch, 2 phần phim tiếp
+                        theo,<em> Fast 10 &amp; 11</em>, sẽ l&agrave; những
+                        chương cuối c&ugrave;ng kh&eacute;p lại h&agrave;nh
+                        tr&igrave;nh của gia đ&igrave;nh nh&agrave; Fast.
+                        Đ&acirc;y thực chất l&agrave; 1 dự &aacute;n được chia
+                        th&agrave;nh 2 nửa, ra mắt c&aacute;ch nhau khoảng 1
+                        năm, tương tự như
+                        <em>Avengers: Infinity War</em> &amp;
+                        <em>Avengers: Endgame</em> của Marvel Studios.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Trailer đầu ti&ecirc;n ngay khi được tr&igrave;nh
-                          l&agrave;ng đ&atilde; khiến người h&acirc;m mộ
-                          v&ocirc; c&ugrave;ng h&agrave;o hứng v&igrave; độ kịch
-                          t&iacute;nh v&agrave; ho&agrave;nh tr&aacute;ng.
-                          <strong>Transfromers: Rise Of The Beasts</strong> lấy
-                          bối cảnh v&agrave;o năm 1994, khoảng thời gian tiếp
-                          sau khi Bumblebee xuất hiện. Như tựa đề đ&atilde; thể
-                          hiện, phần
-                          <a href="phim-dang-chieu.html">phim mới</a
-                          >&nbsp;n&agrave;y dựa theo bộ truyện Beast Wars cực kỳ
-                          ăn kh&aacute;ch v&agrave;o thập ni&ecirc;n 1990.
-                          Đ&acirc;y cũng l&agrave; lần đầu ti&ecirc;n, một
-                          nh&oacute;m robot mới xuất hiện, c&oacute; khả năng
-                          biến m&igrave;nh th&agrave;nh động vật thay v&igrave;
-                          xe hơi&nbsp;như trước đ&oacute;.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Với chi ph&iacute; l&agrave;m phim khổng lồ (340 triệu
+                        USD), <strong>Fast X</strong> g&oacute;p mặt
+                        v&agrave;o vị tr&iacute; thứ 5 trong h&agrave;ng ngũ
+                        những dự &aacute;n điện ảnh đắt đỏ nhất lịch sử. Bộ
+                        phim hứa hẹn sẽ vượt mọi kỳ vọng của kh&aacute;n giả
+                        v&agrave; ho&agrave;n to&agrave;n xứng đ&aacute;ng để
+                        chờ đợi.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif"
-                          ><strong>Elemental (16/06)</strong></span
-                        >
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif"><strong>&nbsp;Mission: Impossible 7
+                          (14/07)</strong></span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Nếu ai đ&atilde; qu&aacute; m&ecirc; mẩn với
+                        <i>Top Gun: Marverick</i> v&agrave; muốn xem
+                        <a href="dien-vien/tom-cruise.html">Tom Cruise</a>
+                        &ldquo;đ&ugrave;a giỡn với tử thần&rdquo; tr&ecirc;n
+                        m&agrave;n ảnh th&igrave;
+                        <strong>Nhiệm Vụ Bất Khả Thi: Nghiệp B&aacute;o</strong>
+                        sẽ l&agrave; lựa chọn v&ocirc; c&ugrave;ng ph&ugrave;
+                        hợp.&nbsp;Với kịch bản được đầu tư chỉn chu v&agrave;
+                        cầm trịch bởi đạo diễn Christopher McQuarrie, sự trở
+                        lại n&agrave;y sẽ rất đ&aacute;ng mong đợi.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          <strong>Elemental</strong> l&agrave; một bộ phim giả
-                          tưởng của Pixar nơi c&aacute;c nguy&ecirc;n tố đất,
-                          lửa, nước, kh&ocirc;ng kh&iacute; được nh&acirc;n
-                          c&aacute;ch h&oacute;a một c&aacute;ch sinh động.
-                          C&acirc;u chuyện xoay quanh cuộc gặp gỡ giữa c&ocirc;
-                          g&aacute;i được tạo ra từ lửa Ember (Leah Lewis lồng
-                          tiếng) v&agrave; ch&agrave;ng trai được l&agrave;m từ
-                          nước Wade (Mamoudou Athie lồng tiếng). Họ c&ugrave;ng
-                          nhau trải qua cuộc h&agrave;nh tr&igrave;nh th&uacute;
-                          vị để từ đ&oacute; thấu hiểu những điểm kh&aacute;c
-                          biệt của đối phương. &nbsp;
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Trailer chỉ vỏn vẹn hơn 2 ph&uacute;t nhưng đ&atilde;
+                        mở ra một cuộc chiến kh&ocirc;ng k&eacute;m phần kịch
+                        t&iacute;nh so với c&aacute;c m&ugrave;a trước, từ sa
+                        mạc, xa lộ đến cuộc chiến tr&ecirc;n kh&ocirc;ng hay
+                        trong tầng hầm tăm tối. Những pha rượt đuổi gay cấn
+                        đến nghẹt thở của đặc vụ Ethan Hunt hứa hẹn sẽ
+                        b&ugrave;ng nổ rạp chiếu phim sắp tới.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Bộ
-                          <a href="phim-dang-chieu.html">phim chiếu rạp</a
-                          >&nbsp;được cầm trịch bởi đạo diễn Peter Sohn, lấy cảm
-                          hứng từ cuộc sống thời ni&ecirc;n thiếu của anh ở New
-                          York v&agrave;o những năm 1970. Th&ocirc;ng qua
-                          <strong>Elemental</strong>, anh muốn nhấn mạnh sự đa
-                          dạng về văn h&oacute;a v&agrave; sắc tộc ở
-                          th&agrave;nh phố n&agrave;y.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif"><strong>The Nun 2 (08/09)</strong></span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        C&ugrave;ng với hai vũ trụ điện ảnh si&ecirc;u anh
+                        h&ugrave;ng l&agrave; Marvel v&agrave; DC, c&aacute;c
+                        &ocirc;ng lớn Hollywood c&ograve;n sở hữu một vũ trụ
+                        điện ảnh kh&aacute;c cũng th&agrave;nh c&ocirc;ng
+                        kh&ocirc;ng k&eacute;m l&agrave; vũ trụ phim kinh dị
+                        của Warner Bros, tập hợp những t&aacute;c phẩm
+                        đ&igrave;nh đ&aacute;m như trilogy
+                        <em>The Conjuring</em> hay <em>Annabelle</em>. Trong
+                        đ&oacute;, nh&acirc;n vật nhận được nhiều sự y&ecirc;u
+                        th&iacute;ch nhất từ người h&acirc;m mộ ch&iacute;nh
+                        l&agrave; ma sơ Valak, con quỷ t&agrave; &aacute;c sở
+                        hữu sức mạnh khủng khiếp lần đầu xuất hiện
+                        trong&nbsp;<em>The Conjuring 2</em>.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif"
-                          ><strong>Fast X (19/05)</strong></span
-                        >
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Trước đ&oacute; ở cuối phần 1, kh&aacute;n giả được
+                        biết rằng con quỷ n&agrave;y vẫn chưa bị đ&aacute;nh
+                        bại m&agrave; thực chất n&oacute; đ&atilde; &aacute;m
+                        v&agrave;o ch&agrave;ng n&ocirc;ng d&acirc;n Maurice
+                        rồi t&igrave;m c&aacute;ch h&atilde;m hại Lorraine.
+                        Mặc d&ugrave; nội dung của&nbsp;<em>The Nun 2</em>&nbsp;vẫn chưa được tiết lộ, song người
+                        h&acirc;m mộ
+                        đang rất mong chờ v&agrave;o một t&aacute;c phẩm chất
+                        lượng cao, xứng với sự mong chờ bấy l&acirc;u nay của
+                        m&igrave;nh.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          <em>Fast &amp; Furious</em>, 1 trong những franchise
-                          h&agrave;nh động lớn nhất thế giới, đang dần đi đến
-                          hồi kết sau hơn 2 thập kỷ c&agrave;n qu&eacute;t
-                          m&agrave;n ảnh rộng. Theo kế hoạch, 2 phần phim tiếp
-                          theo,<em> Fast 10 &amp; 11</em>, sẽ l&agrave; những
-                          chương cuối c&ugrave;ng kh&eacute;p lại h&agrave;nh
-                          tr&igrave;nh của gia đ&igrave;nh nh&agrave; Fast.
-                          Đ&acirc;y thực chất l&agrave; 1 dự &aacute;n được chia
-                          th&agrave;nh 2 nửa, ra mắt c&aacute;ch nhau khoảng 1
-                          năm, tương tự như
-                          <em>Avengers: Infinity War</em> &amp;
-                          <em>Avengers: Endgame</em> của Marvel Studios.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif"><strong>&nbsp;Insidious 5
+                          (07/07)</strong></span>
+                    </span>
+                  </p>
+
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        <strong>Insidious 5</strong> hiện đang rất được
+                        c&aacute;c t&iacute;n đồ phim kinh dị mong đợi
+                        v&igrave;&nbsp;đ&acirc;y kh&ocirc;ng chỉ đ&aacute;nh
+                        dấu sự ra mắt&nbsp;của Patrick Wilson - nam
+                        ch&iacute;nh của hai phần phim&nbsp;<em>Insidious </em>đầu ti&ecirc;n - trong vai tr&ograve; đạo
+                        diễn&nbsp;m&agrave; c&ograve;n l&agrave; phần
+                        phim&nbsp;đưa nh&acirc;n vật Josh Lambert trở lại với
+                        tư c&aacute;ch l&agrave; nh&acirc;n vật ch&iacute;nh
+                        của c&acirc;u chuyện lần đầu ti&ecirc;n kể từ phần 2
+                        của nhượng quyền thương mại.
                       </span>
-                    </p>
+                    </span>
+                  </p>
 
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Với chi ph&iacute; l&agrave;m phim khổng lồ (340 triệu
-                          USD), <strong>Fast X</strong> g&oacute;p mặt
-                          v&agrave;o vị tr&iacute; thứ 5 trong h&agrave;ng ngũ
-                          những dự &aacute;n điện ảnh đắt đỏ nhất lịch sử. Bộ
-                          phim hứa hẹn sẽ vượt mọi kỳ vọng của kh&aacute;n giả
-                          v&agrave; ho&agrave;n to&agrave;n xứng đ&aacute;ng để
-                          chờ đợi.
-                        </span>
+                  <p>
+                    <span style="font-size: 14px">
+                      <span style="font-family: Arial, Helvetica, sans-serif">
+                        Phần phim mới sẽ được lấy&nbsp;bối cảnh diễn ra 10 năm
+                        sau c&aacute;c sự kiện xảy ra ở&nbsp;<i>Quỷ Quyệt 2</i>, khi Dalton, cậu con trai của
+                        Josh&nbsp;đ&atilde;
+                        trưởng th&agrave;nh, chuẩn bị bước v&agrave;o ngưỡng
+                        cửa đại học&nbsp;v&agrave; phần c&ograve;n lại của gia
+                        đ&igrave;nh Lambert phải đối mặt với hậu quả từ quyết
+                        định của họ trong qu&aacute; khứ c&aacute;ch đ&acirc;y
+                        gần một thập kỉ.
                       </span>
-                    </p>
-
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif"
-                          ><strong
-                            >&nbsp;Mission: Impossible 7 (14/07)</strong
-                          ></span
-                        >
-                      </span>
-                    </p>
-
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Nếu ai đ&atilde; qu&aacute; m&ecirc; mẩn với
-                          <i>Top Gun: Marverick</i> v&agrave; muốn xem
-                          <a href="dien-vien/tom-cruise.html">Tom Cruise</a>
-                          &ldquo;đ&ugrave;a giỡn với tử thần&rdquo; tr&ecirc;n
-                          m&agrave;n ảnh th&igrave;
-                          <strong
-                            >Nhiệm Vụ Bất Khả Thi: Nghiệp B&aacute;o</strong
-                          >
-                          sẽ l&agrave; lựa chọn v&ocirc; c&ugrave;ng ph&ugrave;
-                          hợp.&nbsp;Với kịch bản được đầu tư chỉn chu v&agrave;
-                          cầm trịch bởi đạo diễn Christopher McQuarrie, sự trở
-                          lại n&agrave;y sẽ rất đ&aacute;ng mong đợi.
-                        </span>
-                      </span>
-                    </p>
-
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Trailer chỉ vỏn vẹn hơn 2 ph&uacute;t nhưng đ&atilde;
-                          mở ra một cuộc chiến kh&ocirc;ng k&eacute;m phần kịch
-                          t&iacute;nh so với c&aacute;c m&ugrave;a trước, từ sa
-                          mạc, xa lộ đến cuộc chiến tr&ecirc;n kh&ocirc;ng hay
-                          trong tầng hầm tăm tối. Những pha rượt đuổi gay cấn
-                          đến nghẹt thở của đặc vụ Ethan Hunt hứa hẹn sẽ
-                          b&ugrave;ng nổ rạp chiếu phim sắp tới.
-                        </span>
-                      </span>
-                    </p>
-
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif"
-                          ><strong>The Nun 2 (08/09)</strong></span
-                        >
-                      </span>
-                    </p>
-
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          C&ugrave;ng với hai vũ trụ điện ảnh si&ecirc;u anh
-                          h&ugrave;ng l&agrave; Marvel v&agrave; DC, c&aacute;c
-                          &ocirc;ng lớn Hollywood c&ograve;n sở hữu một vũ trụ
-                          điện ảnh kh&aacute;c cũng th&agrave;nh c&ocirc;ng
-                          kh&ocirc;ng k&eacute;m l&agrave; vũ trụ phim kinh dị
-                          của Warner Bros, tập hợp những t&aacute;c phẩm
-                          đ&igrave;nh đ&aacute;m như trilogy
-                          <em>The Conjuring</em> hay <em>Annabelle</em>. Trong
-                          đ&oacute;, nh&acirc;n vật nhận được nhiều sự y&ecirc;u
-                          th&iacute;ch nhất từ người h&acirc;m mộ ch&iacute;nh
-                          l&agrave; ma sơ Valak, con quỷ t&agrave; &aacute;c sở
-                          hữu sức mạnh khủng khiếp lần đầu xuất hiện
-                          trong&nbsp;<em>The Conjuring 2</em>.
-                        </span>
-                      </span>
-                    </p>
-
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Trước đ&oacute; ở cuối phần 1, kh&aacute;n giả được
-                          biết rằng con quỷ n&agrave;y vẫn chưa bị đ&aacute;nh
-                          bại m&agrave; thực chất n&oacute; đ&atilde; &aacute;m
-                          v&agrave;o ch&agrave;ng n&ocirc;ng d&acirc;n Maurice
-                          rồi t&igrave;m c&aacute;ch h&atilde;m hại Lorraine.
-                          Mặc d&ugrave; nội dung của&nbsp;<em>The Nun 2</em
-                          >&nbsp;vẫn chưa được tiết lộ, song người h&acirc;m mộ
-                          đang rất mong chờ v&agrave;o một t&aacute;c phẩm chất
-                          lượng cao, xứng với sự mong chờ bấy l&acirc;u nay của
-                          m&igrave;nh.
-                        </span>
-                      </span>
-                    </p>
-
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif"
-                          ><strong>&nbsp;Insidious 5 (07/07)</strong></span
-                        >
-                      </span>
-                    </p>
-
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          <strong>Insidious 5</strong> hiện đang rất được
-                          c&aacute;c t&iacute;n đồ phim kinh dị mong đợi
-                          v&igrave;&nbsp;đ&acirc;y kh&ocirc;ng chỉ đ&aacute;nh
-                          dấu sự ra mắt&nbsp;của Patrick Wilson - nam
-                          ch&iacute;nh của hai phần phim&nbsp;<em>Insidious </em
-                          >đầu ti&ecirc;n - trong vai tr&ograve; đạo
-                          diễn&nbsp;m&agrave; c&ograve;n l&agrave; phần
-                          phim&nbsp;đưa nh&acirc;n vật Josh Lambert trở lại với
-                          tư c&aacute;ch l&agrave; nh&acirc;n vật ch&iacute;nh
-                          của c&acirc;u chuyện lần đầu ti&ecirc;n kể từ phần 2
-                          của nhượng quyền thương mại.
-                        </span>
-                      </span>
-                    </p>
-
-                    <p>
-                      <span style="font-size: 14px">
-                        <span style="font-family: Arial, Helvetica, sans-serif">
-                          Phần phim mới sẽ được lấy&nbsp;bối cảnh diễn ra 10 năm
-                          sau c&aacute;c sự kiện xảy ra ở&nbsp;<i>Quỷ Quyệt 2</i
-                          >, khi Dalton, cậu con trai của Josh&nbsp;đ&atilde;
-                          trưởng th&agrave;nh, chuẩn bị bước v&agrave;o ngưỡng
-                          cửa đại học&nbsp;v&agrave; phần c&ograve;n lại của gia
-                          đ&igrave;nh Lambert phải đối mặt với hậu quả từ quyết
-                          định của họ trong qu&aacute; khứ c&aacute;ch đ&acirc;y
-                          gần một thập kỉ.
-                        </span>
-                      </span>
-                    </p>
-
-                    <p><!--| --></p>
-
-                    <p>&nbsp;</p>
+                    </span>
+                  </p> -->
 
                     <p><span style="display: none">&nbsp;</span></p>
                   </div>
@@ -2109,27 +2070,25 @@
                                     thành viên.</span
                                   >
                                 </div>
-                                <p ng-if="message" class="message">
-                                  {{message}}
-                                </p>
                               </div>
-                              <form ng-submit="submit()" class="login-form">
+                              <form class="login-form">
                                 <input
                                   placeholder="Email"
                                   type="email"
                                   ng-model="userInfo.email"
-                                  required
+                                  required="required"
                                   class="login"
+                                  id="user"
                                 />
                                 <input
                                   placeholder="Mật khẩu"
                                   type="password"
                                   ng-model="userInfo.password"
-                                  required
+                                  required="required"
                                   class="login"
+                                  id="password"
                                 />
                                 <div class="login-remember">
-                                  <!--.remember--><!--  .toggle-button.toggle-button-login--><!--    input#toggleRemember(type='checkbox' ng-model='userInfo.remember')--><!--    label(for='toggleRemember') Ghi nhớ--><!--    .toggle-button-icon-->
                                   <div class="forget-pass">
                                     <a
                                       id="forgetPass"
@@ -2148,12 +2107,12 @@
                                     >
                                   </div>
                                 </div>
-                                <button class="btn primary input">
-                                  <i
-                                    ng-show="isSubmit"
-                                    class="fa fa-pulse fa-spinner"
-                                  ></i
-                                  >Đăng nhập
+                                <button
+                                  class="btn primary input"
+                                  id="btn-sign-in"
+                                >
+                                  <i class="fa fa-pulse fa-spinner"></i>Đăng
+                                  nhập
                                 </button>
                                 <div
                                   ng-if="enableSkip"
@@ -2166,7 +2125,6 @@
                                   class="btn primary input"
                                   >Mua vé không đăng nhập</a
                                 >
-                                <!--.social-login--><!--  span Hoặc đăng nhập bằng--><!--  a(href='')--><!--    i.icon-facebook--><!--  a(href='')--><!--    i.icon-google-plus-->
                               </form>
                             </div>
                           </div>
@@ -2177,10 +2135,7 @@
                           >
                             <div class="login-tab-wrapper">
                               <div ng-if="message" class="login-heading">
-                                <div class="text-heading">
-                                  <!--span.sub-text.error {{message}}-->
-                                  <p class="message">{{message}}</p>
-                                </div>
+                                <div class="text-heading"></div>
                               </div>
                               <div class="login-form">
                                 <form
@@ -2191,8 +2146,9 @@
                                     placeholder="Họ tên"
                                     type="text"
                                     ng-model="user.fullName"
-                                    required
+                                    required="required"
                                     class="login first"
+                                    id="fullname-sign-up"
                                   />
                                   <div class="row city">
                                     <div
@@ -2203,24 +2159,31 @@
                                         placeholder="Số điện thoại"
                                         maxlength="14"
                                         ng-model="user.mobilePhone"
-                                        required
+                                        required="required"
                                         class="login register-input"
+                                        id="phone-number-sign-up"
                                       />
                                     </div>
                                     <div
                                       class="col-md-6 col-sm-6 col-xs-6 second-col mt-14"
                                     >
-                                      <galaxy-select
-                                        ng-model="genderSelect"
-                                      ></galaxy-select>
+                                      <select
+                                        id="gender-sign-up"
+                                        class="form-control"
+                                        style="border-radius: 0; height: 40px"
+                                      >
+                                        <option value="m">Nam</option>
+                                        <option value="f">Nữ</option>
+                                      </select>
                                     </div>
                                   </div>
                                   <input
                                     type="email"
                                     placeholder="Email"
                                     ng-model="user.email"
-                                    required
+                                    required="required"
                                     class="login register-input remove-mb"
+                                    id="email-sign-up"
                                   />
                                   <div class="row city">
                                     <div
@@ -2230,8 +2193,9 @@
                                         type="password"
                                         placeholder="Mật khẩu"
                                         ng-model="user.password"
-                                        required
+                                        required="required"
                                         class="login"
+                                        id="password-sign-up"
                                       />
                                     </div>
                                     <div
@@ -2241,16 +2205,26 @@
                                         type="password"
                                         placeholder="Xác nhận mật khẩu"
                                         ng-model="user.confirmPassword"
-                                        required
+                                        required="required"
                                         class="login"
                                       />
                                     </div>
                                   </div>
                                   <div class="row birthday-signup">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                      <galaxy-datepicker
-                                        ng-model="user.dateOfBirth"
-                                      ></galaxy-datepicker>
+                                      <input
+                                        type="date"
+                                        id="birthday"
+                                        name="birthday"
+                                        class="form-control"
+                                        style="
+                                          border-radius: 0;
+                                          height: 40px;
+                                          margin-top: 14px;
+                                          margin-bottom: 14px;
+                                        "
+                                        placeholder="Username"
+                                      />
                                     </div>
                                   </div>
                                   <p class="text-confirm-signup">
@@ -2262,7 +2236,10 @@
                                     >của chương trình.&nbsp
                                   </p>
                                   <br />
-                                  <button class="btn primary input">
+                                  <button
+                                    class="btn primary input"
+                                    id="btn-sign-up"
+                                  >
                                     Đăng ký
                                   </button>
                                 </form>
@@ -2332,101 +2309,6 @@
           </div>
         </div>
       </div>
-      <div ng-controller="forgetPassController">
-        <div id="forgetpass-modal" style="z-index: 1111" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-outer-container">
-              <div class="modal-middle-container">
-                <div class="login-wrapper animated slideInDown">
-                  <div class="login-container">
-                    <span ng-click="closeModelForget()" class="close"
-                      ><i class="icon-cancel"></i
-                    ></span>
-                    <div class="tab-login-line">
-                      <div class="tab-login-title">Quên mật khẩu</div>
-                      <div class="login-tab-wrapper">
-                        <div class="login-heading">
-                          <div class="text-heading">
-                            <span class="sub-text"
-                              >Vui lòng cung cấp email đăng nhập, chúng tôi sẽ
-                              gửi link kích hoạt cho bạn.</span
-                            >
-                          </div>
-                        </div>
-                        <p ng-if="message" class="message">{{message}}</p>
-                        <form ng-submit="submit()" class="login-form">
-                          <input
-                            placeholder="Email"
-                            type="email"
-                            ng-model="item.email"
-                            required
-                            class="login"
-                          />
-                          <div class="row captcha">
-                            <div class="col-md-6 col-sm-6 col-xs-8 first-col">
-                              <galaxy-captcha
-                                data-config="captchaConfig"
-                              ></galaxy-captcha>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-4 second-col">
-                              <input
-                                placeholder="Nhập mã captcha"
-                                type="text"
-                                ng-model="item.captcha"
-                                required
-                                class="login"
-                              />
-                            </div>
-                          </div>
-                          <button class="btn primary input">
-                            <i
-                              ng-show="isSubmit"
-                              class="fa fa-pulse fa-spinner"
-                            ></i
-                            >Cấp lại mật khẩu
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--#success-modal(style='display: none;')-->
-      <div ng-controller="registerController">
-        <div id="success-modal" style="z-index: 1111" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-outer-container">
-              <div class="modal-middle-container">
-                <div class="login-wrapper animated slideInDown">
-                  <div class="login-container">
-                    <span ng-click="closeModelSuccess()" class="close"
-                      ><i class="icon-cancel"></i
-                    ></span>
-                    <div class="tab-login-line">
-                      <div class="tab-login-title">Đăng ký thành công</div>
-                      <div class="login-tab-wrapper">
-                        <div class="login-heading success">
-                          <i class="icon-success"></i>
-                          <div class="text-heading">
-                            <span class="sub-text"
-                              >Chào mừng đến G-Star Club!</span
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--include active-->
     </div>
     <div id="trailerModal" class="modal fade modal-trailer">
       <div class="modal-dialog">
@@ -2627,7 +2509,7 @@
         </div>
       </div>
     </div>
-    <galaxy-dialog></galaxy-dialog>
+    <!-- <galaxy-dialog></galaxy-dialog> -->
     <script src="customjs-min/lazyload.js" async></script>
     <script>
       window.lazyLoadOptions = {
@@ -2643,6 +2525,10 @@
     <script src="js/axios.min.js"></script>
     <script src="js/lodash-merge.js"></script>
     <script src="customjs-min/firebase-setup.js"></script>
+    <script src="js/phim-sap-chieu.js"></script>
+    <script src="js/signup.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/logout.js"></script>
   </body>
   <!-- Mirrored from www.galaxycine.vn/phim-sap-chieu by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 15:52:45 GMT -->
 </html>

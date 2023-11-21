@@ -1,8 +1,10 @@
 package com.cybersoft.cybersoftcinema.controller;
 
+import com.cybersoft.cybersoftcinema.entity.UsersEntity;
 import com.cybersoft.cybersoftcinema.payload.BaseResponse;
 import com.cybersoft.cybersoftcinema.payload.request.SignInRequest;
 import com.cybersoft.cybersoftcinema.payload.request.SignUpRequest;
+import com.cybersoft.cybersoftcinema.payload.response.SignInResponse;
 import com.cybersoft.cybersoftcinema.service.imp.LoginServiceImp;
 import com.cybersoft.cybersoftcinema.util.JwtHelper;
 import com.google.gson.Gson;
@@ -41,33 +43,60 @@ public class LoginController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> signIn(@RequestBody SignInRequest signInRequest) {
-        logger.info("email: "+signInRequest.getEmail() + " - password: "+signInRequest.getPassword());
-        UsernamePasswordAuthenticationToken authen = new UsernamePasswordAuthenticationToken(signInRequest.getEmail(),signInRequest.getPassword());
-        authenticationManager.authenticate(authen);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        List<GrantedAuthority> roles = (List<GrantedAuthority>) authentication.getAuthorities();
-        String jsonRole = gson.toJson(roles);
-        String token = jwtHelper.generateToken(jsonRole);
+        logger.info("email: " + signInRequest.getEmail() + " - password: " + signInRequest.getPassword());
+        UsernamePasswordAuthenticationToken authen = new UsernamePasswordAuthenticationToken(signInRequest.getEmail(), signInRequest.getPassword());
         BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setStatusCode(200);
-        baseResponse.setMessage(signInRequest.getEmail());
-        baseResponse.setData(token);
+        try {
+            authenticationManager.authenticate(authen);
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            List<GrantedAuthority> roles = (List<GrantedAuthority>) authentication.getAuthorities();
+            String jsonRole = gson.toJson(roles);
+            String token = jwtHelper.generateToken(jsonRole);
 
-        logger.info(("Response Signin: "+ baseResponse.getMessage()));
+            SignInResponse signInResponse = new SignInResponse();
+            signInResponse.setEmail(signInRequest.getEmail());
+            signInResponse.setUserId(loginServiceImp.checkSignIn(signInRequest.getEmail()).getId());
+            signInResponse.setToken(token);
+            System.out.println(jwtHelper.parserToken(token));
+
+            if (jwtHelper.parserToken(token).contains("ROLE_USER")) {
+                baseResponse.setStatusCode(200);
+                baseResponse.setMessage("user");
+                baseResponse.setData(signInResponse);
+            }
+            else {
+                baseResponse.setStatusCode(200);
+                baseResponse.setMessage("other");
+                baseResponse.setData(signInResponse);
+            }
+
+            logger.info(("Response Signin: " + baseResponse.getMessage()));
+        } catch (Exception e) {
+            baseResponse.setStatusCode(403);
+            baseResponse.setMessage("Đăng nhập thất bại");
+            baseResponse.setData("");
+
+            logger.info(("Response Signin: " + baseResponse.getMessage()));
+        }
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody SignUpRequest signUpRequest){
-        logger.info("SignUpRequest: "+ signUpRequest);
-        boolean isSuccess = loginServiceImp.insertUser(signUpRequest);
-
+    public ResponseEntity<?> signup(@RequestBody SignUpRequest signUpRequest) {
+        logger.info("SignUpRequest: " + signUpRequest);
         BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setStatusCode(200);
-        baseResponse.setMessage("Đăng ký thành công");
-        baseResponse.setData(isSuccess);
+        if (loginServiceImp.checkEmailExist(signUpRequest.getEmail())) {
+            baseResponse.setStatusCode(200);
+            baseResponse.setMessage("Email đã tồn tại");
+            baseResponse.setData("");
+        } else {
+            boolean isSuccess = loginServiceImp.insertUser(signUpRequest);
+            baseResponse.setStatusCode(200);
+            baseResponse.setMessage("Đăng ký thành công");
+            baseResponse.setData(isSuccess);
+        }
 
-        logger.info(("Response Signin: "+ baseResponse.getMessage()));
+        logger.info(("Response Signin: " + baseResponse.getMessage()));
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
 }

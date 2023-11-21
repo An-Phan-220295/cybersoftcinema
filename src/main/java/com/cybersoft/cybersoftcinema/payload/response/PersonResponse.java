@@ -1,15 +1,17 @@
 package com.cybersoft.cybersoftcinema.payload.response;
 
-import java.util.Date;
+import com.cybersoft.cybersoftcinema.entity.PersonTypeEntity;
+
+import java.sql.Date;
 
 public class PersonResponse {
-    private int id ;
-    private String name ;
-    private String pictures ;
-    private Date dob ;
-    private String story ;
+    private int id;
     private String personType;
+    private String name;
+    private String picture;
+    private Date dob;
     private String country;
+    private String story;
 
     public int getId() {
         return id;
@@ -17,41 +19,6 @@ public class PersonResponse {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(String pictures) {
-        this.pictures = pictures;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-
-    public String getStory() {
-        return story;
-    }
-
-    public void setStory(String story) {
-        this.story = story;
     }
 
     public String getPersonType() {
@@ -62,11 +29,43 @@ public class PersonResponse {
         this.personType = personType;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
     public String getCountry() {
         return country;
     }
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
     }
 }
