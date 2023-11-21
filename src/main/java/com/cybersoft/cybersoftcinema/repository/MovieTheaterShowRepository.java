@@ -79,4 +79,6 @@ public interface MovieTheaterShowRepository extends JpaRepository<MovieTheaterSh
 
     @Query("select m.showingEntity FROM movie_theater_showing m WHERE m.movieEntity.id = :movieId and m.theaterEntity.id = :theaterId and ((m.showingEntity.showingDate > current_date) or (m.showingEntity.showingDate = current_date and m.showingEntity.startTime > current_time ))")
     List<ShowingEntity> findShowingByMovieAndTheater(int movieId, int theaterId);
+
+
 }

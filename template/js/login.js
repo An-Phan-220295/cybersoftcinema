@@ -19,7 +19,7 @@ $(document).on("click", "#btn-sign-in", function () {
       setCookie("userName", result.data.email);
       setCookie("role", user);
       alert("Đăng nhập thành công");
-      location.reload();
+      reloadWithoutHash();
     } else if (result.message == "other") {
       setCookie("access-token", result.data.token);
       setCookie("userId", result.data.userId);
@@ -106,4 +106,17 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+
+function reloadWithoutHash() {
+  var currentUrl = window.location.href;
+  if (currentUrl.indexOf("#!#tab_login_1") !== -1) {
+    var newUrl = currentUrl.replace("#!#tab_login_1", "");
+    window.location.href = newUrl;
+  } else if (currentUrl.indexOf("#!#tab_login_2") !== -1) {
+    var newUrl1 = currentUrl.replace("#!#tab_login_2", "");
+    window.location.href = newUrl1;
+  } else {
+    location.reload();
+  }
 }

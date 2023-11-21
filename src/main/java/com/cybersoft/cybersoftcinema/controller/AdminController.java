@@ -142,4 +142,15 @@ public class AdminController {
         }
         return new ResponseEntity<>(baseResponse, HttpStatus.OK);
     }
+    @GetMapping("/movie/findbyid")
+    public ResponseEntity<?> getMovie(@RequestParam int idMovie) throws IOException {
+        List<MovieResponse> movieResponseList = movieServiceImp.getMovie(idMovie);
+
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setStatusCode(200);
+        baseResponse.setMessage("Success");
+        baseResponse.setData(movieResponseList);
+
+        return new ResponseEntity<>(baseResponse, HttpStatus.OK);
+    }
 }
