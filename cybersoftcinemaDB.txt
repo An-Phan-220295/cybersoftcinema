@@ -59,6 +59,7 @@ CREATE TABLE movie(
 	releasedate date,
 	content text,
 	images varchar(255),
+	trailer varchar(255),
 	id_moviestatus int,
 	
 	primary key(id)
@@ -212,33 +213,46 @@ ALTER TABLE previewblog_tag		  	 ADD CONSTRAINT FK_id_previewblog_previewblog_ta
 						FOREIGN KEY (id_previewblog)			REFERENCES previewblog(id) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE previewblog			  	 ADD CONSTRAINT FK_id_typepreviewblog_previewblog							
 						FOREIGN KEY (id_typepreviewblog)		REFERENCES typepreviewblog(id) ON DELETE CASCADE ON UPDATE CASCADE;			
-	
 
 INSERT INTO persontype VALUES (null, "Actor");
 INSERT INTO persontype VALUES (null, "Director");
 
+INSERT INTO country VALUES (-1, "N/A");
 INSERT INTO country VALUES (null, "Việt Nam");
 INSERT INTO country VALUES (null, "Mỹ");
 INSERT INTO country VALUES (null, "Úc");
 INSERT INTO country VALUES (null, "Anh");
 INSERT INTO country VALUES (null, "Malaysia");
+INSERT INTO country VALUES (null, "Trung Quốc");
+INSERT INTO country VALUES (null, "Hàn Quốc");
+INSERT INTO country VALUES (null, "Nhật Bản");
+INSERT INTO country VALUES (null, "Indonesia");
 
-INSERT INTO person VALUES (null, 1, "Trấn Thành", "URL LINK", "1981-06-13", 1, "Trấn Thành còn có biệt danh là Thành Cry");
-INSERT INTO person VALUES (null, 1, "Chris EvanS", "URL LINK", "1987-02-05", 2, "Khác với Chris Hemsworth vẫn đang loay hoay trong hình tượng vị thần sấm sét, đa số người hâm mộ vẫn nhìn nhận rõ ràng, Chris Evans và Captain America là hai con người hoàn toàn khác nhau.");
-INSERT INTO person VALUES (null, 1, "Margot Robbie", "URL LINK", "1990-07-02", 3, "Dĩ nhiên, có nhan sắc chẳng bao giờ là đủ để đảm bảo cho chiếc vé thành công tại Hollywood, Margot còn phải cố gắng nhiều. Nhưng ta biết, hiện nay nàng xứng đáng được coi là minh tinh hạng A.");
-INSERT INTO person VALUES (null, 1, "Charlize Theron", "URL LINK", "1975-08-07", 2, "Bắt đầu từ vai diễn không có lời thoại, chỉ xuất hiện 3 giây trong một bộ phim hạng B, Charlize Theron nay đã trở thành nữ thần của Hollywood.");
-INSERT INTO person VALUES (null, 1, "Hugh Jackman", "URL LINK", "1981-06-13", 1, "Ngoài gương mặt đẹp trai, thân hình rắn chắc và số tài lẻ không đếm nổi, Hugh Jackman còn có một niềm tự hào mà khó minh tinh Hollywood nào không ganh tị.");
-INSERT INTO person VALUES (null, 1, "Robert Downey Jr.", "URL LINK", "1965-04-04", 2, "Thành công lớn ở giai đoạn đầu sự nghiệp nhưng nghiện ngập từ bé, có phim kiếm cả tỉ đôla lại từng lang thang không xu dính túi, 2 lần đề cử Oscar đi kèm với những lần vào tù ra khám… Nếu phải chọn cuộc đời một ngôi sao để viết kịch bản phim, thì “cuộc đời của Robert Downey Jr” sẽ là kịch bản nằm ở tốp kịch tính và ăn khách nhất.");
-INSERT INTO person VALUES (null, 1, "Johnny Depp", "URL LINK", "1963-06-09", 2, "Từng là một trong những nam diễn viên được trả thù lao nhiều nhất Hollywood, từng là cần câu lợi nhuận khổng lồ với hàng tỷ $ kiếm được, Johnny Depp nay chỉ còn là cái bóng trong hào quang quá khứ.");
-INSERT INTO person VALUES (null, 1, "Tom Hiddleston", "URL LINK", "1981-02-09", 4, "Hiện nay, thế giới biết đến Tom Hiddleston với hai biệt danh - “Loki” và “bạn trai (cũ) của Taylor Swift”. Thế nhưng, các fan của Tom Hiddleston đều hiểu rằng, anh ấy có nhiều thứ thú vị hơn nhiều.");
-INSERT INTO person VALUES (null, 1, "James Wan", "URL LINK", "1977-02-27", 1, "Khi Hollywood vẫn còn bị chỉ trích về nạn phân biệt chủng tộc, khi những tài năng da màu đều phải chật vật để tìm chỗ đứng, một người đàn ông đã chứng minh rằng chỉ cần có khả năng kiệt xuất thì dù ở đâu hay bất cứ vị trí nào, bạn cũng sẽ tỏa sáng. Anh ấy là James Wan.");
-INSERT INTO person VALUES (null, 2, "Nguyễn Quang Dũng", "URL LINK", "1978-12-18", 1, "Nguyễn Quang Dũng là một nam đạo diễn, nhà biên kịch kiêm nhà sản xuất điện ảnh người Việt Nam. Được xem là một trong những nhà làm phim xuất sắc nhất tại Việt Nam, anh được khán giả biết đến qua các tác phẩm Nụ hôn thần chết, Mỹ nhân kế, Tháng năm rực rỡ và Tiệc trăng máu.");
-INSERT INTO person VALUES (null, 1, "Hạo Khang", "URL LINK", "1970-01-01", 1, "Updating...");
-INSERT INTO person VALUES (null, 1, "Hồng Ánh", "URL LINK", "1978-08-28", 1, "Updateing...");
-INSERT INTO person VALUES (null, 1, "Hứa Vĩ Văn", "URL LINK", "1979-12-25", 1, "Hứa Vĩ Văn là một nam người mẫu, ca sĩ và diễn viên người Việt gốc Hoa. Anh bắt đầu sự nghiệp từ năm 16 tuổi với vai trò người mẫu, sau đó từng là thành viên nhóm nhạc GMC ở đầu thập niên 2000. Hiện tại Vĩ Văn hoạt động chủ yếu trong lĩnh vực phim truyền hình và điện ảnh.");
-INSERT INTO person VALUES (null, 1, "Tuấn Trần", "URL LINK", "1980-01-01", 1, "Updateing...");
-INSERT INTO person VALUES (null, 1, "Tiến Luật", "URL LINK", "1978-01-01", 1, "Updateing...");
+INSERT INTO person VALUES (-1, null, "N/A", null, null, null, null);
+INSERT INTO person VALUES (null, 1, "Trấn Thành", "", "1981-06-13", 1, "Trấn Thành còn có biệt danh là Thành Cry");
+INSERT INTO person VALUES (null, 1, "Chris EvanS", "", "1987-02-05", 2, "Khác với Chris Hemsworth vẫn đang loay hoay trong hình tượng vị thần sấm sét, đa số người hâm mộ vẫn nhìn nhận rõ ràng, Chris Evans và Captain America là hai con người hoàn toàn khác nhau.");
+INSERT INTO person VALUES (null, 1, "Margot Robbie", "", "1990-07-02", 3, "Dĩ nhiên, có nhan sắc chẳng bao giờ là đủ để đảm bảo cho chiếc vé thành công tại Hollywood, Margot còn phải cố gắng nhiều. Nhưng ta biết, hiện nay nàng xứng đáng được coi là minh tinh hạng A.");
+INSERT INTO person VALUES (null, 1, "Charlize Theron", "", "1975-08-07", 2, "Bắt đầu từ vai diễn không có lời thoại, chỉ xuất hiện 3 giây trong một bộ phim hạng B, Charlize Theron nay đã trở thành nữ thần của Hollywood.");
+INSERT INTO person VALUES (null, 1, "Hugh Jackman", "", "1981-06-13", 1, "Ngoài gương mặt đẹp trai, thân hình rắn chắc và số tài lẻ không đếm nổi, Hugh Jackman còn có một niềm tự hào mà khó minh tinh Hollywood nào không ganh tị.");
+INSERT INTO person VALUES (null, 1, "Robert Downey Jr.", "", "1965-04-04", 2, "Thành công lớn ở giai đoạn đầu sự nghiệp nhưng nghiện ngập từ bé, có phim kiếm cả tỉ đôla lại từng lang thang không xu dính túi, 2 lần đề cử Oscar đi kèm với những lần vào tù ra khám… Nếu phải chọn cuộc đời một ngôi sao để viết kịch bản phim, thì “cuộc đời của Robert Downey Jr” sẽ là kịch bản nằm ở tốp kịch tính và ăn khách nhất.");
+INSERT INTO person VALUES (null, 1, "Johnny Depp", "", "1963-06-09", 2, "Từng là một trong những nam diễn viên được trả thù lao nhiều nhất Hollywood, từng là cần câu lợi nhuận khổng lồ với hàng tỷ $ kiếm được, Johnny Depp nay chỉ còn là cái bóng trong hào quang quá khứ.");
+INSERT INTO person VALUES (null, 1, "Tom Hiddleston", "", "1981-02-09", 4, "Hiện nay, thế giới biết đến Tom Hiddleston với hai biệt danh - “Loki” và “bạn trai (cũ) của Taylor Swift”. Thế nhưng, các fan của Tom Hiddleston đều hiểu rằng, anh ấy có nhiều thứ thú vị hơn nhiều.");
+INSERT INTO person VALUES (null, 1, "James Wan", "", "1977-02-27", 1, "Khi Hollywood vẫn còn bị chỉ trích về nạn phân biệt chủng tộc, khi những tài năng da màu đều phải chật vật để tìm chỗ đứng, một người đàn ông đã chứng minh rằng chỉ cần có khả năng kiệt xuất thì dù ở đâu hay bất cứ vị trí nào, bạn cũng sẽ tỏa sáng. Anh ấy là James Wan.");
+INSERT INTO person VALUES (null, 2, "Nguyễn Quang Dũng", "", "1978-12-18", 1, "Nguyễn Quang Dũng là một nam đạo diễn, nhà biên kịch kiêm nhà sản xuất điện ảnh người Việt Nam. Được xem là một trong những nhà làm phim xuất sắc nhất tại Việt Nam, anh được khán giả biết đến qua các tác phẩm Nụ hôn thần chết, Mỹ nhân kế, Tháng năm rực rỡ và Tiệc trăng máu.");
+INSERT INTO person VALUES (null, 1, "Hạo Khang", "", "1970-01-01", 1, "Updating...");
+INSERT INTO person VALUES (null, 1, "Hồng Ánh", "", "1978-08-28", 1, "Updateing...");
+INSERT INTO person VALUES (null, 1, "Hứa Vĩ Văn", "", "1979-12-25", 1, "Hứa Vĩ Văn là một nam người mẫu, ca sĩ và diễn viên người Việt gốc Hoa. Anh bắt đầu sự nghiệp từ năm 16 tuổi với vai trò người mẫu, sau đó từng là thành viên nhóm nhạc GMC ở đầu thập niên 2000. Hiện tại Vĩ Văn hoạt động chủ yếu trong lĩnh vực phim truyền hình và điện ảnh.");
+INSERT INTO person VALUES (null, 1, "Tuấn Trần", "", "1980-01-01", 1, "Updateing...");
+INSERT INTO person VALUES (null, 1, "Tiến Luật", "", "1978-01-01", 1, "Updateing...");
 
+INSERT INTO person VALUES (null, 2, "James Wan", "", "1977-02-27", 5, "Khi Hollywood vẫn còn bị chỉ trích về nạn phân biệt chủng tộc, khi những tài năng da màu đều phải chật vật để tìm chỗ đứng, một người đàn ông đã chứng minh rằng chỉ cần có khả năng kiệt xuất thì dù ở đâu hay bất cứ vị trí nào, bạn cũng sẽ tỏa sáng. Anh ấy là James Wan.");
+INSERT INTO person VALUES (null, 2, "Lê Bảo Trung", "", "1974-01-01", 1, "Tốt nghiệp xuất sắc khoa đạo diễn TRƯỜNG ĐẠI HỌC SÂN KHẤU ĐIỆN ẢNH TP. HCM, TRƯỜNG ĐẠI HỌC ĐIỆN ẢNH HÀ NỘI, khóa học làm phim của TRƯỜNG UNIVERSITY SOUTHERN CALIFORNIA(USC) - HOA KỲ, Đạo diễn LÊ BẢO TRUNG đã thành công với nhiều phim điện ảnh đạt doanh thu cao.");
+INSERT INTO person VALUES (null, 2, "Michael Bay", "", "1978-01-01", 2, "Một nhà sản xuất có thể kiếm hàng tỷ $ dù phim nào ra rạp cũng bị “gạch đá” nặng nề.Một đạo diễn bị gọi là kẻ bất tài nhưng vẫn có thể mời được các ngôi sao hàng đầu vào phim của mình. Chỉ có thể là Michael Bay.");
+INSERT INTO person VALUES (null, 2, "Victor Vũ", "", "1975-11-25", 1, "Victor Vũ, tên thật Vũ Quốc Việt, là một đạo diễn phim, nhà biên kịch phim, nhà sản xuất phim và người dựng phim người Mỹ gốc Việt. Victor Vũ có một sự nghiệp thành công với rất nhiều các thể loại phim điện ảnh đa dạng, chuyển đổi liên tục giữa hành động, phim hài, phim tâm lý và phim kinh dị.");
+INSERT INTO person VALUES (null, 2, "Tim Burton", "", "1978-05-01", 3, "Ma mị mà thuần khiết, kinh dị vẫn rung động lòng người. Đó là điểm chung mà khán giả tìm được trong phim Tim Burton.");
+INSERT INTO person VALUES (null, 2, "Phan Minh", "", "1979-06-12", 1, "Đạo diễn Phan Minh được đào chuyên ngành đạo diễn 5 năm tại học viện điện ảnh hàng đầu Hollywood - New York Film Academy. Đạo diễn Phan Minh mang theo những ấp ủ và tham vọng nâng tầm điện ảnh Việt Nam sánh cùng các nền điện ảnh phát triển của khu vực. Năm 2011, Phan Minh sáng lập công ty Vi-Phim và là người dẫn dắt công ty trong suốt thời gian qua. Đạo diễn Phan Minh cũng là người thực hiện phim nhựa Khoảng Lặng (2010) và khởi động dự án phim truyền hình Ông Trùm, Dừng bước giang hồ..");
+
+INSERT INTO movietype VALUES (-1, "N/A");
 INSERT INTO movietype VALUES (null, "Chiến tranh");
 INSERT INTO movietype VALUES (null, "Gia đình");
 INSERT INTO movietype VALUES (null, "Giả tưởng");
@@ -262,50 +276,243 @@ INSERT INTO theater VALUES (null, "Galaxy Nguyễn Du", "116 Nguyễn Du, Quận
 INSERT INTO theater VALUES (null, "Galaxy Trường Chinh", "Tầng 3 - Co.opMart TTTM Thắng Lợi - Số 2 Trường Chinh, Tây Thạnh, Tân Phú, Thành phố Hồ Chí Minh", "Tọa lạc tại Tầng 3 - Co.opMart TTTM Thắng Lợi - Số 2 Trường Chinh, Tây Thạnh, Tân Phú; Galaxy Trường Chinh sở hữu vị trí vô cùng thuận lợi, dễ dàng thu hút các bạn trẻ tại Tân Phú, Tân Bình, Gò Vấp, Quận 12, Hóc Môn…   Galaxy Trường Chinh là rạp chiếu phim đầu tiên trong hệ thống Galaxy Cinema thiết kế theo phong cách mới – Movie Station. Chắc chắn, các Stars sẽ bất ngờ và choáng ngợp trước không gian rạp chiếu phim nay biến thành Trạm Tàu Điện Ảnh tiêu chuẩn, đưa khán giả du hành khắp vũ trụ phim hay.   Nổi tiếng với giao diện trẻ trung, góc nào cũng có thể “sống ảo”, Galaxy Trường Chinh trình làng hai khu check-in mới cứng! Đó là toa tàu điện ngầm và chiếc đồng hồ siêu khủng - biểu tượng mới của Galaxy Cinema. Cầm vé tại Ticket Station, lấy bắp nước ở Popcorn Station và cùng khám phá những xứ sở mới lạ trên đoàn tàu Galaxy Cinema.   Với 6 phòng chiếu – Toa Tàu được xây dựng theo chuẩn quốc tế cùng màn hình tối tân và hệ thống âm thanh Dolby 7.1 sống động như thật, Galaxy Trường Chinh sẽ đem đến những trải nghiệm phim hay phim mới vô cùng đặc sắc và thú vị. Rạp cũng nâng cấp sơ đồ ghế ngồi chuẩn – chỉnh hơn, giúp các Stars thoải mái nhất có thể.");
 INSERT INTO theater VALUES (null, "Galaxy Kinh Dương Vương", "718bis Kinh Dương Vương, Q6, TpHCM.", "Galaxy Kinh Dương Vương là cụm rạp chiếu phim đầu tiên và duy nhất tại khu vực quận 6 tính cho đến năm 2016.   Ngay từ lúc khai trương vào năm 2013, nơi đây đã có 7 phòng chiếu được thiết kế theo tiêu chuẩn quốc tế với khoảng cách ghế ngồi rộng rãi. Bên cạnh đó, hệ thống âm thanh Dolby 7.1, màn hình chiếu kỹ thuật 3D và Digital vô cùng mịn, sắc nét đến từng phút giây mang đến những trải nghiệm phim hay cực đỉnh.   Sự ra đời của Galaxy Kinh Dương Vương thỏa khao khát từ lâu của các tín đồ điện ảnh. Chỉ mới đây thôi, cư dân Q.6 và các vùng lân cận muốn thưởng thức một bộ phim mới tại rạp bắt buộc phải lặn lội vào trung tâm. Đặc biệt, chỉ qua 3 ngày đầu tiên khai trương, rạp đã đạt mức vé bán kỷ lục là hơn 16.000 vé.");
 
-INSERT INTO showing VALUES (null, "16:00", "2023-11-14");
-INSERT INTO showing VALUES (null, "16:30", "2023-11-14");
-INSERT INTO showing VALUES (null, "17:00", "2023-11-14");
-INSERT INTO showing VALUES (null, "17:30", "2023-11-14");
-INSERT INTO showing VALUES (null, "18:00", "2023-11-14");
-INSERT INTO showing VALUES (null, "18:30", "2023-11-14");
-INSERT INTO showing VALUES (null, "19:00", "2023-11-14");
-INSERT INTO showing VALUES (null, "19:30", "2023-11-14");
-INSERT INTO showing VALUES (null, "20:00", "2023-11-14");
-INSERT INTO showing VALUES (null, "20:30", "2023-11-14");
-INSERT INTO showing VALUES (null, "21:00", "2023-11-14");
-INSERT INTO showing VALUES (null, "21:30", "2023-11-14");
-INSERT INTO showing VALUES (null, "22:00", "2023-11-14");
-INSERT INTO showing VALUES (null, "16:00", "2023-11-15");
-INSERT INTO showing VALUES (null, "16:30", "2023-11-15");
-INSERT INTO showing VALUES (null, "17:00", "2023-11-15");
-INSERT INTO showing VALUES (null, "17:30", "2023-11-15");
-INSERT INTO showing VALUES (null, "18:00", "2023-11-15");
-INSERT INTO showing VALUES (null, "18:30", "2023-11-15");
-INSERT INTO showing VALUES (null, "19:00", "2023-11-15");
-INSERT INTO showing VALUES (null, "19:30", "2023-11-15");
-INSERT INTO showing VALUES (null, "20:00", "2023-11-15");
-INSERT INTO showing VALUES (null, "20:30", "2023-11-15");
-INSERT INTO showing VALUES (null, "21:00", "2023-11-15");
-INSERT INTO showing VALUES (null, "21:30", "2023-11-15");
-INSERT INTO showing VALUES (null, "22:00", "2023-11-15");
-INSERT INTO showing VALUES (null, "16:00", "2023-11-16");
-INSERT INTO showing VALUES (null, "16:30", "2023-11-16");
-INSERT INTO showing VALUES (null, "17:00", "2023-11-16");
-INSERT INTO showing VALUES (null, "17:30", "2023-11-16");
-INSERT INTO showing VALUES (null, "18:00", "2023-11-16");
-INSERT INTO showing VALUES (null, "18:30", "2023-11-16");
-INSERT INTO showing VALUES (null, "19:00", "2023-11-16");
-INSERT INTO showing VALUES (null, "19:30", "2023-11-16");
-INSERT INTO showing VALUES (null, "20:00", "2023-11-16");
-INSERT INTO showing VALUES (null, "20:30", "2023-11-16");
-INSERT INTO showing VALUES (null, "21:00", "2023-11-16");
-INSERT INTO showing VALUES (null, "21:30", "2023-11-16");
-INSERT INTO showing VALUES (null, "22:00", "2023-11-16");
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(1, '16:00:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(2, '16:30:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(3, '17:00:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(4, '17:30:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(5, '18:00:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(6, '18:30:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(7, '19:00:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(8, '19:30:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(9, '20:00:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(10, '20:30:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(11, '21:00:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(12, '21:30:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(13, '22:00:00', '2023-11-24');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(14, '16:00:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(15, '16:30:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(16, '17:00:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(17, '17:30:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(18, '18:00:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(19, '18:30:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(20, '19:00:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(21, '19:30:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(22, '20:00:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(23, '20:30:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(24, '21:00:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(25, '21:30:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(26, '22:00:00', '2023-11-25');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(27, '16:00:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(28, '16:30:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(29, '17:00:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(30, '17:30:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(31, '18:00:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(32, '18:30:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(33, '19:00:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(34, '19:30:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(35, '20:00:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(36, '20:30:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(37, '21:00:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(38, '21:30:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(40, '22:00:00', '2023-11-26');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(42, '16:30:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(43, '17:00:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(44, '17:30:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(45, '18:00:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(46, '18:30:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(47, '19:00:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(48, '19:30:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(49, '20:00:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(50, '20:30:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(51, '21:00:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(52, '21:30:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(53, '22:00:00', '2023-11-19');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(54, '16:00:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(55, '16:30:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(56, '17:00:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(57, '17:30:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(58, '18:00:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(59, '18:30:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(60, '19:00:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(61, '19:30:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(62, '20:00:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(63, '20:30:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(64, '21:00:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(65, '21:30:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(66, '22:00:00', '2023-11-20');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(67, '16:00:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(68, '16:30:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(69, '17:00:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(70, '17:30:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(71, '18:00:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(72, '18:30:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(73, '19:00:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(74, '19:30:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(75, '20:00:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(76, '20:30:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(77, '21:00:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(78, '21:30:00', '2023-11-21');
+INSERT INTO cybersoftcinema.showing
+(id, starttime, showingdate)
+VALUES(79, '22:00:00', '2023-11-21');
 
 INSERT INTO moviestatus VALUES (null,"Sắp chiếu");
 INSERT INTO moviestatus VALUES (null,"Đang chiếu");
 INSERT INTO moviestatus VALUES (null,"Đã chiếu");
 
+INSERT INTO producer VALUES (-1, "N/A");
 INSERT INTO producer VALUES (null, "Galaxy Play");
 INSERT INTO producer VALUES (null, "Trấn Thành Town");
 INSERT INTO producer VALUES (null, "HK Film");
@@ -315,28 +522,26 @@ INSERT INTO producer VALUES (null, "Barunson Studio");
 INSERT INTO producer VALUES (null, "Apple Studios");
 INSERT INTO producer VALUES (null, "Ambient Entertainment GmbH");
 
+INSERT INTO  movie VALUES (null,"ĐẤT RỪNG PHƯƠNG NAM",8, 16,110,1,"2023-10-05","Đất Rừng Phương Nam phiên bản điện ảnh được kế thừa và phát triển từ tiểu thuyết cùng tên của nhà văn Đoàn Giỏi. Bộ phim kể về hành trình phiêu lưu của An - một cậu bé chẳng may mất mẹ trên đường đi tìm cha. Cùng với An, khán giả sẽ trải nghiệm sự trù phú của thiên nhiên và nét đẹp văn hoá đặc sắc của vùng đất Nam Kì Lục Tỉnh, sự hào hiệp của những người nông dân bám đất bám rừng và tinh thần yêu nước kháng Pháp đầu thế kỉ 20. Bên cạnh đó, tình cảm gia đình, tình bạn, tình người, tình thầy trò, tình yêu nước là những cung bậc cảm xúc sâu sắc sẽ đọng lại qua mỗi bước chân của An và đồng bạn. Phim mới Đất Rừng Phương Nam suất chiếu sớm 13.10.2023 tại rạp chiếu phim toàn quốc.","383996993_357174549990249_8392746042342030833_n.jpg","https://www.youtube.com/watch?v=hktzirCnJmQ",2);
+INSERT INTO movie (id, name, rating, requiredage, duration, id_country, releasedate, content, images, trailer, id_moviestatus) VALUES(null, 'Biệt đội Marvels', 8.0, 18, 104, 2, '2023-11-09', 'Carol Danvers bị vướng vào sức mạnh của Kamala Khan và Monica Rambeau, buộc họ phải hợp tác với nhau để cứu vũ trụ.  The Marvels (tựa Việt: Biệt đội Marvel) là dự án cuối cùng của Vũ trụ Điện ảnh Marvel (MCU) trong năm 2023, đóng vai trò quan trọng khi kết nối 3 mini-series ăn khách đã ra mắt là WandaVision, Ms. Marvel và Secret Invasion. Không những đánh dấu màn tái xuất của nhân vật được khán giả yêu thích Captain Marvel Carol Denvers (Brie Larson) trên màn ảnh rộng, bộ phim còn giới thiệu đến khán giả liên minh 3 "chị đại" có vai trò quan trọng đối với tương lai của MCU. Câu chuyện lần này xảy ra sau các sự kiện trong Captain Marvel (2019), Dar-Benn (The Accuser) đã mất đi quê nhà và giờ đây, ả đang tìm cách trả thù mọi hành tinh từng được Carol cứu giúp. Bằng cách nào đó, Dar-Benn sở hữu được chiếc vòng có sự liên kết với Ms. Marvel/Kamala Khan (Iman Vellani) và "Spectrum" Monica Rambeau (Teyonah Parris). Từ đây, nữ ác nhân có thể thao túng liên kết ánh sáng giữa các siêu anh hùng khiến họ hoán đổi vị trí cho nhau mỗi khi dùng sức mạnh, gây ra những xáo động khôn lường.', 'maxresdefault.jpg', 'https://www.youtube.com/watch?v=8pW1P8ddqOo&embeds_referring_euri=https%3A%2F%2Fwww.galaxycine.vn%2F&source_ve_path=Mjg2NjY&feature=emb_logo', 2);
+INSERT INTO movie (id, name, rating, requiredage, duration, id_country, releasedate, content, images, trailer, id_moviestatus) VALUES(null, 'Người Vợ Cuối Cùng', 8.0, 18, 132, 1, '2023-11-01', 'Lấy cảm hứng từ tiểu thuyết Hồ Oán Hận, của nhà văn Hồng Thái, Người Vợ Cuối Cùng là một bộ phim tâm lý cổ trang, lấy bối cảnh Việt Nam vào triều Nguyễn. Linh - Người vợ bất đắc dĩ của một viên quan tri huyện, xuất thân là con của một gia đình nông dân nghèo khó, vì không thể hoàn thành nghĩa vụ sinh con nối dõi nên đã chịu sự chèn ép của những người vợ lớn trong gia đình. Sự gặp gỡ tình cờ của cô và người yêu thời thanh mai trúc mã của mình - Nhân đã dẫn đến nhiều câu chuyện bất ngờ xảy ra khiến cuộc sống cô hoàn toàn thay đổ', '750x500-nvcc_1698985267220.jpg', 'https://www.youtube.com/watch?v=iTJ-N32o2cI&embeds_referring_euri=https%3A%2F%2Fwww.galaxycine.vn%2F&source_ve_path=Mjg2NjY&feature=emb_logo', 2);
+INSERT INTO movie (id, name, rating, requiredage, duration, id_country, releasedate, content, images, trailer, id_moviestatus) VALUES(null, 'Yêu Lại Vợ Ngầu', 9.0, 16, 114, 8, '2023-11-08', 'Cặp vợ chồng trẻ No Jung Yeol (Kang Ha-neul) và Hong Na Ra (Jung So-min) từ cuộc sống hôn nhân màu hồng dần “hiện nguyên hình” trở thành cái gai trong mắt đối phương với vô vàn thói hư, tật xấu. Không thể đi đến tiếng nói chung, Jung Yeol và Na Ra quyết định ra toà ly dị. Tuy nhiên, họ phải chờ 30 ngày cho đến khi mọi thủ tục chính thức được hoàn tất. Trong khoảng thời gian này, một vụ tai nạn xảy ra khiến cả hai mất đi ký ức và không nhớ người kia là ai. 30 ngày chờ đợi để được “đường ai nấy đi” nhưng nhiều tình huống trớ trêu khiến cả hai bắt đầu nảy sinh tình cảm trở lại. Liệu khi nhớ ra mọi thứ, họ vẫn sẽ ký tên vào tờ giấy ly hôn?', 'lr-750_1699256436423.jpg', 'https://www.youtube.com/watch?v=P9qbkVSA8jo&embeds_referring_euri=https%3A%2F%2Fwww.galaxycine.vn%2F&source_ve_path=Mjg2NjY&feature=emb_logo', 2);
+INSERT INTO movie (id, name, rating, requiredage, duration, id_country, releasedate, content, images, trailer, id_moviestatus) VALUES(null, 'Quỷ Lùn Tinh Nghịch: Đồng Tâm Hiệp Nhạc ', 8.0, 6, 92, 2, '2023-11-17', 'Sự xuất hiện đột ngột của John Dory, anh trai thất lạc đã lâu của Branch mở ra quá khứ bí mật được che giấu bấy lâu nay của Branch. Đó là quá khứ về một ban nhạc có tên BroZone từng rất nổi tiếng nhưng đã tan rã. Hành trình đi tìm lại các thành viên để làm một ban nhạc như xưa trở thành chuyến phiêu lưu âm nhạc đầy cảm xúc, tràn trề hi vọng về một cuộc sum họp gia đình tuyệt với nhất.', 'trolls-750_1699000953132.jpg', 'https://www.youtube.com/watch?v=dvGFh-XdDgQ&embeds_referring_euri=https%3A%2F%2Fwww.galaxycine.vn%2F&source_ve_path=Mjg2NjY&feature=emb_logo', 2);
+INSERT INTO movie (id, name, rating, requiredage, duration, id_country, releasedate, content, images, trailer, id_moviestatus) VALUES(null, 'The Red Cirle', 8.0, 18, 121, -1, '2023-12-10', 'N/A', '857189357280731_mainphotos.jpg', 'https://www.youtube.com/watch?v=taSkmZUa4dY', 1);
+INSERT INTO movie (id, name, rating, requiredage, duration, id_country, releasedate, content, images, trailer, id_moviestatus) VALUES(null, 'SlamDunk: Cú Úp Rổ Đầu TIên', 9.0, 18, 142, 9, '2024-04-14', 'N/A', 'slamdunk.jpg', 'https://www.youtube.com/watch?v=NEa0J_Q-NIY', 1);
 
-INSERT INTO  movie VALUES (null,"ĐẤT RỪNG PHƯƠNG NAM",8, 16,110,1,"2023-10-05","Đất Rừng Phương Nam phiên bản điện ảnh được kế thừa và phát triển từ tiểu thuyết cùng tên của nhà văn Đoàn Giỏi. Bộ phim kể về hành trình phiêu lưu của An - một cậu bé chẳng may mất mẹ trên đường đi tìm cha. Cùng với An, khán giả sẽ trải nghiệm sự trù phú của thiên nhiên và nét đẹp văn hoá đặc sắc của vùng đất Nam Kì Lục Tỉnh, sự hào hiệp của những người nông dân bám đất bám rừng và tinh thần yêu nước kháng Pháp đầu thế kỉ 20. Bên cạnh đó, tình cảm gia đình, tình bạn, tình người, tình thầy trò, tình yêu nước là những cung bậc cảm xúc sâu sắc sẽ đọng lại qua mỗi bước chân của An và đồng bạn. Phim mới Đất Rừng Phương Nam suất chiếu sớm 13.10.2023 tại rạp chiếu phim toàn quốc.",null,2);
-INSERT INTO  movie VALUES (null,"THE EXORCIST: BELIEVER QUỶ ÁM: TÍN ĐỒ", 8.1, 18, 111, 2, "2023-10-06","Kể từ cái chết của người vợ đang mang thai trong trận động đất ở Haiti 12 năm trước, Victor Fielding đã tự mình nuôi nấng con gái của họ là Angela. Nhưng khi Angela và bạn của cô là Katherine biến mất trong rừng, và quay lại trong ba ngày sau mà không nhớ gì về những gì đã xảy ra với họ, nó là nguồn cơn của một chuỗi sự kiện buộc Victor phải đối mặt với cái ác trong nỗi kinh hoàng và tuyệt vọng, tìm kiếm người duy nhất còn sống đã từng chứng kiến ​​bất cứ điều gì giống như vậy trước đây - Chris MacNeil. Phim mới Quỷ Ám: Tín Đồ ra mắt tại các rạp chiếu phim từ 06.10.2023.",null,2);
-INSERT INTO  movie VALUES (null,"KUMANTHONG: QUỶ LINH NHI", 5.4, 18, 88, 1, "2023-10-05","Ging đưa con trai đi nghỉ mát ở căn nhà gỗ nằm giữa rừng cây. Tuy nhiên, cậu bé đã bị bắt cóc vào lúc nửa đêm. Sau bao nỗ lực tìm kiếm, manh mối duy nhất của vụ án đều hướng về người đàn ông tên In, làm nghề mai táng ở đền thờ. Quá tuyệt vọng, Ging đành nhờ cậy thầy đồng địa phương thực hiện nghi lễ hiến tế giữa rừng để tìm tung tích con trai. Những bí ẩn trong ngôi nhà ven rừng dần lộ ra, những cơn ác mộng máu me và hàng loạt cái chết đột ngột ập tới, liệu Ging có đang vướng vào một âm mưu tà ám. Và rằng con trai cô có thật sự đang mất tích? Phim mới Kumanthong: Quỷ Linh Nhi dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 06.10.2023.",null,2);
-INSERT INTO  movie VALUES (null,"CÚ MÁY ĂN TIỀN", 8.9, 16, 132, 2, "2023-10-13","Cú Máy Ăn Tiền lấy bối cảnh và câu chuyện làm phim những năm 1970 ở Hàn Quốc. Kim Yeol (Song Kang-ho thủ vai) - một đạo diễn điện ảnh có bộ phim đầu tay ăn khách, nhưng sự nghiệp của ông tuột dốc không phanh khi liên tiếp ra đời những tác phẩm bị coi là “phim rác”. Sau khi hoàn thành xong bộ phim mới nhất “Cobweb”, đạo diễn Kim Yeol đã yêu cầu quay lại cái kết cho bộ phim bởi ám ảnh phải tạo ra kiệt tác. Tuy nhiên, kịch bản mới không vượt qua được khâu kiểm duyệt và các diễn viên cũng không thể hiểu được cái kết mới của ông.  Giữa sự bất hợp tác từ các diễn viên, sự phản đối từ nhà sản xuất, sự can thiệp của cơ quan kiểm duyệt và những mâu thuẫn đang xung đột trước mắt khiến đạo diễn Kim Yeol như muốn phát điên, nhưng ông vẫn tiếp tục một cách bất chấp: “Nếu tôi có thể thay đổi cái kết, một kiệt tác sẽ xuất hiện. Tất cả những gì tôi cần là 2 ngày”.  Liệu đạo diễn Kim Yeol có thể vượt qua khó khăn đang bao vây tứ phía tựa “mạng nhện” để thực hiện tham vọng nghệ thuật và hoàn thành kiệt tác của mình? Phim mới Cú Máy Ăn Tiền dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 13.10.2023.",null,2);
-INSERT INTO  movie VALUES (null,"GIAO LỘ 8675", 5.4, 1, 107, 2, "2023-10-03",'Giao Lộ 8675 là cuộc hành trình khám phá đầy ngẫu hững nhưng cũng vô cùng kịch tính, nguy hiểm và hài hước của ba chàng trai. Bộ phim của đạo diễn Tân DS hứa hẹn sẽ đem đến cho khán giả những trải nghiệm thú vị, hồi hộp và những giây phúc "cười sảng khoái" thông qua sự diễn xuất của các nam diễn viên Issac, Rocker Nguyễn và Lợi Trần. Họ sẽ hoá thân thành ba chàng trai trong cuộc hành trình khám phá đầy ngẫu hứng với nhiều bất ngờ.  Phim mới Giao Lộ 8675 dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 06.10.2023',null,2);
-INSERT INTO  movie VALUES (null,"LES QUATRE CENTS COUPS: VỊ THÀNH NIÊN (400 CÚ ĐẤM)", 7, 13, 0, 2, "2023-10-14","Cậu bé Antoine Doinel không thể tìm được sự đồng cảm ở trường hay ở nhà. Quyết định trốn chạy khỏi tất cả, Antoine ăn cắp máy đánh chữ của bố định bán lấy tiền. Nhưng cậu bị bắt gặp vào giao nộp cho cảnh sát, ngủ một đêm ở đồn cạnh những trộm cắp gái điếm. Những chuỗi ngày sau đó, từng mẩu chuyện về cuộc đời cô độc của cậu dần được hé lộ… Phim mới Vị Thành Niên (400 Cú Đấm) dự kiến ra mắt tại rạp chiếu phim từ 14.10.2023.",null,2);
-INSERT INTO  movie VALUES (null,"THÀNH PHỐ NGỦ GẬT", 8.0, 18, 73, 2, "2023-10-13","Nhân vật chính là một chàng thanh niên 26 tuổi, sống đơn độc giữa trung tâm thành phố nhộn nhịp, mưu sinh bằng nghề mổ gà. Một ngày, sự xuất hiện của nhóm giang hồ và một cô gái điếm đã tác động đến cuộc sống của anh. Điều đó đã làm cho bản năng hoang dã của chàng thanh niên trỗi dậy không kiểm soát. Phim mới Thành Phố Ngủ Gật dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 13.10.2023.",null,2);
-INSERT INTO  movie VALUES (null,"WOLFOO VÀ HÒN ĐẢO KỲ BÍ", 5.8, 0, 100, 1, "2023-10-13","Câu chuyện xoanh quanh nhân vật chính là chú sói nhỏ Wolfoo 8 tuổi - một chú bé vui vẻ, tốt bụng và yêu thích sự khám phá. Đồng hành cùng Wolfoo chính là cô em gái Lucy 6 tuổi tinh nghịch, hay làm nũng nhưng vô cùng yêu thương anh trai. Câu chuyện bắt đầu khi hai anh em Wolfoo và Lucy bị hút vào một chiếc dây chuyền và đến với Linh Giới - một thế giới vô cùng kỳ diệu. Tại Linh Giới, một sự cố bất ngờ đã khiến hai anh em bị chia tách. Trong hành trình tìm em gái, Wolfoo đã vô tình bị cuốn vào cuộc đấu tranh khốc liệt chống lại binh đoàn quỷ dữ - đứng đầu là Chúa Quỷ Bane - đang cai trị Đảo Thần Bí. Không chỉ là câu chuyện phiêu lưu thuần túy, bộ phim còn mang trong mình những bài học quý giá về sự sáng tạo, sự can đảm và cả tình yêu thương. Tất cả những điều đó đã tạo nên một bộ phim thỏa mãn sự giải trí nhưng cũng đầy tính giáo dục. Phim mới Wolfoo Và Hòn Đảo Kỳ Bí dự̣kiến ra mắt tại các rạp chiếu phim toàn quốc từ 13.10.2023.",null,2);
-INSERT INTO  movie VALUES (null,"THANH GƯƠM TRỪ TÀ", 9.4, 16, 98, 1, "2023-10-06",'Chuyện phim xoay quanh nhân vật thầy trừ tà Cheon (Gang Dong Won thủ vai), cùng với chiến hữu của mình In Bae (Lee Dong Hwi thủ vai), chuyên đi lừa đảo với những màn trừ tà “pha ke" sử dụng công nghệ cao cùng khả năng hùng biện và tài “thao túng tâm lý" đỉnh cao. Tuy chuyên đi trừ tà nhưng cả hai đều không thể nhìn thấy và không tin vào ma quỷ cho tới khi họ phải đối đầu với một con ác quỷ thật đang khống chế em gái (Park So Yi thủ vai) của Yoo Kyung (Esom thủ vai). Yoo Kyung sở hữu “đôi mắt âm dương” có thể nhìn thấy những linh hồn. Kết hợp với thầy trừ tà Cheon và In Bae, họ phải đối đầu với con ác quỷ thật sự - Beom Cheom (Huh Joon Ho thủ vai) và từ đó, thầy trừ tà Cheon vô tình khám phá được bí mật đằng sau cái chết của em trai và ông nội mình. Nhận được sự giúp đỡ của một nhân vật bí ẩn cùng với những pha hành động trừ tà đẹp mắt, liệu thầy trừ tà Cheon có giúp được em gái của Yoo Kyung và diệt trừ ác quỷ đó? Phim mới Thanh Gươm Trừ Tà dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 06.10.2023.',null,2);
-INSERT INTO  movie VALUES (null,"MỘNG DU", 7.2, 16, 94, 2, "2023-10-05",'Được Bong Joon Ho nhận xét là “phim kinh dị độc đáo nhất của thập kỷ", ngôi vương phòng vé Hàn Quốc - MỘNG DU xoay quanh chuỗi sự kiện ma quái quấy rối giấc ngủ của một cặp vợ chồng trẻ. “Nó" sẽ thức tỉnh lúc nửa đêm.  Phim mới Mộng Du dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 06.10.2023.',null,2);
-INSERT INTO  movie VALUES (null,"PAW PATROL: PHIM SIÊU ĐẲNG", 9.1, 0, 93, 1, "2023-09-29","Một mảnh thiên thạch kỳ diệu đã rơi xuống Thành Phố Phiêu Lưu, mang đến siêu năng lực cho những chú cún PAW Patrol và biến chúng thành Những Chú Cún Quyền Năng. Phim mới PAW Patrol: Phim Siêu Đẳng ra mắt tại các rạp chiếu phim từ 29.09.2023.",null,2);
-INSERT INTO  movie VALUES (null,"KẺ KIẾN TẠO", 7.7, 13, 133, 1, "2023-09-29","Trong tương lai, thế giới xảy ra một cuộc chiến tranh kéo dài giữa loài người và trí tuệ nhân tạo (AI). Joshua (John David Washington) - 1 cựu đặc vụ lì lợm, được thuê để giết “The Creator” - kẻ được xem là đầu não của AI và đã tạo ra 1 loại vũ khí bí ẩn đủ mạnh để kết thúc cuộc chiến và quét sạch nhân loại.  Joshua lần theo mọi dấu vết và biết được rằng thứ vũ khí hủy diệt bí ẩn đó lại chỉ là một AI trong hình hài một đứa bé. Phim mới Kẻ Kiến Tạo khởi chiếu 29.09.2023 tại rạp chiếu phim toàn quốc.",null,2);
-
-INSERT INTO  movie VALUES (null,"VẦNG TRĂNG MÁU", 9.4, 0, 0, 1, "2023-10-20","Bộ phim dựa trên cuốn sách bán chạy và được ca ngợi rộng rãi Killers of the Flower Moon: The Osage Murders and the Birth of the FBI của David Grann. Lấy bối cảnh ở Oklahoma những năm 1920, cuốn sách kể về vụ giết người hàng loạt ở bộ tộc Osage, nơi người dân phát triển kinh tế chủ yếu từ dầu mỏ. Một chuỗi tội ác tàn bạo đã xảy ra, được gọi là Triều đại Khủng bố. Phim mới Vầng Trăng Máu ra mắt tại các rạp chiếu phim từ 20.10.2023",null,1);
-INSERT INTO  movie VALUES (null,"GIA ĐÌNH QUÁI VẬT", 9.5, 0, 0, 1, "2023-10-25","Để giải cứu những người bạn quái vật, gia đình Wishbone bắt đầu chuyến phiêu lưu đến những vùng đất mới cùng những thử thách vô cùng hài hước. Phim mới Gia Đình Quái Vật dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 13.10.2023.",null,1);
-INSERT INTO  movie VALUES (null,"NĂM ĐÊM KINH HOÀNG", 9.4, 0, 0, 1,"2023-10-30", "Liệu thể sống sót sau năm đêm? Bộ phim kể về một nhân viên bảo vệ gặp rắc rối khi anh bắt đầu làm việc tại Freddy Fazbear's Pizza. Sau ngày đầu tiên, anh nhận ra rằng ca đêm ở Freddy's không giống như bình thường.   Phim mới Năm Đêm Kinh Hoàng dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 27.10.2023.",null,1);
-INSERT INTO  movie VALUES (null,"ÂM HỒN ĐÔ THỊ", 3.3, 0, 0, 1,"2023-11-10", "Âm Hồn Đô Thị bao gồm 5 câu chuyện kinh dị:  Ding-dong Challenge: Xoay quanh 3 người bạn Bora, Haeyul và Youngbi. Mỗi người đều có một mong muốn riêng và quyết định tham gia vào một cuộc thi nguy hiểm, chấp nhận thử thách thực hiện những vũ đạo trên một ứng dụng tên Ding-dong để biến ước mơ  của mình thành sự thật.  Jackpot: Câu chuyện về Jin-ho - anh chàng bất ngờ trúng số độc đắc khi chơi pachinko. Tưởng đây là điều may mắn nhất đời, nhưng Jin-ho bắt đầu trải qua những điều khủng khiếp cùng tài xế bí ẩn kể từ lúc anh bước lên chiếc taxi với một túi đầy tiền.  Gold Tooth: Xoay quanh một người chăm sóc tử thi tại nhà tang lễ, vì lòng tham cá nhân nên anh ta đã lén nhổ những chiếc răng vàng để bán trục lợi. Mọi chuyện không thể kéo dài được mãi, bởi các oan hồn dần hiện về và đòi anh trả đủ những chiếc răng vàng của họ.  Gluttony: Từ một buổi phát sóng trực tiếp biến thành một cuộc thi mukbang khắc nghiệt, những điều bất thường, kỳ lạ đã liên tiếp xảy ra khiến người xem không thể rời mắt khỏi màn hình.  Resident-only Fitness Center: Tại một phòng tập thể dục sang trọng ở khu Gangnam bỗng xảy ra những sự kiện kỳ quái, mà phía sau đó là câu chuyện xúc động về Ji-yeon - cô gái chết oan muốn trả thù kẻ làm nhục mình. Phim mới Âm Hồn Đô Thị dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 27.10.2023.",null,1);
-INSERT INTO  movie VALUES (null,"NGƯỜI VỢ CUỐI CÙNG", 7.8, 0, 0, 1,"2023-11-14", "Lấy cảm hứng từ tiểu thuyết Hồ Oán Hận, của nhà văn Hồng Thái, Người Vợ Cuối Cùng là một bộ phim tâm lý cổ trang, lấy bối cảnh Việt Nam vào triều Nguyễn. LINH - Người vợ bất đắc dĩ của một viên quan tri huyện, xuất thân là con của một gia đình nông dân nghèo khó, vì không thể hoàn thành nghĩa vụ sinh con nối dõi nên đã chịu sự chèn ép của những người vợ lớn trong gia đình. Sự gặp gỡ tình cờ của cô và người yêu thời thanh mai trúc mã của mình - NH N đã dẫn đến nhiều câu chuyện bất ngờ xảy ra khiến cuộc sống cô hoàn toàn thay đổi. Phim mới Người Vợ Cuối Cùng ra mắt tại các rạp chiếu phim từ 03.11.2023",null,1);
-INSERT INTO  movie VALUES (null,"NHỮNG KỶ NGUYÊN CỦA TAYLOR SWIFT", 9.7, 0, 0, 1,"2023-11-17", "Hiện tượng văn hóa tiếp tục trên màn ảnh lớn! Đắm chìm trong trải nghiệm xem phim hòa nhạc độc nhất vô nhị với góc nhìn ngoạn mục, đậm chất điện ảnh về chuyến lưu diễn mang tính lịch sử. Khuyến khích khán giả đeo vòng tay tình bạn và mặc trang phục Taylor Swift Eras Tour! Phim mới Những Kỷ Nguyên Của Taylor Swift dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 03.11.2023.",null,1);
-INSERT INTO  movie VALUES (null,"MỸ NHÂN ĐẠO CHÍCH", 9.9, 0, 0, 1,"2023-11-20", 'Mỹ Nhân Đạo Chích là tác phẩm hài mới nhất của màn ảnh rộng xứ Kim Chi, xoay quanh một phi vụ lừa đảo khó tin của một cặp “mẹ con đạo chích”. Uhm Jung Hwa và Minah lần lượt vào vai mẹ con Ji Hye và Joo Yeong, bộ đôi lừa đảo từng thực hiện nhiều phi vụ thành công, nhưng là… công cốc. Để khép lại sự nghiệp vốn không mấy vẻ vang này, Ji Hye quyết định thực hiện phi vụ trộm số vàng với trị giá lên đến 60 tỷ won. Và kế hoạch của cô chính là… lợi dụng trái tim mong manh mới biết yêu của anh chàng tài phiệt Wan Gyu (Song Sae Byeok). Phi vụ đặc biệt của Ji Hye và Joo Yeong không hề suôn sẻ khi cũng có những kẻ khác đang nhòm ngó số vàng kếch xù này. Phim mới Mỹ Nhân Đạo Chích dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 03.11.2023.',null,1);
-INSERT INTO  movie VALUES (null,"BIỆT ĐỘI MARVELS", 7.8, 0, 0, 1,"2023-11-25", "Carol Danvers bị vướng vào sức mạnh của Kamala Khan và Monica Rambeau, buộc họ phải hợp tác với nhau để cứu vũ trụ. Phim mới Biệt Đội Marvels khởi chiếu 10.11.2023 tại rạp chiếu phim toàn quốc.",null,1);
+INSERT INTO  movie VALUES (null,"VẦNG TRĂNG MÁU", 9.4, 0, 0, 1, "2023-10-20","Bộ phim dựa trên cuốn sách bán chạy và được ca ngợi rộng rãi Killers of the Flower Moon: The Osage Murders and the Birth of the FBI của David Grann. Lấy bối cảnh ở Oklahoma những năm 1920, cuốn sách kể về vụ giết người hàng loạt ở bộ tộc Osage, nơi người dân phát triển kinh tế chủ yếu từ dầu mỏ. Một chuỗi tội ác tàn bạo đã xảy ra, được gọi là Triều đại Khủng bố. Phim mới Vầng Trăng Máu ra mắt tại các rạp chiếu phim từ 20.10.2023","pkrylp954l3a90upgesh.jpg","https://www.youtube.com/watch?v=qUkq_1Ib-WM",3);
+INSERT INTO  movie VALUES (null,"GIA ĐÌNH QUÁI VẬT", 9.5, 0, 0, 1, "2023-10-25","Để giải cứu những người bạn quái vật, gia đình Wishbone bắt đầu chuyến phiêu lưu đến những vùng đất mới cùng những thử thách vô cùng hài hước. Phim mới Gia Đình Quái Vật dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 13.10.2023.","0_1_rb3FSU3nQkvaBA.jpg","https://www.youtube.com/watch?v=9BYF3VsbVrY",3);
+INSERT INTO  movie VALUES (null,"NĂM ĐÊM KINH HOÀNG", 9.4, 0, 0, 1,"2023-10-30", "Liệu thể sống sót sau năm đêm? Bộ phim kể về một nhân viên bảo vệ gặp rắc rối khi anh bắt đầu làm việc tại Freddy Fazbear's Pizza. Sau ngày đầu tiên, anh nhận ra rằng ca đêm ở Freddy's không giống như bình thường.   Phim mới Năm Đêm Kinh Hoàng dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 27.10.2023.","750-500guimiezhiren.jpg","https://www.youtube.com/watch?v=I8-HBJQmPCk",3);
+INSERT INTO  movie VALUES (null,"ÂM HỒN ĐÔ THỊ", 3.3, 0, 0, 1,"2023-11-10", "Âm Hồn Đô Thị bao gồm 5 câu chuyện kinh dị:  Ding-dong Challenge: Xoay quanh 3 người bạn Bora, Haeyul và Youngbi. Mỗi người đều có một mong muốn riêng và quyết định tham gia vào một cuộc thi nguy hiểm, chấp nhận thử thách thực hiện những vũ đạo trên một ứng dụng tên Ding-dong để biến ước mơ  của mình thành sự thật.  Jackpot: Câu chuyện về Jin-ho - anh chàng bất ngờ trúng số độc đắc khi chơi pachinko. Tưởng đây là điều may mắn nhất đời, nhưng Jin-ho bắt đầu trải qua những điều khủng khiếp cùng tài xế bí ẩn kể từ lúc anh bước lên chiếc taxi với một túi đầy tiền.  Gold Tooth: Xoay quanh một người chăm sóc tử thi tại nhà tang lễ, vì lòng tham cá nhân nên anh ta đã lén nhổ những chiếc răng vàng để bán trục lợi. Mọi chuyện không thể kéo dài được mãi, bởi các oan hồn dần hiện về và đòi anh trả đủ những chiếc răng vàng của họ.  Gluttony: Từ một buổi phát sóng trực tiếp biến thành một cuộc thi mukbang khắc nghiệt, những điều bất thường, kỳ lạ đã liên tiếp xảy ra khiến người xem không thể rời mắt khỏi màn hình.  Resident-only Fitness Center: Tại một phòng tập thể dục sang trọng ở khu Gangnam bỗng xảy ra những sự kiện kỳ quái, mà phía sau đó là câu chuyện xúc động về Ji-yeon - cô gái chết oan muốn trả thù kẻ làm nhục mình. Phim mới Âm Hồn Đô Thị dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 27.10.2023.","68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f5742304442685a714343366c38513d3d2d3539393138323234382e313533653830663432623134366531313730303.jpg","https://www.youtube.com/watch?v=q1zXP2raK84",3);
+INSERT INTO  movie VALUES (null,"NGƯỜI VỢ CUỐI CÙNG", 7.8, 0, 0, 1,"2023-11-14", "Lấy cảm hứng từ tiểu thuyết Hồ Oán Hận, của nhà văn Hồng Thái, Người Vợ Cuối Cùng là một bộ phim tâm lý cổ trang, lấy bối cảnh Việt Nam vào triều Nguyễn. LINH - Người vợ bất đắc dĩ của một viên quan tri huyện, xuất thân là con của một gia đình nông dân nghèo khó, vì không thể hoàn thành nghĩa vụ sinh con nối dõi nên đã chịu sự chèn ép của những người vợ lớn trong gia đình. Sự gặp gỡ tình cờ của cô và người yêu thời thanh mai trúc mã của mình - NH N đã dẫn đến nhiều câu chuyện bất ngờ xảy ra khiến cuộc sống cô hoàn toàn thay đổi. Phim mới Người Vợ Cuối Cùng ra mắt tại các rạp chiếu phim từ 03.11.2023","a46781adb04bc1f78ce040539cef76d8.jpg","https://www.youtube.com/watch?v=iTJ-N32o2cI",3);
+INSERT INTO  movie VALUES (null,"NHỮNG KỶ NGUYÊN CỦA TAYLOR SWIFT", 9.7, 0, 0, 1,"2023-11-17", "Hiện tượng văn hóa tiếp tục trên màn ảnh lớn! Đắm chìm trong trải nghiệm xem phim hòa nhạc độc nhất vô nhị với góc nhìn ngoạn mục, đậm chất điện ảnh về chuyến lưu diễn mang tính lịch sử. Khuyến khích khán giả đeo vòng tay tình bạn và mặc trang phục Taylor Swift Eras Tour! Phim mới Những Kỷ Nguyên Của Taylor Swift dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 03.11.2023.","Disney-Plus-sap-co-tren-Windows-11-va-Microsoft-Store-2.jpg","https://www.youtube.com/watch?v=ot-D2wJRYC8",3);
+INSERT INTO  movie VALUES (null,"MỸ NHÂN ĐẠO CHÍCH", 9.9, 0, 0, 1,"2023-11-20", 'Mỹ Nhân Đạo Chích là tác phẩm hài mới nhất của màn ảnh rộng xứ Kim Chi, xoay quanh một phi vụ lừa đảo khó tin của một cặp “mẹ con đạo chích”. Uhm Jung Hwa và Minah lần lượt vào vai mẹ con Ji Hye và Joo Yeong, bộ đôi lừa đảo từng thực hiện nhiều phi vụ thành công, nhưng là… công cốc. Để khép lại sự nghiệp vốn không mấy vẻ vang này, Ji Hye quyết định thực hiện phi vụ trộm số vàng với trị giá lên đến 60 tỷ won. Và kế hoạch của cô chính là… lợi dụng trái tim mong manh mới biết yêu của anh chàng tài phiệt Wan Gyu (Song Sae Byeok). Phi vụ đặc biệt của Ji Hye và Joo Yeong không hề suôn sẻ khi cũng có những kẻ khác đang nhòm ngó số vàng kếch xù này. Phim mới Mỹ Nhân Đạo Chích dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 03.11.2023.',"EBiIYWuVUAAaPTl.jpg","https://www.youtube.com/watch?v=Ntn5azFNJMc",3);
+INSERT INTO  movie VALUES (null,"WOLFOO VÀ HÒN ĐẢO KỲ BÍ", 5.8, 0, 100, 1, "2023-10-13","Câu chuyện xoanh quanh nhân vật chính là chú sói nhỏ Wolfoo 8 tuổi - một chú bé vui vẻ, tốt bụng và yêu thích sự khám phá. Đồng hành cùng Wolfoo chính là cô em gái Lucy 6 tuổi tinh nghịch, hay làm nũng nhưng vô cùng yêu thương anh trai. Câu chuyện bắt đầu khi hai anh em Wolfoo và Lucy bị hút vào một chiếc dây chuyền và đến với Linh Giới - một thế giới vô cùng kỳ diệu. Tại Linh Giới, một sự cố bất ngờ đã khiến hai anh em bị chia tách. Trong hành trình tìm em gái, Wolfoo đã vô tình bị cuốn vào cuộc đấu tranh khốc liệt chống lại binh đoàn quỷ dữ - đứng đầu là Chúa Quỷ Bane - đang cai trị Đảo Thần Bí. Không chỉ là câu chuyện phiêu lưu thuần túy, bộ phim còn mang trong mình những bài học quý giá về sự sáng tạo, sự can đảm và cả tình yêu thương. Tất cả những điều đó đã tạo nên một bộ phim thỏa mãn sự giải trí nhưng cũng đầy tính giáo dục. Phim mới Wolfoo Và Hòn Đảo Kỳ Bí dự̣kiến ra mắt tại các rạp chiếu phim toàn quốc từ 13.10.2023.","68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f5742304442685a714343366c38513d3d2d3539393138323234382e313533653830663432623134366531313730303.jpg",null,1);
+INSERT INTO  movie VALUES (null,"THANH GƯƠM TRỪ TÀ", 9.4, 16, 98, 1, "2023-10-06",'Chuyện phim xoay quanh nhân vật thầy trừ tà Cheon (Gang Dong Won thủ vai), cùng với chiến hữu của mình In Bae (Lee Dong Hwi thủ vai), chuyên đi lừa đảo với những màn trừ tà “pha ke" sử dụng công nghệ cao cùng khả năng hùng biện và tài “thao túng tâm lý" đỉnh cao. Tuy chuyên đi trừ tà nhưng cả hai đều không thể nhìn thấy và không tin vào ma quỷ cho tới khi họ phải đối đầu với một con ác quỷ thật đang khống chế em gái (Park So Yi thủ vai) của Yoo Kyung (Esom thủ vai). Yoo Kyung sở hữu “đôi mắt âm dương” có thể nhìn thấy những linh hồn. Kết hợp với thầy trừ tà Cheon và In Bae, họ phải đối đầu với con ác quỷ thật sự - Beom Cheom (Huh Joon Ho thủ vai) và từ đó, thầy trừ tà Cheon vô tình khám phá được bí mật đằng sau cái chết của em trai và ông nội mình. Nhận được sự giúp đỡ của một nhân vật bí ẩn cùng với những pha hành động trừ tà đẹp mắt, liệu thầy trừ tà Cheon có giúp được em gái của Yoo Kyung và diệt trừ ác quỷ đó? Phim mới Thanh Gươm Trừ Tà dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 06.10.2023.',"0_1_rb3FSU3nQkvaBA.jpg",null,1);
+INSERT INTO  movie VALUES (null,"MỘNG DU", 7.2, 16, 94, 2, "2023-10-05",'Được Bong Joon Ho nhận xét là “phim kinh dị độc đáo nhất của thập kỷ", ngôi vương phòng vé Hàn Quốc - MỘNG DU xoay quanh chuỗi sự kiện ma quái quấy rối giấc ngủ của một cặp vợ chồng trẻ. “Nó" sẽ thức tỉnh lúc nửa đêm.  Phim mới Mộng Du dự kiến ra mắt tại các rạp chiếu phim toàn quốc từ 06.10.2023.',"750-500guimiezhiren.jpg",null,1);
+INSERT INTO  movie VALUES (null,"PAW PATROL: PHIM SIÊU ĐẲNG", 9.1, 0, 93, 1, "2023-09-29","Một mảnh thiên thạch kỳ diệu đã rơi xuống Thành Phố Phiêu Lưu, mang đến siêu năng lực cho những chú cún PAW Patrol và biến chúng thành Những Chú Cún Quyền Năng. Phim mới PAW Patrol: Phim Siêu Đẳng ra mắt tại các rạp chiếu phim từ 29.09.2023.","37566a5c068d518b85af05ea8c7754e8.jpg",null,1);
+INSERT INTO  movie VALUES (null,"KẺ KIẾN TẠO", 7.7, 13, 133, 1, "2023-09-29","Trong tương lai, thế giới xảy ra một cuộc chiến tranh kéo dài giữa loài người và trí tuệ nhân tạo (AI). Joshua (John David Washington) - 1 cựu đặc vụ lì lợm, được thuê để giết “The Creator” - kẻ được xem là đầu não của AI và đã tạo ra 1 loại vũ khí bí ẩn đủ mạnh để kết thúc cuộc chiến và quét sạch nhân loại.  Joshua lần theo mọi dấu vết và biết được rằng thứ vũ khí hủy diệt bí ẩn đó lại chỉ là một AI trong hình hài một đứa bé. Phim mới Kẻ Kiến Tạo khởi chiếu 29.09.2023 tại rạp chiếu phim toàn quốc.","383996993_357174549990249_8392746042342030833_n.jpg",null,1);
 
 INSERT INTO typepreviewblog VALUES (null,"Preview");
 INSERT INTO typepreviewblog VALUES (null,"Blog");
@@ -395,45 +600,55 @@ insert into role( name, description ) VALUES ("ROLE_ADMIN", "Quản trị hệ 
 insert into role( name, description ) VALUES ("ROLE_MANAGER", "Quản lý");
 insert into role( name, description ) VALUES ("ROLE_USER", "Nhân viên");
 
-insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Nguyễn Văn A","5031245254","m","nguyenvana@gmail.com","$2a$12$O1wj393Khcqo01XBcNQLweTPSas414pLRehJREwM48Ya8zmSDfPH.","2000:03:19",2);
-insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Nguyễn Thị B","0356985412","f","nguyenthib@gmail.com","112233","1994:05:16",3);
-insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Nguyễn Quốc Cường","0989174455","m","nguyenquoccuong@gmail.com","090909","1997:05:16",2);
-insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Phan Phúc An","0556699881","m","phanphucan@gmail.com","556644","1994:02:06",1);
-insert into users (fullname,phonenumber,gender,email,password,dob,id_role) values ("Trần Văn Dương","0964523164","m","tranvanduong@gmail.com","123123","1997:04:16",3);
-
-
-INSERT INTO movie_person_producer_movietype VALUES (1,2,4,1);
-INSERT INTO movie_person_producer_movietype VALUES (1,2,4,2);
-INSERT INTO movie_person_producer_movietype VALUES (1,4,4,1);
-INSERT INTO movie_person_producer_movietype VALUES (1,4,4,2);
-INSERT INTO movie_person_producer_movietype VALUES (1,6,4,1);
-INSERT INTO movie_person_producer_movietype VALUES (1,6,4,2);
-INSERT INTO movie_person_producer_movietype VALUES (2,1,2,3);
-INSERT INTO movie_person_producer_movietype VALUES (2,1,2,5);
-INSERT INTO movie_person_producer_movietype VALUES (2,1,3,3);
-INSERT INTO movie_person_producer_movietype VALUES (2,1,3,5);
-INSERT INTO movie_person_producer_movietype VALUES (2,2,2,3);
-INSERT INTO movie_person_producer_movietype VALUES (2,2,2,5);
-INSERT INTO movie_person_producer_movietype VALUES (2,2,3,3);
-INSERT INTO movie_person_producer_movietype VALUES (2,2,3,5);
-INSERT INTO movie_person_producer_movietype VALUES (3,4,5,11);
-INSERT INTO movie_person_producer_movietype VALUES (3,5,5,11);
-INSERT INTO movie_person_producer_movietype VALUES (3,6,5,11);
-INSERT INTO movie_person_producer_movietype VALUES (4,8,7,3);
-INSERT INTO movie_person_producer_movietype VALUES (4,4,7,3);
-INSERT INTO movie_person_producer_movietype VALUES (5,1,1,9);
-INSERT INTO movie_person_producer_movietype VALUES (5,9,1,9);
-INSERT INTO movie_person_producer_movietype VALUES (5,1,2,9);
-INSERT INTO movie_person_producer_movietype VALUES (5,9,2,9);
-INSERT INTO movie_person_producer_movietype VALUES (6,4,8,6);
-INSERT INTO movie_person_producer_movietype VALUES (6,4,4,6);
-INSERT INTO movie_person_producer_movietype VALUES (7,5,5,14);
-INSERT INTO movie_person_producer_movietype VALUES (7,5,5,7);
-INSERT INTO movie_person_producer_movietype VALUES (7,5,5,8);
 INSERT INTO movie_person_producer_movietype VALUES (8,6,6,15);
 INSERT INTO movie_person_producer_movietype VALUES (9,7,2,13);
 INSERT INTO movie_person_producer_movietype VALUES (10,8,5,5);
 INSERT INTO movie_person_producer_movietype VALUES (10,9,5,4);
+INSERT INTO movie_person_producer_movietype VALUES (13,2,3,2);
+INSERT INTO movie_person_producer_movietype VALUES (13,3,4,2);
+INSERT INTO movie_person_producer_movietype VALUES (13,3,3,5);
+INSERT INTO movie_person_producer_movietype VALUES (14,5,1,5);
+INSERT INTO movie_person_producer_movietype VALUES (14,6,1,6);
+INSERT INTO movie_person_producer_movietype VALUES (14,6,1,2);
+
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype)VALUES(2, 1, 1, 3);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype)VALUES(2, 1, 1, 5);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype)VALUES(2, 2, 1, 3);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype)VALUES(2, 2, 1, 5);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype)VALUES(2, 3, 1, 3);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype)VALUES(2, 3, 1, 5);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype)VALUES(2, 20, 1, 3);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype)VALUES(2, 20, 1, 5);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 21, -1, 14);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 21, -1, 12);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 14, -1, 14);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 14, -1, 12);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 12, -1, 14);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 12, -1, 12);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 11, -1, 14);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 11, -1, 12);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 9, -1, 14);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(3, 9, -1, 12);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(4, 21, -1, 14);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(4, 21, -1, 4);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(4, 15, -1, 14);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(4, 15, -1, 4);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(4, 14, -1, 14);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(4, 14, -1, 4);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(5, 20, 1, 6);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(5, 20, 1, 4);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(5, 13, 1, 6);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(5, 13, 1, 4);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(5, 12, 1, 6);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(5, 12, 1, 4);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(5, 8, 1, 6);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(5, 8, 1, 4);
+
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(6, -1, 1, 5);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(6, -1, 1, 1);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(7, -1, -1, 13);
+INSERT INTO movie_person_producer_movietype (id_movie, id_person, id_producer, id_movietype) VALUES(7, -1, -1, 6);
+
 
 INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(1, 1);
 INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(2, 1);
@@ -451,44 +666,99 @@ INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(4,
 INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(3, 5);
 INSERT INTO cybersoftcinema.previewblog_tag (id_tag, id_previewblog) 		VALUES(2, 5);
 
-
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 1, 8);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 2, 8);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 2, 10);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 3, 11);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 5, 12);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 2, 13);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(1, 1, 14);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 2, 8);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 1, 8);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 4, 10);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 5, 11);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 1, 12);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 3, 13);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(2, 5, 14);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 2, 8);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 4, 8);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 1, 10);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 3, 11);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 4, 12);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 1, 13);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(3, 3, 14);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 5, 8);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 6, 8);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 6, 10);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 3, 11);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 4, 12);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 2, 13);
-INSERT INTO cybersoftcinema.movie_theater_showing (id_movie, id_theater, id_showing)				VALUES(4, 1, 14);
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(5, 4, 6);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 2, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(3, 2, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(3, 4, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(4, 5, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(5, 5, 8);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 4, 10);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 5, 11);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(3, 3, 11);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(4, 3, 11);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(5, 3, 11);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(3, 4, 12);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(4, 4, 12);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 2, 42);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 2, 44);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 2, 47);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 4, 49);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 5, 50);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 3, 52);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(2, 5, 53);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(3, 2, 54);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(3, 4, 55);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(3, 3, 57);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(3, 3, 60);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(4, 5, 61);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(4, 3, 64);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(4, 4, 65);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(4, 2, 66);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(5, 5, 68);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(5, 3, 71);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(5, 4, 72);
+INSERT INTO cybersoftcinema.movie_theater_showing
+(id_movie, id_theater, id_showing)
+VALUES(5, 2, 73);

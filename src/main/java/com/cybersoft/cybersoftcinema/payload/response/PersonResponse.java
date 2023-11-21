@@ -68,4 +68,5 @@ public class PersonResponse {
     public void setStory(String story) {
         this.story = story;
     }
+
 }

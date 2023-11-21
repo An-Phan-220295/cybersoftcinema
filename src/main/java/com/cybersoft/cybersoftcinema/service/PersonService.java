@@ -28,7 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.*;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -57,7 +56,7 @@ public class PersonService implements PersonServiceImp {
             personResponse.setName(item.getName());
             personResponse.setStory(item.getStory());
 //            personResponse.setPictures(item.getPicture());
-            personResponse.setPictures("http://" + rootFolder + "/person/file/" + item.getPicture());
+            personResponse.setPicture("http://" + rootFolder + "/person/file/" + item.getPicture());
 
             personResponse.setDob(item.getDob());
             personResponse.setPersonType(item.getPersonTypeEntity().getName());
@@ -74,19 +73,22 @@ public class PersonService implements PersonServiceImp {
 
         List<PersonEntity> list = personRepository.findByName(name);
         List<PersonResponse> responseList = new ArrayList<>();
-        for (PersonEntity data : list){
+        for (PersonEntity data : list) {
             PersonResponse response = new PersonResponse();
             response.setId(data.getId());
             response.setName(data.getName());
             response.setStory(data.getStory());
 //            personResponse.setPictures(item.getPicture());
-            response.setPictures("http://" + rootFolder + "/person/file/" + data.getPicture());
+            response.setPicture("http://" + rootFolder + "/person/file/" + data.getPicture());
 
             response.setDob(data.getDob());
             responseList.add(response);
         }
         return responseList;
-    public byte[] getPersonImage(String imageName) throws IOException {
+    }
+
+    @Override
+    public byte[] getPersonImage(String imageName) throws IOException, java.io.IOException {
         String imagePath = rootFolder + "\\" + imageName;
         byte[] images = Files.readAllBytes(new File(imagePath).toPath());
 
@@ -127,7 +129,7 @@ public class PersonService implements PersonServiceImp {
     }
 
     @Override
-    public boolean insertPerson(String name, int personTypeId, MultipartFile picture, Date dob, int countryId, String story) throws IOException {
+    public boolean insertPerson(String name, int personTypeId, MultipartFile picture, Date dob, int countryId, String story) throws IOException, java.io.IOException {
         boolean isSuccess = false;
         String pathPicture = rootFolder + "\\" + picture.getOriginalFilename();
         Path path = Paths.get(rootFolder);
@@ -176,7 +178,7 @@ public class PersonService implements PersonServiceImp {
     }
 
     @Override
-    public boolean updatePersonById(int personId, String name, int personTypeId, MultipartFile picture, Date dob, int countryId, String story) throws IOException {
+    public boolean updatePersonById(int personId, String name, int personTypeId, MultipartFile picture, Date dob, int countryId, String story) throws IOException, java.io.IOException {
         boolean isSuccess = false;
         String pathPicture = rootFolder + "\\" + picture.getOriginalFilename();
         Path path = Paths.get(rootFolder);

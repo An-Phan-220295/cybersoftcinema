@@ -48,42 +48,22 @@ $(document).ready(function () {
       var htmlData = result.data;
       var htmlAdd = ``;
       htmlData.forEach((item, index) => {
-        // console.log(item.name);
-        // console.log(htmlDataSelected[0].movieType);
-        // htmlAdd += `
-        // <option value="${item.id}">${item.name}</option>
-        // `;
-        console.log(item.name);
-        for (
-          let index = 0;
-          index < htmlDataSelected[0].movieType.length;
-          index++
-        ) {
-          console.log(item.name);
-          if (item.name == htmlDataSelected[0].movieType[index]) {
-            console.log(htmlDataSelected[0].movieType[index]);
-            htmlAdd += `
-                            <option selected value="${item.id}">${item.name}</option>
-                        `;
-            break;
-          } else {
-            htmlAdd += `
-                            <option value="${item.id}">${item.name}</option>
-                        `;
+        var count = 0;
+        (htmlDataSelected[0].movieType).forEach(itemMovieType => {
+          if (item.name == itemMovieType) {
+            count = 1;
           }
+        });
+        if (count == 1) {
+          htmlAdd += `
+                <option selected value="${item.id}">${item.name}</option>
+              `;
+          count = 0;
+        } else {
+          htmlAdd += `
+                <option value="${item.id}">${item.name}</option>
+              `;
         }
-        // (htmlDataSelected[0].movieType).forEach(itemMovieType => {
-        //     if (item.name == itemMovieType) {
-        //         htmlAdd += `
-        //             <option selected value="${item.id}">${item.name}</option>
-        //         `;
-        //         break;
-        //     } else {
-        //         htmlAdd += `
-        //             <option value="${item.id}">${item.name}</option>
-        //         `;
-        //     }
-        // });
       });
       document.getElementById("movieType").innerHTML = htmlAdd;
     });
@@ -128,9 +108,22 @@ $(document).ready(function () {
       var htmlData = result.data;
       var htmlAdd = ``;
       htmlData.forEach((item) => {
-        htmlAdd += `
+        var count = 0;
+        (htmlDataSelected[0].producer).forEach(itemProducer => {
+          if (item.name == itemProducer) {
+            count = 1;
+          }
+        });
+        if (count == 1) {
+          htmlAdd += `
+                <option selected value="${item.id}">${item.name}</option>
+              `;
+          count = 0;
+        } else {
+          htmlAdd += `
                 <option value="${item.id}">${item.name}</option>
-            `;
+              `;
+        }
       });
       document.getElementById("producer").innerHTML = htmlAdd;
     });
