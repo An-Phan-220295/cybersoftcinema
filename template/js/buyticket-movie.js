@@ -143,7 +143,9 @@ $(document).on("click", ".list-theater", function () {
       <div class="list-group-item">
                               <div class="showtimes-row">
                                 <p style = "display: inline-block; margin-right: 10px">
-                                ${formatDate(item.showingDate)}</p>
+                                ${getDayOfWeek(item.showingDate)} ,${formatDate(
+        item.showingDate
+      )}</p>
                                 <div
                                   class="showtimes-item"
                                   style="margin-bottom: 0px;margin-top: 0px;">
@@ -220,13 +222,6 @@ $(document).on("click", ".showingTime", function () {
   timeIdGlobal = $(this).attr("value");
 });
 
-//Function to buy the ticket when click showing time
-$(document).on("click", "#continueButton", function () {
-  console.log(
-    `idMovie la ${movieIdGlobal}, idTheater la ${theaterIdGlobal} va idTime la ${timeIdGlobal}`
-  );
-});
-
 //Function to change the format of the date from yyyy/mm/dd to dd//mm/yyyy
 function formatDate(input) {
   var datePart = input.match(/\d+/g),
@@ -235,4 +230,78 @@ function formatDate(input) {
     day = datePart[2];
 
   return day + "/" + month + "/" + year;
+}
+//Function buy ticket
+$(document).on("click", "#continueButton", function () {
+  if (!getCookie("userName")) {
+    alert("Vui lòng đăng nhập để mua vé");
+  } else {
+    if (
+      typeof timeIdGlobal != "undefined" &&
+      typeof movieIdGlobal != "undefined" &&
+      typeof theaterIdGlobal != "undefined"
+    ) {
+      const ticketdetail = {
+        movieId: movieIdGlobal,
+        theaterId: theaterIdGlobal,
+        timeId: timeIdGlobal,
+      };
+      localStorage.setItem("Allow", "true");
+      localStorage.setItem("ticketdetail", JSON.stringify(ticketdetail));
+      window.location.replace("seat.html");
+    } else {
+      alert("Vui lòng chọn xuát chiếu");
+    }
+  }
+});
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  if (getCookie("userName") != "") {
+    var loginLink = document.getElementById("loginLink");
+    loginLink.style.display = "none";
+    document.getElementById("user-info").classList.remove("hidden");
+    document.getElementById("user-name").textContent = getCookie("userName");
+  }
+}
+
+function closeModal() {
+  var modal = document.getElementById("login-modal");
+  modal.style.display = "none";
+  modal.classList.remove("in");
+
+  // Ẩn lớp màn mờ
+  var modalBackdrop = document.querySelector(".modal-backdrop");
+  if (modalBackdrop) {
+    modalBackdrop.style.display = "none";
+  }
+}
+
+function getDayOfWeek(date) {
+  const weekday = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+  const d = new Date(date);
+  return weekday[d.getDay()];
 }

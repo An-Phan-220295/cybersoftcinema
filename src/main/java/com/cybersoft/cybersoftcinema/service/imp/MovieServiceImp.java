@@ -17,4 +17,6 @@ public interface MovieServiceImp {
     List<MovieResponse> getMovie(int idMovie) throws IOException;
 
     List<MovieResponse> getAllMoviePoster();
+//    List<MovieResponse> getMovieByMovieTypeId(int id);
+
 }

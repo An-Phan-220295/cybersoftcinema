@@ -164,4 +164,28 @@ public class MovieService implements MovieServiceImp {
         return list;
     }
 
+//    @Override
+//    public List<MovieResponse> getMovieByMovieTypeId(int id) {
+//        List<MovieEntity> listMovie = movieRepository.findByMoviePersonProducerMovieTypeEntitiesIdMovietype_MovieTypeEntity(id);
+//        List<MovieResponse> list = new ArrayList<>();
+//
+//
+//        for (MovieEntity item : listMovie){
+//            MovieResponse movieResponse = new MovieResponse();
+//            movieResponse.setId(item.getId());
+//            movieResponse.setName(item.getName());
+//            movieResponse.setContent(item.getContent());
+//            movieResponse.setDirector(new ArrayList<>());
+//            movieResponse.setDuration(item.getDuration());
+//            movieResponse.setCountry(item.getCountryEntity().getName());
+//            movieResponse.setImage("http://" + rootFolder + "/person/file/" + item.getImages());
+//            movieResponse.setMovieStatus(item.getMovieStatusEntity().getName());
+//            movieResponse.setCast(new ArrayList<>());
+//            movieResponse.setProducer(new ArrayList<>());
+//            list.add(movieResponse);
+//
+//        }
+//        return  list;
+//    }
+
 }
